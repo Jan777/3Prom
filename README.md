@@ -1,4 +1,4 @@
-# [Nombre del juego]
+﻿# [Nombre del juego]
 
 ## Sobre las personas
 
@@ -9,10 +9,10 @@
 
 ### Integrantes del equipo
 
-* XXXX
-* XXXX
-* XXXX
-* XXXX
+* Ahmed Nahuel
+* Artime Martin
+* Becerra Pablo
+* Ocampo Jorge
 
 ## Sobre la tecnología
 
