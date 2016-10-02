@@ -9,10 +9,10 @@
 
 ### Integrantes del equipo
 
-* Ahmed Nahuel
-* Artime Martin
-* Becerra Pablo
-* Ocampo Jorge
+* Nahuel Ahmed ([NahuelKH](https://github.com/NahuelKH))
+* Martin Artime ([CrimsonBraixen](https://github.com/CrimsonBraixen)) 
+* Pablo Becerra ([pabloBecerra94](https://github.com/pablobecerra94)) 
+* Jorge Ocampo ([JorgeJOcampo](https://github.com/JorgeJOcampo))
 
 ## Sobre la tecnología
 
