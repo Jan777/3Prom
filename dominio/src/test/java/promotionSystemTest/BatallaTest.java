@@ -1,5 +1,9 @@
+package promotionSystemTest;
 import org.junit.Assert;
 import org.junit.Test;
+
+import promotionSystem.Batalla;
+import promotionSystem.Batallon;
 
 import java.util.ArrayList;
 
