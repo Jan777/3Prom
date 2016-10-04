@@ -6,6 +6,8 @@ public class Personaje {
 	protected int ataque;
 	protected int defensa;
 	protected int magia;
+	protected int experiencia;
+	protected int nivel;
 	
 	public Personaje(){
 		energia=100;
@@ -13,6 +15,8 @@ public class Personaje {
 		ataque=10;
 		defensa=2;
 		magia=5;
+		experiencia=0;
+		nivel = 0;
 	}
 	
 	public final void atacar(Personaje atacado) {
@@ -100,6 +104,23 @@ public class Personaje {
 
 	private int calcularPuntosDeMagia() {
 		return magia;
+	}
+
+	public int getExperiencia() {
+		return experiencia;
+	}
+
+	public void subirExperiencia(int experiencia) {
+		this.experiencia+=experiencia;
+	}
+
+	public int getNivel() {
+		return nivel;
+	}
+
+	public void subirNivel() {
+		nivel=RepartidorDeExperiencia.calcularNivel(this.experiencia);
+		
 	}
 	
 }

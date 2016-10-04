@@ -27,10 +27,21 @@ public class PersonajeTest {
 		crearPersonajes();
 		personajeAtacante.atacar(personajeAtacado);
 		Assert.assertTrue(personajeAtacado.estaVivo());
+		
 	}
 	
 	@Test
-	public void siElAtacadoTieneMenosVidaQueElAtacantePersonajeAtacadoMuere(){
+	public void siElAtacadoTieneMenosVidaQueElAtaqueDelPersonajeAtacanteElPersonajeAtacadoMuere(){
+		crearPersonajes();
+		Assert.assertTrue(personajeAtacado.estaVivo());
+		personajeAtacado.setDefensa(0);
+		personajeAtacado.setSalud(9);
+		personajeAtacante.atacar(personajeAtacado);
+		Assert.assertFalse(personajeAtacado.estaVivo());
+	}
+	
+	@Test
+	public void siElAtacadoTieneIgualVidaQueElAtaqueDelPersonajeAtacanteElPersonajeAtacadoMuere(){
 		crearPersonajes();
 		Assert.assertTrue(personajeAtacado.estaVivo());
 		personajeAtacado.setDefensa(0);
@@ -46,6 +57,8 @@ public class PersonajeTest {
 		personajeAtacado.serCurado();
 		Assert.assertTrue(personajeAtacado.getSalud()==100);
 	}
+	
+
 
 	@Test
 	public void siTieneMenosEnergiaQueLaInicialYEsEnergizadoLaVuelveAlMaximo(){
@@ -113,5 +126,30 @@ public class PersonajeTest {
 		personajeAtacante=new Personaje();
 		Assert.assertTrue(personajeAtacante.obtenerPuntosDeMagia()==5);
 	}
+	
+	@Test
+	public void debeAumentarExperiencia(){
+		personajeAtacante=new Personaje();
+		Assert.assertTrue(personajeAtacante.getExperiencia()==0);
+		personajeAtacante.subirExperiencia(200);
+		Assert.assertTrue(personajeAtacante.getExperiencia()==200);
+	}
+	
+	@Test
+	public void SiPoseeLaExperienciaSuficienteElPersonajeDebeAumentarNivel(){
+		personajeAtacante=new Personaje();
+		personajeAtacante.subirExperiencia(20);
+		personajeAtacante.subirNivel();
+		Assert.assertTrue(personajeAtacante.getNivel()==1);
+	}
+	
+	@Test
+	public void SiNoPoseeLaExperienciaSuficienteElPersonajeDebeAumentarNivel(){
+		personajeAtacante=new Personaje();
+		personajeAtacante.subirExperiencia(9);
+		personajeAtacante.subirNivel();
+		Assert.assertTrue(personajeAtacante.getNivel()==0);
+	}
+	
 	
 }
