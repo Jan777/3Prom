@@ -12,14 +12,21 @@ public class Personaje {
 		ataque=10;
 		defensa=2;
 	}
-
-	public void atacar(Personaje atacado) {
+	
+	public final void atacar(Personaje atacado) {
 		if(puedeAtacar()){
 			int puntosARestar=calcularPuntosDeAtaque()-atacado.calcularPuntosDeDefensa();
 			atacado.serAtacado(puntosARestar<0?0:puntosARestar);
-			energia-=ataque;
+			energia-=calcularPuntosDeAtaque();
+			despuesDeAtacar();
 		}		
 	}
+
+	private void despuesDeAtacar(){
+		
+	}
+		
+		
 
 	private void serAtacado(int ataque) {
 		salud-=ataque;
