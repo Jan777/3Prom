@@ -22,7 +22,7 @@ public class Personaje {
 		}		
 	}
 
-	private void despuesDeAtacar(){
+	public void despuesDeAtacar(){
 		
 	}
 		
@@ -71,11 +71,11 @@ public class Personaje {
 		
 	}
 
-	private int calcularPuntosDeAtaque(){
+	protected int calcularPuntosDeAtaque(){
 		return ataque;		
 	}
 	
-	private int calcularPuntosDeDefensa(){
+	protected int calcularPuntosDeDefensa(){
 		return defensa;
 	}
 
