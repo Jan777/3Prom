@@ -12,7 +12,12 @@ public class Batalla {
         this.alianza2 = alianza2;
     }
 
+    public void darTurno(Alianza alianza){
+        //Cargar interfaz para que el usuario ataque.
+    }
+
     public Alianza definirGanador() {
+        //FIXME Se define con el JForm, borrar lo de abajo.
         return alianza1;
     }
 

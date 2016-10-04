@@ -4,6 +4,11 @@ import java.util.List;
 
 public class Alianza {
     private List<Personaje> personajes;
+    private Personaje personajeActivo;
+
+    public Personaje getPersonajeActivo() {
+        return personajeActivo;
+    }
 
     public Alianza(List<Personaje> personajes) {
         this.personajes = personajes;
@@ -13,7 +18,13 @@ public class Alianza {
         return personajes;
     }
 
-    public Personaje elegirVictima(int numeroDePersonaje) {
-        return personajes.get(numeroDePersonaje-1);
+    public void entrarEnBatalla(){
+        //Carga de interfaz de batalla.
+    }
+
+    public void repartirRecompenza(List<Item> premio){
+        for(Item item : premio){
+            //FIXME A definir -> Inventario - Random
+        }
     }
 }

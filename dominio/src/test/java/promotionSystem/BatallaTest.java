@@ -33,4 +33,18 @@ public class BatallaTest {
     private Batalla crearBatalla(){
         return new Batalla(alianza1, alianza2);
     }
+
+    //FIXME Codigo para ejecutar una batalla, se tiene que mover a los distintos elementos de JForm.
+    public void asd(){
+        alianza2 = crearAlianza(2);
+        Batalla batalla = crearBatalla();
+        alianza1.entrarEnBatalla();
+        alianza2.entrarEnBatalla();
+        batalla.darTurno(alianza1);
+        Personaje atacante =  alianza1.getPersonajeActivo();
+        Personaje victima = atacante.elegirVictima(alianza2, 0);
+        atacante.atacar(victima);
+        if(victima.estaVivo())
+            Assert.assertEquals(alianza2, batalla.definirGanador());
+    }
 }
