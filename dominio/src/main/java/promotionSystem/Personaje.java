@@ -10,17 +10,19 @@ public class Personaje {
 		energia=100;
 		salud=100;
 		ataque=10;
+		defensa=2;
 	}
 
 	public void atacar(Personaje atacado) {
 		if(puedeAtacar()){
-			atacado.serAtacado(calcularPuntosDeAtaque());
+			int puntosARestar=calcularPuntosDeAtaque()-atacado.calcularPuntosDeDefensa();
+			atacado.serAtacado(puntosARestar<0?0:puntosARestar);
 			energia-=ataque;
 		}		
 	}
 
 	private void serAtacado(int ataque) {
-		salud-=calcularPuntosDeAtaque();
+		salud-=ataque;
 		if(salud<0){
 			salud=0;
 		}		
@@ -65,5 +67,15 @@ public class Personaje {
 	private int calcularPuntosDeAtaque(){
 		return ataque;		
 	}
+	
+	private int calcularPuntosDeDefensa(){
+		return defensa;
+	}
+
+	public void setDefensa(int defensa) {
+		this.defensa=defensa;
+		
+	}
+	
 	
 }
