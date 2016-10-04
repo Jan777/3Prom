@@ -4,16 +4,16 @@ import java.util.List;
 
 public class Batalla {
 
-    private Batallon batallon1;
-    private Batallon batallon2;
+    private Alianza alianza1;
+    private Alianza alianza2;
 
-    public Batalla(Batallon batallon1, Batallon batallon2) {
-        this.batallon1 = batallon1;
-        this.batallon2 = batallon2;
+    public Batalla(Alianza alianza1, Alianza alianza2) {
+        this.alianza1 = alianza1;
+        this.alianza2 = alianza2;
     }
 
-    public Batallon definirGanador() {
-        return batallon1;
+    public Alianza definirGanador() {
+        return alianza1;
     }
 
     public List<Item> definirPremio() {
