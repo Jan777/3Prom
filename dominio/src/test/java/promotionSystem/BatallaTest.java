@@ -1,4 +1,4 @@
-package promotionSystemTest;
+package promotionSystem;
 import org.junit.Assert;
 import org.junit.Test;
 

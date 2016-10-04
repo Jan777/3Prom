@@ -51,5 +51,15 @@ public class Personaje {
 		
 	}
 
+	public void setSalud(int salud) {
+		this.salud=salud;
+		
+	}
+
+	public void setEnergia(int energia) {
+		this.energia=energia;
+		
+	}
+
 	
 }
