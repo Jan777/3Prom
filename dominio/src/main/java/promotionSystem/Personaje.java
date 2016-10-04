@@ -46,7 +46,7 @@ public class Personaje {
 	}
 
 	public Personaje elegirVictima(Alianza alianzaEnemiga, int numeroDePersonaje) {
-		return alianzaEnemiga.getPersonajes().get(numeroDePersonaje-1);
+		return alianzaEnemiga.darVictima(numeroDePersonaje);
 	}
 
 	public int getSalud() {

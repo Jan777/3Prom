@@ -22,6 +22,10 @@ public class Alianza {
         //Carga de interfaz de batalla.
     }
 
+    public Personaje darVictima(int numeroDePersonaje) {
+        return personajes.get(numeroDePersonaje-1);
+    }
+
     public void repartirRecompenza(List<Item> premio){
         for(Item item : premio){
             //FIXME A definir -> Inventario - Random
