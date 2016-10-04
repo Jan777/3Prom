@@ -26,7 +26,7 @@ public class Alianza {
         return personajes.get(numeroDePersonaje-1);
     }
 
-    public void repartirRecompenza(List<Item> premio){
+    public void repartirItems(List<Item> premio){
         for(Item item : premio){
             //FIXME A definir -> Inventario - Random
         }
