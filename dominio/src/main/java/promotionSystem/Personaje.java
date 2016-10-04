@@ -45,6 +45,10 @@ public class Personaje {
 		return energia>=ataque;
 	}
 
+	public Personaje elegirVictima(Alianza alianzaEnemiga, int numeroDePersonaje) {
+		return alianzaEnemiga.getPersonajes().get(numeroDePersonaje-1);
+	}
+
 	public int getSalud() {
 		return salud;
 	}
