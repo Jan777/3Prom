@@ -47,10 +47,10 @@ public class PersonajeTest {
 
 	@Test
 	public void siTieneMenosEnergiaQueLaInicialYEsEnergizadoLaVuelveAlMaximo(){
-		crearPersonajes();		
+		personajeAtacante=new Personaje();		
 		personajeAtacante.setEnergia(10);
 		personajeAtacante.serEnergizado();
-		Assert.assertTrue(personajeAtacado.getEnergia()==100);
+		Assert.assertTrue(personajeAtacante.getEnergia()==100);
 	}
 	
 	@Test
@@ -61,6 +61,21 @@ public class PersonajeTest {
 		Assert.assertTrue(personajeAtacado.getSalud()==100);
 	}
 	
+	@Test
+	public void siTieneVidaAlMaximoNoPuedeAumentarSuSaludAlSerCurado(){
+		personajeAtacado=new Personaje();
+		Assert.assertTrue(personajeAtacado.getSalud()==100);
+		personajeAtacado.serCurado();
+		Assert.assertTrue(personajeAtacado.getSalud()==100);
+	}
+	
+	@Test
+	public void siTieneEnergiaAlMaximoNoPuedeAumentarSuEnergiaAlSerEnergizado(){
+		personajeAtacante=new Personaje();
+		Assert.assertTrue(personajeAtacante.getEnergia()==100);
+		personajeAtacante.serEnergizado();
+		Assert.assertTrue(personajeAtacante.getEnergia()==100);
+	}
 	
 	
 }
