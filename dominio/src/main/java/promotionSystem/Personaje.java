@@ -1,9 +1,10 @@
 package promotionSystem;
 
 public class Personaje {
-	private int salud;
-	private int energia;
-	private int ataque;
+	protected int salud;
+	protected int energia;
+	protected int ataque;
+	protected int defensa;
 	
 	public Personaje(){
 		energia=100;
@@ -13,16 +14,16 @@ public class Personaje {
 
 	public void atacar(Personaje atacado) {
 		if(puedeAtacar()){
-			atacado.serAtacado(ataque);
+			atacado.serAtacado(calcularPuntosDeAtaque());
 			energia-=ataque;
-		}
-		
-		
+		}		
 	}
 
 	private void serAtacado(int ataque) {
-		salud-=ataque;
-		
+		salud-=calcularPuntosDeAtaque();
+		if(salud<0){
+			salud=0;
+		}		
 	}
 
 	private boolean puedeAtacar() {
@@ -61,5 +62,8 @@ public class Personaje {
 		
 	}
 
+	private int calcularPuntosDeAtaque(){
+		return ataque;		
+	}
 	
 }
