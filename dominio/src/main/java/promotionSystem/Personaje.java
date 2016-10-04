@@ -84,5 +84,13 @@ public class Personaje {
 		
 	}
 	
+	public int obtenerPuntosDeAtaque(){
+		return calcularPuntosDeAtaque();
+	}
+	
+	public int obtenerPuntosDeDefensa(){
+		return calcularPuntosDeDefensa();
+	}
+	
 	
 }
