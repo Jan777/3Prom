@@ -17,6 +17,7 @@ public class PersonajeTest {
 	@Test
 	public void siAtacaDisminuyeEnergiaPropiaYSaludDelRival(){
 		crearPersonajes();
+		personajeAtacado.setDefensa(0);
 		personajeAtacante.atacar(personajeAtacado);
 		Assert.assertTrue(personajeAtacado.getSalud()==90 && personajeAtacante.getEnergia()==90);
 	}
@@ -32,6 +33,7 @@ public class PersonajeTest {
 	public void siElAtacadoTieneMenosVidaQueElAtacantePersonajeAtacadoMuere(){
 		crearPersonajes();
 		Assert.assertTrue(personajeAtacado.estaVivo());
+		personajeAtacado.setDefensa(0);
 		personajeAtacado.setSalud(10);
 		personajeAtacante.atacar(personajeAtacado);
 		Assert.assertFalse(personajeAtacado.estaVivo());
@@ -75,6 +77,23 @@ public class PersonajeTest {
 		Assert.assertTrue(personajeAtacante.getEnergia()==100);
 		personajeAtacante.serEnergizado();
 		Assert.assertTrue(personajeAtacante.getEnergia()==100);
+	}
+	
+	@Test
+	public void siLaDefensaDelAtacadoEsMayorAlAtaqueDelAtacadoNoRecibeDano(){
+		crearPersonajes();
+		personajeAtacado.setDefensa(15);
+		personajeAtacante.atacar(personajeAtacado);
+		Assert.assertTrue(personajeAtacado.getSalud()==100);
+	}
+	
+	//FIXME corregir nombre del metodo 
+	@Test
+	public void siLaDefensaEsMenorQueElAtaqueLaSaludDisminuyePeroNoTanto(){
+		crearPersonajes();
+		personajeAtacado.setDefensa(5);
+		personajeAtacante.atacar(personajeAtacado);
+		Assert.assertTrue(personajeAtacado.getSalud()==95);
 	}
 	
 	
