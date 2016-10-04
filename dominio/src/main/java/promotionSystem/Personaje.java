@@ -5,12 +5,14 @@ public class Personaje {
 	protected int energia;
 	protected int ataque;
 	protected int defensa;
+	protected int magia;
 	
 	public Personaje(){
 		energia=100;
 		salud=100;
 		ataque=10;
 		defensa=2;
+		magia=5;
 	}
 	
 	public final void atacar(Personaje atacado) {
@@ -92,5 +94,13 @@ public class Personaje {
 		return calcularPuntosDeDefensa();
 	}
 	
+	public int obtenerPuntosDeMagia(){
+		return calcularPuntosDeMagia();
+	}
+
+	private int calcularPuntosDeMagia() {
+		return magia;
+	}
 	
 }
+	

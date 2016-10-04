@@ -96,5 +96,22 @@ public class PersonajeTest {
 		Assert.assertTrue(personajeAtacado.getSalud()==95);
 	}
 	
+	@Test
+	public void debeDevolverLosPuntosDeAtaque(){
+		personajeAtacante=new Personaje();
+		Assert.assertTrue(personajeAtacante.obtenerPuntosDeAtaque()==10);
+	}
+	
+	@Test
+	public void debeDevolverLosPuntosDeDefensa(){
+		personajeAtacante=new Personaje();
+		Assert.assertTrue(personajeAtacante.obtenerPuntosDeDefensa()==2);
+	}
+	
+	@Test
+	public void debeDevolverLosPuntosDeMagia(){
+		personajeAtacante=new Personaje();
+		Assert.assertTrue(personajeAtacante.obtenerPuntosDeMagia()==5);
+	}
 	
 }
