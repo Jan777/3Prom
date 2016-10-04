@@ -28,11 +28,7 @@ public class Personaje {
 		}		
 	}
 
-	public void despuesDeAtacar(){
-		
-	}
-		
-		
+	public void despuesDeAtacar(){}
 
 	private void serAtacado(int ataque) {
 		salud-=ataque;
