@@ -1,16 +1,26 @@
 package promotionSystem;
+
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 
+import static promotionSystem.builder.AlianzaBuilder.crearAlianza;
+
 public class BatallaTest {
+    private Alianza alianza1;
+    private Alianza alianza2;
+
+    @Before
+    public void setUp(){
+        Alianza alianza1 = crearAlianza(1);
+        Alianza alianza2 = crearAlianza(1);
+    }
 
     @Test
     public void debeDefinirElGanadorEntreDosBatallones(){
-        Alianza alianza1 = new Alianza();
-        Alianza alianza2 = new Alianza();
-        Batalla batalla = new Batalla(alianza1, alianza2);
+        Batalla batalla = crearBatalla();
         Assert.assertEquals(alianza1, batalla.definirGanador());
     }
 
@@ -21,8 +31,6 @@ public class BatallaTest {
     }
 
     private Batalla crearBatalla(){
-        Alianza alianza1 = new Alianza();
-        Alianza alianza2 = new Alianza();
         return new Batalla(alianza1, alianza2);
     }
 }
