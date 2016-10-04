@@ -3,7 +3,7 @@ package promotionSystem;
 import org.junit.Assert;
 import org.junit.Test;
 
-import promotionSystem.Personaje;
+import static promotionSystem.builder.AlianzaBuilder.crearAlianza;
 
 public class PersonajeTest {
 	Personaje personajeAtacante;
@@ -150,6 +150,12 @@ public class PersonajeTest {
 		personajeAtacante.subirNivel();
 		Assert.assertTrue(personajeAtacante.getNivel()==0);
 	}
-	
-	
+
+	@Test
+	public void debeElegirElPrimerPersonajeComoVictima(){
+		Alianza alianzaEnemiga = crearAlianza(1);
+        personajeAtacante = new Personaje();
+        Personaje victima = personajeAtacante.elegirVictima(alianzaEnemiga, 1);
+		Assert.assertEquals(0, alianzaEnemiga.getPersonajes().indexOf(victima));
+	}
 }
