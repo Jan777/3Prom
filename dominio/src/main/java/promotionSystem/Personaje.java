@@ -6,6 +6,7 @@ import promotionSystem.administradores.AdministradorDeExperiencia;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Personaje {
 	protected int salud;
 	protected int energia;

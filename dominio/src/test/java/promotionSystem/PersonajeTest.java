@@ -175,9 +175,9 @@ public class PersonajeTest {
 		List<Personaje> personajes=new ArrayList<>();
 		personajes.add(personajeAtacante);
 		Alianza alianzaNueva=new Alianza(personajes);
-		alianzaNueva.agregarPersonaje(personajeAtacante);
 		personajeAtacante.abandonarAlianza();
 		Assert.assertEquals(-1,personajeAtacante.getAlianza());
+		Assert.assertEquals(0, alianzaNueva.getPersonajes().size());
 
 	}
 
