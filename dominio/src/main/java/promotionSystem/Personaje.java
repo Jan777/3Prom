@@ -1,5 +1,8 @@
 package promotionSystem;
 
+import promotionSystem.administradores.AdministradorDeAlianzas;
+import promotionSystem.administradores.AdministradorDeExperiencia;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -126,7 +129,7 @@ public class Personaje {
 	}
 
 	public void subirNivel() {
-		nivel=AdministradorDeExperiencia.calcularNivel(this.experiencia);
+		nivel= AdministradorDeExperiencia.calcularNivel(this.experiencia);
 		
 	}
 
@@ -143,7 +146,7 @@ public class Personaje {
 	}
 
 	
-	//FIXME cambiar esto cuando se defina el tema de como el personaje conoce la alianza.
+	//FIXME cambiar esto cuando se defina el tema de como el personajeEquipado conoce la alianza.
 	public void setAlianza(int alianza) {
 		this.idAlianza=alianza;
 	}

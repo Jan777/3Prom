@@ -1,6 +1,8 @@
-package promotionSystem;
+package promotionSystem.alianzas;
 
 import org.junit.Test;
+import promotionSystem.Alianza;
+import promotionSystem.alianzas.AlianzaDeHumanos;
 import promotionSystem.builder.AlianzaBuilder;
 
 import static org.junit.Assert.*;

@@ -1,8 +1,11 @@
-package promotionSystem;
+package promotionSystem.alianzas;
+
+import promotionSystem.Alianza;
+import promotionSystem.Personaje;
 
 import java.util.List;
 
-public class AlianzaDeHumanos extends Alianza{
+public class AlianzaDeHumanos extends Alianza {
 
     public AlianzaDeHumanos(List<Personaje> personajes) {
         super(personajes);

@@ -1,5 +1,7 @@
 package promotionSystem;
 
+import promotionSystem.administradores.AdministradorDeAlianzas;
+
 import java.util.ArrayList;
 import java.util.List;
 

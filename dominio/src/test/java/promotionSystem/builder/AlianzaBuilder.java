@@ -1,7 +1,7 @@
 package promotionSystem.builder;
 
 import promotionSystem.Alianza;
-import promotionSystem.AlianzaDeHumanos;
+import promotionSystem.alianzas.AlianzaDeHumanos;
 import promotionSystem.Personaje;
 
 import java.util.ArrayList;

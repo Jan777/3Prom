@@ -1,4 +1,4 @@
-package promotionSystem;
+package promotionSystem.administradores;
 
 public class AdministradorDeExperiencia {
 
