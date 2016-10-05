@@ -5,6 +5,8 @@ import promotionSystem.administradores.AdministradorDeAlianzas;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 public class Alianza {
     protected List<Personaje> personajes;
     private Personaje personajeActivo;
@@ -16,14 +18,9 @@ public class Alianza {
 
     public Alianza(List<Personaje> personajes) {
         this.personajes = personajes;
+        AdministradorDeAlianzas administrador = AdministradorDeAlianzas.getInstance();
+        administrador.agregarAlianza(this);
     }
-
-    public Alianza() {
-    	AdministradorDeAlianzas administrador = AdministradorDeAlianzas.getInstance();
-    	administrador.agregarAlianza(this);
-    	personajes=new ArrayList<>();
-
-	}
 
 	public List<Personaje> getPersonajes() {
         return personajes;

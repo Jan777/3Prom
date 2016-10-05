@@ -5,6 +5,9 @@ import org.junit.Test;
 
 import static promotionSystem.builder.AlianzaBuilder.crearAlianza;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PersonajeTest {
 	Personaje personajeAtacante;
 	Personaje personajeAtacado;
@@ -169,7 +172,9 @@ public class PersonajeTest {
 	@Test
 	public void siElPersonajePoseeUnaAlianzaYLaAbandonaDejaraDeAparecerEsaAlianza(){
 		personajeAtacante = new Personaje();
-		Alianza alianzaNueva=new Alianza();
+		List<Personaje> personajes=new ArrayList<>();
+		personajes.add(personajeAtacante);
+		Alianza alianzaNueva=new Alianza(personajes);
 		alianzaNueva.agregarPersonaje(personajeAtacante);
 		personajeAtacante.abandonarAlianza();
 		Assert.assertEquals(-1,personajeAtacante.getAlianza());
