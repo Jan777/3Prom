@@ -12,6 +12,7 @@ public class Personaje {
 	protected int experiencia;
 	protected int nivel;
 	protected List<Item> items;
+	private int idAlianza;
 	
 	public Personaje(){
 		energia=100;
@@ -22,6 +23,7 @@ public class Personaje {
 		experiencia=0;
 		nivel = 0;
 		items = new ArrayList<>();
+		this.idAlianza=-1;
 	}
 	
 	public final void atacar(Personaje atacado) {
@@ -124,7 +126,7 @@ public class Personaje {
 	}
 
 	public void subirNivel() {
-		nivel=RepartidorDeExperiencia.calcularNivel(this.experiencia);
+		nivel=AdministradorDeExperiencia.calcularNivel(this.experiencia);
 		
 	}
 
@@ -138,6 +140,22 @@ public class Personaje {
 
 	public void recibirItem(Item item) {
 		items.add(item);
+	}
+
+	
+	//FIXME cambiar esto cuando se defina el tema de como el personaje conoce la alianza.
+	public void setAlianza(int alianza) {
+		this.idAlianza=alianza;
+	}
+
+	public void abandonarAlianza() {
+		AdministradorDeAlianzas administrador = AdministradorDeAlianzas.getInstance();
+		administrador.sacarPersonajeDeAlianza(idAlianza, this);
+		this.idAlianza=-1;		
+	}
+
+	public int getAlianza() {
+		return idAlianza;
 	}
 }
 	

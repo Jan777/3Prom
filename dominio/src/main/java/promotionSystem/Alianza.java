@@ -16,7 +16,14 @@ public class Alianza {
         this.personajes = personajes;
     }
 
-    public List<Personaje> getPersonajes() {
+    public Alianza() {
+    	AdministradorDeAlianzas administrador = AdministradorDeAlianzas.getInstance();
+    	administrador.agregarAlianza(this);
+    	personajes=new ArrayList<>();
+    	
+	}
+
+	public List<Personaje> getPersonajes() {
         return personajes;
     }
 
@@ -49,4 +56,13 @@ public class Alianza {
     public void recibirItems(List<Item> items){
         this.items = items;
     }
+
+	public void sacarPersonaje(Personaje personaje) {
+		personajes.remove(personaje);
+	}
+
+	public void agregarPersonaje(Personaje personaje) {
+		personajes.add(personaje);
+		
+	}
 }

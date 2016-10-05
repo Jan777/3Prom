@@ -155,6 +155,7 @@ public class PersonajeTest {
 		Assert.assertEquals(0,personajeAtacante.getNivel());
 		
 	}
+	
 
 	@Test
 	public void debeElegirElPrimerPersonajeComoVictima(){
@@ -163,5 +164,18 @@ public class PersonajeTest {
         Personaje victima = personajeAtacante.elegirVictima(alianzaEnemiga, 1);
 		Assert.assertEquals(0, alianzaEnemiga.getPersonajes().indexOf(victima));
 	}
+
+
+	@Test
+	public void siElPersonajePoseeUnaAlianzaYLaAbandonaDejaraDeAparecerEsaAlianza(){
+		personajeAtacante = new Personaje();
+		Alianza alianzaNueva=new Alianza();
+		alianzaNueva.agregarPersonaje(personajeAtacante);
+		personajeAtacante.abandonarAlianza();
+		Assert.assertEquals(-1,personajeAtacante.getAlianza());
+
+	}
+
+	
 	
 }
