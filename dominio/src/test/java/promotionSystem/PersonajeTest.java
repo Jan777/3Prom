@@ -19,7 +19,9 @@ public class PersonajeTest {
 		crearPersonajes();
 		personajeAtacado.setDefensa(0);
 		personajeAtacante.atacar(personajeAtacado);
-		Assert.assertTrue(personajeAtacado.getSalud()==90 && personajeAtacante.getEnergia()==90);
+		Assert.assertEquals(90,personajeAtacado.getSalud());
+		Assert.assertEquals(90,personajeAtacante.getEnergia());
+	
 	}
 	
 	@Test
@@ -55,7 +57,7 @@ public class PersonajeTest {
 		personajeAtacado=new Personaje();	
 		personajeAtacado.setSalud(10);
 		personajeAtacado.serCurado();
-		Assert.assertTrue(personajeAtacado.getSalud()==100);
+		Assert.assertEquals(100,personajeAtacado.getSalud());
 	}
 	
 
@@ -65,7 +67,7 @@ public class PersonajeTest {
 		personajeAtacante=new Personaje();		
 		personajeAtacante.setEnergia(10);
 		personajeAtacante.serEnergizado();
-		Assert.assertTrue(personajeAtacante.getEnergia()==100);
+		Assert.assertEquals(100,personajeAtacante.getEnergia());
 	}
 	
 	@Test
@@ -73,23 +75,23 @@ public class PersonajeTest {
 		crearPersonajes();
 		personajeAtacante.setEnergia(0);
 		personajeAtacante.atacar(personajeAtacado);
-		Assert.assertTrue(personajeAtacado.getSalud()==100);
+		Assert.assertEquals(100,personajeAtacado.getSalud());
 	}
 	
 	@Test
 	public void siTieneVidaAlMaximoNoPuedeAumentarSuSaludAlSerCurado(){
 		personajeAtacado=new Personaje();
-		Assert.assertTrue(personajeAtacado.getSalud()==100);
+		Assert.assertEquals(100,personajeAtacado.getSalud());
 		personajeAtacado.serCurado();
-		Assert.assertTrue(personajeAtacado.getSalud()==100);
+		Assert.assertEquals(100,personajeAtacado.getSalud());
 	}
 	
 	@Test
 	public void siTieneEnergiaAlMaximoNoPuedeAumentarSuEnergiaAlSerEnergizado(){
 		personajeAtacante=new Personaje();
-		Assert.assertTrue(personajeAtacante.getEnergia()==100);
+		Assert.assertEquals(100,personajeAtacante.getEnergia());
 		personajeAtacante.serEnergizado();
-		Assert.assertTrue(personajeAtacante.getEnergia()==100);
+		Assert.assertEquals(100,personajeAtacante.getEnergia());
 	}
 	
 	@Test
@@ -97,7 +99,7 @@ public class PersonajeTest {
 		crearPersonajes();
 		personajeAtacado.setDefensa(15);
 		personajeAtacante.atacar(personajeAtacado);
-		Assert.assertTrue(personajeAtacado.getSalud()==100);
+		Assert.assertEquals(100,personajeAtacado.getSalud());
 	}
 	
 	//FIXME corregir nombre del metodo 
@@ -106,33 +108,34 @@ public class PersonajeTest {
 		crearPersonajes();
 		personajeAtacado.setDefensa(5);
 		personajeAtacante.atacar(personajeAtacado);
-		Assert.assertTrue(personajeAtacado.getSalud()==95);
+		Assert.assertEquals(95,personajeAtacado.getSalud());
 	}
 	
 	@Test
 	public void debeDevolverLosPuntosDeAtaque(){
 		personajeAtacante=new Personaje();
-		Assert.assertTrue(personajeAtacante.obtenerPuntosDeAtaque()==10);
+		Assert.assertEquals(10,personajeAtacante.obtenerPuntosDeAtaque());
 	}
 	
 	@Test
 	public void debeDevolverLosPuntosDeDefensa(){
 		personajeAtacante=new Personaje();
-		Assert.assertTrue(personajeAtacante.obtenerPuntosDeDefensa()==2);
+		Assert.assertEquals(2,personajeAtacante.obtenerPuntosDeDefensa());
 	}
 	
 	@Test
 	public void debeDevolverLosPuntosDeMagia(){
 		personajeAtacante=new Personaje();
-		Assert.assertTrue(personajeAtacante.obtenerPuntosDeMagia()==5);
+		
+		Assert.assertEquals(5,personajeAtacante.obtenerPuntosDeMagia());
 	}
 	
 	@Test
 	public void debeAumentarExperiencia(){
 		personajeAtacante=new Personaje();
-		Assert.assertTrue(personajeAtacante.getExperiencia()==0);
+		Assert.assertEquals(0,personajeAtacante.getExperiencia());
 		personajeAtacante.subirExperiencia(200);
-		Assert.assertTrue(personajeAtacante.getExperiencia()==200);
+		Assert.assertEquals(200,personajeAtacante.getExperiencia());
 	}
 	
 	@Test
@@ -140,7 +143,8 @@ public class PersonajeTest {
 		personajeAtacante=new Personaje();
 		personajeAtacante.subirExperiencia(20);
 		personajeAtacante.subirNivel();
-		Assert.assertTrue(personajeAtacante.getNivel()==1);
+		Assert.assertEquals(1,personajeAtacante.getNivel());
+		
 	}
 	
 	@Test
@@ -148,7 +152,8 @@ public class PersonajeTest {
 		personajeAtacante=new Personaje();
 		personajeAtacante.subirExperiencia(9);
 		personajeAtacante.subirNivel();
-		Assert.assertTrue(personajeAtacante.getNivel()==0);
+		Assert.assertEquals(0,personajeAtacante.getNivel());
+		
 	}
 
 	@Test
