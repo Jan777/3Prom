@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Alianza {
-    private List<Personaje> personajes;
+    protected List<Personaje> personajes;
     private Personaje personajeActivo;
     private List<Item> items;
 
@@ -20,7 +20,7 @@ public class Alianza {
     	AdministradorDeAlianzas administrador = AdministradorDeAlianzas.getInstance();
     	administrador.agregarAlianza(this);
     	personajes=new ArrayList<>();
-    	
+
 	}
 
 	public List<Personaje> getPersonajes() {
@@ -40,7 +40,7 @@ public class Alianza {
     }
 
     public Personaje darVictima(int numeroDePersonaje) {
-        return personajes.get(numeroDePersonaje-1);
+        return personajes.get(numeroDePersonaje);
     }
 
     public List<Item> entregarItems(){
@@ -63,6 +63,10 @@ public class Alianza {
 
 	public void agregarPersonaje(Personaje personaje) {
 		personajes.add(personaje);
-		
+
 	}
+
+    public void atacar(Alianza alianzaEnemiga){
+
+    }
 }

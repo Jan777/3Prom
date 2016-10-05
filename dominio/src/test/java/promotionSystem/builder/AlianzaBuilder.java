@@ -1,6 +1,7 @@
 package promotionSystem.builder;
 
 import promotionSystem.Alianza;
+import promotionSystem.AlianzaDeHumanos;
 import promotionSystem.Personaje;
 
 import java.util.ArrayList;
@@ -14,5 +15,13 @@ public class AlianzaBuilder {
             personajes.add(new Personaje());
         }
         return new Alianza(personajes);
+    }
+
+    public static AlianzaDeHumanos crearAlianzaDeHumanos(int cantidadDePersonajes){
+        List<Personaje> personajes = new ArrayList<>();
+        for(int i= 0; i < cantidadDePersonajes; i++){
+            personajes.add(new Personaje());
+        }
+        return new AlianzaDeHumanos(personajes);
     }
 }

@@ -26,7 +26,7 @@ public class AlianzaTest {
     @Test
     public void debeDarLaVictimaQueLeSolicito(){
         alianza = crearAlianza(3);
-        Personaje victima = alianza.darVictima(3);
+        Personaje victima = alianza.darVictima(2);
         Assert.assertEquals(2, alianza.getPersonajes().indexOf(victima));
     }
 }
