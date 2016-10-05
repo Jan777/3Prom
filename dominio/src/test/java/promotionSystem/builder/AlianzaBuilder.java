@@ -9,7 +9,7 @@ import java.util.List;
 public class AlianzaBuilder {
 
     public static Alianza crearAlianza(int cantidadDePersonajes){
-        List<Personaje> personajes = new ArrayList<Personaje>();
+        List<Personaje> personajes = new ArrayList<>();
         for(int i= 0; i < cantidadDePersonajes; i++){
             personajes.add(new Personaje());
         }

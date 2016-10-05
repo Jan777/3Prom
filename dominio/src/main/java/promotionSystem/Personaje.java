@@ -1,5 +1,8 @@
 package promotionSystem;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Personaje {
 	protected int salud;
 	protected int energia;
@@ -8,6 +11,7 @@ public class Personaje {
 	protected int magia;
 	protected int experiencia;
 	protected int nivel;
+	protected List<Item> items;
 	
 	public Personaje(){
 		energia=100;
@@ -17,6 +21,7 @@ public class Personaje {
 		magia=5;
 		experiencia=0;
 		nivel = 0;
+		items = new ArrayList<>();
 	}
 	
 	public final void atacar(Personaje atacado) {
@@ -122,6 +127,13 @@ public class Personaje {
 		nivel=RepartidorDeExperiencia.calcularNivel(this.experiencia);
 		
 	}
-	
+
+	public Item entregarItem() {
+		return items.remove(0);
+	}
+
+	public void recibirItem(Item item) {
+		items.add(item);
+	}
 }
 	

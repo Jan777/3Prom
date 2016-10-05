@@ -1,10 +1,12 @@
 package promotionSystem;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Alianza {
     private List<Personaje> personajes;
     private Personaje personajeActivo;
+    private List<Item> items;
 
     public Personaje getPersonajeActivo() {
         return personajeActivo;
@@ -18,6 +20,14 @@ public class Alianza {
         return personajes;
     }
 
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public int cantidadDePersonajes() {
+        return personajes.size();
+    }
+
     public void entrarEnBatalla(){
         //Carga de interfaz de batalla.
     }
@@ -26,9 +36,15 @@ public class Alianza {
         return personajes.get(numeroDePersonaje-1);
     }
 
-    public void repartirItems(List<Item> premio){
-        for(Item item : premio){
-            //FIXME A definir -> Inventario - Random
+    public List<Item> entregarItems(){
+        List<Item> itemsPerdidos = new ArrayList<>();
+        for(Personaje personaje : personajes){
+            itemsPerdidos.add(personaje.entregarItem());
         }
+        return itemsPerdidos;
+    }
+
+    public void recibirItems(List<Item> items){
+        this.items = items;
     }
 }

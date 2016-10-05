@@ -1,6 +1,6 @@
 package promotionSystem;
 
-public class PersonajesDeUndertale extends Personaje implements Excepciones{
+public class PersonajesDeUndertale extends Personaje{
 
 	public PersonajesDeUndertale(String casta) {
 		if(casta.equals("Sans")){
@@ -21,7 +21,7 @@ public class PersonajesDeUndertale extends Personaje implements Excepciones{
 			experiencia=0;
 			nivel=1;
 		}
-		else if(casta.equals("Chara"){
+		else if(casta.equals("Chara")){
 			energia=110;
 			salud=1;
 			ataque=8;
@@ -30,8 +30,8 @@ public class PersonajesDeUndertale extends Personaje implements Excepciones{
 			experiencia=0;
 			nivel=1;
 		}
-		else{
-			throws PersonajeInvalidoException();
-		}
+//		else{
+//			throws PersonajeInvalidoException();
+//		}
 	}
 }

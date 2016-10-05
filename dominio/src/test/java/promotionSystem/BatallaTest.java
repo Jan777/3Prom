@@ -4,8 +4,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-
 import static promotionSystem.builder.AlianzaBuilder.crearAlianza;
 
 public class BatallaTest {
@@ -14,8 +12,8 @@ public class BatallaTest {
 
     @Before
     public void setUp(){
-        Alianza alianza1 = crearAlianza(1);
-        Alianza alianza2 = crearAlianza(1);
+        alianza1 = crearAlianza(2);
+        alianza2 = crearAlianza(1);
     }
 
     @Test
@@ -25,9 +23,29 @@ public class BatallaTest {
     }
 
     @Test
-    public void debeDefinirElPremioDeUnaBatalla(){
+    public void debeDefinirElPerdedorEntreDosBatallones(){
         Batalla batalla = crearBatalla();
-        Assert.assertEquals(new ArrayList<>(),batalla.definirPremio());
+        Assert.assertEquals(alianza2, batalla.definirPerdedor());
+    }
+
+    @Test
+    public void siLaAlianzaPerdedoraTieneDosItemsYDosPersonajesDebeEntregarLosDosItems(){
+        alianza1 = crearAlianza(3);
+        alianza2 = crearAlianza(2);
+        Batalla batalla = crearBatalla();
+        alianza2.getPersonajes().get(0).recibirItem(new Item());
+        alianza2.getPersonajes().get(1).recibirItem(new Item());
+        Assert.assertEquals(batalla.entregarPremio(), alianza1.getItems());
+        Assert.assertEquals(2, alianza1.getItems().size());
+    }
+
+    @Test
+    public void siLaAlianzaPerdedoraTiene2ItemsY1PersonajeDebeEntregarUnSoloItem(){
+        Batalla batalla = crearBatalla();
+        alianza2.getPersonajes().get(0).recibirItem(new Item());
+        alianza2.getPersonajes().get(0).recibirItem(new Item());
+        Assert.assertEquals(batalla.entregarPremio(), alianza1.getItems());
+        Assert.assertEquals(1, alianza1.getItems().size());
     }
 
     private Batalla crearBatalla(){

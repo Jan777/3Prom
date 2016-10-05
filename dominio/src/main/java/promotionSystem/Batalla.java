@@ -1,11 +1,12 @@
 package promotionSystem;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Batalla {
 
     private Alianza alianza1;
     private Alianza alianza2;
+    private Alianza ganador;
+    private Alianza perdedor;
 
     public Batalla(Alianza alianza1, Alianza alianza2) {
         this.alianza1 = alianza1;
@@ -18,10 +19,25 @@ public class Batalla {
 
     public Alianza definirGanador() {
         //FIXME Se define con el JForm, borrar lo de abajo.
-        return alianza1;
+        ganador = alianza1.cantidadDePersonajes() > alianza2.cantidadDePersonajes() ? alianza1 : alianza2;
+        return ganador;
     }
 
-    public List<Item> definirPremio() {
-        return new ArrayList<>();
+    public Alianza definirPerdedor() {
+        //FIXME Se define con el JForm, borrar lo de abajo.
+        perdedor = alianza1.cantidadDePersonajes() < alianza2.cantidadDePersonajes() ? alianza1 : alianza2;
+        return perdedor;
+    }
+
+    public List<Item> entregarPremio() {
+        definirGanador();
+        List<Item> premio = definirPremio();
+        ganador.recibirItems(premio);
+        return premio;
+    }
+
+    private List<Item> definirPremio() {
+        definirPerdedor();
+        return perdedor.entregarItems();
     }
 }
