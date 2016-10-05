@@ -163,4 +163,5 @@ public class PersonajeTest {
         Personaje victima = personajeAtacante.elegirVictima(alianzaEnemiga, 1);
 		Assert.assertEquals(0, alianzaEnemiga.getPersonajes().indexOf(victima));
 	}
+	
 }

@@ -129,7 +129,11 @@ public class Personaje {
 	}
 
 	public Item entregarItem() {
-		return items.remove(0);
+			return items.remove(0);			
+	}
+
+	public boolean puedeDarItem() {
+		return items.size()!=0;
 	}
 
 	public void recibirItem(Item item) {

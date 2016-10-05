@@ -48,9 +48,19 @@ public class BatallaTest {
         Assert.assertEquals(1, alianza1.getItems().size());
     }
 
+   @Test
+   public void siLaAlianzaPerdedoraTieneUnPersonajeQueNoTieneItemsNoDebeEntregarItems(){
+	   Batalla batalla = crearBatalla();
+	   Assert.assertEquals(batalla.entregarPremio(),alianza1.getItems());
+	   Assert.assertEquals(0,alianza1.getItems().size());
+	   
+   }
+    
     private Batalla crearBatalla(){
         return new Batalla(alianza1, alianza2);
     }
+    
+  
 
     //FIXME Codigo para ejecutar una batalla, se tiene que mover a los distintos elementos de JForm.
     public void asd(){
