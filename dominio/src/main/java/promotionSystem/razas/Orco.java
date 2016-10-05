@@ -7,7 +7,7 @@ public class Orco extends Personaje {
 	public Orco(){
 		energia = 100;
 		salud=120;
-		ataque=140;
+		ataque=40;
 		defensa=5;
 		magia=1;
 		experiencia=0;
