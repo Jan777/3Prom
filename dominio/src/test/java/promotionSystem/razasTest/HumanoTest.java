@@ -4,14 +4,14 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
-import promotionSystem.razas.Humano;
+import promotionSystem.razas.PersonajeHumano;
 
 public class HumanoTest {
 	
 	@Test
 	public void siHumanoAtacaNoCambiaLosStasDespuesDeAtacar(){
-		Humano man=new Humano();
-		Humano man2=new Humano();
+		PersonajeHumano man=new PersonajeHumano();
+		PersonajeHumano man2=new PersonajeHumano();
 		Assert.assertEquals(10, man.obtenerPuntosDeAtaque());
 		man.atacar(man2);
 		Assert.assertEquals(10, man.obtenerPuntosDeAtaque());

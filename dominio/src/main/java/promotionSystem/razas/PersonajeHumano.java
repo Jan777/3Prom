@@ -2,9 +2,9 @@ package promotionSystem.razas;
 
 import promotionSystem.Personaje;
 
-public class Humano extends Personaje {
+public class PersonajeHumano extends Personaje {
 
-	public Humano(){
+	public PersonajeHumano(){
 		super();
 	}
 	

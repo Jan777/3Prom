@@ -2,9 +2,9 @@ package promotionSystem.razas;
 
 import promotionSystem.Personaje;
 
-public class Orco extends Personaje {
+public class PersonajeOrco extends Personaje {
 
-	public Orco(){
+	public PersonajeOrco(){
 		energia = 100;
 		salud=120;
 		ataque=40;
