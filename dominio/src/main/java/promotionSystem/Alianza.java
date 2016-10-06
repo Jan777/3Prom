@@ -68,4 +68,9 @@ public class Alianza {
     public void atacar(Alianza alianzaEnemiga){
 
     }
+
+	public void agregarPersonaje(List<Personaje> personajes) {
+		this.personajes.addAll(personajes);
+		
+	}
 }

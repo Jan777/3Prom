@@ -29,9 +29,10 @@ public class AdministradorDeAlianzas {
 		}
 		
 		public void agregarPersonajeAAlianza(int idAlianza, Personaje personaje){
-			if(alianzas.containsValue(idAlianza)){
-				alianzas.get(idAlianza).agregarPersonaje(personaje);					
+			if(alianzas.containsKey(idAlianza)){
+				alianzas.get(idAlianza).agregarPersonaje(personaje);	
 			}
+			
 		}
 
 		public void agregarAlianza(Alianza alianza) {
@@ -43,40 +44,13 @@ public class AdministradorDeAlianzas {
 			cantidadAlianzas++;
 		}
 
+		public void juntarAlianzas(int alianza1, int alianza2) {
+			if(alianzas.containsKey(alianza1)&&alianzas.containsKey(alianza2)){
+				Alianza alianzaDestruida=alianzas.get(alianza2);//FIXME refactorizar nombre de la alianzaDestruida
+				alianzas.get(alianza1).agregarPersonaje(alianzaDestruida.getPersonajes());	
+				alianzas.remove(alianzaDestruida);
+			}
+			
+		}
 
-	public static class PersonajesDeUndertale extends Personaje {
-
-        public PersonajesDeUndertale(String casta) {
-            if(casta.equals("Sans")){
-                energia=110;
-                salud=1;
-                ataque=8;
-                defensa=1;
-                magia=7;
-                experiencia=0;
-                nivel=1;
-            }
-            else if(casta.equals("Flowie")){
-                energia=115;
-                salud=130;
-                ataque=11;
-                defensa=6;
-                magia=9;
-                experiencia=0;
-                nivel=1;
-            }
-            else if(casta.equals("Chara")){
-                energia=110;
-                salud=1;
-                ataque=8;
-                defensa=1;
-                magia=7;
-                experiencia=0;
-                nivel=1;
-            }
-    //		else{
-    //			throws PersonajeInvalidoException();
-    //		}
-        }
-    }
 }
