@@ -11,7 +11,7 @@ import java.util.List;
 public class PersonajeTest {
 	Personaje personajeAtacante;
 	Personaje personajeAtacado;
-	
+	Alianza alianzaAtacante;
 	public void crearPersonajes(){
 		 personajeAtacante=new Personaje();
 		 personajeAtacado=new Personaje();
@@ -169,16 +169,49 @@ public class PersonajeTest {
 	}
 
 
+	private Alianza crearAlianza(int cantidadPersonajes) {
+		List<Personaje> personajes=new ArrayList<>();
+		for(int i=0;i<cantidadPersonajes;i++){
+			personajes.add(new Personaje());
+		}
+		return new Alianza(personajes);
+	}
+
 	@Test
 	public void siElPersonajePoseeUnaAlianzaYLaAbandonaDejaraDeAparecerEsaAlianza(){
 		personajeAtacante = new Personaje();
-		List<Personaje> personajes=new ArrayList<>();
-		personajes.add(personajeAtacante);
-		Alianza alianzaNueva=new Alianza(personajes);
+		Alianza alianzaNueva=crearAlianza(personajeAtacante);
 		personajeAtacante.abandonarAlianza();
 		Assert.assertEquals(-1,personajeAtacante.getAlianza());
 		Assert.assertEquals(0, alianzaNueva.getPersonajes().size());
 
+	}
+
+	private Alianza crearAlianza(Personaje personaje) {
+		List<Personaje> personajes=new ArrayList<>();
+		personajes.add(personaje);
+		Alianza alianzaNueva=new Alianza(personajes);
+		return alianzaNueva;
+	}
+	
+	@Test
+	public void siElPersonajeNoTieneAlianzasYAceptaUnaNuevaAlianzaPasaATenerla(){
+		crearPersonajes();
+	    alianzaAtacante = crearAlianza(personajeAtacante);
+		personajeAtacado.aceptarAlianza(personajeAtacante.getAlianza());
+		Assert.assertEquals(personajeAtacante.getAlianza(), personajeAtacado.getAlianza());
+		Assert.assertEquals(2, alianzaAtacante.getPersonajes().size());
+
+	}
+	
+	@Test
+	public void siElPersonajeTieneAlianzasYAceptaUnaNuevaAlianzaAmbasAlianzasSeUnen(){
+		crearPersonajes();
+		alianzaAtacante =crearAlianza(personajeAtacante);
+		Alianza alianzaAtacado=crearAlianza(personajeAtacado);
+		personajeAtacado.aceptarAlianza(personajeAtacante.getAlianza());
+		Assert.assertEquals(personajeAtacante.getAlianza(), personajeAtacado.getAlianza());
+		Assert.assertEquals(2, alianzaAtacante.getPersonajes().size());
 	}
 
 	

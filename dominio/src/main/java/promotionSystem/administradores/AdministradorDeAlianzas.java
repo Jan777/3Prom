@@ -30,8 +30,9 @@ public class AdministradorDeAlianzas {
 		
 		public void agregarPersonajeAAlianza(int idAlianza, Personaje personaje){
 			if(alianzas.containsKey(idAlianza)){
-				alianzas.get(idAlianza).agregarPersonaje(personaje);					
+				alianzas.get(idAlianza).agregarPersonaje(personaje);	
 			}
+			
 		}
 
 		public void agregarAlianza(Alianza alianza) {
@@ -41,6 +42,15 @@ public class AdministradorDeAlianzas {
 				personaje.setAlianza(cantidadAlianzas);
 			}
 			cantidadAlianzas++;
+		}
+
+		public void juntarAlianzas(int alianza1, int alianza2) {
+			if(alianzas.containsKey(alianza1)&&alianzas.containsKey(alianza2)){
+				Alianza alianzaDestruida=alianzas.get(alianza2);//FIXME refactorizar nombre de la alianzaDestruida
+				alianzas.get(alianza1).agregarPersonaje(alianzaDestruida.getPersonajes());	
+				alianzas.remove(alianzaDestruida);
+			}
+			
 		}
 
 }

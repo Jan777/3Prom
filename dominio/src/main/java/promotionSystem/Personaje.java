@@ -161,5 +161,20 @@ public class Personaje {
 	public int getAlianza() {
 		return idAlianza;
 	}
+
+	public void aceptarAlianza(int alianza) {
+		AdministradorDeAlianzas administrador = AdministradorDeAlianzas.getInstance();
+		if(tieneAlianza()){			
+			administrador.juntarAlianzas(alianza,this.idAlianza);
+		}
+		else{
+			administrador.agregarPersonajeAAlianza(alianza, this);
+		}
+		idAlianza=alianza;
+	}
+
+	private boolean tieneAlianza() {
+		return idAlianza!=-1;
+	}
 }
 	
