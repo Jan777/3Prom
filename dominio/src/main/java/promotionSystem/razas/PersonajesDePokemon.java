@@ -16,4 +16,7 @@ public class PersonajesDePokemon extends Personaje {
 		nivel=0;
 	}
 
+	public void despuesDeAtacar(){
+		energia+=10;
+	}
 }

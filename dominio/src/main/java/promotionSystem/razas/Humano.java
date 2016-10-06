@@ -14,4 +14,8 @@ public class Humano extends Personaje {
 		nivel=0;
 	}
 	
+	public void despuesDeAtacar(){
+		// raza sin efectos despues de atacar
+	}
+	
 }
