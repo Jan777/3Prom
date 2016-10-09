@@ -16,4 +16,10 @@ public class ConCasco extends PersonajeEquipado {
 	public int obtenerPuntosDeDefensa() {
 		return super.obtenerPuntosDeDefensa() * 2;
 	}
+
+	@Override
+	public void despuesDeAtacar() {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -3,6 +3,8 @@ package promotionSystem;
 import org.junit.Assert;
 import org.junit.Test;
 
+import promotionSystem.razas.Humano;
+
 import static promotionSystem.builder.AlianzaBuilder.crearAlianza;
 
 import java.util.ArrayList;
@@ -13,8 +15,8 @@ public class PersonajeTest {
 	Personaje personajeAtacado;
 	Alianza alianzaAtacante;
 	public void crearPersonajes(){
-		 personajeAtacante=new Personaje();
-		 personajeAtacado=new Personaje();
+		 personajeAtacante=new Humano();
+		 personajeAtacado=new Humano();
 	}
 	
 	@Test
@@ -57,7 +59,7 @@ public class PersonajeTest {
 	
 	@Test
 	public void siTieneMenosSaludQueLaInicialYEsCuradoLaSaludVuelveAlMaximo(){
-		personajeAtacado=new Personaje();	
+		personajeAtacado=new Humano();	
 		personajeAtacado.setSalud(10);
 		personajeAtacado.serCurado();
 		Assert.assertEquals(100,personajeAtacado.getSalud());
@@ -67,7 +69,7 @@ public class PersonajeTest {
 
 	@Test
 	public void siTieneMenosEnergiaQueLaInicialYEsEnergizadoLaVuelveAlMaximo(){
-		personajeAtacante=new Personaje();		
+		personajeAtacante=new Humano();		
 		personajeAtacante.setEnergia(10);
 		personajeAtacante.serEnergizado();
 		Assert.assertEquals(100,personajeAtacante.getEnergia());
@@ -83,7 +85,7 @@ public class PersonajeTest {
 	
 	@Test
 	public void siTieneVidaAlMaximoNoPuedeAumentarSuSaludAlSerCurado(){
-		personajeAtacado=new Personaje();
+		personajeAtacado=new Humano();
 		Assert.assertEquals(100,personajeAtacado.getSalud());
 		personajeAtacado.serCurado();
 		Assert.assertEquals(100,personajeAtacado.getSalud());
@@ -91,7 +93,7 @@ public class PersonajeTest {
 	
 	@Test
 	public void siTieneEnergiaAlMaximoNoPuedeAumentarSuEnergiaAlSerEnergizado(){
-		personajeAtacante=new Personaje();
+		personajeAtacante=new Humano();
 		Assert.assertEquals(100,personajeAtacante.getEnergia());
 		personajeAtacante.serEnergizado();
 		Assert.assertEquals(100,personajeAtacante.getEnergia());
@@ -116,26 +118,26 @@ public class PersonajeTest {
 	
 	@Test
 	public void debeDevolverLosPuntosDeAtaque(){
-		personajeAtacante=new Personaje();
+		personajeAtacante=new Humano();
 		Assert.assertEquals(10,personajeAtacante.obtenerPuntosDeAtaque());
 	}
 	
 	@Test
 	public void debeDevolverLosPuntosDeDefensa(){
-		personajeAtacante=new Personaje();
+		personajeAtacante=new Humano();
 		Assert.assertEquals(2,personajeAtacante.obtenerPuntosDeDefensa());
 	}
 	
 	@Test
 	public void debeDevolverLosPuntosDeMagia(){
-		personajeAtacante=new Personaje();
+		personajeAtacante=new Humano();
 		
 		Assert.assertEquals(5,personajeAtacante.obtenerPuntosDeMagia());
 	}
 	
 	@Test
 	public void debeAumentarExperiencia(){
-		personajeAtacante=new Personaje();
+		personajeAtacante=new Humano();
 		Assert.assertEquals(0,personajeAtacante.getExperiencia());
 		personajeAtacante.subirExperiencia(200);
 		Assert.assertEquals(200,personajeAtacante.getExperiencia());
@@ -143,7 +145,7 @@ public class PersonajeTest {
 	
 	@Test
 	public void SiPoseeLaExperienciaSuficienteElPersonajeDebeAumentarNivel(){
-		personajeAtacante=new Personaje();
+		personajeAtacante=new Humano();
 		personajeAtacante.subirExperiencia(20);
 		personajeAtacante.subirNivel();
 		Assert.assertEquals(1,personajeAtacante.getNivel());
@@ -152,7 +154,7 @@ public class PersonajeTest {
 	
 	@Test
 	public void SiNoPoseeLaExperienciaSuficienteElPersonajeDebeAumentarNivel(){
-		personajeAtacante=new Personaje();
+		personajeAtacante=new Humano();
 		personajeAtacante.subirExperiencia(9);
 		personajeAtacante.subirNivel();
 		Assert.assertEquals(0,personajeAtacante.getNivel());
@@ -163,7 +165,7 @@ public class PersonajeTest {
 	@Test
 	public void debeElegirElPrimerPersonajeComoVictima(){
 		Alianza alianzaEnemiga = crearAlianza(1);
-        personajeAtacante = new Personaje();
+        personajeAtacante = new Humano();
         Personaje victima = personajeAtacante.elegirVictima(alianzaEnemiga, 0);
 		Assert.assertEquals(0, alianzaEnemiga.getPersonajes().indexOf(victima));
 	}
@@ -172,14 +174,14 @@ public class PersonajeTest {
 	private Alianza crearAlianza(int cantidadPersonajes) {
 		List<Personaje> personajes=new ArrayList<>();
 		for(int i=0;i<cantidadPersonajes;i++){
-			personajes.add(new Personaje());
+			personajes.add(new Humano());
 		}
 		return new Alianza(personajes);
 	}
 
 	@Test
 	public void siElPersonajePoseeUnaAlianzaYLaAbandonaDejaraDeAparecerEsaAlianza(){
-		personajeAtacante = new Personaje();
+		personajeAtacante = new Humano();
 		Alianza alianzaNueva=crearAlianza(personajeAtacante);
 		personajeAtacante.abandonarAlianza();
 		Assert.assertEquals(-1,personajeAtacante.getAlianza());

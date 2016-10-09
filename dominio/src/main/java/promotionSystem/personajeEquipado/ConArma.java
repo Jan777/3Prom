@@ -15,4 +15,10 @@ public class ConArma extends PersonajeEquipado {
 	public int obtenerPuntosDeAtaque() {
 		return super.obtenerPuntosDeAtaque() * 2;
 	}
+
+	@Override
+	public void despuesDeAtacar() {
+		// TODO Auto-generated method stub
+		
+	}
 }
