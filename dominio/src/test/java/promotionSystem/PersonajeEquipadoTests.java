@@ -2,8 +2,9 @@ package promotionSystem;
 
 import org.junit.Test;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 import promotionSystem.personajeEquipado.*;
+import promotionSystem.razas.Humano;
 
 public class PersonajeEquipadoTests {
 
@@ -11,7 +12,7 @@ public class PersonajeEquipadoTests {
 	
 	@Test
 	public void siPuedoAgregarDosItemsDelMismoTipo() {
-		Personaje Louie = new Personaje();
+		Personaje Louie = new Humano();
 		Assert.assertEquals(2, Louie.obtenerPuntosDeDefensa());
 		// agrego escudo de defensa (+2)
 		Louie = new ConEscudo(Louie);
@@ -23,7 +24,7 @@ public class PersonajeEquipadoTests {
 	
 	@Test
 	public void siPuedoAgregarDosItemsDeDistintoTipo() {
-		Personaje Louie = new Personaje();
+		Personaje Louie = new Humano();
 		// agrego escudo de ataque (*2)
 		Louie = new ConArma(Louie);
 		Assert.assertEquals(10 * 2, Louie.obtenerPuntosDeAtaque());

@@ -15,4 +15,7 @@ public class PersonajesDeKingdomHearts extends Personaje{
 		nivel=0;
 	}
 
+	public void despuesDeAtacar(){
+		defensa+=defensa*(1/4);
+	}
 }

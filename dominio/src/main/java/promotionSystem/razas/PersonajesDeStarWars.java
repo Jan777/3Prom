@@ -15,5 +15,8 @@ public class PersonajesDeStarWars extends Personaje {
 		nivel=0;
 	}
 	
+	public void despuesDeAtacar(){
+		magia+=2;
+	}
 }
 

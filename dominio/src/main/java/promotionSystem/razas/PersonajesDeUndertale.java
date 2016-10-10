@@ -13,5 +13,10 @@ public class PersonajesDeUndertale extends Personaje{
 		experiencia=0;
 		nivel=0;
 	}
+	
+	public void despuesDeAtacar(){
+		magia+=1;
+		energia+=1;
+	}
 
 }

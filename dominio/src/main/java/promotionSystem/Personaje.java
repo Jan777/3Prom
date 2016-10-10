@@ -2,12 +2,10 @@ package promotionSystem;
 
 import promotionSystem.administradores.AdministradorDeAlianzas;
 import promotionSystem.administradores.AdministradorDeExperiencia;
-
-import java.util.ArrayList;
 import java.util.List;
 
 
-public class Personaje {
+public abstract class Personaje {
 	protected int salud;
 	protected int energia;
 	protected int ataque;
@@ -16,19 +14,8 @@ public class Personaje {
 	protected int experiencia;
 	protected int nivel;
 	protected List<Item> items;
-	private int idAlianza;
+	protected int idAlianza;
 	
-	public Personaje(){
-		energia=100;
-		salud=100;
-		ataque=10;
-		defensa=2;
-		magia=5;
-		experiencia=0;
-		nivel = 0;
-		items = new ArrayList<>();
-		this.idAlianza=-1;
-	}
 	
 	public final void atacar(Personaje atacado) {
 		if(puedeAtacar()){
@@ -39,7 +26,7 @@ public class Personaje {
 		}		
 	}
 
-	public void despuesDeAtacar(){}
+	public abstract void despuesDeAtacar();
 
 	private void serAtacado(int ataque) {
 		salud-=ataque;
@@ -64,7 +51,7 @@ public class Personaje {
 		return energia;
 	}
 
-	public boolean estaVivo() {
+	public final boolean estaVivo() {
 		return salud>0;
 	}
 
@@ -121,7 +108,7 @@ public class Personaje {
 		return experiencia;
 	}
 
-	public void subirExperiencia(int experiencia) {
+	public final void  subirExperiencia(int experiencia) {
 		this.experiencia+=experiencia;
 	}
 
