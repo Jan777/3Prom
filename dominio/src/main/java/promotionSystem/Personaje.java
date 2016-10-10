@@ -126,7 +126,7 @@ public abstract class Personaje {
 
 	public void subirNivel() {
 		nivel= AdministradorDeExperiencia.calcularNivel(this.experiencia);
-		
+		subirStatsCadaVezQueSeSubeNivel(); ///Nahuel
 	}
 
 	public Item entregarItem() {
@@ -171,5 +171,9 @@ public abstract class Personaje {
 	private boolean tieneAlianza() {
 		return idAlianza!=-1;
 	}
+	
+	///////////////Nahuel////////////
+	
+	public abstract void subirStatsCadaVezQueSeSubeNivel();
 }
 	

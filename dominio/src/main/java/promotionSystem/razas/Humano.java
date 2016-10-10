@@ -22,4 +22,12 @@ public class Humano extends Personaje {
 		// raza sin efectos despues de atacar
 	}
 	
+	public void subirStatsCadaVezQueSeSubeNivel(){
+		energia=100+nivel;
+		salud=100+nivel;
+		ataque=10+nivel;
+		defensa=2+nivel;
+		magia=5+nivel;
+	}
+	
 }
