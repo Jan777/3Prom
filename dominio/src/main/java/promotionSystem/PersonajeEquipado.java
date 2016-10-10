@@ -22,4 +22,14 @@ public abstract class PersonajeEquipado extends Personaje {
 	public int obtenerPuntosDeDefensa() {
 		return this.personajeDecorado.obtenerPuntosDeDefensa();
 	}
+	
+	@Override
+	public int obtenerPuntosDeVelocidad() {
+		return this.personajeDecorado.obtenerPuntosDeVelocidad();
+	}
+	
+	@Override
+	public int obtenerPuntosDeMagia() {
+		return this.personajeDecorado.obtenerPuntosDeMagia();
+	}
 }

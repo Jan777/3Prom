@@ -99,7 +99,15 @@ public abstract class Personaje {
 	public int obtenerPuntosDeMagia(){
 		return calcularPuntosDeMagia();
 	}
-
+	/*Martin: velocidad es un stat?
+	public int obtenerPuntosDeVelocidad(){
+		return calcularPuntosDeVelocidad();
+	}
+	
+	private int calcularPuntosDeVelocidad() {
+		return velocidad;
+	}
+*/
 	private int calcularPuntosDeMagia() {
 		return magia;
 	}
