@@ -4,7 +4,9 @@ package promotionSystem.administradores;
 import promotionSystem.Alianza;
 import promotionSystem.Personaje;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 
 public class AdministradorDeAlianzas {
@@ -30,7 +32,8 @@ public class AdministradorDeAlianzas {
 		
 		public void agregarPersonajeAAlianza(int idAlianza, Personaje personaje){
 			if(alianzas.containsKey(idAlianza)){
-				alianzas.get(idAlianza).agregarPersonaje(personaje);	
+				alianzas.get(idAlianza).agregarPersonaje(personaje);
+				personaje.setAlianza(idAlianza);
 			}
 			
 		}
@@ -52,5 +55,7 @@ public class AdministradorDeAlianzas {
 			}
 			
 		}
+
+		
 
 }

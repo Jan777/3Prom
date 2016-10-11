@@ -11,6 +11,7 @@ public class Alianza {
     protected List<Personaje> personajes;
     private Personaje personajeActivo;
     private List<Item> items;
+    private int id;
 
     public Personaje getPersonajeActivo() {
         return personajeActivo;
@@ -70,7 +71,9 @@ public class Alianza {
     }
 
 	public void agregarPersonaje(List<Personaje> personajes) {
-		this.personajes.addAll(personajes);
-		
+		for(Personaje personaje:personajes){
+			personaje.setAlianza(id);
+			this.personajes.add(personaje);
+		}		
 	}
 }

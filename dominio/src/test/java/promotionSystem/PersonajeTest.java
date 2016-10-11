@@ -200,7 +200,7 @@ public class PersonajeTest {
 	public void siElPersonajeNoTieneAlianzasYAceptaUnaNuevaAlianzaPasaATenerla(){
 		crearPersonajes();
 	    alianzaAtacante = crearAlianza(personajeAtacante);
-		personajeAtacado.aceptarAlianza(personajeAtacante.getAlianza());
+		personajeAtacado.aceptarAlianza(personajeAtacante);
 		Assert.assertEquals(personajeAtacante.getAlianza(), personajeAtacado.getAlianza());
 		Assert.assertEquals(2, alianzaAtacante.getPersonajes().size());
 
@@ -211,11 +211,20 @@ public class PersonajeTest {
 		crearPersonajes();
 		alianzaAtacante =crearAlianza(personajeAtacante);
 		Alianza alianzaAtacado=crearAlianza(personajeAtacado);
-		personajeAtacado.aceptarAlianza(personajeAtacante.getAlianza());
+		personajeAtacado.aceptarAlianza(personajeAtacante);
 		Assert.assertEquals(personajeAtacante.getAlianza(), personajeAtacado.getAlianza());
 		Assert.assertEquals(2, alianzaAtacante.getPersonajes().size());
 	}
 
+	@Test
+	public void siNingunoDeLosDosPersonajesTieneAlianzaSeCreaUnaNueva(){
+		crearPersonajes();
+		personajeAtacante.invitarAAlianza(personajeAtacado);
+		Assert.assertNotEquals(-1, personajeAtacante.getAlianza());
+		Assert.assertNotEquals(-1, personajeAtacado.getAlianza());
+		Assert.assertEquals(personajeAtacante.getAlianza(), personajeAtacado.getAlianza());
+	}
+	
 	
 	
 }

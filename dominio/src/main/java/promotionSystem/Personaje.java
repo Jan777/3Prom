@@ -2,6 +2,8 @@ package promotionSystem;
 
 import promotionSystem.administradores.AdministradorDeAlianzas;
 import promotionSystem.administradores.AdministradorDeExperiencia;
+
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -15,6 +17,7 @@ public abstract class Personaje {
 	protected int nivel;
 	protected List<Item> items;
 	protected int idAlianza;
+	protected int velocidad;
 	
 	
 	public final void atacar(Personaje atacado) {
@@ -99,7 +102,7 @@ public abstract class Personaje {
 	public int obtenerPuntosDeMagia(){
 		return calcularPuntosDeMagia();
 	}
-	/*Martin: velocidad es un stat?
+	
 	public int obtenerPuntosDeVelocidad(){
 		return calcularPuntosDeVelocidad();
 	}
@@ -107,7 +110,7 @@ public abstract class Personaje {
 	private int calcularPuntosDeVelocidad() {
 		return velocidad;
 	}
-*/
+
 	private int calcularPuntosDeMagia() {
 		return magia;
 	}
@@ -157,22 +160,50 @@ public abstract class Personaje {
 		return idAlianza;
 	}
 
-	public void aceptarAlianza(int alianza) {
+	public void aceptarAlianza(Personaje invitador) {
 		AdministradorDeAlianzas administrador = AdministradorDeAlianzas.getInstance();
-		if(tieneAlianza()){			
-			administrador.juntarAlianzas(alianza,this.idAlianza);
+		if(invitador.tieneAlianza()){
+			if(tieneAlianza()){			
+				administrador.juntarAlianzas(invitador.idAlianza,this.idAlianza);
+			}
+			else{
+				administrador.agregarPersonajeAAlianza(invitador.idAlianza, this);
+			}
 		}
 		else{
-			administrador.agregarPersonajeAAlianza(alianza, this);
-		}
-		idAlianza=alianza;
+				List<Personaje> personajes=new ArrayList<>();
+				personajes.add(invitador);
+				personajes.add(this);
+				Alianza alianzaNueva=new Alianza(personajes);
+				administrador.agregarAlianza(alianzaNueva);
+			}
 	}
+	
 
 	private boolean tieneAlianza() {
 		return idAlianza!=-1;
 	}
 	
-	///////////////Nahuel////////////
+	public void invitarAAlianza(Personaje invitado){
+		invitado.tratarAlianza(this);
+	}
+
+	//FIXME arreglar segun decision del jugador
+	private void tratarAlianza(Personaje invitador) {
+		aceptarAlianza(invitador);
+	//	rechazarAlianza(invitador);
+		
+	}
+
+	private void rechazarAlianza(Personaje invitador) {
+		desafiar(invitador);
+	}
+
+
+	public void desafiar(Personaje desafiado) {
+		
+	}
+	
 	
 	public abstract void subirStatsCadaVezQueSeSubeNivel();
 }
