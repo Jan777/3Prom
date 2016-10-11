@@ -17,6 +17,12 @@ public class Orco extends Personaje {
 	public void despuesDeAtacar(){
 		ataque+=2;
 	}
+
+	@Override
+	public void subirStatsCadaVezQueSeSubeNivel() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 	

@@ -19,4 +19,10 @@ public class PersonajesDeUndertale extends Personaje{
 		energia+=1;
 	}
 
+	@Override
+	public void subirStatsCadaVezQueSeSubeNivel() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -19,4 +19,10 @@ public class PersonajesDePokemon extends Personaje {
 	public void despuesDeAtacar(){
 		energia+=10;
 	}
+
+	@Override
+	public void subirStatsCadaVezQueSeSubeNivel() {
+		// TODO Auto-generated method stub
+		
+	}
 }

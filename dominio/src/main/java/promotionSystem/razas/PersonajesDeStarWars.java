@@ -18,5 +18,11 @@ public class PersonajesDeStarWars extends Personaje {
 	public void despuesDeAtacar(){
 		magia+=2;
 	}
+
+	@Override
+	public void subirStatsCadaVezQueSeSubeNivel() {
+		// TODO Auto-generated method stub
+		
+	}
 }
 

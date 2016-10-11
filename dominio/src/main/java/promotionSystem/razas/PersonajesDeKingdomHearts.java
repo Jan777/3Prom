@@ -18,4 +18,10 @@ public class PersonajesDeKingdomHearts extends Personaje{
 	public void despuesDeAtacar(){
 		defensa+=defensa*(1/4);
 	}
+
+	@Override
+	public void subirStatsCadaVezQueSeSubeNivel() {
+		// TODO Auto-generated method stub
+		
+	}
 }

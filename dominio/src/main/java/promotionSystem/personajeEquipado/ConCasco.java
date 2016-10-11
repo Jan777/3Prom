@@ -22,4 +22,10 @@ public class ConCasco extends PersonajeEquipado {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void subirStatsCadaVezQueSeSubeNivel() {
+		// TODO Auto-generated method stub
+		
+	}
 }

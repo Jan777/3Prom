@@ -16,4 +16,16 @@ private Item arma;
 	public int obtenerPuntosDeVelocidad() {
 		return super.obtenerPuntosDeVelocidad() * 2;
 	}
+
+	@Override
+	public void despuesDeAtacar() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void subirStatsCadaVezQueSeSubeNivel() {
+		// TODO Auto-generated method stub
+		
+	}
 }
