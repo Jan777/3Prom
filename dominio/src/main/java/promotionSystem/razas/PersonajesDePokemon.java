@@ -22,7 +22,12 @@ public class PersonajesDePokemon extends Personaje {
 
 	@Override
 	public void subirStatsCadaVezQueSeSubeNivel() {
-		// TODO Auto-generated method stub
+		energia+=10;
+		salud+=+8;
+		ataque+=7;
+		defensa+=1;
+		magia+=10;
+		
 		
 	}
 }

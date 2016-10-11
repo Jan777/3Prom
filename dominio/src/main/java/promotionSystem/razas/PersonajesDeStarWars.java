@@ -21,7 +21,12 @@ public class PersonajesDeStarWars extends Personaje {
 
 	@Override
 	public void subirStatsCadaVezQueSeSubeNivel() {
-		// TODO Auto-generated method stub
+		energia+=10;
+		salud+=+8;
+		ataque+=5;
+		defensa+=2;
+		magia+=10;
+		
 		
 	}
 }

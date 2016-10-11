@@ -129,7 +129,7 @@ public abstract class Personaje {
 
 	public void subirNivel() {
 		nivel= AdministradorDeExperiencia.calcularNivel(this.experiencia);
-		subirStatsCadaVezQueSeSubeNivel(); ///Nahuel
+		subirStatsCadaVezQueSeSubeNivel(); 
 	}
 
 	public Item entregarItem() {

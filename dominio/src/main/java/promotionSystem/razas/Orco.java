@@ -20,9 +20,14 @@ public class Orco extends Personaje {
 
 	@Override
 	public void subirStatsCadaVezQueSeSubeNivel() {
-		// TODO Auto-generated method stub
+		energia+=5;
+		salud+=+5;
+		ataque+=10;
+		defensa+=5;
+		magia+=1;
 		
 	}
+	
 	
 	
 	

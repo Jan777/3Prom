@@ -21,7 +21,12 @@ public class PersonajesDeKingdomHearts extends Personaje{
 
 	@Override
 	public void subirStatsCadaVezQueSeSubeNivel() {
-		// TODO Auto-generated method stub
+		energia+=2;
+		salud+=5;
+		ataque+=3;
+		defensa+=10;
+		magia+=8;
+		
 		
 	}
 }
