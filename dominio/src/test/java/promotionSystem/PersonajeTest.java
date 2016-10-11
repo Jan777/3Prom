@@ -14,11 +14,17 @@ public class PersonajeTest {
 	Personaje personajeAtacante;
 	Personaje personajeAtacado;
 	Alianza alianzaAtacante;
+	
 	public void crearPersonajes(){
 		 personajeAtacante=new Humano();
 		 personajeAtacado=new Humano();
 	}
 	
+	private Alianza crearAlianza(Personaje personaje) {
+		List<Personaje> personajes=new ArrayList<>();
+		personajes.add(personaje);
+		return new Alianza(personajes);
+	}
 	@Test
 	public void siAtacaDisminuyeEnergiaPropiaYSaludDelRival(){
 		crearPersonajes();
@@ -144,7 +150,7 @@ public class PersonajeTest {
 	}
 	
 	@Test
-	public void SiPoseeLaExperienciaSuficienteElPersonajeDebeAumentarNivel(){
+	public void siPoseeLaExperienciaSuficienteElPersonajeDebeAumentarNivel(){
 		personajeAtacante=new Humano();
 		personajeAtacante.subirExperiencia(20);
 		personajeAtacante.subirNivel();
@@ -153,7 +159,7 @@ public class PersonajeTest {
 	}
 	
 	@Test
-	public void SiNoPoseeLaExperienciaSuficienteElPersonajeDebeAumentarNivel(){
+	public void siNoPoseeLaExperienciaSuficienteElPersonajeDebeAumentarNivel(){
 		personajeAtacante=new Humano();
 		personajeAtacante.subirExperiencia(9);
 		personajeAtacante.subirNivel();
@@ -189,12 +195,6 @@ public class PersonajeTest {
 
 	}
 
-	private Alianza crearAlianza(Personaje personaje) {
-		List<Personaje> personajes=new ArrayList<>();
-		personajes.add(personaje);
-		Alianza alianzaNueva=new Alianza(personajes);
-		return alianzaNueva;
-	}
 	
 	@Test
 	public void siElPersonajeNoTieneAlianzasYAceptaUnaNuevaAlianzaPasaATenerla(){
@@ -225,6 +225,12 @@ public class PersonajeTest {
 		Assert.assertEquals(personajeAtacante.getAlianza(), personajeAtacado.getAlianza());
 	}
 	
-	
+	@Test
+	public void siExisteUnaAlianzaDe3PersonajesYOtraDe2yEstasSeJuntanQuedaUnaDe5(){
+		alianzaAtacante = crearAlianza(3);
+		Alianza alianzaAtacada = crearAlianza(2);
+		alianzaAtacante.getPersonajes().get(0).invitarAAlianza(alianzaAtacada.getPersonajes().get(0));
+		Assert.assertEquals(5, alianzaAtacante.getPersonajes().size());				
+	}
 	
 }

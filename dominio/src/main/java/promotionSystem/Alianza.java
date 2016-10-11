@@ -22,6 +22,7 @@ public class Alianza {
         AdministradorDeAlianzas administrador = AdministradorDeAlianzas.getInstance();
         administrador.agregarAlianza(this);
     }
+    
 
 	public List<Personaje> getPersonajes() {
         return personajes;
@@ -61,19 +62,28 @@ public class Alianza {
 		personajes.remove(personaje);
 	}
 
-	public void agregarPersonaje(Personaje personaje) {
+	public void agregarPersonajes(Personaje personaje) {
 		personajes.add(personaje);
-
+		personaje.setAlianza(id);
 	}
 
     public void atacar(Alianza alianzaEnemiga){
 
     }
 
-	public void agregarPersonaje(List<Personaje> personajes) {
+	public void agregarPersonajes(List<Personaje> personajes) {
 		for(Personaje personaje:personajes){
 			personaje.setAlianza(id);
 			this.personajes.add(personaje);
 		}		
+	}
+
+	public void setId(int id) {
+		this.id=id;
+		
+	}
+
+	public int getId() {
+		return id;
 	}
 }

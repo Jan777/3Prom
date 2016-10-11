@@ -191,7 +191,7 @@ public abstract class Personaje {
 	//FIXME arreglar segun decision del jugador
 	private void tratarAlianza(Personaje invitador) {
 		aceptarAlianza(invitador);
-	//	rechazarAlianza(invitador);
+		//rechazarAlianza(invitador);
 		
 	}
 
@@ -201,7 +201,8 @@ public abstract class Personaje {
 
 
 	public void desafiar(Personaje desafiado) {
-		
+		AdministradorDeAlianzas administrador = AdministradorDeAlianzas.getInstance();
+		administrador.informarBatalla(this,desafiado);
 	}
 	
 	
