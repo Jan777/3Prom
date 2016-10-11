@@ -61,7 +61,7 @@ public class Alianza {
 		personajes.remove(personaje);
 	}
 
-	public void agregarPersonaje(Personaje personaje) {
+	public void agregarPersonajes(Personaje personaje) {
 		personajes.add(personaje);
 
 	}
@@ -70,7 +70,7 @@ public class Alianza {
 
     }
 
-	public void agregarPersonaje(List<Personaje> personajes) {
+	public void agregarPersonajes(List<Personaje> personajes) {
 		for(Personaje personaje:personajes){
 			personaje.setAlianza(id);
 			this.personajes.add(personaje);

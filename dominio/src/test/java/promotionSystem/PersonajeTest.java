@@ -192,8 +192,7 @@ public class PersonajeTest {
 	private Alianza crearAlianza(Personaje personaje) {
 		List<Personaje> personajes=new ArrayList<>();
 		personajes.add(personaje);
-		Alianza alianzaNueva=new Alianza(personajes);
-		return alianzaNueva;
+		return new Alianza(personajes);
 	}
 	
 	@Test
