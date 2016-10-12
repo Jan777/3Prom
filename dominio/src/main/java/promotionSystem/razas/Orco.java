@@ -1,6 +1,7 @@
 package promotionSystem.razas;
 
 import promotionSystem.Personaje;
+import promotionSystem.Punto;
 
 public class Orco extends Personaje {
 
@@ -12,6 +13,7 @@ public class Orco extends Personaje {
 		magia=1;
 		experiencia=0;
 		nivel=1;
+		posicion=new Punto(0,0);
 	}
 	
 	public void despuesDeAtacar(){

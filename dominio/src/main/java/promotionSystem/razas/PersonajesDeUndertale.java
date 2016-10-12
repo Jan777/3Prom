@@ -1,6 +1,7 @@
 package promotionSystem.razas;
 
 import promotionSystem.Personaje;
+import promotionSystem.Punto;
 
 public class PersonajesDeUndertale extends Personaje{
 	
@@ -12,6 +13,7 @@ public class PersonajesDeUndertale extends Personaje{
 		magia=7;
 		experiencia=0;
 		nivel=0;
+		posicion=new Punto(0,0);
 	}
 	
 	public void despuesDeAtacar(){

@@ -1,6 +1,7 @@
 package promotionSystem.razas;
 
 import promotionSystem.Personaje;
+import promotionSystem.Punto;
 
 public class PersonajesDeStarWars extends Personaje {
 
@@ -13,6 +14,7 @@ public class PersonajesDeStarWars extends Personaje {
 		magia=12;
 		experiencia=0;
 		nivel=0;
+		posicion=new Punto(0,0);
 	}
 	
 	public void despuesDeAtacar(){

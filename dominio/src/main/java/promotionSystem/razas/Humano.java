@@ -3,6 +3,7 @@ package promotionSystem.razas;
 import java.util.ArrayList;
 
 import promotionSystem.Personaje;
+import promotionSystem.Punto;
 
 public class Humano extends Personaje {
 
@@ -16,6 +17,7 @@ public class Humano extends Personaje {
 		nivel=0;
 		items = new ArrayList<>();
 		this.idAlianza=-1;
+		posicion=new Punto(0,0);
 	}
 	
 	public void despuesDeAtacar(){

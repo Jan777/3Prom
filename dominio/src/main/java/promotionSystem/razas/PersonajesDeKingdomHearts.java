@@ -1,6 +1,7 @@
 package promotionSystem.razas;
 
 import promotionSystem.Personaje;
+import promotionSystem.Punto;
 
 public class PersonajesDeKingdomHearts extends Personaje{
 	
@@ -13,6 +14,7 @@ public class PersonajesDeKingdomHearts extends Personaje{
 		magia=2;
 		experiencia=0;
 		nivel=0;
+		posicion=new Punto(0,0);
 	}
 
 	public void despuesDeAtacar(){

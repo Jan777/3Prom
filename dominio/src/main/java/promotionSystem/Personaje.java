@@ -18,6 +18,7 @@ public abstract class Personaje {
 	protected List<Item> items;
 	protected int idAlianza;
 	protected int velocidad;
+	protected Punto posicion;
 	
 	
 	public final void atacar(Personaje atacado) {
@@ -207,5 +208,13 @@ public abstract class Personaje {
 	
 	
 	public abstract void subirStatsCadaVezQueSeSubeNivel();
+	
+	public void mover(Punto posicionNueva){
+		posicion=posicionNueva;
+	}
+
+	public Punto getPosicion() {
+		return posicion;
+	}
 }
 	

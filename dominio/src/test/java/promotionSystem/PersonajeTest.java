@@ -5,8 +5,6 @@ import org.junit.Test;
 
 import promotionSystem.razas.Humano;
 
-import static promotionSystem.builder.AlianzaBuilder.crearAlianza;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -231,6 +229,17 @@ public class PersonajeTest {
 		Alianza alianzaAtacada = crearAlianza(2);
 		alianzaAtacante.getPersonajes().get(0).invitarAAlianza(alianzaAtacada.getPersonajes().get(0));
 		Assert.assertEquals(5, alianzaAtacante.getPersonajes().size());				
+	}
+	
+	@Test
+	public void siLePasoUnaPosicionValidaElPersonajeSeMueveAEsaPosicion(){
+		personajeAtacante=new Humano();
+		Punto posicionNueva=new Punto(3,2);
+		
+		personajeAtacante.mover(posicionNueva);
+		
+		Assert.assertEquals(3,personajeAtacante.getPosicion().getX(),0);
+		Assert.assertEquals(2,personajeAtacante.getPosicion().getY(),0);
 	}
 	
 }
