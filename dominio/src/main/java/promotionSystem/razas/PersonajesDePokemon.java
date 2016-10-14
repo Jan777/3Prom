@@ -25,8 +25,8 @@ public class PersonajesDePokemon extends Personaje {
 	@Override
 	public void subirStatsCadaVezQueSeSubeNivel() {
 		energia+=10;
-		salud+=+8;
-		ataque+=7;
+		salud+=+5;
+		ataque+=5;
 		defensa+=1;
 		magia+=10;
 		

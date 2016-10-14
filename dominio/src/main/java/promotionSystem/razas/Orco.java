@@ -17,7 +17,7 @@ public class Orco extends Personaje {
 	}
 	
 	public void despuesDeAtacar(){
-		ataque+=2;
+		ataque+=10;
 	}
 
 	@Override

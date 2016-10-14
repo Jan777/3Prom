@@ -18,16 +18,16 @@ public class PersonajesDeKingdomHearts extends Personaje{
 	}
 
 	public void despuesDeAtacar(){
-		defensa+=defensa*(1/4);
+		defensa+=(int)defensa*(1/8);
 	}
 
 	@Override
 	public void subirStatsCadaVezQueSeSubeNivel() {
-		energia+=2;
-		salud+=5;
-		ataque+=3;
+		energia+=10;
+		salud+=1;
+		ataque+=5;
 		defensa+=10;
-		magia+=8;
+		magia+=5;
 		
 		
 	}

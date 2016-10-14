@@ -17,7 +17,7 @@ public class PersonajesDeUndertale extends Personaje{
 	}
 	
 	public void despuesDeAtacar(){
-		magia+=1;
+		ataque+=1;
 		energia+=1;
 	}
 
@@ -26,7 +26,7 @@ public class PersonajesDeUndertale extends Personaje{
 		energia+=10;
 		ataque+=10;
 		defensa+=1;
-		magia+=8;
+		magia+=5;
 		
 		
 	}

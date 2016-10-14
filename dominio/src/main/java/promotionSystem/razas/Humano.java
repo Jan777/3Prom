@@ -25,11 +25,11 @@ public class Humano extends Personaje {
 	}
 	
 	public void subirStatsCadaVezQueSeSubeNivel(){
-		energia=100+nivel;
-		salud=100+nivel;
-		ataque=10+nivel;
-		defensa=2+nivel;
-		magia=5+nivel;
+		energia+=1;
+		salud+=1;
+		ataque+=1;
+		defensa+=1;
+		magia+=1;
 	}
 	
 }
