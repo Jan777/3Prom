@@ -5,7 +5,7 @@ import promotionSystem.Punto;
 public class Sora extends PersonajesDeKingdomHearts {
 	
 	public Sora(){
-	 energia=100;
+	 energia=1000;
 	 ataque=100;
 	 defensa=100;
 	 experiencia=0;

@@ -5,7 +5,7 @@ import promotionSystem.Punto;
 public class Roxas extends PersonajesDeKingdomHearts{
 
 	public Roxas(){
-		 energia=100;
+		 energia=1000;
 		 ataque=50;
 		 defensa=200;
 		 experiencia=0;
