@@ -5,7 +5,7 @@ import promotionSystem.Punto;
 public class Riku extends PersonajesDeKingdomHearts{
 	
 	public Riku(){
-		 energia=100;
+		 energia=1000;
 		 ataque=200;
 		 defensa=50;
 		 experiencia=0;

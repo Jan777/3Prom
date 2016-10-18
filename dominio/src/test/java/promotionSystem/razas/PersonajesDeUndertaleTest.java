@@ -9,13 +9,11 @@ public class PersonajesDeUndertaleTest {
 	@Test
 	public void siAtacaAOtroPersonajeMantieneSusPuntosDeAtaque(){
 		
-		PersonajesDeUndertale atacante=new PersonajesDeUndertale();
-		PersonajesDeUndertale atacado=new PersonajesDeUndertale();
-		Assert.assertEquals(8, atacante.obtenerPuntosDeAtaque());
-		Assert.assertEquals(10, atacante.getEnergia());
+		PersonajesDeUndertale atacante=new Chara();
+		PersonajesDeUndertale atacado=new Chara();
+		Assert.assertEquals(150, atacante.obtenerPuntosDeAtaque());
 		atacante.atacar(atacado);
-		Assert.assertEquals(9, atacante.obtenerPuntosDeAtaque());
-		Assert.assertEquals(3, atacante.getEnergia());
+		Assert.assertEquals(151, atacante.obtenerPuntosDeAtaque());
 	}
 
 }

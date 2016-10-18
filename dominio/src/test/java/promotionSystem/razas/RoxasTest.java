@@ -17,6 +17,6 @@ public class RoxasTest {
 		Assert.assertEquals(210, personaje.obtenerPuntosDeMagia());
 		Assert.assertEquals(160, personaje.obtenerPuntosDeVelocidad());
 		Assert.assertEquals(105, personaje.getSalud());
-		Assert.assertEquals(110, personaje.getEnergia());
+		Assert.assertEquals(1010, personaje.getEnergia());
 	}
 }
