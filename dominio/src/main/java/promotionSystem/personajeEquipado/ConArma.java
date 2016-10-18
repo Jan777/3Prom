@@ -13,7 +13,7 @@ public class ConArma extends PersonajeEquipado {
 	
 	@Override
 	public int obtenerPuntosDeAtaque() {
-		return super.obtenerPuntosDeAtaque() * 2;
+		return super.obtenerPuntosDeAtaque();
 	}
 
 	@Override

@@ -33,11 +33,11 @@ public class PersonajeEquipadoTests {
 		Assert.assertEquals(2 * 2, Louie.obtenerPuntosDeDefensa());
 	}
 	
-	/*
 	@Test
-	public void siPersonajeEquipadoAumentaSuAtaquePorTenerUnaEspada(){
-		personajeEquipado.recibirItem(new Item("Espada"));
-		Assert.assertTrue();
+	public void siMultiplicadorDeConArmaMultiplicaPeroNoSumaAlAtaque(){
+		Personaje Morty = new Humano();
+		Assert.assertEquals(10, Morty.obtenerPuntosDeAtaque());
+		Morty = new ConArma(Morty);
+		Assert.assertEquals(10 * 2, Morty.obtenerPuntosDeAtaque());	
 	}
-	*/
 }

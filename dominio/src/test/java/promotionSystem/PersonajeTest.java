@@ -19,7 +19,7 @@ public class PersonajeTest {
 	}
 	
 	private Alianza crearAlianza(Personaje personaje) {
-		List<Personaje> personajes=new ArrayList<>();
+		List<Personaje> personajes = new ArrayList<Personaje>();
 		personajes.add(personaje);
 		return new Alianza(personajes);
 	}
@@ -176,7 +176,7 @@ public class PersonajeTest {
 
 
 	private Alianza crearAlianza(int cantidadPersonajes) {
-		List<Personaje> personajes=new ArrayList<>();
+		List<Personaje> personajes=new ArrayList<Personaje>();
 		for(int i=0;i<cantidadPersonajes;i++){
 			personajes.add(new Humano());
 		}

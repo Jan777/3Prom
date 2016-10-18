@@ -3,6 +3,7 @@ package promotionSystem.administradores;
 
 import promotionSystem.Alianza;
 import promotionSystem.Personaje;
+import promotionSystem.builder.AlianzaBuilder;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,7 +17,7 @@ public class AdministradorDeAlianzas {
 	private static AdministradorDeAlianzas instance=new AdministradorDeAlianzas();
 	
 		private AdministradorDeAlianzas(){
-			alianzas=new HashMap<>();
+			alianzas=new HashMap<Integer, Alianza>();
 			indicadorDeIDs=0;
 		}
 		
