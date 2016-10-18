@@ -6,7 +6,7 @@ import promotionSystem.Punto;
 public abstract class PersonajesDeKingdomHearts extends Personaje{
 	
 	public void despuesDeAtacar(){
-		defensa+=(int)defensa*(1/8);
+		defensa+=defensa*(0.125);
 	}
 
 	@Override

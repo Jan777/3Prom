@@ -13,7 +13,7 @@ public class OrcoTest {
 		Orco orcoAtacante=new Orco();
 		Assert.assertEquals(40,orcoAtacante.obtenerPuntosDeAtaque());
 		orcoAtacante.atacar(orcoAtacado);
-		Assert.assertEquals(42,orcoAtacante.obtenerPuntosDeAtaque());
+		Assert.assertEquals(50,orcoAtacante.obtenerPuntosDeAtaque());
 		
 	}
 }
