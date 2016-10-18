@@ -19,7 +19,7 @@ public class SoraTest {
 		Assert.assertEquals(110, personaje.obtenerPuntosDeMagia());
 		Assert.assertEquals(110, personaje.obtenerPuntosDeVelocidad());
 		Assert.assertEquals(110, personaje.getSalud());
-		Assert.assertEquals(110, personaje.getEnergia());
+		Assert.assertEquals(1010, personaje.getEnergia());
 	}
 
 }
