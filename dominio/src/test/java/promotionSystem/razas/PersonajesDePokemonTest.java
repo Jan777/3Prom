@@ -6,12 +6,12 @@ import org.junit.Test;
 public class PersonajesDePokemonTest {
 	
 	@Test
-	public void siAtacaAOtroPersonajeMantieneSuAtaque(){
-		PersonajesDePokemon atacante=new PersonajesDePokemon();
-		PersonajesDePokemon atacado=new PersonajesDePokemon();
-		Assert.assertEquals(7, atacante.obtenerPuntosDeAtaque());
+	public void siAtacaAOtroPersonajeAumentaSuMagia(){
+		PersonajesDePokemon atacante=new PokemonTipoAgua();
+		PersonajesDePokemon atacado=new PokemonTipoFuego();
+		Assert.assertEquals(150, atacante.obtenerPuntosDeMagia());
 		atacante.atacar(atacado);
-		Assert.assertEquals(7, atacante.obtenerPuntosDeAtaque());
+		Assert.assertEquals(160, atacante.obtenerPuntosDeMagia());
 	}
 
 }
