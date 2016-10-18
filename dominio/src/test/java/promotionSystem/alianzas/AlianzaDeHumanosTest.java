@@ -30,7 +30,7 @@ public class AlianzaDeHumanosTest {
     }
 
     @Test
-    public void siHay3HumanosQueAtacanA4PersonajesElCuartoNoRecibeDaÃ±o(){
+    public void siHay3HumanosQueAtacanA4PersonajesElCuartoNoRecibeDaño(){
         AlianzaDeHumanos alianzaDeHumanos = crearAlianzaDeHumanos(3);
         Alianza alianzaEnemiga = AlianzaBuilder.crearAlianza(4);
         alianzaDeHumanos.atacar(alianzaEnemiga);

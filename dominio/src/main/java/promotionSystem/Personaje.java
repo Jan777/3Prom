@@ -172,7 +172,7 @@ public abstract class Personaje {
 			}
 		}
 		else{
-				List<Personaje> personajes=new ArrayList<>();
+				List<Personaje> personajes=new ArrayList<Personaje>();
 				personajes.add(invitador);
 				personajes.add(this);
 				Alianza alianzaNueva=new Alianza(personajes);
