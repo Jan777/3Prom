@@ -10,15 +10,14 @@ public class PokemonTipoFuegoTest {
 		PersonajesDePokemon personaje=new PokemonTipoFuego();
 		Assert.assertEquals(0, personaje.getNivel());
 		personaje.subirExperiencia(10);
-		personaje.subirNivel();
-		Assert.assertEquals(1, personaje.getNivel());
-		
-		Assert.assertEquals(160, personaje.obtenerPuntosDeAtaque());	
-		Assert.assertEquals(61, personaje.obtenerPuntosDeDefensa());
-		Assert.assertEquals(160, personaje.obtenerPuntosDeMagia());
-		Assert.assertEquals(80, personaje.obtenerPuntosDeVelocidad());
-		Assert.assertEquals(95, personaje.getSalud());
-		Assert.assertEquals(1010, personaje.getEnergia());
+		Assert.assertEquals(3, personaje.getNivel());
+
+		Assert.assertEquals(1000+3*10, personaje.getEnergia());
+		Assert.assertEquals(90+3*5, personaje.getSalud());
+		Assert.assertEquals(150+3*10, personaje.obtenerPuntosDeAtaque());
+		Assert.assertEquals(60+3*2, personaje.obtenerPuntosDeDefensa());
+		Assert.assertEquals(150+3*10, personaje.obtenerPuntosDeMagia());
+		Assert.assertEquals(75+3*5, personaje.obtenerPuntosDeVelocidad());
 	}
 
 }

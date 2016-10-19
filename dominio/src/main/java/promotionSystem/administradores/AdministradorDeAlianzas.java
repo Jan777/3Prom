@@ -3,11 +3,8 @@ package promotionSystem.administradores;
 
 import promotionSystem.Alianza;
 import promotionSystem.Personaje;
-import promotionSystem.builder.AlianzaBuilder;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 
 public class AdministradorDeAlianzas {

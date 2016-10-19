@@ -1,7 +1,6 @@
 package promotionSystem;
 
 import promotionSystem.administradores.AdministradorDeAlianzas;
-import promotionSystem.administradores.AdministradorDeExperiencia;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -122,15 +121,25 @@ public abstract class Personaje {
 
 	public final void  subirExperiencia(int experiencia) {
 		this.experiencia+=experiencia;
-	}
+		int nivelesSubidos = 0;
+        while(this.experiencia > experienciaPorNivel()){
+            this.experiencia -= experienciaPorNivel();
+            subirNivel();
+			nivelesSubidos++;
+        }
+        subirStats(nivelesSubidos);
+    }
 
 	public int getNivel() {
 		return nivel;
 	}
 
 	public void subirNivel() {
-		nivel= AdministradorDeExperiencia.calcularNivel(this.experiencia);
-		subirStatsCadaVezQueSeSubeNivel(); 
+        nivel++;
+	}
+
+	private int experienciaPorNivel() {
+		return (int) Math.pow(nivel, 2);
 	}
 
 	public Item entregarItem() {
@@ -193,7 +202,6 @@ public abstract class Personaje {
 	private void tratarAlianza(Personaje invitador) {
 		aceptarAlianza(invitador);
 		//rechazarAlianza(invitador);
-		
 	}
 
 	private void rechazarAlianza(Personaje invitador) {
@@ -207,7 +215,7 @@ public abstract class Personaje {
 	}
 	
 	
-	public abstract void subirStatsCadaVezQueSeSubeNivel();
+	public abstract void subirStats(int nivel);
 	
 	public void mover(Punto posicionNueva){
 		posicion=posicionNueva;

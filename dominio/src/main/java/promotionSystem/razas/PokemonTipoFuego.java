@@ -16,13 +16,13 @@ public class PokemonTipoFuego extends PersonajesDePokemon {
 	}
 	
 	@Override
-	public void subirStatsCadaVezQueSeSubeNivel() {
-		energia+=10;
-		salud+=+5;
-		ataque+=10;
-		defensa+=1;
-		magia+=10;
-		velocidad+=5;
+	public void subirStats(int nivel) {
+		energia+=nivel*10;
+		salud+=+nivel*5;
+		ataque+=nivel*10;
+		defensa+=nivel*2;
+		magia+=nivel*10;
+		velocidad+=nivel*5;
 		
 	}
 

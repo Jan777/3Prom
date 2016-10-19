@@ -9,22 +9,20 @@ public class Jedi extends PersonajesDeStarWars{
 		salud=110;
 		ataque=150;
 		defensa=30;
-		velocidad=100;
 		magia=120;
+		velocidad=100;
 		experiencia=0;
 		nivel=0;
 		posicion=new Punto(0,0);
 	}
 	
 	@Override
-	public void subirStatsCadaVezQueSeSubeNivel() {
-		energia+=10;
-		salud+=+5;
-		ataque+=10;
-		defensa+=5;
-		magia+=10;
-		velocidad+=10;
-		
+	public void subirStats(int nivel) {
+		energia+=nivel*10;
+		salud+=+nivel*5;
+		ataque+=nivel*10;
+		defensa+=nivel*5;
+		magia+=nivel*10;
+		velocidad+=nivel*10;
 	}
-
 }

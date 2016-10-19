@@ -12,5 +12,5 @@ public abstract class PersonajesDePokemon extends Personaje {
 	}
 
 	@Override
-	public abstract void subirStatsCadaVezQueSeSubeNivel() ;
+	public abstract void subirStats(int nivel);
 }

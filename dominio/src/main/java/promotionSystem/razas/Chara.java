@@ -9,20 +9,19 @@ public class Chara extends PersonajesDeUndertale{
 		ataque=150;
 		defensa=100;
 		magia=50;
-		experiencia=0;
 		velocidad=100;
+		experiencia=0;
 		nivel=0;
 		posicion=new Punto(0,0);
 	}
 
 	@Override
-	public void subirStatsCadaVezQueSeSubeNivel() {
-		energia+=10;
-		ataque+=10;
-		defensa+=5;
-		magia+=5;
-		velocidad+=10;
-		salud+=10;
-		
+	public void subirStats(int nivel) {
+		energia+=nivel*10;
+		salud+=nivel*10;
+		ataque+=nivel*10;
+		defensa+=nivel*5;
+		magia+=nivel*5;
+		velocidad+=nivel*10;
 	}
 }

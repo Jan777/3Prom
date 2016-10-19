@@ -10,16 +10,14 @@ public class RikuTest {
 		Riku personaje=new Riku();
 		Assert.assertEquals(0, personaje.getNivel());
 		personaje.subirExperiencia(10);
-		personaje.subirNivel();
-		Assert.assertEquals(10, personaje.getExperiencia());
-		Assert.assertEquals(1, personaje.getNivel());
-		
-		Assert.assertEquals(210, personaje.obtenerPuntosDeAtaque());	
-		Assert.assertEquals(55, personaje.obtenerPuntosDeDefensa());
-		Assert.assertEquals(80, personaje.obtenerPuntosDeMagia());
-		Assert.assertEquals(160, personaje.obtenerPuntosDeVelocidad());
-		Assert.assertEquals(210, personaje.getSalud());
-		Assert.assertEquals(1010, personaje.getEnergia());
-	}
+		Assert.assertEquals(5, personaje.getExperiencia());
+		Assert.assertEquals(3, personaje.getNivel());
 
+		Assert.assertEquals(1000+3*10, personaje.getEnergia());
+		Assert.assertEquals(200+3*10, personaje.getSalud());
+		Assert.assertEquals(200+3*10, personaje.obtenerPuntosDeAtaque());
+		Assert.assertEquals(50+3*5, personaje.obtenerPuntosDeDefensa());
+		Assert.assertEquals(75+3*5, personaje.obtenerPuntosDeMagia());
+		Assert.assertEquals(150+3*5, personaje.obtenerPuntosDeVelocidad());
+	}
 }

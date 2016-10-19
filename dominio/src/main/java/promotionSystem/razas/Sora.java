@@ -18,13 +18,13 @@ public class Sora extends PersonajesDeKingdomHearts {
 	}
 	
 	@Override
-	public void subirStatsCadaVezQueSeSubeNivel() {
-		energia+=10;
-		salud+=10;
-		ataque+=10;
-		defensa+=10;
-		magia+=10;
-		velocidad+=10;
+	public void subirStats(int nivel) {
+		energia+=nivel*10;
+		salud+=nivel*10;
+		ataque+=nivel*10;
+		defensa+=nivel*10;
+		magia+=nivel*10;
+		velocidad+=nivel*10;
 	}
 
 }

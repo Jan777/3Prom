@@ -45,7 +45,7 @@ public class Alianza {
     }
 
     public List<Item> entregarItems(){
-        List<Item> itemsPerdidos = new ArrayList<Item>();
+        List<Item> itemsPerdidos = new ArrayList<>();
         for(Personaje personaje : personajes){
         	if(personaje.puedeDarItem()){
         		itemsPerdidos.add(personaje.entregarItem());        		

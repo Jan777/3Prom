@@ -15,8 +15,8 @@ public class Humano extends Personaje {
 		defensa=2;
 		magia=5;
 		experiencia=0;
-		nivel=0;
-		items = new ArrayList<Item>();
+		nivel=1;
+		items = new ArrayList<>();
 		this.idAlianza=-1;
 		posicion=new Punto(0,0);
 	}
@@ -25,12 +25,11 @@ public class Humano extends Personaje {
 		// raza sin efectos despues de atacar
 	}
 	
-	public void subirStatsCadaVezQueSeSubeNivel(){
-		energia+=1;
-		salud+=1;
-		ataque+=1;
-		defensa+=1;
-		magia+=1;
+	public void subirStats(int nivel){
+		energia+=nivel;
+		salud+=nivel;
+		ataque+=nivel;
+		defensa+=nivel;
+		magia+=nivel;
 	}
-	
 }

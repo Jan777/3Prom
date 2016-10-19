@@ -24,7 +24,7 @@ public class ConCasco extends PersonajeEquipado {
 	}
 
 	@Override
-	public void subirStatsCadaVezQueSeSubeNivel() {
+	public void subirStats(int nivel) {
 		// TODO Auto-generated method stub
 		
 	}

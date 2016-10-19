@@ -10,16 +10,13 @@ public class PokemonTipoPlantaTest {
 		PersonajesDePokemon personaje=new PokemonTipoPlanta();
 		Assert.assertEquals(0, personaje.getNivel());
 		personaje.subirExperiencia(10);
-		personaje.subirNivel();
-		Assert.assertEquals(1, personaje.getNivel());
-		
-		Assert.assertEquals(160, personaje.obtenerPuntosDeAtaque());	
-		Assert.assertEquals(75, personaje.obtenerPuntosDeDefensa());
-		Assert.assertEquals(105, personaje.obtenerPuntosDeMagia());
-		Assert.assertEquals(105, personaje.obtenerPuntosDeVelocidad());
-		Assert.assertEquals(160, personaje.getSalud());
-		Assert.assertEquals(1010, personaje.getEnergia());
+		Assert.assertEquals(3, personaje.getNivel());
+
+		Assert.assertEquals(1000+3*5, personaje.getEnergia());
+		Assert.assertEquals(150+3*10, personaje.getSalud());
+		Assert.assertEquals(150+3*10, personaje.obtenerPuntosDeAtaque());
+		Assert.assertEquals(70+3*5, personaje.obtenerPuntosDeDefensa());
+		Assert.assertEquals(100+3*5, personaje.obtenerPuntosDeMagia());
+		Assert.assertEquals(100+3*5, personaje.obtenerPuntosDeVelocidad());
 	}
-
-
 }

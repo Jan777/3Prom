@@ -143,29 +143,24 @@ public class PersonajeTest {
 	public void debeAumentarExperiencia(){
 		personajeAtacante=new Humano();
 		Assert.assertEquals(0,personajeAtacante.getExperiencia());
-		personajeAtacante.subirExperiencia(200);
-		Assert.assertEquals(200,personajeAtacante.getExperiencia());
+		personajeAtacante.subirExperiencia(1);
+		Assert.assertEquals(1,personajeAtacante.getExperiencia());
 	}
-	
+
 	@Test
 	public void siPoseeLaExperienciaSuficienteElPersonajeDebeAumentarNivel(){
 		personajeAtacante=new Humano();
 		personajeAtacante.subirExperiencia(20);
-		personajeAtacante.subirNivel();
-		Assert.assertEquals(1,personajeAtacante.getNivel());
-		
+		Assert.assertEquals(4,personajeAtacante.getNivel());
 	}
 	
 	@Test
-	public void siNoPoseeLaExperienciaSuficienteElPersonajeDebeAumentarNivel(){
+	public void siNoPoseeLaExperienciaSuficienteElPersonajeNoDebeAumentarNivel(){
 		personajeAtacante=new Humano();
-		personajeAtacante.subirExperiencia(9);
-		personajeAtacante.subirNivel();
-		Assert.assertEquals(0,personajeAtacante.getNivel());
-		
+		personajeAtacante.subirExperiencia(1);
+		Assert.assertEquals(1,personajeAtacante.getNivel());
 	}
 	
-
 	@Test
 	public void debeElegirElPrimerPersonajeComoVictima(){
 		Alianza alianzaEnemiga = crearAlianza(1);

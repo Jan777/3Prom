@@ -10,16 +10,15 @@ public class WookieTest{
 		PersonajesDeStarWars personaje=new Wookie();
 		Assert.assertEquals(0, personaje.getNivel());
 		personaje.subirExperiencia(10);
-		personaje.subirNivel();
-		
-		Assert.assertEquals(1, personaje.getNivel());
-		
-		Assert.assertEquals(160, personaje.obtenerPuntosDeAtaque());	
-		Assert.assertEquals(75, personaje.obtenerPuntosDeDefensa());
-		Assert.assertEquals(55, personaje.obtenerPuntosDeMagia());
-		Assert.assertEquals(55, personaje.obtenerPuntosDeVelocidad());
-		Assert.assertEquals(120, personaje.getSalud());
-		Assert.assertEquals(1010, personaje.getEnergia());
+
+		Assert.assertEquals(3, personaje.getNivel());
+
+		Assert.assertEquals(1000+3*10, personaje.getEnergia());
+		Assert.assertEquals(110+3*10, personaje.getSalud());
+		Assert.assertEquals(150+3*10, personaje.obtenerPuntosDeAtaque());
+		Assert.assertEquals(70+3*5, personaje.obtenerPuntosDeDefensa());
+		Assert.assertEquals(50+3*5, personaje.obtenerPuntosDeMagia());
+		Assert.assertEquals(50+3*5, personaje.obtenerPuntosDeVelocidad());
 	}
 
 }

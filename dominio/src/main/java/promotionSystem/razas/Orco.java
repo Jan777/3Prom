@@ -21,7 +21,7 @@ public class Orco extends Personaje {
 	}
 
 	@Override
-	public void subirStatsCadaVezQueSeSubeNivel() {
+	public void subirStats(int nivel) {
 		energia+=5;
 		salud+=+5;
 		ataque+=10;

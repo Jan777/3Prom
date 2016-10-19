@@ -1,7 +1,6 @@
 package promotionSystem.razas;
 
 import promotionSystem.Personaje;
-import promotionSystem.Punto;
 
 public abstract class PersonajesDeKingdomHearts extends Personaje{
 	
@@ -10,7 +9,7 @@ public abstract class PersonajesDeKingdomHearts extends Personaje{
 	}
 
 	@Override
-	public abstract void subirStatsCadaVezQueSeSubeNivel();
+	public abstract void subirStats(int nivel);
 		
 		
 		

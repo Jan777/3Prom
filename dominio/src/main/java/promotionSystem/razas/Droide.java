@@ -9,23 +9,20 @@ public class Droide extends PersonajesDeStarWars{
 		salud=80;
 		ataque=80;
 		defensa=100;
-		velocidad=80;
 		magia=120;
+		velocidad=80;
 		experiencia=0;
 		nivel=0;
 		posicion=new Punto(0,0);
 	}
 
 	@Override
-	public void subirStatsCadaVezQueSeSubeNivel() {
-		energia+=10;
-		salud+=+5;
-		ataque+=5;
-		defensa+=10;
-		magia+=10;
-		velocidad+=10;
-		
-		
+	public void subirStats(int nivel) {
+		energia+=nivel*10;
+		salud+=+nivel*5;
+		ataque+=nivel*5;
+		defensa+=nivel*10;
+		magia+=nivel*10;
+		velocidad+=nivel*10;
 	}
-
 }

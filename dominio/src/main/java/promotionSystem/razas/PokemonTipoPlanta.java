@@ -18,13 +18,13 @@ public class PokemonTipoPlanta extends PersonajesDePokemon {
 
 
 	@Override
-	public void subirStatsCadaVezQueSeSubeNivel() {
-		energia+=10;
-		salud+=+10;
-		ataque+=10;
-		defensa+=5;
-		magia+=5;
-		velocidad+=5;
+	public void subirStats(int nivel) {
+		energia+=nivel*5;
+		salud+=+nivel*10;
+		ataque+=nivel*10;
+		defensa+=nivel*5;
+		magia+=nivel*5;
+		velocidad+=nivel*5;
 		
 	}
 }
