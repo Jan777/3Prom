@@ -1,6 +1,6 @@
 package promotionSystem;
 
-import promotionSystem.administradores.AdministradorDeAlianzas;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ public abstract class Personaje {
 	protected int experiencia;
 	protected int nivel;
 	protected List<Item> items;
-	protected int idAlianza;
+	protected Alianza alianza;
 	protected int velocidad;
 	protected Punto posicion;
 	
@@ -156,42 +156,45 @@ public abstract class Personaje {
 
 	
 	//FIXME cambiar esto cuando se defina el tema de como el personajeEquipado conoce la alianza.
-	public void setAlianza(int alianza) {
-		this.idAlianza=alianza;
+	public void setAlianza(Alianza alianza) {
+		this.alianza=alianza;
 	}
 
 	public void abandonarAlianza() {
-		AdministradorDeAlianzas administrador = AdministradorDeAlianzas.getInstance();
-		administrador.sacarPersonajeDeAlianza(idAlianza, this);
-		this.idAlianza=-1;		
+		alianza.sacarPersonaje(this);
+		alianza=null;		
 	}
 
-	public int getAlianza() {
-		return idAlianza;
+	public Alianza getAlianza() {
+		return alianza;
 	}
 
 	public void aceptarAlianza(Personaje invitador) {
-		AdministradorDeAlianzas administrador = AdministradorDeAlianzas.getInstance();
-		if(invitador.tieneAlianza()){
-			if(tieneAlianza()){			
-				administrador.juntarAlianzas(invitador.idAlianza,this.idAlianza);
-			}
-			else{
-				administrador.agregarPersonajeAAlianza(invitador.idAlianza, this);
-			}
+			
+		if(invitador.tieneAlianza() && this.tieneAlianza()){
+			invitador.alianza.agregarPersonajes(this.alianza.getPersonajes());	
+			
+		}
+		else if(invitador.tieneAlianza()){
+			invitador.alianza.agregarPersonajes(this);
+		}
+		else if(tieneAlianza()){
+			alianza.agregarPersonajes(invitador);
 		}
 		else{
-				List<Personaje> personajes=new ArrayList<Personaje>();
-				personajes.add(invitador);
-				personajes.add(this);
-				Alianza alianzaNueva=new Alianza(personajes);
-				administrador.agregarAlianza(alianzaNueva);
-			}
+			List<Personaje> personajes=new ArrayList<Personaje>();
+			personajes.add(invitador);
+			personajes.add(this);
+			this.alianza=new Alianza(personajes);
+			invitador.alianza=alianza;
+			
+		}
+		
 	}
 	
 
 	private boolean tieneAlianza() {
-		return idAlianza!=-1;
+		return alianza!=null;
 	}
 	
 	public void invitarAAlianza(Personaje invitado){
@@ -210,8 +213,7 @@ public abstract class Personaje {
 
 
 	public void desafiar(Personaje desafiado) {
-		AdministradorDeAlianzas administrador = AdministradorDeAlianzas.getInstance();
-		administrador.informarBatalla(this,desafiado);
+		alianza.atacar(desafiado.alianza);
 	}
 	
 	

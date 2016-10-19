@@ -21,7 +21,8 @@ public class PersonajeTest {
 	private Alianza crearAlianza(Personaje personaje) {
 		List<Personaje> personajes = new ArrayList<Personaje>();
 		personajes.add(personaje);
-		return new Alianza(personajes);
+		personaje.setAlianza(new Alianza(personajes));
+		return personaje.getAlianza();
 	}
 	@Test
 	public void siAtacaDisminuyeEnergiaPropiaYSaludDelRival(){
@@ -172,10 +173,13 @@ public class PersonajeTest {
 
 	private Alianza crearAlianza(int cantidadPersonajes) {
 		List<Personaje> personajes=new ArrayList<Personaje>();
+		Alianza alianza = new Alianza(personajes);
 		for(int i=0;i<cantidadPersonajes;i++){
-			personajes.add(new Humano());
+			Humano personaje = new Humano();
+			personaje.alianza=alianza;
+			personajes.add(personaje);
 		}
-		return new Alianza(personajes);
+		return alianza;
 	}
 
 	@Test
@@ -183,7 +187,7 @@ public class PersonajeTest {
 		personajeAtacante = new Humano();
 		Alianza alianzaNueva=crearAlianza(personajeAtacante);
 		personajeAtacante.abandonarAlianza();
-		Assert.assertEquals(-1,personajeAtacante.getAlianza());
+		Assert.assertEquals(null,personajeAtacante.getAlianza());
 		Assert.assertEquals(0, alianzaNueva.getPersonajes().size());
 
 	}

@@ -1,6 +1,6 @@
 package promotionSystem;
 
-import promotionSystem.administradores.AdministradorDeAlianzas;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +19,6 @@ public class Alianza {
 
     public Alianza(List<Personaje> personajes) {
         this.personajes = personajes;
-        AdministradorDeAlianzas administrador = AdministradorDeAlianzas.getInstance();
-        administrador.agregarAlianza(this);
     }
     
 
@@ -64,7 +62,7 @@ public class Alianza {
 
 	public void agregarPersonajes(Personaje personaje) {
 		personajes.add(personaje);
-		personaje.setAlianza(id);
+		personaje.setAlianza(this);
 	}
 
     public void atacar(Alianza alianzaEnemiga){
@@ -73,7 +71,7 @@ public class Alianza {
 
 	public void agregarPersonajes(List<Personaje> personajes) {
 		for(Personaje personaje:personajes){
-			personaje.setAlianza(id);
+			personaje.setAlianza(this);
 			this.personajes.add(personaje);
 		}		
 	}

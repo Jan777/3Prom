@@ -17,7 +17,7 @@ public class Humano extends Personaje {
 		experiencia=0;
 		nivel=1;
 		items = new ArrayList<>();
-		this.idAlianza=-1;
+		this.alianza=null;
 		posicion=new Punto(0,0);
 	}
 	
