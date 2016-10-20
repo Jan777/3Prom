@@ -8,13 +8,28 @@ public class ConBotas extends PersonajeEquipado{
 
 private Item arma;
 	
-	public ConBotas(Personaje personajeDecorado){
-		super(personajeDecorado);
+	public ConBotas(Personaje personajeDecorado, double multiplicadorDeAtaque, int sumadorDeAtaque, double multiplicadorDeDefensa, int sumadorDeDefensa, double multiplicadorDeMagia, int sumadorDeMagia, double multiplicadorDeVelocidad, int sumadorDeVelocidad){
+		super(personajeDecorado, multiplicadorDeAtaque, sumadorDeAtaque, multiplicadorDeDefensa, sumadorDeDefensa, multiplicadorDeMagia, sumadorDeMagia, multiplicadorDeVelocidad, sumadorDeVelocidad);
+	}
+
+	@Override
+	public int obtenerPuntosDeAtaque() {
+		return (int) ((super.obtenerPuntosDeAtaque()+getSumadorDeAtaque())*getMultiplicadorDeAtaque());
+	}
+	
+	@Override
+	public int obtenerPuntosDeDefensa() {
+		return (int) ((super.obtenerPuntosDeDefensa()+getSumadorDeDefensa())*getMultiplicadorDeDefensa());
+	}
+	
+	@Override
+	public int obtenerPuntosDeMagia() {
+		return (int) ((super.obtenerPuntosDeMagia()+getSumadorDeMagia())*getMultiplicadorDeMagia());
 	}
 	
 	@Override
 	public int obtenerPuntosDeVelocidad() {
-		return super.obtenerPuntosDeVelocidad() * 2;
+		return (int) ((super.obtenerPuntosDeVelocidad()+getSumadorDeVelocidad())*getMultiplicadorDeVelocidad());
 	}
 
 	@Override

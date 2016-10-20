@@ -13,7 +13,7 @@ public class ConEscudoTests {
 	public void siConEscudoModificaElValorDeLaDefensa(){
 		Personaje Braixen = new Humano();
 		Assert.assertEquals(2, Braixen.obtenerPuntosDeDefensa());
-		Braixen = new ConEscudo(Braixen);
+		Braixen = new ConEscudo(Braixen,1,0,1,2,1,0,1,0);
 		Assert.assertEquals(2 + 2, Braixen.obtenerPuntosDeDefensa());
 	}
 }

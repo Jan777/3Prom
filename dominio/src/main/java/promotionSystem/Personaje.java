@@ -28,6 +28,15 @@ public abstract class Personaje {
 			despuesDeAtacar();
 		}		
 	}
+	
+	public final void atacarConMagia(Personaje atacado) {
+		if(puedeAtacarConMagia()){
+			int puntosARestar=calcularPuntosDeMagia()-atacado.calcularPuntosDeDefensa();
+			atacado.serAtacado(puntosARestar<0?0:puntosARestar);
+			energia-=calcularPuntosDeMagia();
+			despuesDeAtacar();
+		}
+	}
 
 	public abstract void despuesDeAtacar();
 
@@ -40,6 +49,10 @@ public abstract class Personaje {
 
 	private boolean puedeAtacar() {
 		return energia>=ataque;
+	}
+	
+	private boolean puedeAtacarConMagia() {
+		return energia>=magia;
 	}
 
 	public Personaje elegirVictima(Alianza alianzaEnemiga, int numeroDePersonaje) {

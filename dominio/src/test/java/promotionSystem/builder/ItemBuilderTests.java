@@ -11,12 +11,22 @@ public class ItemBuilderTests {
 
 	
 	@Test
-	public void siCreaUnTipoDeArmaYSeModificanLosStats(){
+	public void siEquipoUnArmaYSeModificanLosStats(){
 		Personaje Emeritus = new Humano();
 		Assert.assertEquals(10, Emeritus.obtenerPuntosDeAtaque());
-		///Emeritus = new ItemBuilder();
-		//FIXME este test esta incompleto, hay que terminarlo.
-		Assert.assertEquals(10, Emeritus.obtenerPuntosDeAtaque());
-	}
-	///como hacer que Emeritus se transforme en un personaje Equipado con un item creado por el builder (espadaGorgoroth)
+		Emeritus = ItemBuilder.ConEspadaGorgoroth(Emeritus);
+		Assert.assertEquals(20, Emeritus.obtenerPuntosDeAtaque());
+		Assert.assertEquals(15, Emeritus.obtenerPuntosDeMagia());
+	}//veo que modifique adecuadamente varios stat que esa arma modifica
+	
+	@Test
+	public void siEquipo2TiposDeItemYSeModificanLosStats2(){ 
+		Personaje Emeritus = new Humano();
+		Emeritus = ItemBuilder.ConEspadaGorgoroth(Emeritus);
+		Emeritus = ItemBuilder.ConEscudoHyrule(Emeritus);
+		Assert.assertEquals(20, Emeritus.obtenerPuntosDeAtaque());
+		Assert.assertEquals(24, Emeritus.obtenerPuntosDeDefensa());
+		Assert.assertEquals(15, Emeritus.obtenerPuntosDeMagia());
+		Assert.assertEquals(1, Emeritus.obtenerPuntosDeVelocidad());
+	}//veo que modifique adecuadamente un stat que ambos items modifican
 }

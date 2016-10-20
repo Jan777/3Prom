@@ -15,10 +15,10 @@ public class PersonajeEquipadoTests {
 		Personaje Louie = new Humano();
 		Assert.assertEquals(2, Louie.obtenerPuntosDeDefensa());
 		// agrego escudo de defensa (+2)
-		Louie = new ConEscudo(Louie);
+		Louie = new ConEscudo(Louie,1,0,1,2,1,0,1,0);
 		Assert.assertEquals(2 + 2, Louie.obtenerPuntosDeDefensa());
 		// agrego casco de defensa (*2)
-		Louie = new ConCasco(Louie);
+		Louie = new ConCasco(Louie,1,0,2,0,1,0,1,0);
 		Assert.assertEquals((2 + 2) * 2, Louie.obtenerPuntosDeDefensa());
 	}
 	
@@ -26,18 +26,10 @@ public class PersonajeEquipadoTests {
 	public void siPuedoAgregarDosItemsDeDistintoTipo() {
 		Personaje Louie = new Humano();
 		// agrego escudo de ataque (*2)
-		Louie = new ConArma(Louie);
+		Louie = new ConArma(Louie,2,0,1,0,1,0,1,0);
 		Assert.assertEquals(10 * 2, Louie.obtenerPuntosDeAtaque());
 		// agrego casco de defensa (*2)
-		Louie = new ConCasco(Louie);
+		Louie = new ConCasco(Louie,1,0,1,2,1,0,1,0);
 		Assert.assertEquals(2 * 2, Louie.obtenerPuntosDeDefensa());
-	}
-	
-	@Test
-	public void siMultiplicadorDeConArmaMultiplicaPeroNoSumaAlAtaque(){
-		Personaje Morty = new Humano();
-		Assert.assertEquals(10, Morty.obtenerPuntosDeAtaque());
-		Morty = new ConArma(Morty);
-		Assert.assertEquals(10 * 2, Morty.obtenerPuntosDeAtaque());	
 	}
 }

@@ -13,7 +13,7 @@ public class ConArmaTests {
 	public void siConArmaDuplicaElValorDelAtaque(){
 		Personaje Braixen = new Humano();
 		Assert.assertEquals(10, Braixen.obtenerPuntosDeAtaque());
-		Braixen = new ConArma(Braixen);
+		Braixen = new ConArma(Braixen,2,0,1,0,1,0,1,0);
 		Assert.assertEquals(10 * 2, Braixen.obtenerPuntosDeAtaque());
 	}
 }

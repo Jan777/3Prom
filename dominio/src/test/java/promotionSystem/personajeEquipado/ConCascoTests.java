@@ -13,7 +13,7 @@ public class ConCascoTests {
 	public void siConCascoModificaElValorDeLaDefensa() {
 		Personaje Braixen = new Humano();
 		Assert.assertEquals(2, Braixen.obtenerPuntosDeDefensa());
-		Braixen = new ConCasco(Braixen);
+		Braixen = new ConCasco(Braixen,1,0,2,0,1,0,1,0);
 		Assert.assertEquals(2 * 2, Braixen.obtenerPuntosDeDefensa());
 	}
 }

@@ -13,10 +13,11 @@ public class Humano extends Personaje {
 		salud=100;
 		ataque=10;
 		defensa=2;
+		velocidad=2;
 		magia=5;
 		experiencia=0;
 		nivel=1;
-		items = new ArrayList<>();
+		items = new ArrayList<Item>();
 		this.alianza=null;
 		posicion=new Punto(0,0);
 	}
@@ -31,5 +32,6 @@ public class Humano extends Personaje {
 		ataque+=nivel;
 		defensa+=nivel;
 		magia+=nivel;
+		velocidad+=nivel;
 	}
 }
