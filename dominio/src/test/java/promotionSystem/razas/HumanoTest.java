@@ -8,10 +8,10 @@ public class HumanoTest {
 	
 	@Test
 	public void siHumanoAtacaNoCambiaLosStatsDespuesDeAtacar(){
-		Humano man=new Humano();
-		Humano man2=new Humano();
-		Assert.assertEquals(10, man.obtenerPuntosDeAtaque());
+		Humano man=new GuerreroHumano();
+		Humano man2=new MagoHumano();
+		Assert.assertEquals(150, man.obtenerPuntosDeAtaque());
 		man.atacar(man2);
-		Assert.assertEquals(10, man.obtenerPuntosDeAtaque());
+		Assert.assertEquals(150, man.obtenerPuntosDeAtaque());
 	}
 }

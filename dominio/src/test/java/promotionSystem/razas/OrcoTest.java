@@ -9,8 +9,8 @@ public class OrcoTest {
 	@Test
 	public void SiUnOrcoAtacaAOtroPersonajeDespuesDeAtacarAumentaEn2SuAtaque(){
 		
-		Orco orcoAtacado=new Orco();
-		Orco orcoAtacante=new Orco();
+		Orco orcoAtacado=new MagoOrco();
+		Orco orcoAtacante=new MagoOrco();
 		Assert.assertEquals(40,orcoAtacante.obtenerPuntosDeAtaque());
 		orcoAtacante.atacar(orcoAtacado);
 		Assert.assertEquals(50,orcoAtacante.obtenerPuntosDeAtaque());

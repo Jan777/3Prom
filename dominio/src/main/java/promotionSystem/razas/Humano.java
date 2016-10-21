@@ -6,32 +6,13 @@ import promotionSystem.Item;
 import promotionSystem.Personaje;
 import promotionSystem.Punto;
 
-public class Humano extends Personaje {
+public abstract class Humano extends Personaje {
 
-	public Humano(){
-		energia=100;
-		salud=100;
-		ataque=10;
-		defensa=2;
-		velocidad=2;
-		magia=5;
-		experiencia=0;
-		nivel=1;
-		items = new ArrayList<Item>();
-		this.alianza=null;
-		posicion=new Punto(0,0);
-	}
+	
 	
 	public void despuesDeAtacar(){
 		// raza sin efectos despues de atacar
 	}
 	
-	public void subirStats(int nivel){
-		energia+=nivel;
-		salud+=nivel;
-		ataque+=nivel;
-		defensa+=nivel;
-		magia+=nivel;
-		velocidad+=nivel;
-	}
+	public abstract void subirStats(int nivel);
 }
