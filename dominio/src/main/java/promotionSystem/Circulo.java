@@ -13,4 +13,12 @@ public class Circulo {
 		return this.centro.distanciaCon(circulo.centro) <=
 				this.radio + circulo.radio;
 	}
+
+	public boolean incluye(Punto posicion) {
+		return posicion.distanciaCon(centro)<radio;
+	}
+
+	public void setCentro(Punto posicion) {
+		centro=posicion;
+	}
 }

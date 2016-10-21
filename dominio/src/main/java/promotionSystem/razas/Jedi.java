@@ -1,5 +1,6 @@
 package promotionSystem.razas;
 
+import promotionSystem.Circulo;
 import promotionSystem.Punto;
 
 public class Jedi extends PersonajesDeStarWars{
@@ -14,6 +15,7 @@ public class Jedi extends PersonajesDeStarWars{
 		experiencia=0;
 		nivel=0;
 		posicion=new Punto(0,0);
+		radioDeAcccion=new Circulo(posicion,20);
 	}
 	
 	@Override

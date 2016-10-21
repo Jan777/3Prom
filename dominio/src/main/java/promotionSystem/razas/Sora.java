@@ -1,5 +1,6 @@
 package promotionSystem.razas;
 
+import promotionSystem.Circulo;
 import promotionSystem.Punto;
 
 public class Sora extends PersonajesDeKingdomHearts {
@@ -14,6 +15,7 @@ public class Sora extends PersonajesDeKingdomHearts {
 	 salud=100;
 	 posicion=new Punto(0,0);
 	 magia=100;
+	 radioDeAcccion=new Circulo(posicion,20);
 		
 	}
 	

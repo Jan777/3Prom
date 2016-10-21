@@ -18,6 +18,8 @@ public abstract class Personaje {
 	protected Alianza alianza;
 	protected int velocidad;
 	protected Punto posicion;
+	protected Circulo radioDeAcccion;
+	private boolean enBatalla=false;
 	
 	
 	public final void atacar(Personaje atacado) {
@@ -77,7 +79,7 @@ public abstract class Personaje {
 	}
 
 	public void serEnergizado() {
-		energia=100;
+		energia=1200;
 		
 	}
 
@@ -234,10 +236,32 @@ public abstract class Personaje {
 	
 	public void mover(Punto posicionNueva){
 		posicion=posicionNueva;
+		radioDeAcccion.setCentro(posicion);
 	}
 
 	public Punto getPosicion() {
 		return posicion;
+	}
+	
+	public final List<Personaje> invocarAliados(){
+		int i=0;
+		List<Personaje> aliadosEnBatalla = new ArrayList<>();
+		aliadosEnBatalla.add(this);
+		if(tieneAlianza()){
+			List<Personaje> aliadosTotales=this.alianza.getPersonajes();
+			while(aliadosEnBatalla.size()<5 && i<aliadosTotales.size()){
+				Personaje personaje = aliadosTotales.get(i);
+				if(personaje.estaEnElRadio(this.radioDeAcccion)&&!personaje.enBatalla&&personaje!=this){
+					aliadosEnBatalla.add(personaje);
+				}
+				i++;
+			}
+		}
+		return aliadosEnBatalla;
+	}
+
+	private boolean estaEnElRadio(Circulo radioDeAcccion) {
+			return radioDeAcccion.incluye(this.posicion);
 	}
 }
 	

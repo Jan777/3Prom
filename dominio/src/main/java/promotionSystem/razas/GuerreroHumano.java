@@ -2,6 +2,7 @@ package promotionSystem.razas;
 
 import java.util.ArrayList;
 
+import promotionSystem.Circulo;
 import promotionSystem.Item;
 import promotionSystem.Punto;
 
@@ -19,6 +20,7 @@ public class GuerreroHumano extends Humano{
 		items = new ArrayList<Item>();
 		this.alianza=null;
 		posicion=new Punto(0,0);
+		radioDeAcccion=new Circulo(posicion,20);
 	}
 
 	@Override
