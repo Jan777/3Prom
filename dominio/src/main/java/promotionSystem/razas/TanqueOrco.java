@@ -7,6 +7,8 @@ public class TanqueOrco extends Orco{
 
 	public TanqueOrco(){
 		energia = 1000;
+		energiaMaxima=1000;
+		saludMaxima=400;
 		salud=400;
 		ataque=70;
 		defensa=200;
@@ -23,6 +25,8 @@ public class TanqueOrco extends Orco{
 	@Override
 	public void subirStats(int nivel) {
 		energia+=nivel*10;
+		energiaMaxima+=nivel*10;
+		saludMaxima+=nivel*10;
 		salud+=nivel*10;
 		ataque+=nivel*5;
 		defensa+=nivel*10;

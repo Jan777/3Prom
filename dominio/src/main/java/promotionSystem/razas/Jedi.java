@@ -7,6 +7,8 @@ public class Jedi extends PersonajesDeStarWars{
 	
 	public Jedi(){
 		energia=1200;
+		energiaMaxima=1200;
+		saludMaxima=110;
 		salud=110;
 		ataque=150;
 		defensa=30;
@@ -21,6 +23,8 @@ public class Jedi extends PersonajesDeStarWars{
 	@Override
 	public void subirStats(int nivel) {
 		energia+=nivel*10;
+		energiaMaxima+=nivel*10;
+		saludMaxima+=nivel*5;
 		salud+=+nivel*5;
 		ataque+=nivel*10;
 		defensa+=nivel*5;

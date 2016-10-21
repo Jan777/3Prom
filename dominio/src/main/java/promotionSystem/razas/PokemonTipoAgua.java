@@ -7,6 +7,8 @@ public class PokemonTipoAgua extends PersonajesDePokemon{
 	
 	public PokemonTipoAgua(){
 		energia=1000;
+		energiaMaxima=1000;
+		saludMaxima=100;
 		salud=100;
 		ataque=100;
 		defensa=70;
@@ -22,6 +24,8 @@ public class PokemonTipoAgua extends PersonajesDePokemon{
 	@Override
 	public void subirStats(int nivel) {
 		energia+=nivel*10;
+		energiaMaxima+=nivel*10;
+		saludMaxima+=nivel*5;
 		salud+=+nivel*5;
 		ataque+=nivel*5;
 		defensa+=nivel*5;

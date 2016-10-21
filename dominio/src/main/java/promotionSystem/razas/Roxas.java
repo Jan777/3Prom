@@ -7,6 +7,8 @@ public class Roxas extends PersonajesDeKingdomHearts {
 
     public Roxas() {
         energia = 1000;
+        energiaMaxima=1000;
+		saludMaxima=100;
         salud = 100;
         ataque = 50;
         defensa = 200;
@@ -21,6 +23,8 @@ public class Roxas extends PersonajesDeKingdomHearts {
     @Override
     public void subirStats(int nivel) {
         energia += nivel * 10;
+        energiaMaxima+=nivel*10;
+		saludMaxima+=nivel*5;
         salud += nivel * 5;
         ataque += nivel * 5;
         defensa += nivel * 10;

@@ -10,7 +10,9 @@ public class GuerreroHumano extends Humano{
 	
 	public GuerreroHumano(){
 		energia=1200;
+		energiaMaxima=1200;
 		salud=100;
+		saludMaxima=100;
 		ataque=150;
 		defensa=80;
 		velocidad=90;
@@ -26,6 +28,8 @@ public class GuerreroHumano extends Humano{
 	@Override
 	public void subirStats(int nivel) {
 		energia+=nivel*10;
+		energiaMaxima+=nivel*10;
+		saludMaxima+=nivel*10;
 		salud+=nivel*10;
 		ataque+=nivel*10;
 		defensa+=nivel*5;

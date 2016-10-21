@@ -7,6 +7,8 @@ public class GuerreroOrco extends Orco{
 
 	public GuerreroOrco(){
 		energia = 1200;
+		energiaMaxima=1200;
+		saludMaxima=150;
 		salud=150;
 		ataque=175;
 		defensa=100;
@@ -21,6 +23,8 @@ public class GuerreroOrco extends Orco{
 	@Override
 	public void subirStats(int nivel) {
 		energia+=nivel*10;
+		energiaMaxima+=nivel*10;
+		saludMaxima+=nivel*10;
 		salud+=nivel*10;
 		ataque+=nivel*10;
 		defensa+=nivel*5;

@@ -10,6 +10,8 @@ public class MagoHumano extends Humano {
 
 	public MagoHumano (){
 		energia=1200;
+		energiaMaxima=1200;
+		saludMaxima=75;
 		salud=75;
 		ataque=20;
 		defensa=50;
@@ -25,6 +27,8 @@ public class MagoHumano extends Humano {
 	
 	public void subirStats(int nivel){
 		energia+=nivel*10;
+		energiaMaxima+=nivel*10;
+		saludMaxima+=nivel*5;
 		salud+=nivel*5;
 		ataque+=nivel*5;
 		defensa+=nivel*5;

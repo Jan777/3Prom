@@ -20,6 +20,8 @@ public abstract class Personaje {
 	protected Punto posicion;
 	protected Circulo radioDeAcccion;
 	private boolean enBatalla=false;
+	protected int saludMaxima;
+	protected int energiaMaxima;
 	
 	
 	public final void atacar(Personaje atacado) {
@@ -74,12 +76,12 @@ public abstract class Personaje {
 	}
 
 	public void serCurado() {
-		salud=100;
+		salud=saludMaxima;
 		
 	}
 
 	public void serEnergizado() {
-		energia=1200;
+		energia=energiaMaxima;
 		
 	}
 

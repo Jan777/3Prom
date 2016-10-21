@@ -7,6 +7,8 @@ public class Wookie extends PersonajesDeStarWars{
 	
 	public Wookie(){
 		energia=1000;
+		energiaMaxima=1000;
+		saludMaxima=110;
 		salud=110;
 		ataque=150;
 		defensa=70;
@@ -22,6 +24,8 @@ public class Wookie extends PersonajesDeStarWars{
 	@Override
 	public void subirStats(int nivel) {
 		energia+=nivel*10;
+		energiaMaxima+=nivel*10;
+		saludMaxima+=nivel*10;
 		salud+=+nivel*10;
 		ataque+=nivel*10;
 		defensa+=nivel*5;

@@ -7,6 +7,8 @@ public class Riku extends PersonajesDeKingdomHearts {
 
     public Riku() {
         energia = 1000;
+        energiaMaxima=1000;
+		saludMaxima=200;
         salud = 200;
         ataque = 200;
         defensa = 50;
@@ -22,6 +24,8 @@ public class Riku extends PersonajesDeKingdomHearts {
     @Override
     public void subirStats(int nivel) {
         energia += nivel*10;
+        energiaMaxima+=nivel*10;
+		saludMaxima+=nivel*10;
         salud += nivel*10;
         ataque += nivel*10;
         defensa += nivel*5;

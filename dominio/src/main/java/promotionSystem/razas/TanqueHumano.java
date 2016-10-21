@@ -10,6 +10,8 @@ public class TanqueHumano extends Humano{
 	
 	public TanqueHumano(){
 		energia=1000;
+		energiaMaxima=1000;
+		saludMaxima=300;
 		salud=300;
 		ataque=50;
 		defensa=150;
@@ -26,6 +28,8 @@ public class TanqueHumano extends Humano{
 	@Override
 	public void subirStats(int nivel) {
 		energia+=nivel*10;
+		energiaMaxima+=nivel*10;
+		saludMaxima+=nivel*10;
 		salud+=nivel*10;
 		ataque+=nivel*5;
 		defensa+=nivel*10;

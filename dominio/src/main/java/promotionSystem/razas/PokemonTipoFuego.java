@@ -6,6 +6,8 @@ import promotionSystem.Punto;
 public class PokemonTipoFuego extends PersonajesDePokemon {
 	public PokemonTipoFuego(){
 		energia=1000;
+		energiaMaxima=1000;
+		saludMaxima=90;
 		salud=90;
 		ataque=150;
 		defensa=60;
@@ -20,6 +22,8 @@ public class PokemonTipoFuego extends PersonajesDePokemon {
 	@Override
 	public void subirStats(int nivel) {
 		energia+=nivel*10;
+		energiaMaxima+=nivel*10;
+		saludMaxima+=nivel*5;
 		salud+=+nivel*5;
 		ataque+=nivel*10;
 		defensa+=nivel*2;
