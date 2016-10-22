@@ -3,7 +3,7 @@ package promotionSystem;
 import org.junit.Assert;
 import org.junit.Test;
 
-import promotionSystem.razas.GuerreroHumano;
+import promotionSystem.razas.PokemonTipoFuego;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,8 +14,8 @@ public class PersonajeTest {
 	Alianza alianzaAtacante;
 	
 	public void crearPersonajes(){
-		 personajeAtacante=new GuerreroHumano();
-		 personajeAtacado=new GuerreroHumano();
+		 personajeAtacante=new PokemonTipoFuego();
+		 personajeAtacado=new PokemonTipoFuego();
 	}
 	
 	private Alianza crearAlianza(Personaje personaje) {
@@ -64,7 +64,7 @@ public class PersonajeTest {
 	
 	@Test
 	public void siTieneMenosSaludQueLaInicialYEsCuradoLaSaludVuelveAlMaximo(){
-		personajeAtacado=new GuerreroHumano();	
+		personajeAtacado=new PokemonTipoFuego();	
 		personajeAtacado.setSalud(10);
 		personajeAtacado.serCurado();
 		Assert.assertEquals(100,personajeAtacado.getSalud());
@@ -74,7 +74,7 @@ public class PersonajeTest {
 
 	@Test
 	public void siTieneMenosEnergiaQueLaInicialYEsEnergizadoLaVuelveAlMaximo(){
-		personajeAtacante=new GuerreroHumano();		
+		personajeAtacante=new PokemonTipoFuego();		
 		personajeAtacante.setEnergia(10);
 		personajeAtacante.serEnergizado();
 		Assert.assertEquals(1200,personajeAtacante.getEnergia());
@@ -90,7 +90,7 @@ public class PersonajeTest {
 	
 	@Test
 	public void siTieneVidaAlMaximoNoPuedeAumentarSuSaludAlSerCurado(){
-		personajeAtacado=new GuerreroHumano();
+		personajeAtacado=new PokemonTipoFuego();
 		Assert.assertEquals(100,personajeAtacado.getSalud());
 		personajeAtacado.serCurado();
 		Assert.assertEquals(100,personajeAtacado.getSalud());
@@ -98,7 +98,7 @@ public class PersonajeTest {
 	
 	@Test
 	public void siTieneEnergiaAlMaximoNoPuedeAumentarSuEnergiaAlSerEnergizado(){
-		personajeAtacante=new GuerreroHumano();
+		personajeAtacante=new PokemonTipoFuego();
 		Assert.assertEquals(1200,personajeAtacante.getEnergia());
 		personajeAtacante.serEnergizado();
 		Assert.assertEquals(1200,personajeAtacante.getEnergia());
@@ -123,26 +123,26 @@ public class PersonajeTest {
 	
 	@Test
 	public void debeDevolverLosPuntosDeAtaque(){
-		personajeAtacante=new GuerreroHumano();
+		personajeAtacante=new PokemonTipoFuego();
 		Assert.assertEquals(150,personajeAtacante.obtenerPuntosDeAtaque());
 	}
 	
 	@Test
 	public void debeDevolverLosPuntosDeDefensa(){
-		personajeAtacante=new GuerreroHumano();
+		personajeAtacante=new PokemonTipoFuego();
 		Assert.assertEquals(80,personajeAtacante.obtenerPuntosDeDefensa());
 	}
 	
 	@Test
 	public void debeDevolverLosPuntosDeMagia(){
-		personajeAtacante=new GuerreroHumano();
+		personajeAtacante=new PokemonTipoFuego();
 		
 		Assert.assertEquals(20,personajeAtacante.obtenerPuntosDeMagia());
 	}
 	
 	@Test
 	public void debeAumentarExperiencia(){
-		personajeAtacante=new GuerreroHumano();
+		personajeAtacante=new PokemonTipoFuego();
 		Assert.assertEquals(0,personajeAtacante.getExperiencia());
 		personajeAtacante.subirExperiencia(1);
 		Assert.assertEquals(1,personajeAtacante.getExperiencia());
@@ -150,14 +150,14 @@ public class PersonajeTest {
 
 	@Test
 	public void siPoseeLaExperienciaSuficienteElPersonajeDebeAumentarNivel(){
-		personajeAtacante=new GuerreroHumano();
+		personajeAtacante=new PokemonTipoFuego();
 		personajeAtacante.subirExperiencia(20);
 		Assert.assertEquals(4,personajeAtacante.getNivel());
 	}
 	
 	@Test
 	public void siNoPoseeLaExperienciaSuficienteElPersonajeNoDebeAumentarNivel(){
-		personajeAtacante=new GuerreroHumano();
+		personajeAtacante=new PokemonTipoFuego();
 		personajeAtacante.subirExperiencia(1);
 		Assert.assertEquals(1,personajeAtacante.getNivel());
 	}
@@ -165,7 +165,7 @@ public class PersonajeTest {
 	@Test
 	public void debeElegirElPrimerPersonajeComoVictima(){
 		Alianza alianzaEnemiga = crearAlianza(1);
-        personajeAtacante = new GuerreroHumano();
+        personajeAtacante = new PokemonTipoFuego();
         Personaje victima = personajeAtacante.elegirVictima(alianzaEnemiga, 0);
 		Assert.assertEquals(0, alianzaEnemiga.getPersonajes().indexOf(victima));
 	}
@@ -175,7 +175,7 @@ public class PersonajeTest {
 		List<Personaje> personajes=new ArrayList<Personaje>();
 		Alianza alianza = new Alianza(personajes);
 		for(int i=0;i<cantidadPersonajes;i++){
-			GuerreroHumano personaje = new GuerreroHumano();
+			PokemonTipoFuego personaje = new PokemonTipoFuego();
 			personaje.alianza=alianza;
 			personajes.add(personaje);
 		}
@@ -184,7 +184,7 @@ public class PersonajeTest {
 
 	@Test
 	public void siElPersonajePoseeUnaAlianzaYLaAbandonaDejaraDeAparecerEsaAlianza(){
-		personajeAtacante = new GuerreroHumano();
+		personajeAtacante = new PokemonTipoFuego();
 		Alianza alianzaNueva=crearAlianza(personajeAtacante);
 		personajeAtacante.abandonarAlianza();
 		Assert.assertEquals(null,personajeAtacante.getAlianza());
@@ -232,7 +232,7 @@ public class PersonajeTest {
 	
 	@Test
 	public void siLePasoUnaPosicionValidaElPersonajeSeMueveAEsaPosicion(){
-		personajeAtacante=new GuerreroHumano();
+		personajeAtacante=new PokemonTipoFuego();
 		Punto posicionNueva=new Punto(3,2);
 		
 		personajeAtacante.mover(posicionNueva);

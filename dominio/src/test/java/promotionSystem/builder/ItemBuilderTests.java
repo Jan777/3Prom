@@ -5,14 +5,14 @@ import org.junit.Test;
 
 
 import promotionSystem.Personaje;
-import promotionSystem.razas.GuerreroHumano;
+import promotionSystem.razas.PokemonTipoFuego;
 
 public class ItemBuilderTests {
 
 	
 	@Test
 	public void siEquipoUnArmaYSeModificanLosStats(){
-		Personaje Emeritus = new GuerreroHumano();
+		Personaje Emeritus = new PokemonTipoFuego();
 		Assert.assertEquals(150, Emeritus.obtenerPuntosDeAtaque());
 		Emeritus = ItemBuilder.ConEspadaGorgoroth(Emeritus);
 		Assert.assertEquals(300, Emeritus.obtenerPuntosDeAtaque());
@@ -21,7 +21,7 @@ public class ItemBuilderTests {
 	
 	@Test
 	public void siEquipo2TiposDeItemYSeModificanLosStats2(){ 
-		Personaje Emeritus = new GuerreroHumano();
+		Personaje Emeritus = new PokemonTipoFuego();
 		Emeritus = ItemBuilder.ConEspadaGorgoroth(Emeritus);
 		Emeritus = ItemBuilder.ConEscudoHyrule(Emeritus);
 		Assert.assertEquals(300, Emeritus.obtenerPuntosDeAtaque());

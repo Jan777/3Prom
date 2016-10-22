@@ -1,9 +1,13 @@
 package promotionSystem;
 
-
-
 import java.util.ArrayList;
 import java.util.List;
+
+import promotionSystem.personajeEquipado.ConArma;
+import promotionSystem.personajeEquipado.ConBotas;
+import promotionSystem.personajeEquipado.ConCasco;
+import promotionSystem.personajeEquipado.ConChaleco;
+import promotionSystem.personajeEquipado.ConEscudo;
 
 
 public abstract class Personaje {
@@ -14,7 +18,7 @@ public abstract class Personaje {
 	protected int magia;
 	protected int experiencia;
 	protected int nivel;
-	protected List<Item> items;
+	//protected List<Item> items;
 	protected Alianza alianza;
 	protected int velocidad;
 	protected Punto posicion;
@@ -22,6 +26,18 @@ public abstract class Personaje {
 	private boolean enBatalla=false;
 	protected int saludMaxima;
 	protected int energiaMaxima;
+	//items
+		protected boolean arma;
+		protected boolean botas;
+		protected boolean casco;
+		protected boolean chaleco;
+		protected boolean escudo;
+	//itemsDeInventario
+		private boolean armaDelInventario;
+		private boolean botasDelInventario;
+		private boolean cascoDelInventario;
+		private boolean chalecoDelInventario;
+		private boolean escudoDelInventario;
 	
 	
 	public final void atacar(Personaje atacado) {
@@ -43,7 +59,7 @@ public abstract class Personaje {
 	}
 
 	public abstract void despuesDeAtacar();
-
+	
 	private void serAtacado(int ataque) {
 		salud-=ataque;
 		if(salud<0){
@@ -158,7 +174,7 @@ public abstract class Personaje {
 	private int experienciaPorNivel() {
 		return (int) Math.pow(nivel, 2);
 	}
-
+/*
 	public Item entregarItem() {
 			return items.remove(0);			
 	}
@@ -170,8 +186,7 @@ public abstract class Personaje {
 	public void recibirItem(Item item) {
 		items.add(item);
 	}
-
-	
+*/
 	//FIXME cambiar esto cuando se defina el tema de como el personajeEquipado conoce la alianza.
 	public void setAlianza(Alianza alianza) {
 		this.alianza=alianza;
@@ -247,7 +262,7 @@ public abstract class Personaje {
 	
 	public final List<Personaje> invocarAliados(){
 		int i=0;
-		List<Personaje> aliadosEnBatalla = new ArrayList<>();
+		List<Personaje> aliadosEnBatalla = new ArrayList<Personaje>();
 		aliadosEnBatalla.add(this);
 		if(tieneAlianza()){
 			List<Personaje> aliadosTotales=this.alianza.getPersonajes();
@@ -264,6 +279,86 @@ public abstract class Personaje {
 
 	private boolean estaEnElRadio(Circulo radioDeAcccion) {
 			return radioDeAcccion.incluye(this.posicion);
+	}
+	
+	public boolean getArma() {
+		return arma;
+	}
+
+	public void setArma() {
+		this.arma = true;
+	}
+
+	public boolean getBotas() {
+		return botas;
+	}
+
+	public void setBotas() {
+		this.botas = true;
+	}
+
+	public boolean getCasco() {
+		return casco;
+	}
+
+	public void setCasco() {
+		this.casco = true;
+	}
+
+	public boolean getChaleco() {
+		return chaleco;
+	}
+
+	public void setChaleco() {
+		this.chaleco = true;
+	}
+
+	public boolean getEscudo() {
+		return escudo;
+	}
+
+	public void setEscudo() {
+		this.escudo = true;
+	}
+	
+	public boolean getArmaDelInventario() {
+		return armaDelInventario;
+	}
+
+	public void setArmaDelInventario() {
+		this.armaDelInventario = true;
+	}
+
+	public boolean getBotasDelInventario() {
+		return botasDelInventario;
+	}
+
+	public void setBotasDelInventario() {
+		this.botasDelInventario = true;
+	}
+
+	public boolean getCascoDelInventario() {
+		return cascoDelInventario;
+	}
+
+	public void setCascoDelInventario() {
+		this.cascoDelInventario = true;
+	}
+
+	public boolean getChalecoDelInventario() {
+		return chalecoDelInventario;
+	}
+
+	public void setChalecoDelInventario() {
+		this.chalecoDelInventario = true;
+	}
+
+	public boolean getEscudoDelInventario() {
+		return escudoDelInventario;
+	}
+
+	public void setEscudoDelInventario() {
+		this.escudoDelInventario = true;
 	}
 }
 	

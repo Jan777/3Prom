@@ -1,8 +1,15 @@
 package promotionSystem;
 
-public abstract class PersonajeEquipado extends Personaje {
+import promotionSystem.personajeEquipado.ConArma;
+import promotionSystem.personajeEquipado.ConBotas;
+import promotionSystem.personajeEquipado.ConCasco;
+import promotionSystem.personajeEquipado.ConChaleco;
+import promotionSystem.personajeEquipado.ConEscudo;
 
+public abstract class PersonajeEquipado extends Personaje {
+	//personaje
 	private Personaje personajeDecorado;
+	//modificadoresDeStatsDeItems
 	private double multiplicadorDeAtaque;
 	private int sumadorDeAtaque;
 	private double multiplicadorDeDefensa;
