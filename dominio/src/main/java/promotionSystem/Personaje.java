@@ -360,5 +360,22 @@ public abstract class Personaje {
 	public void setEscudoDelInventario() {
 		this.escudoDelInventario = true;
 	}
+
+	public void recibirItem(Item item) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public boolean puedeDarItem() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public Item entregarItem() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 }
 	

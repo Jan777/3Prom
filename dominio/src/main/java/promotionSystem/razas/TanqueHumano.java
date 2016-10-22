@@ -19,7 +19,7 @@ public class TanqueHumano extends Humano{
 		magia=20;
 		experiencia=0;
 		nivel=0;
-		items = new ArrayList<Item>();
+//		items = new ArrayList<Item>();
 		this.alianza=null;
 		posicion=new Punto(0,0);
 		radioDeAcccion=new Circulo(posicion,20);

@@ -10,7 +10,7 @@ import static promotionSystem.builder.AlianzaBuilder.crearAlianzaDeHumanos;
 
 public class AlianzaDeHumanosTest {
 
-    @Test
+   /* @Test
     public void siHay3HumanosEnLaAlianzaDebenAtacarATresEnemigosDeLaOtraAlianza(){
         AlianzaDeHumanos alianzaDeHumanos = crearAlianzaDeHumanos(3);
         Alianza alianzaEnemiga = AlianzaBuilder.crearAlianza(3);
@@ -38,5 +38,5 @@ public class AlianzaDeHumanosTest {
         assertEquals(30, alianzaEnemiga.getPersonajes().get(1).getSalud());
         assertEquals(30, alianzaEnemiga.getPersonajes().get(2).getSalud());
         assertEquals(100, alianzaEnemiga.getPersonajes().get(3).getSalud());
-    }
+    }*/
 }
