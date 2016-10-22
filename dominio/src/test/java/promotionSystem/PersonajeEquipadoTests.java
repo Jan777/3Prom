@@ -36,13 +36,14 @@ public class PersonajeEquipadoTests {
 		Assert.assertEquals(60 + 2, Louie.obtenerPuntosDeDefensa());
 	}
 	
-	//FIXME ARREGLAR TEST COMENTADOS
-	/*@Test
+	/* arreglar : el problema es que no quita el arma gorgoroth, y por lo tanto termina sumando los efectos de ambos, el asert puse el valor que tienen que dar
+	@Test
 	public void siPuedoGuardarUnArmaEnElInventario(){
 		Personaje Louie = new PokemonTipoFuego();
 		Louie = ItemBuilder.ConEspadaGorgoroth(Louie);
 		Assert.assertEquals(150 * 2, Louie.obtenerPuntosDeAtaque());
 		Louie = ItemBuilder.ConEspadaKokiri(Louie);
-		Assert.assertEquals(150 * 2, Louie.obtenerPuntosDeAtaque());
-	}*/
+		Assert.assertEquals((150+10)*2 , Louie.obtenerPuntosDeAtaque());
+	}
+	*/
 }
