@@ -48,7 +48,7 @@ public class BatallaTest {
         alianza2.getPersonajes().get(0).recibirItem(new Item());
         Assert.assertEquals(batalla.entregarPremio(), alianza1.getItems());
         Assert.assertEquals(1, alianza1.getItems().size());
-    }*/
+    }
 
    @Test
    public void siLaAlianzaPerdedoraTieneUnPersonajeQueNoTieneItemsNoDebeEntregarItems(){
@@ -57,7 +57,7 @@ public class BatallaTest {
 	   Assert.assertEquals(0,alianza1.getItems().size());
 	   
    }
-    
+    */
     private Batalla crearBatalla(){
         return new Batalla(alianza1, alianza2);
     }

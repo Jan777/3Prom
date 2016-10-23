@@ -1,0 +1,3 @@
+### Historia del juego: Kings of the Multiverse
+
+> Hace mucho tiempo en una galaxia muy muy lejana, en el sector Gazorbazorp del supercluster C-137, ocurrió una catástrofe como nunca antes, alguien encontró el perdido y prohibido monolito y quiso absorber su inconmensurable poder. Gracias a esto, se produjo una quebradura en el espacio-tiempo que llevo a que distintas partes del universo se unieran. Esta es la historia de los héroes que sobrevivieron a ese acontecimiento y lucharon para la supervivencia de sus razas.

@@ -26,7 +26,7 @@ public class ItemBuilderTests {
 		Emeritus = ItemBuilder.ConEspadaGorgoroth(Emeritus);
 		Emeritus = ItemBuilder.ConEscudoHyrule(Emeritus);
 		Assert.assertEquals(300, Emeritus.obtenerPuntosDeAtaque());
-		Assert.assertEquals(180, Emeritus.obtenerPuntosDeDefensa());
+		Assert.assertEquals(170, Emeritus.obtenerPuntosDeDefensa());
 		Assert.assertEquals(30, Emeritus.obtenerPuntosDeMagia());
 		Assert.assertEquals(45, Emeritus.obtenerPuntosDeVelocidad());
 	}//veo que modifique adecuadamente un stat que ambos items modifican

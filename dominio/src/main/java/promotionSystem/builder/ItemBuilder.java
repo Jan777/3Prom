@@ -10,17 +10,17 @@ import promotionSystem.personajeEquipado.ConEscudo;
 public class ItemBuilder {
 	
 	public static Personaje ConEspadaGorgoroth(Personaje braixen){
-		final double multiplicadorDeAtaque = 2;
-		final int sumadorDeAtaque = 0;
-		final double multiplicadorDeDefensa = 1;
-		final int sumadorDeDefensa = 0;
-		final double multiplicadorDeMagia = 1;
-		final int sumadorDeMagia = 10;
-		final double multiplicadorDeVelocidad = 1;
-		final int sumadorDeVelocidad = 1;
+		final double MultiplicadorDeAtaque = 2;
+		final int SumadorDeAtaque = 0;
+		final double MultiplicadorDeDefensa = 1;
+		final int SumadorDeDefensa = 0;
+		final double MultiplicadorDeMagia = 1;
+		final int SumadorDeMagia = 10;
+		final double MultiplicadorDeVelocidad = 1;
+		final int SumadorDeVelocidad = 1;
 		if(braixen.puedeEquiparArma()){
 			braixen.setArma();
-			return new ConArma(braixen,multiplicadorDeAtaque,sumadorDeAtaque,multiplicadorDeDefensa,sumadorDeDefensa,multiplicadorDeMagia,sumadorDeMagia,multiplicadorDeVelocidad,sumadorDeVelocidad);
+			return new ConArma(braixen,MultiplicadorDeAtaque,SumadorDeAtaque,MultiplicadorDeAtaque,SumadorDeDefensa,MultiplicadorDeMagia,SumadorDeMagia,MultiplicadorDeVelocidad,SumadorDeVelocidad);
 		}
 		else{
 			if(braixen.puedeEquiparArmaInventario()){
@@ -31,17 +31,17 @@ public class ItemBuilder {
 	}
 	
 	public static Personaje ConEspadaKokiri(Personaje braixen){
-		final double multiplicadorDeAtaque = 2;
-		final int sumadorDeAtaque = 0;
-		final double multiplicadorDeDefensa = 1;
-		final int sumadorDeDefensa = 0;
-		final double multiplicadorDeMagia = 1;
-		final int sumadorDeMagia = 10;
-		final double multiplicadorDeVelocidad = 1;
-		final int sumadorDeVelocidad = 1;
+		final double MultiplicadorDeAtaque = 2;
+		final int SumadorDeAtaque = 0;
+		final double MultiplicadorDeDefensa = 1;
+		final int SumadorDeDefensa = 0;
+		final double MultiplicadorDeMagia = 1;
+		final int SumadorDeMagia = 10;
+		final double MultiplicadorDeVelocidad = 1;
+		final int SumadorDeVelocidad = 1;
 		if(braixen.puedeEquiparArma()){
 			braixen.setArma();
-			return new ConArma(braixen,multiplicadorDeAtaque,sumadorDeAtaque,multiplicadorDeDefensa,sumadorDeDefensa,multiplicadorDeMagia,sumadorDeMagia,multiplicadorDeVelocidad,sumadorDeVelocidad);
+			return new ConArma(braixen,MultiplicadorDeAtaque,SumadorDeAtaque,MultiplicadorDeAtaque,SumadorDeDefensa,MultiplicadorDeMagia,SumadorDeMagia,MultiplicadorDeVelocidad,SumadorDeVelocidad);
 		}
 		else{
 			if(braixen.puedeEquiparArmaInventario()){
@@ -52,17 +52,17 @@ public class ItemBuilder {
 	}
 	
 	public static Personaje ConBotasFlober(Personaje braixen){
-		final double multiplicadorDeAtaque = 2;
-		final int sumadorDeAtaque = 0;
-		final double multiplicadorDeDefensa = 1;
-		final int sumadorDeDefensa = -10;
-		final double multiplicadorDeMagia = 1;
-		final int sumadorDeMagia = 3;
-		final double multiplicadorDeVelocidad = 2;
-		final int sumadorDeVelocidad = 1;
+		final double MultiplicadorDeAtaque = 2;
+		final int SumadorDeAtaque = 0;
+		final double MultiplicadorDeDefensa = 1;
+		final int SumadorDeDefensa = -10;
+		final double MultiplicadorDeMagia = 1;
+		final int SumadorDeMagia = 3;
+		final double MultiplicadorDeVelocidad = 2;
+		final int SumadorDeVelocidad = 1;
 		if(braixen.puedeEquiparBotas()){
 			braixen.setBotas();
-			return new ConBotas(braixen,multiplicadorDeAtaque,sumadorDeAtaque,multiplicadorDeDefensa,sumadorDeDefensa,multiplicadorDeMagia,sumadorDeMagia,multiplicadorDeVelocidad,sumadorDeVelocidad);
+			return new ConBotas(braixen,MultiplicadorDeAtaque,SumadorDeAtaque,MultiplicadorDeAtaque,SumadorDeDefensa,MultiplicadorDeMagia,SumadorDeMagia,MultiplicadorDeVelocidad,SumadorDeVelocidad);
 		}
 		else{
 			if(braixen.puedeEquiparBotasInventario()){
@@ -73,17 +73,17 @@ public class ItemBuilder {
 	}
 	
 	public static Personaje ConCascoAdamantium(Personaje braixen){
-		final double multiplicadorDeAtaque = 1;
-		final int sumadorDeAtaque = 10;
-		final double multiplicadorDeDefensa = 3;
-		final int sumadorDeDefensa = 0;
-		final double multiplicadorDeMagia = 1;
-		final int sumadorDeMagia = 0;
-		final double multiplicadorDeVelocidad = 1;
-		final int sumadorDeVelocidad = 0;
+		final double MultiplicadorDeAtaque = 1;
+		final int SumadorDeAtaque = 10;
+		final double MultiplicadorDeDefensa = 3;
+		final int SumadorDeDefensa = 0;
+		final double MultiplicadorDeMagia = 1;
+		final int SumadorDeMagia = 0;
+		final double MultiplicadorDeVelocidad = 1;
+		final int SumadorDeVelocidad = 0;
 		if(braixen.puedeEquiparCasco()){
 			braixen.setCasco();
-			return new ConCasco(braixen,multiplicadorDeAtaque,sumadorDeAtaque,multiplicadorDeDefensa,sumadorDeDefensa,multiplicadorDeMagia,sumadorDeMagia,multiplicadorDeVelocidad,sumadorDeVelocidad);
+			return new ConCasco(braixen,MultiplicadorDeAtaque,SumadorDeAtaque,MultiplicadorDeAtaque,SumadorDeDefensa,MultiplicadorDeMagia,SumadorDeMagia,MultiplicadorDeVelocidad,SumadorDeVelocidad);
 		}
 		else{
 			if(braixen.puedeEquiparCascoInventario()){
@@ -94,17 +94,17 @@ public class ItemBuilder {
 	}
 	
 	public static Personaje ConChalecoKevlar(Personaje braixen){
-		final double multiplicadorDeAtaque = 1;
-		final int sumadorDeAtaque = 10;
-		final double multiplicadorDeDefensa = 3;
-		final int sumadorDeDefensa = 0;
-		final double multiplicadorDeMagia = 1;
-		final int sumadorDeMagia = 0;
-		final double multiplicadorDeVelocidad = 1;
-		final int sumadorDeVelocidad = -15;
+		final double MultiplicadorDeAtaque = 1;
+		final int SumadorDeAtaque = 10;
+		final double MultiplicadorDeDefensa = 3;
+		final int SumadorDeDefensa = 0;
+		final double MultiplicadorDeMagia = 1;
+		final int SumadorDeMagia = 0;
+		final double MultiplicadorDeVelocidad = 1;
+		final int SumadorDeVelocidad = -15;
 		if(braixen.puedeEquiparChaleco()){
 			braixen.setChaleco();
-			return new ConChaleco(braixen,multiplicadorDeAtaque,sumadorDeAtaque,multiplicadorDeDefensa,sumadorDeDefensa,multiplicadorDeMagia,sumadorDeMagia,multiplicadorDeVelocidad,sumadorDeVelocidad);
+			return new ConChaleco(braixen,MultiplicadorDeAtaque,SumadorDeAtaque,MultiplicadorDeAtaque,SumadorDeDefensa,MultiplicadorDeMagia,SumadorDeMagia,MultiplicadorDeVelocidad,SumadorDeVelocidad);
 		}
 		else{
 			if(braixen.puedeEquiparChalecoInventario()){
@@ -115,17 +115,17 @@ public class ItemBuilder {
 	}
 	
 	public static Personaje ConEscudoHyrule(Personaje braixen){
-		final double multiplicadorDeAtaque = 1;
-		final int sumadorDeAtaque = 0;
-		final double multiplicadorDeDefensa = 2;
-		final int sumadorDeDefensa = 10;
-		final double multiplicadorDeMagia = 1;
-		final int sumadorDeMagia = 0;
-		final double multiplicadorDeVelocidad = 0.5;
-		final int sumadorDeVelocidad = 0;
+		final double MultiplicadorDeAtaque = 1;
+		final int SumadorDeAtaque = 0;
+		final double MultiplicadorDeDefensa = 2;
+		final int SumadorDeDefensa = 10;
+		final double MultiplicadorDeMagia = 1;
+		final int SumadorDeMagia = 0;
+		final double MultiplicadorDeVelocidad = 0.5;
+		final int SumadorDeVelocidad = 0;
 		if(braixen.puedeEquiparEscudo()){
 			braixen.setEscudo();
-			return new ConEscudo(braixen,multiplicadorDeAtaque,sumadorDeAtaque,multiplicadorDeDefensa,sumadorDeDefensa,multiplicadorDeMagia,sumadorDeMagia,multiplicadorDeVelocidad,sumadorDeVelocidad);
+			return new ConEscudo(braixen,MultiplicadorDeAtaque,SumadorDeAtaque,MultiplicadorDeAtaque,SumadorDeDefensa,MultiplicadorDeMagia,SumadorDeMagia,MultiplicadorDeVelocidad,SumadorDeVelocidad);
 		}
 		else{
 			if(braixen.puedeEquiparEscudoInventario()){

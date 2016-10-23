@@ -28,7 +28,7 @@ public class Batalla {
         perdedor = alianza1.cantidadDePersonajes() < alianza2.cantidadDePersonajes() ? alianza1 : alianza2;
         return perdedor;
     }
-
+/*
     public List<Item> entregarPremio() {
         definirGanador();
         List<Item> premio = definirPremio();
@@ -40,4 +40,5 @@ public class Batalla {
         definirPerdedor();
         return perdedor.entregarItems();
     }
+*/
 }
