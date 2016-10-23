@@ -14,36 +14,35 @@ public class PersonajeEquipadoTests {
 	
 	@Test
 	public void siPuedoAgregarDosItemsDelMismoTipo() {
-		Personaje Louie = new PokemonTipoFuego();
-		Assert.assertEquals(60, Louie.obtenerPuntosDeDefensa());
+		Personaje louie = new PokemonTipoFuego();
+		Assert.assertEquals(60, louie.obtenerPuntosDeDefensa());
 		// agrego escudo de defensa (+2)
-		Louie = new ConEscudo(Louie,1,0,1,2,1,0,1,0);
-		Assert.assertEquals(60 + 2, Louie.obtenerPuntosDeDefensa());
+		louie = new ConEscudo(louie,1,0,1,2,1,0,1,0);
+		Assert.assertEquals(60 + 2, louie.obtenerPuntosDeDefensa());
 		// agrego casco de defensa (*2)
-		Louie = new ConCasco(Louie,1,0,2,0,1,0,1,0);
-		Assert.assertEquals((60 + 2) * 2, Louie.obtenerPuntosDeDefensa());
+		louie = new ConCasco(louie,1,0,2,0,1,0,1,0);
+		Assert.assertEquals((60 + 2) * 2, louie.obtenerPuntosDeDefensa());
 	}
 	
 	@Test
 	public void siPuedoAgregarDosItemsDeDistintoTipo() {
-		Personaje Louie = new PokemonTipoFuego();
+		Personaje louie = new PokemonTipoFuego();
 		// agrego escudo de ataque (*2)
-		Louie = new ConArma(Louie,2,0,1,0,1,0,1,0);
-		Assert.assertEquals(150 * 2, Louie.obtenerPuntosDeAtaque());
+		louie = new ConArma(louie,2,0,1,0,1,0,1,0);
+		Assert.assertEquals(150 * 2, louie.obtenerPuntosDeAtaque());
 		// agrego casco de defensa (*2)
-		Assert.assertEquals(60, Louie.obtenerPuntosDeDefensa());
-		Louie = new ConCasco(Louie,1,0,1,2,1,0,1,0);
-		Assert.assertEquals(60 + 2, Louie.obtenerPuntosDeDefensa());
+		Assert.assertEquals(60, louie.obtenerPuntosDeDefensa());
+		louie = new ConCasco(louie,1,0,1,2,1,0,1,0);
+		Assert.assertEquals(60 + 2, louie.obtenerPuntosDeDefensa());
 	}
 	
-	/* arreglar : el problema es que no quita el arma gorgoroth, y por lo tanto termina sumando los efectos de ambos, el asert puse el valor que tienen que dar
 	@Test
 	public void siPuedoGuardarUnArmaEnElInventario(){
-		Personaje Louie = new PokemonTipoFuego();
-		Louie = ItemBuilder.ConEspadaGorgoroth(Louie);
-		Assert.assertEquals(150 * 2, Louie.obtenerPuntosDeAtaque());
-		Louie = ItemBuilder.ConEspadaKokiri(Louie);
-		Assert.assertEquals((150+10)*2 , Louie.obtenerPuntosDeAtaque());
+		Personaje louie = new PokemonTipoFuego();
+		louie = ItemBuilder.ConEspadaGorgoroth(louie);
+		louie = ItemBuilder.ConEspadaKokiri(louie);
+		Assert.assertEquals(150 * 2, louie.obtenerPuntosDeAtaque());
+		Assert.assertEquals("ConEspadaKokiri", louie.getArmaDelInventario());
 	}
-	*/
+	
 }

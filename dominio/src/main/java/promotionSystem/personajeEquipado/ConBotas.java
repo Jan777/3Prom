@@ -5,8 +5,6 @@ import promotionSystem.Personaje;
 import promotionSystem.PersonajeEquipado;
 
 public class ConBotas extends PersonajeEquipado{
-
-private Item arma;
 	
 	public ConBotas(Personaje personajeDecorado, double multiplicadorDeAtaque, int sumadorDeAtaque, double multiplicadorDeDefensa, int sumadorDeDefensa, double multiplicadorDeMagia, int sumadorDeMagia, double multiplicadorDeVelocidad, int sumadorDeVelocidad){
 		super(personajeDecorado, multiplicadorDeAtaque, sumadorDeAtaque, multiplicadorDeDefensa, sumadorDeDefensa, multiplicadorDeMagia, sumadorDeMagia, multiplicadorDeVelocidad, sumadorDeVelocidad);

@@ -1,15 +1,9 @@
 package promotionSystem;
 
-import promotionSystem.personajeEquipado.ConArma;
-import promotionSystem.personajeEquipado.ConBotas;
-import promotionSystem.personajeEquipado.ConCasco;
-import promotionSystem.personajeEquipado.ConChaleco;
-import promotionSystem.personajeEquipado.ConEscudo;
-
 public abstract class PersonajeEquipado extends Personaje {
-	//personaje
+	
 	private Personaje personajeDecorado;
-	//modificadoresDeStatsDeItems
+	
 	private double multiplicadorDeAtaque;
 	private int sumadorDeAtaque;
 	private double multiplicadorDeDefensa;
@@ -29,6 +23,47 @@ public abstract class PersonajeEquipado extends Personaje {
 		this.sumadorDeDefensa = sumadorDeDefensa;
 		this.sumadorDeMagia = sumadorDeMagia;
 		this.sumadorDeVelocidad = sumadorDeVelocidad;
+	}
+	
+	@Override
+	public boolean puedeEquiparArma(){
+		return personajeDecorado.puedeEquiparArma();
+	}
+	@Override
+	public boolean puedeEquiparArmaInventario(){
+		return personajeDecorado.puedeEquiparArmaInventario();
+	}
+	@Override
+	public boolean puedeEquiparBotas(){
+		return personajeDecorado.puedeEquiparBotas();
+	}
+	@Override
+	public boolean puedeEquiparBotasInventario(){
+		return personajeDecorado.puedeEquiparBotasInventario();
+	}
+	@Override
+	public boolean puedeEquiparCasco(){
+		return personajeDecorado.puedeEquiparCasco();
+	}
+	@Override
+	public boolean puedeEquiparCascoInventario(){
+		return personajeDecorado.puedeEquiparCascoInventario();
+	}
+	@Override
+	public boolean puedeEquiparChaleco(){
+		return personajeDecorado.puedeEquiparChaleco();
+	}
+	@Override
+	public boolean puedeEquiparChalecoInventario(){
+		return personajeDecorado.puedeEquiparChalecoInventario();
+	}
+	@Override
+	public boolean puedeEquiparEscudo(){
+		return personajeDecorado.puedeEquiparEscudo();
+	}
+	@Override
+	public boolean puedeEquiparEscudoInventario(){
+		return personajeDecorado.puedeEquiparEscudoInventario();
 	}
 
 	@Override

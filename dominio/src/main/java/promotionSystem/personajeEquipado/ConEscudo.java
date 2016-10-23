@@ -5,7 +5,6 @@ import promotionSystem.Personaje;
 import promotionSystem.PersonajeEquipado;
 
 public class ConEscudo extends PersonajeEquipado {
-	private Item arma;
 	
 	public ConEscudo(Personaje personajeDecorado, double multiplicadorDeAtaque, int sumadorDeAtaque, double multiplicadorDeDefensa, int sumadorDeDefensa, double multiplicadorDeMagia, int sumadorDeMagia, double multiplicadorDeVelocidad, int sumadorDeVelocidad){
 		super(personajeDecorado, multiplicadorDeAtaque, sumadorDeAtaque, multiplicadorDeDefensa, sumadorDeDefensa, multiplicadorDeMagia, sumadorDeMagia, multiplicadorDeVelocidad, sumadorDeVelocidad);

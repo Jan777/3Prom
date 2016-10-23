@@ -113,9 +113,8 @@ public class PersonajeTest {
 		Assert.assertEquals(100,personajeAtacado.getSalud());
 	}
 	
-	//FIXME corregir nombre del metodo 
 	@Test
-	public void siLaDefensaEsMenorQueElAtaqueLaSaludDisminuyePeroNoTanto(){
+	public void siUnPersonajeAtacaYLeQuitaVidaAOtro(){
 		crearPersonajes();
 		personajeAtacado.setDefensa(145);
 		personajeAtacante.atacar(personajeAtacado);

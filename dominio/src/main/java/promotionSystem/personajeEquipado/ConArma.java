@@ -1,11 +1,9 @@
 package promotionSystem.personajeEquipado;
 
-import promotionSystem.Item;
 import promotionSystem.Personaje;
 import promotionSystem.PersonajeEquipado;
 
 public class ConArma extends PersonajeEquipado {
-	//private Item arma;
 	
 	public ConArma(Personaje personajeDecorado, double multiplicadorDeAtaque, int sumadorDeAtaque, double multiplicadorDeDefensa, int sumadorDeDefensa, double multiplicadorDeMagia, int sumadorDeMagia, double multiplicadorDeVelocidad, int sumadorDeVelocidad){
 		super(personajeDecorado, multiplicadorDeAtaque, sumadorDeAtaque, multiplicadorDeDefensa, sumadorDeDefensa, multiplicadorDeMagia, sumadorDeMagia, multiplicadorDeVelocidad, sumadorDeVelocidad);

@@ -18,7 +18,6 @@ public abstract class Personaje {
 	protected int magia;
 	protected int experiencia;
 	protected int nivel;
-	//protected List<Item> items;
 	protected Alianza alianza;
 	protected int velocidad;
 	protected Punto posicion;
@@ -26,18 +25,17 @@ public abstract class Personaje {
 	private boolean enBatalla=false;
 	protected int saludMaxima;
 	protected int energiaMaxima;
-	//items
-		protected boolean arma;
-		protected boolean botas;
-		protected boolean casco;
-		protected boolean chaleco;
-		protected boolean escudo;
-	//itemsDeInventario
-		private boolean armaDelInventario;
-		private boolean botasDelInventario;
-		private boolean cascoDelInventario;
-		private boolean chalecoDelInventario;
-		private boolean escudoDelInventario;
+
+	protected boolean arma;
+	protected boolean botas;
+	protected boolean casco;
+	protected boolean chaleco;
+	protected boolean escudo;
+	protected String armaDelInventario;
+	protected String botasDelInventario;
+	protected String cascoDelInventario;
+	protected String chalecoDelInventario;
+	protected String escudoDelInventario;
 	
 	
 	public final void atacar(Personaje atacado) {
@@ -320,46 +318,6 @@ public abstract class Personaje {
 	public void setEscudo() {
 		this.escudo = true;
 	}
-	
-	public boolean getArmaDelInventario() {
-		return armaDelInventario;
-	}
-
-	public void setArmaDelInventario() {
-		this.armaDelInventario = true;
-	}
-
-	public boolean getBotasDelInventario() {
-		return botasDelInventario;
-	}
-
-	public void setBotasDelInventario() {
-		this.botasDelInventario = true;
-	}
-
-	public boolean getCascoDelInventario() {
-		return cascoDelInventario;
-	}
-
-	public void setCascoDelInventario() {
-		this.cascoDelInventario = true;
-	}
-
-	public boolean getChalecoDelInventario() {
-		return chalecoDelInventario;
-	}
-
-	public void setChalecoDelInventario() {
-		this.chalecoDelInventario = true;
-	}
-
-	public boolean getEscudoDelInventario() {
-		return escudoDelInventario;
-	}
-
-	public void setEscudoDelInventario() {
-		this.escudoDelInventario = true;
-	}
 
 	public void recibirItem(Item item) {
 		// TODO Auto-generated method stub
@@ -375,7 +333,105 @@ public abstract class Personaje {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 	
+	public boolean puedeEquiparArma(){
+		return !arma;
+	}
+	
+	public boolean puedeEquiparArmaInventario(){
+		return armaDelInventario == null;
+	}
+	
+	public boolean puedeEquiparBotas(){
+		return botas;
+	}
+	
+	public boolean puedeEquiparBotasInventario(){
+		return botasDelInventario == null;
+	}
+	
+	public boolean puedeEquiparCasco(){
+		return !casco;
+	}
+	
+	public boolean puedeEquiparCascoInventario(){
+		return cascoDelInventario==null;
+	}
+	
+	public boolean puedeEquiparChaleco(){
+		return !chaleco;
+	}
+	
+	public boolean puedeEquiparChalecoInventario(){
+		return chalecoDelInventario==null;
+	}
+	
+	public boolean puedeEquiparEscudo(){
+		return !escudo;
+	}
+	
+	public boolean puedeEquiparEscudoInventario(){
+		return escudoDelInventario==null;
+	}
+
+	public void setArmaInventario(String arma) {
+		armaDelInventario = arma;
+	}
+	
+	public void setCascoInventario(String casco) {
+		cascoDelInventario = casco;
+	}
+	
+	public void setBotasInventario(String botas) {
+		botasDelInventario = botas;
+	}
+	
+	public void setChalecoInventario(String chaleco) {
+		chalecoDelInventario = chaleco;
+	}
+	
+	public void setEscudoInventario(String escudo) {
+		escudoDelInventario = escudo;
+	}
+
+	public String getArmaDelInventario() {
+		return armaDelInventario;
+	}
+
+	public void setArmaDelInventario(String armaDelInventario) {
+		this.armaDelInventario = armaDelInventario;
+	}
+
+	public String getBotasDelInventario() {
+		return botasDelInventario;
+	}
+
+	public void setBotasDelInventario(String botasDelInventario) {
+		this.botasDelInventario = botasDelInventario;
+	}
+
+	public String getCascoDelInventario() {
+		return cascoDelInventario;
+	}
+
+	public void setCascoDelInventario(String cascoDelInventario) {
+		this.cascoDelInventario = cascoDelInventario;
+	}
+
+	public String getChalecoDelInventario() {
+		return chalecoDelInventario;
+	}
+
+	public void setChalecoDelInventario(String chalecoDelInventario) {
+		this.chalecoDelInventario = chalecoDelInventario;
+	}
+
+	public String getEscudoDelInventario() {
+		return escudoDelInventario;
+	}
+
+	public void setEscudoDelInventario(String escudoDelInventario) {
+		this.escudoDelInventario = escudoDelInventario;
+	}
 }
 	
