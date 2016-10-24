@@ -1,7 +1,14 @@
 package promotionSystem.razas;
 
+import java.util.HashMap;
+
 import promotionSystem.Circulo;
 import promotionSystem.Punto;
+import promotionSystem.hechizo.Cura;
+import promotionSystem.hechizo.Hechizo;
+import promotionSystem.hechizo.Hielo;
+import promotionSystem.hechizo.Piro;
+import promotionSystem.hechizo.Trueno;
 
 public class Riku extends PersonajesDeKingdomHearts {
 
@@ -18,6 +25,9 @@ public class Riku extends PersonajesDeKingdomHearts {
         nivel = 0;
         posicion = new Punto(0, 0);
         radioDeAcccion=new Circulo(posicion,20);
+        hechizos = new HashMap<String, Hechizo>();
+        agregarHechizo("Hielo",new Hielo());
+        agregarHechizo("Cura",new Cura());
 
     }
 

@@ -1,13 +1,17 @@
 package promotionSystem;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import promotionSystem.hechizo.Hechizo;
 import promotionSystem.personajeEquipado.ConArma;
 import promotionSystem.personajeEquipado.ConBotas;
 import promotionSystem.personajeEquipado.ConCasco;
 import promotionSystem.personajeEquipado.ConChaleco;
 import promotionSystem.personajeEquipado.ConEscudo;
+
 
 
 public abstract class Personaje {
@@ -25,7 +29,7 @@ public abstract class Personaje {
 	private boolean enBatalla=false;
 	protected int saludMaxima;
 	protected int energiaMaxima;
-
+	protected Map<String, Hechizo> hechizos ;
 	protected boolean arma;
 	protected boolean botas;
 	protected boolean casco;
@@ -432,6 +436,29 @@ public abstract class Personaje {
 
 	public void setEscudoDelInventario(String escudoDelInventario) {
 		this.escudoDelInventario = escudoDelInventario;
+	}
+
+	
+
+	public void setVelocidad(int velocidad) {
+		this.velocidad = velocidad;
+	}
+
+	public int getSaludMaxima() {
+		return saludMaxima;
+	}
+
+	public void agregarHechizo(String conjuro, Hechizo hechizo) {
+		this.hechizos.put(conjuro, hechizo);
+	}
+	
+	public int getCantidadDeHechizos() {
+		return this.hechizos.size();
+	}
+
+	public void hechizar(String conjuro, Personaje personaje) {
+		this.hechizos.get(conjuro).afectar(personaje);
+		
 	}
 }
 	

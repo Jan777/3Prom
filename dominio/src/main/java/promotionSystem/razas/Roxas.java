@@ -1,16 +1,22 @@
 package promotionSystem.razas;
 
+import java.util.HashMap;
+
 import promotionSystem.Circulo;
 import promotionSystem.Punto;
+import promotionSystem.hechizo.Cura;
+import promotionSystem.hechizo.Hechizo;
+import promotionSystem.hechizo.Trueno;
 
 public class Roxas extends PersonajesDeKingdomHearts {
 
+	
     public Roxas() {
         energia = 1000;
         energiaMaxima=1000;
 		saludMaxima=100;
         salud = 100;
-        ataque = 50;
+        ataque = 55;
         defensa = 200;
         magia = 200;
         velocidad = 150;
@@ -18,6 +24,9 @@ public class Roxas extends PersonajesDeKingdomHearts {
         nivel = 0;
         posicion = new Punto(0, 0);
         radioDeAcccion=new Circulo(posicion,20);
+        hechizos = new HashMap<String, Hechizo>();
+        agregarHechizo("Trueno",new Trueno());
+        agregarHechizo("Cura",new Cura());
     }
 
     @Override
@@ -30,6 +39,11 @@ public class Roxas extends PersonajesDeKingdomHearts {
         defensa += nivel * 10;
         magia += nivel * 10;
         velocidad += nivel * 10;
+        
     }
 
+    
+
+	
+	
 }
