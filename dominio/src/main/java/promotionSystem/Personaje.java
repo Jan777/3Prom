@@ -1,16 +1,10 @@
 package promotionSystem;
 
+import promotionSystem.hechizo.Hechizo;
+
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import promotionSystem.hechizo.Hechizo;
-import promotionSystem.personajeEquipado.ConArma;
-import promotionSystem.personajeEquipado.ConBotas;
-import promotionSystem.personajeEquipado.ConCasco;
-import promotionSystem.personajeEquipado.ConChaleco;
-import promotionSystem.personajeEquipado.ConEscudo;
 
 
 
