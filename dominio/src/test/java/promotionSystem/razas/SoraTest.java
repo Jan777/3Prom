@@ -42,6 +42,16 @@ public class SoraTest {
 		Assert.assertEquals(25, roxas.getSalud());
 		sora.hechizar("Cura", roxas);
 		Assert.assertEquals(45, roxas.getSalud());
-		
+	}
+
+	@Test
+	public void siAtacaAumentaDefensa(){
+		PersonajeDeKingdomHearts personajeAtacante=new Sora();
+		PersonajeDeStarWars personajeAtacado=new Droide();
+
+		Assert.assertEquals(100,personajeAtacante.obtenerPuntosDeDefensa());
+		personajeAtacante.atacar(personajeAtacado);
+		Assert.assertEquals((int) (100*1.125),personajeAtacante.obtenerPuntosDeDefensa());
+
 	}
 }
