@@ -17,14 +17,15 @@ public class ItemBuilder {
 		final double MultiplicadorDeMagia = 1;
 		final int SumadorDeMagia = 10;
 		final double MultiplicadorDeVelocidad = 1;
-		final int SumadorDeVelocidad = 1;
+		final int SumadorDeVelocidad = 10;
 		if(braixen.puedeEquiparArma()){
-			braixen.setArma();
-			return new ConArma(braixen,MultiplicadorDeAtaque,SumadorDeAtaque,MultiplicadorDeDefensa,SumadorDeDefensa,MultiplicadorDeMagia,SumadorDeMagia,MultiplicadorDeVelocidad,SumadorDeVelocidad);
+			braixen = new ConArma(braixen,MultiplicadorDeAtaque,SumadorDeAtaque,MultiplicadorDeDefensa,SumadorDeDefensa,MultiplicadorDeMagia,SumadorDeMagia,MultiplicadorDeVelocidad,SumadorDeVelocidad);
+			braixen.setArma("ConEspadaGorgoroth");
+			return braixen;
 		}
 		else{
 			if(braixen.puedeEquiparArmaInventario()){
-				braixen.setArmaInventario("ConEspadaGorgoroth");
+				braixen.setArmaDelInventario("ConEspadaGorgoroth");
 			}
 		}
 		return braixen;
@@ -38,35 +39,37 @@ public class ItemBuilder {
 		final double MultiplicadorDeMagia = 1;
 		final int SumadorDeMagia = 10;
 		final double MultiplicadorDeVelocidad = 1;
-		final int SumadorDeVelocidad = 1;
+		final int SumadorDeVelocidad = 10;
 		if(braixen.puedeEquiparArma()){
-			braixen.setArma();
-			return new ConArma(braixen,MultiplicadorDeAtaque,SumadorDeAtaque,MultiplicadorDeDefensa,SumadorDeDefensa,MultiplicadorDeMagia,SumadorDeMagia,MultiplicadorDeVelocidad,SumadorDeVelocidad);
+			braixen = new ConArma(braixen,MultiplicadorDeAtaque,SumadorDeAtaque,MultiplicadorDeDefensa,SumadorDeDefensa,MultiplicadorDeMagia,SumadorDeMagia,MultiplicadorDeVelocidad,SumadorDeVelocidad);
+			braixen.setArma("ConEspadaKokiri");
+			return braixen;
 		}
 		else{
 			if(braixen.puedeEquiparArmaInventario()){
-				braixen.setArmaInventario("ConEspadaKokiri");
+				braixen.setArmaDelInventario("ConEspadaKokiri");
 			}
 		}
 		return braixen;
 	}
 	
 	public static Personaje ConBotasFlober(Personaje braixen){
-		final double MultiplicadorDeAtaque = 2;
+		final double MultiplicadorDeAtaque = 1;
 		final int SumadorDeAtaque = 0;
 		final double MultiplicadorDeDefensa = 1;
 		final int SumadorDeDefensa = -10;
 		final double MultiplicadorDeMagia = 1;
-		final int SumadorDeMagia = 3;
+		final int SumadorDeMagia = 5;
 		final double MultiplicadorDeVelocidad = 2;
-		final int SumadorDeVelocidad = 1;
+		final int SumadorDeVelocidad = 15;
 		if(braixen.puedeEquiparBotas()){
-			braixen.setBotas();
-			return new ConBotas(braixen,MultiplicadorDeAtaque,SumadorDeAtaque,MultiplicadorDeDefensa,SumadorDeDefensa,MultiplicadorDeMagia,SumadorDeMagia,MultiplicadorDeVelocidad,SumadorDeVelocidad);
+			braixen = new ConBotas(braixen,MultiplicadorDeAtaque,SumadorDeAtaque,MultiplicadorDeDefensa,SumadorDeDefensa,MultiplicadorDeMagia,SumadorDeMagia,MultiplicadorDeVelocidad,SumadorDeVelocidad);
+			braixen.setBotas("ConBotasFlober");
+			return braixen;
 		}
 		else{
 			if(braixen.puedeEquiparBotasInventario()){
-				braixen.setBotasInventario("ConBotasFlober");
+				braixen.setBotasDelInventario("ConBotasFlober");
 			}
 		}
 		return braixen;
@@ -82,12 +85,13 @@ public class ItemBuilder {
 		final double MultiplicadorDeVelocidad = 1;
 		final int SumadorDeVelocidad = 0;
 		if(braixen.puedeEquiparCasco()){
-			braixen.setCasco();
-			return new ConCasco(braixen,MultiplicadorDeAtaque,SumadorDeAtaque,MultiplicadorDeDefensa,SumadorDeDefensa,MultiplicadorDeMagia,SumadorDeMagia,MultiplicadorDeVelocidad,SumadorDeVelocidad);
+			braixen = new ConCasco(braixen,MultiplicadorDeAtaque,SumadorDeAtaque,MultiplicadorDeDefensa,SumadorDeDefensa,MultiplicadorDeMagia,SumadorDeMagia,MultiplicadorDeVelocidad,SumadorDeVelocidad);
+			braixen.setCasco("ConCascoAdamantium");
+			return braixen;
 		}
 		else{
 			if(braixen.puedeEquiparCascoInventario()){
-				braixen.setCascoInventario("ConCascoAdamantium");
+				braixen.setCascoDelInventario("ConCascoAdamantium");
 			}
 		}
 		return braixen;
@@ -101,14 +105,15 @@ public class ItemBuilder {
 		final double MultiplicadorDeMagia = 1;
 		final int SumadorDeMagia = 0;
 		final double MultiplicadorDeVelocidad = 1;
-		final int SumadorDeVelocidad = -15;
+		final int SumadorDeVelocidad = -10;
 		if(braixen.puedeEquiparChaleco()){
-			braixen.setChaleco();
-			return new ConChaleco(braixen,MultiplicadorDeAtaque,SumadorDeAtaque,MultiplicadorDeDefensa,SumadorDeDefensa,MultiplicadorDeMagia,SumadorDeMagia,MultiplicadorDeVelocidad,SumadorDeVelocidad);
+			braixen = new ConChaleco(braixen,MultiplicadorDeAtaque,SumadorDeAtaque,MultiplicadorDeDefensa,SumadorDeDefensa,MultiplicadorDeMagia,SumadorDeMagia,MultiplicadorDeVelocidad,SumadorDeVelocidad);
+			braixen.setChaleco("ConChalecoKevlar");
+			return braixen;
 		}
 		else{
 			if(braixen.puedeEquiparChalecoInventario()){
-				braixen.setChalecoInventario("ConChalecoKevlar");
+				braixen.setChalecoDelInventario("ConChalecoKevlar");
 			}
 		}
 		return braixen;
@@ -124,19 +129,20 @@ public class ItemBuilder {
 		final double MultiplicadorDeVelocidad = 0.5;
 		final int SumadorDeVelocidad = 0;
 		if(braixen.puedeEquiparEscudo()){
-			braixen.setEscudo();
-			return new ConEscudo(braixen,MultiplicadorDeAtaque,SumadorDeAtaque,MultiplicadorDeDefensa,SumadorDeDefensa,MultiplicadorDeMagia,SumadorDeMagia,MultiplicadorDeVelocidad,SumadorDeVelocidad);
+			braixen = new ConEscudo(braixen,MultiplicadorDeAtaque,SumadorDeAtaque,MultiplicadorDeDefensa,SumadorDeDefensa,MultiplicadorDeMagia,SumadorDeMagia,MultiplicadorDeVelocidad,SumadorDeVelocidad);
+			braixen.setEscudo("ConEscudoHyrule");
+			return braixen;
 		}
 		else{
 			if(braixen.puedeEquiparEscudoInventario()){
-				braixen.setEscudoInventario("ConEscudoHyrule");
+				braixen.setEscudoDelInventario("ConEscudoHyrule");
 			}
 		}
 		return braixen;
 	}
 	
 	
-	public static Personaje ConVaritaMissigno(Personaje braixen){
+	public static Personaje ConVaritaMissingno(Personaje braixen){
 		final double MultiplicadorDeAtaque = 1;
 		final int SumadorDeAtaque = 0;
 		final double MultiplicadorDeDefensa = 1;
@@ -146,12 +152,13 @@ public class ItemBuilder {
 		final double MultiplicadorDeVelocidad = 1;
 		final int SumadorDeVelocidad = -10;
 		if(braixen.puedeEquiparArma()){
-			braixen.setArma();
-			return new ConArma(braixen,MultiplicadorDeAtaque,SumadorDeAtaque,MultiplicadorDeDefensa,SumadorDeDefensa,MultiplicadorDeMagia,SumadorDeMagia,MultiplicadorDeVelocidad,SumadorDeVelocidad);
+			braixen = new ConArma(braixen,MultiplicadorDeAtaque,SumadorDeAtaque,MultiplicadorDeDefensa,SumadorDeDefensa,MultiplicadorDeMagia,SumadorDeMagia,MultiplicadorDeVelocidad,SumadorDeVelocidad);
+			braixen.setArma("ConVaritaMissigno");
+			return braixen;
 		}
 		else{
 			if(braixen.puedeEquiparArmaInventario()){
-				braixen.setArmaInventario("ConVaritaMissigno");
+				braixen.setArmaDelInventario("ConVaritaMissigno");
 			}
 		}
 		return braixen;

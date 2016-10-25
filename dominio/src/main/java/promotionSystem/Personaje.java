@@ -23,17 +23,17 @@ public abstract class Personaje {
 	private boolean enBatalla=false;
 	protected int saludMaxima;
 	protected int energiaMaxima;
-	protected Map<String, Hechizo> hechizos ;
-	protected boolean arma;
-	protected boolean botas;
-	protected boolean casco;
-	protected boolean chaleco;
-	protected boolean escudo;
-	protected String armaDelInventario;
-	protected String botasDelInventario;
-	protected String cascoDelInventario;
-	protected String chalecoDelInventario;
-	protected String escudoDelInventario;
+	protected Map<String, Hechizo> hechizos;
+	private String arma;
+	private String botas;
+	private String casco;
+	private String chaleco;
+	private String escudo;
+	private String armaDelInventario;
+	private String botasDelInventario;
+	private String cascoDelInventario;
+	private String chalecoDelInventario;
+	private String escudoDelInventario;
 	
 	
 	public final void atacar(Personaje atacado) {
@@ -277,44 +277,44 @@ public abstract class Personaje {
 			return radioDeAcccion.incluye(this.posicion);
 	}
 	
-	public boolean getArma() {
+	public String getArma() {
 		return arma;
 	}
 
-	public void setArma() {
-		this.arma = true;
+	public void setArma(String arma) {
+		this.arma = arma;
 	}
 
-	public boolean getBotas() {
+	public String getBotas() {
 		return botas;
 	}
 
-	public void setBotas() {
-		this.botas = true;
+	public void setBotas(String botas) {
+		this.botas = botas;
 	}
 
-	public boolean getCasco() {
+	public String getCasco() {
 		return casco;
 	}
 
-	public void setCasco() {
-		this.casco = true;
+	public void setCasco(String casco) {
+		this.casco = casco;
 	}
 
-	public boolean getChaleco() {
+	public String getChaleco() {
 		return chaleco;
 	}
 
-	public void setChaleco() {
-		this.chaleco = true;
+	public void setChaleco(String chaleco) {
+		this.chaleco = chaleco;
 	}
 
-	public boolean getEscudo() {
+	public String getEscudo() {
 		return escudo;
 	}
 
-	public void setEscudo() {
-		this.escudo = true;
+	public void setEscudo(String escudo) {
+		this.escudo = escudo;
 	}
 
 	public void recibirItem(Item item) {
@@ -333,7 +333,7 @@ public abstract class Personaje {
 	}
 	
 	public boolean puedeEquiparArma(){
-		return !arma;
+		return arma==null;
 	}
 	
 	public boolean puedeEquiparArmaInventario(){
@@ -341,7 +341,7 @@ public abstract class Personaje {
 	}
 	
 	public boolean puedeEquiparBotas(){
-		return !botas;
+		return botas==null;
 	}
 	
 	public boolean puedeEquiparBotasInventario(){
@@ -349,7 +349,7 @@ public abstract class Personaje {
 	}
 	
 	public boolean puedeEquiparCasco(){
-		return !casco;
+		return casco==null;
 	}
 	
 	public boolean puedeEquiparCascoInventario(){
@@ -357,7 +357,7 @@ public abstract class Personaje {
 	}
 	
 	public boolean puedeEquiparChaleco(){
-		return !chaleco;
+		return chaleco==null;
 	}
 	
 	public boolean puedeEquiparChalecoInventario(){
@@ -365,33 +365,14 @@ public abstract class Personaje {
 	}
 	
 	public boolean puedeEquiparEscudo(){
-		return !escudo;
+		return escudo==null;
 	}
 	
 	public boolean puedeEquiparEscudoInventario(){
 		return escudoDelInventario==null;
 	}
 
-	public void setArmaInventario(String arma) {
-		armaDelInventario = arma;
-	}
 	
-	public void setCascoInventario(String casco) {
-		cascoDelInventario = casco;
-	}
-	
-	public void setBotasInventario(String botas) {
-		botasDelInventario = botas;
-	}
-	
-	public void setChalecoInventario(String chaleco) {
-		chalecoDelInventario = chaleco;
-	}
-	
-	public void setEscudoInventario(String escudo) {
-		escudoDelInventario = escudo;
-	}
-
 	public String getArmaDelInventario() {
 		return armaDelInventario;
 	}
@@ -431,8 +412,6 @@ public abstract class Personaje {
 	public void setEscudoDelInventario(String escudoDelInventario) {
 		this.escudoDelInventario = escudoDelInventario;
 	}
-
-	
 
 	public void setVelocidad(int velocidad) {
 		this.velocidad = velocidad;

@@ -18,7 +18,7 @@ public class ItemBuilderTests {
 		Emeritus = ItemBuilder.ConEspadaGorgoroth(Emeritus);
 		Assert.assertEquals(300, Emeritus.obtenerPuntosDeAtaque());
 		Assert.assertEquals(30, Emeritus.obtenerPuntosDeMagia());
-	}//veo que modifique adecuadamente varios stat que esa arma modifica
+	}
 	
 	@Test
 	public void siEquipo2TiposDeItemYSeModificanLosStats2(){ 
@@ -28,8 +28,8 @@ public class ItemBuilderTests {
 		Assert.assertEquals(300, Emeritus.obtenerPuntosDeAtaque());
 		Assert.assertEquals(180, Emeritus.obtenerPuntosDeDefensa());
 		Assert.assertEquals(30, Emeritus.obtenerPuntosDeMagia());
-		Assert.assertEquals(45, Emeritus.obtenerPuntosDeVelocidad());
-	}//veo que modifique adecuadamente un stat que ambos items modifican
+		Assert.assertEquals(50, Emeritus.obtenerPuntosDeVelocidad());
+	}
 	
 	
 	@Test
@@ -37,7 +37,7 @@ public class ItemBuilderTests {
 		Personaje Emeritus = new GuerreroHumano();
 		Assert.assertEquals(90, Emeritus.obtenerPuntosDeVelocidad());
 		Emeritus = ItemBuilder.ConBotasFlober(Emeritus);
-		Assert.assertEquals((90+1)*2, Emeritus.obtenerPuntosDeVelocidad());
+		Assert.assertEquals((90+15)*2, Emeritus.obtenerPuntosDeVelocidad());
 		
 	}
 	
@@ -45,7 +45,7 @@ public class ItemBuilderTests {
 	public void siEquipoVaritaMissignoAumentaMagia(){ 
 		Personaje Emeritus = new GuerreroHumano();
 		Assert.assertEquals(20, Emeritus.obtenerPuntosDeMagia());
-		Emeritus = ItemBuilder.ConVaritaMissigno(Emeritus);
+		Emeritus = ItemBuilder.ConVaritaMissingno(Emeritus);
 		Assert.assertEquals((20+5)*2, Emeritus.obtenerPuntosDeMagia());
 	}
 	

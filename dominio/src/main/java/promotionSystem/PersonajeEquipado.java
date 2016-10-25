@@ -25,6 +25,86 @@ public abstract class PersonajeEquipado extends Personaje {
 		this.sumadorDeVelocidad = sumadorDeVelocidad;
 	}
 	
+	public void setArma(String arma) {
+		personajeDecorado.setArma(arma);
+	}
+	
+	public void setArmaDelInventario(String arma) {
+		personajeDecorado.setArmaDelInventario(arma);
+	}
+	
+	public String getArmaDelInventario() {
+		return personajeDecorado.getArmaDelInventario();
+	}
+	
+	public String getArma(){
+		return personajeDecorado.getArma();
+	}
+	
+	public void setBotas(String botas) {
+		personajeDecorado.setBotas(botas);
+	}
+	
+	public void setBotasDelInventario(String botas) {
+		personajeDecorado.setBotasDelInventario(botas);
+	}
+	
+	public String getBotasDelInventario() {
+		return personajeDecorado.getBotasDelInventario();
+	}
+	
+	public String getBotas(){
+		return personajeDecorado.getBotas();
+	}
+	
+	public void setCasco(String casco) {
+		personajeDecorado.setCasco(casco);
+	}
+	
+	public void setCascoDelInventario(String casco) {
+		personajeDecorado.setCascoDelInventario(casco);
+	}
+	
+	public String getCascoDelInventario() {
+		return personajeDecorado.getCascoDelInventario();
+	}
+	
+	public String getCasco(){
+		return personajeDecorado.getCasco();
+	}
+	
+	public void setChaleco(String chaleco) {
+		personajeDecorado.setChaleco(chaleco);
+	}
+	
+	public void setChalecoDelInventario(String chaleco) {
+		personajeDecorado.setChalecoDelInventario(chaleco);
+	}
+	
+	public String getChalecoDelInventario() {
+		return personajeDecorado.getChalecoDelInventario();
+	}
+	
+	public String getChaleco(){
+		return personajeDecorado.getChaleco();
+	}
+	
+	public void setEscudo(String escudo) {
+		personajeDecorado.setEscudo(escudo);
+	}
+	
+	public void setEscudoDelInventario(String escudo) {
+		personajeDecorado.setEscudoDelInventario(escudo);
+	}
+	
+	public String getEscudoDelInventario() {
+		return personajeDecorado.getEscudoDelInventario();
+	}
+	
+	public String getEscudo(){
+		return personajeDecorado.getEscudo();
+	}
+	
 	@Override
 	public boolean puedeEquiparArma(){
 		return personajeDecorado.puedeEquiparArma();
