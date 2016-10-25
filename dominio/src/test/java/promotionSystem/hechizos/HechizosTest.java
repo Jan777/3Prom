@@ -81,5 +81,33 @@ public class HechizosTest {
 		
 	}
 	
+	@Test
+	public void siUsoHechizoDeAtaqueAfectaASuEnergia(){
+		Personaje jedi =new Jedi();
+		Personaje pokemon=new PokemonTipoPlanta();
+		Assert.assertEquals(1200, jedi.getEnergia());
+		jedi.atacarConMagia(pokemon, "EmpujonDeFuerza");
+		Assert.assertEquals(1080, jedi.getEnergia());
+		
+	}
+	
 
+	@Test
+	public void siUsoHechizoSupportAfectaASuEnergia(){
+		Personaje riku =new Riku();
+		Personaje roxas =new GuerreroOrco();
+		Assert.assertEquals(1000, riku.getEnergia());
+		riku.usarMagiaSupport(roxas, "Cura");
+		Assert.assertEquals(925, riku.getEnergia());
+		
+	}
+	
+	@Test
+	public void siUsoHechizoDeAlteracionAfectaASuEnergia(){
+		Personaje jedi =new Wookie();
+		Assert.assertEquals(1000, jedi.getEnergia());
+		jedi.usarMagiaDeAlteracion("IraWookeana");
+		Assert.assertEquals(950, jedi.getEnergia());
+		
+	}
 }
