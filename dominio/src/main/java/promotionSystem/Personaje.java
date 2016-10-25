@@ -1,4 +1,23 @@
-package promotionSystem;
+
+
+	public int getSaludMaxima() {
+		return saludMaxima;
+	}
+
+	public void agregarHechizo(String conjuro, Hechizo hechizo) {
+		this.hechizos.put(conjuro, hechizo);
+	}
+	
+	public int getCantidadDeHechizos() {
+		return this.hechizos.size();
+	}
+
+	public void hechizar(String conjuro, Personaje personaje) {
+		this.hechizos.get(conjuro).afectar(personaje);
+		
+	}
+}
+	
 
 import promotionSystem.hechizo.Hechizo;
 
@@ -23,17 +42,17 @@ public abstract class Personaje {
 	private boolean enBatalla=false;
 	protected int saludMaxima;
 	protected int energiaMaxima;
-	protected Map<String, Hechizo> hechizos;
-	private String arma;
-	private String botas;
-	private String casco;
-	private String chaleco;
-	private String escudo;
-	private String armaDelInventario;
-	private String botasDelInventario;
-	private String cascoDelInventario;
-	private String chalecoDelInventario;
-	private String escudoDelInventario;
+	protected Map<String, Hechizo> hechizos ;
+	protected boolean arma;
+	protected boolean botas;
+	protected boolean casco;
+	protected boolean chaleco;
+	protected boolean escudo;
+	protected String armaDelInventario;
+	protected String botasDelInventario;
+	protected String cascoDelInventario;
+	protected String chalecoDelInventario;
+	protected String escudoDelInventario;
 	
 	
 	public final void atacar(Personaje atacado) {
@@ -45,21 +64,53 @@ public abstract class Personaje {
 		}		
 	}
 	
-	public final void atacarConMagia(Personaje atacado) {
+	public final void atacarConMagia(Personaje atacado,String conjuro) {
 		if(puedeAtacarConMagia()){
 			int puntosARestar=calcularPuntosDeMagia()-atacado.calcularPuntosDeDefensa();
-			atacado.serAtacado(puntosARestar<0?0:puntosARestar);
+			hechizar(conjuro, atacado, puntosARestar);
 			energia-=calcularPuntosDeMagia();
 			despuesDeAtacar();
 		}
 	}
+	
+	public final void usarMagiaSupport(Personaje atacado,String conjuro) {
+		if(puedeAtacarConMagia()){
+			int puntosAUsar=calcularPuntosDeMagia();
+			hechizar(conjuro, atacado, puntosAUsar);
+			energia-=calcularPuntosDeMagia();
+			despuesDeAtacar();
+		}
+	}
+	
+	public final void usarMagiaDeAlteracion(String conjuro) {
+		if(puedeAtacarConMagia()){
+			int puntosAUsar=calcularPuntosDeMagia();
+			hechizar(conjuro, this, puntosAUsar);
+			energia-=calcularPuntosDeMagia();
+			despuesDeAtacar();
+		}
+	}
+	
+	
 
 	public abstract void despuesDeAtacar();
 	
-	private void serAtacado(int ataque) {
+	public void serAtacado(int ataque) {
 		salud-=ataque;
 		if(salud<0){
 			salud=0;
+		}		
+	}
+	
+	public void serAumentadoLaFuerza(int valor) {
+		
+		ataque+=valor;		
+	}
+	
+	public void serAlentizado(double valor ) {
+		velocidad/=valor;
+		if(velocidad<0){
+			velocidad=0;
 		}		
 	}
 
@@ -90,6 +141,14 @@ public abstract class Personaje {
 	public void serCurado() {
 		salud=saludMaxima;
 		
+	}
+	
+	public void serCuradoConMagia(int efecto){
+		
+		if(saludMaxima-salud>efecto)
+		   salud+=efecto;
+		else
+			salud=saludMaxima;
 	}
 
 	public void serEnergizado() {
@@ -277,44 +336,44 @@ public abstract class Personaje {
 			return radioDeAcccion.incluye(this.posicion);
 	}
 	
-	public String getArma() {
+	public boolean getArma() {
 		return arma;
 	}
 
-	public void setArma(String arma) {
-		this.arma = arma;
+	public void setArma() {
+		this.arma = true;
 	}
 
-	public String getBotas() {
+	public boolean getBotas() {
 		return botas;
 	}
 
-	public void setBotas(String botas) {
-		this.botas = botas;
+	public void setBotas() {
+		this.botas = true;
 	}
 
-	public String getCasco() {
+	public boolean getCasco() {
 		return casco;
 	}
 
-	public void setCasco(String casco) {
-		this.casco = casco;
+	public void setCasco() {
+		this.casco = true;
 	}
 
-	public String getChaleco() {
+	public boolean getChaleco() {
 		return chaleco;
 	}
 
-	public void setChaleco(String chaleco) {
-		this.chaleco = chaleco;
+	public void setChaleco() {
+		this.chaleco = true;
 	}
 
-	public String getEscudo() {
+	public boolean getEscudo() {
 		return escudo;
 	}
 
-	public void setEscudo(String escudo) {
-		this.escudo = escudo;
+	public void setEscudo() {
+		this.escudo = true;
 	}
 
 	public void recibirItem(Item item) {
@@ -333,7 +392,7 @@ public abstract class Personaje {
 	}
 	
 	public boolean puedeEquiparArma(){
-		return arma==null;
+		return !arma;
 	}
 	
 	public boolean puedeEquiparArmaInventario(){
@@ -341,7 +400,7 @@ public abstract class Personaje {
 	}
 	
 	public boolean puedeEquiparBotas(){
-		return botas==null;
+		return !botas;
 	}
 	
 	public boolean puedeEquiparBotasInventario(){
@@ -349,7 +408,7 @@ public abstract class Personaje {
 	}
 	
 	public boolean puedeEquiparCasco(){
-		return casco==null;
+		return !casco;
 	}
 	
 	public boolean puedeEquiparCascoInventario(){
@@ -357,7 +416,7 @@ public abstract class Personaje {
 	}
 	
 	public boolean puedeEquiparChaleco(){
-		return chaleco==null;
+		return !chaleco;
 	}
 	
 	public boolean puedeEquiparChalecoInventario(){
@@ -365,14 +424,33 @@ public abstract class Personaje {
 	}
 	
 	public boolean puedeEquiparEscudo(){
-		return escudo==null;
+		return !escudo;
 	}
 	
 	public boolean puedeEquiparEscudoInventario(){
 		return escudoDelInventario==null;
 	}
 
+	public void setArmaInventario(String arma) {
+		armaDelInventario = arma;
+	}
 	
+	public void setCascoInventario(String casco) {
+		cascoDelInventario = casco;
+	}
+	
+	public void setBotasInventario(String botas) {
+		botasDelInventario = botas;
+	}
+	
+	public void setChalecoInventario(String chaleco) {
+		chalecoDelInventario = chaleco;
+	}
+	
+	public void setEscudoInventario(String escudo) {
+		escudoDelInventario = escudo;
+	}
+
 	public String getArmaDelInventario() {
 		return armaDelInventario;
 	}
@@ -413,6 +491,8 @@ public abstract class Personaje {
 		this.escudoDelInventario = escudoDelInventario;
 	}
 
+	
+
 	public void setVelocidad(int velocidad) {
 		this.velocidad = velocidad;
 	}
@@ -429,8 +509,8 @@ public abstract class Personaje {
 		return this.hechizos.size();
 	}
 
-	public void hechizar(String conjuro, Personaje personaje) {
-		this.hechizos.get(conjuro).afectar(personaje);
+	public void hechizar(String conjuro, Personaje personaje,int efecto) {
+		this.hechizos.get(conjuro).afectar(personaje,efecto);
 		
 	}
 }

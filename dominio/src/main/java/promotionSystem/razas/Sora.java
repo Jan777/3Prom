@@ -2,15 +2,11 @@ package promotionSystem.razas;
 
 import java.util.HashMap;
 
-import org.junit.Assert;
-import org.junit.Test;
 
 import promotionSystem.Circulo;
 import promotionSystem.Punto;
 import promotionSystem.hechizo.Cura;
-import promotionSystem.hechizo.Hechizo;
 import promotionSystem.hechizo.Piro;
-import promotionSystem.hechizo.Trueno;
 
 public class Sora extends PersonajeDeKingdomHearts {
 	
@@ -27,7 +23,7 @@ public class Sora extends PersonajeDeKingdomHearts {
 	 posicion=new Punto(0,0);
 	 magia=100;
 	 radioDeAcccion=new Circulo(posicion,20);
-	 hechizos = new HashMap<String, Hechizo>();
+	 hechizos = new HashMap<>();
      agregarHechizo("Piro",new Piro());
      agregarHechizo("Cura",new Cura());
 		
@@ -44,17 +40,4 @@ public class Sora extends PersonajeDeKingdomHearts {
 		magia+=nivel*10;
 		velocidad+=nivel*10;
 	}
-	
-	@Test
-	public void siAtacaAumentaDefensa(){
-		PersonajeDeKingdomHearts personajeAtacante=new Sora();
-		PersonajeDeStarWars personajeAtacado=new Droide();
-		
-		Assert.assertEquals(100,personajeAtacante.obtenerPuntosDeDefensa());
-		personajeAtacante.atacar(personajeAtacado);
-		Assert.assertEquals((int) (100*1.125),personajeAtacante.obtenerPuntosDeDefensa());
-		
-	}
-	
-
 }

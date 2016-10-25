@@ -5,9 +5,9 @@ import promotionSystem.Personaje;
 public class Hielo extends Hechizo{
 
 	@Override
-	public void afectar(Personaje personaje) {
-		personaje.setSalud(personaje.getSalud()-15);
-		personaje.setVelocidad(personaje.obtenerPuntosDeVelocidad()/2);
+	public void afectar(Personaje personajeAtacado,int efecto) {
+		personajeAtacado.serAtacado(efecto);
+		personajeAtacado.serAlentizado(2);
 	}
 
 }

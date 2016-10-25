@@ -5,8 +5,8 @@ import promotionSystem.Personaje;
 public  class Piro extends Hechizo{
 
 	@Override
-	public void afectar(Personaje personaje) {
-		personaje.setSalud(personaje.getSalud()-30);
+	public void afectar(Personaje personaje,int efecto) {
+		personaje.serAtacado(efecto);
 		
 	}
 

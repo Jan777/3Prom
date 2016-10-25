@@ -23,30 +23,7 @@ public class RikuTest {
 		Assert.assertEquals(150+3*5, personaje.obtenerPuntosDeVelocidad());
 	}
 	
-	@Test
-	public void siUsoHechizoHieloAfectaASuOponente(){
-		Personaje riku =new Riku();
-		Personaje pokemon=new PokemonTipoFuego();
-		Assert.assertEquals(90, pokemon.getSalud());
-		Assert.assertEquals(75, pokemon.obtenerPuntosDeVelocidad());
-		riku.hechizar("Hielo", pokemon);
-		Assert.assertEquals(75, pokemon.getSalud());
-		Assert.assertEquals(37, pokemon.obtenerPuntosDeVelocidad());
-		riku.hechizar("Cura", pokemon);
-		Assert.assertEquals(90, pokemon.getSalud());
-	}
 	
-	@Test
-	public void siLoAtacoLoPuedoCurar(){
-		Personaje Riku =new Riku();
-		Personaje roxas =new GuerreroOrco();
-		Assert.assertEquals(150, roxas.getSalud());
-		Riku.atacar(roxas);
-		Assert.assertEquals(50, roxas.getSalud());
-		Riku.hechizar("Cura", roxas);
-		Assert.assertEquals(70, roxas.getSalud());
-		
-	}
 	
 	@Test
 	public void siAtacaAumentaDefensa(){
