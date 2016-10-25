@@ -5,12 +5,14 @@ import org.junit.Test;
 
 import promotionSystem.Personaje;
 import promotionSystem.razas.GuerreroOrco;
+import promotionSystem.razas.Jedi;
 import promotionSystem.razas.PokemonTipoAgua;
 import promotionSystem.razas.PokemonTipoFuego;
 import promotionSystem.razas.PokemonTipoPlanta;
 import promotionSystem.razas.Riku;
 import promotionSystem.razas.Roxas;
 import promotionSystem.razas.Sora;
+import promotionSystem.razas.Wookie;
 
 public class HechizosTest {
 	
@@ -59,5 +61,25 @@ public class HechizosTest {
 		Assert.assertEquals(120, pokemon.getSalud());
 		
 	}
+	
+	@Test
+	public void siUsoHechizoIraWookeanaAfectaASuFuerza(){
+		Personaje wookie =new Wookie();
+		Assert.assertEquals(150, wookie.obtenerPuntosDeAtaque());
+		wookie.usarMagiaDeAlteracion("IraWookeana");
+		Assert.assertEquals(171, wookie.obtenerPuntosDeAtaque());
+		
+	}
+	
+	@Test
+	public void siUsoHechizoEmpujonDeFuerzaAfectaASuOponente(){
+		Personaje jedi =new Jedi();
+		Personaje pokemon=new PokemonTipoPlanta();
+		Assert.assertEquals(150, pokemon.getSalud());
+		jedi.atacarConMagia(pokemon, "EmpujonDeFuerza");
+		Assert.assertEquals(100, pokemon.getSalud());
+		
+	}
+	
 
 }

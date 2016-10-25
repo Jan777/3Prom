@@ -63,6 +63,15 @@ public abstract class Personaje {
 		}
 	}
 	
+	public final void usarMagiaDeAlteracion(String conjuro) {
+		if(puedeAtacarConMagia()){
+			int puntosAUsar=calcularPuntosDeMagia();
+			hechizar(conjuro, this, puntosAUsar);
+			energia-=calcularPuntosDeMagia();
+			despuesDeAtacar();
+		}
+	}
+	
 	
 
 	public abstract void despuesDeAtacar();
@@ -72,6 +81,11 @@ public abstract class Personaje {
 		if(salud<0){
 			salud=0;
 		}		
+	}
+	
+	public void serAumentadoLaFuerza(int valor) {
+		
+		ataque+=valor;		
 	}
 	
 	public void serAlentizado(double valor ) {
