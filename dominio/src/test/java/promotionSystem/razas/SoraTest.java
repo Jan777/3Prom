@@ -23,26 +23,9 @@ public class SoraTest {
 		Assert.assertEquals(1000+3*10, personaje.getEnergia());
 	}
 
-	@Test
-	public void siUsoHechizoPiroAfectaASuOponente(){
-		Personaje sora =new Sora();
-		Personaje pokemon=new PokemonTipoPlanta();
-		Assert.assertEquals(150, pokemon.getSalud());
-		sora.hechizar("Piro", pokemon);
-		Assert.assertEquals(120, pokemon.getSalud());
-		
-	}
 	
-	@Test
-	public void siLoAtacoLoPuedoCurar(){
-		Personaje sora =new Sora();
-		Personaje roxas =new MagoHumano();
-		Assert.assertEquals(75, roxas.getSalud());
-		sora.atacar(roxas);
-		Assert.assertEquals(25, roxas.getSalud());
-		sora.hechizar("Cura", roxas);
-		Assert.assertEquals(45, roxas.getSalud());
-	}
+	
+	
 
 	@Test
 	public void siAtacaAumentaDefensa(){

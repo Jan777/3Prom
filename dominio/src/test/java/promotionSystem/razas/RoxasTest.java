@@ -21,29 +21,8 @@ public class RoxasTest {
 		Assert.assertEquals(150+10*3, personaje.obtenerPuntosDeVelocidad());
 	}
 	
-	@Test
-	public void siUsoHechizoTruenoAfectaASuOponente(){
-		Personaje roxas =new Roxas();
-		Personaje pokemon=new PokemonTipoAgua();
-		Assert.assertEquals(100, pokemon.getSalud());
-		Assert.assertEquals(100, pokemon.obtenerPuntosDeVelocidad());
-		roxas.hechizar("Trueno", pokemon);
-		Assert.assertEquals(80, pokemon.getSalud());
-		Assert.assertEquals(66, pokemon.obtenerPuntosDeVelocidad());
-		roxas.hechizar("Cura", pokemon);
-		Assert.assertEquals(100, pokemon.getSalud());
-	}
 	
-	@Test
-	public void siLoAtacoLoPuedoCurar(){
-		Personaje Roxas =new Roxas();
-		Personaje roxas =new MagoHumano();
-		Assert.assertEquals(75, roxas.getSalud());
-		Roxas.atacar(roxas);
-		Assert.assertEquals(70, roxas.getSalud());
-		Roxas.hechizar("Cura", roxas);
-		Assert.assertEquals(75, roxas.getSalud());
-	}
+	
 
 	@Test
 	public void siAtacaAumentaDefensa(){

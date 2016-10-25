@@ -45,21 +45,39 @@ public abstract class Personaje {
 		}		
 	}
 	
-	public final void atacarConMagia(Personaje atacado) {
+	public final void atacarConMagia(Personaje atacado,String conjuro) {
 		if(puedeAtacarConMagia()){
 			int puntosARestar=calcularPuntosDeMagia()-atacado.calcularPuntosDeDefensa();
-			atacado.serAtacado(puntosARestar<0?0:puntosARestar);
+			hechizar(conjuro, atacado, puntosARestar);
 			energia-=calcularPuntosDeMagia();
 			despuesDeAtacar();
 		}
 	}
+	
+	public final void usarMagiaSupport(Personaje atacado,String conjuro) {
+		if(puedeAtacarConMagia()){
+			int puntosAUsar=calcularPuntosDeMagia();
+			hechizar(conjuro, atacado, puntosAUsar);
+			energia-=calcularPuntosDeMagia();
+			despuesDeAtacar();
+		}
+	}
+	
+	
 
 	public abstract void despuesDeAtacar();
 	
-	private void serAtacado(int ataque) {
+	public void serAtacado(int ataque) {
 		salud-=ataque;
 		if(salud<0){
 			salud=0;
+		}		
+	}
+	
+	public void serAlentizado(double valor ) {
+		velocidad/=valor;
+		if(velocidad<0){
+			velocidad=0;
 		}		
 	}
 
@@ -90,6 +108,14 @@ public abstract class Personaje {
 	public void serCurado() {
 		salud=saludMaxima;
 		
+	}
+	
+	public void serCuradoConMagia(int efecto){
+		
+		if(saludMaxima-salud>efecto)
+		   salud+=efecto;
+		else
+			salud=saludMaxima;
 	}
 
 	public void serEnergizado() {
@@ -450,8 +476,8 @@ public abstract class Personaje {
 		return this.hechizos.size();
 	}
 
-	public void hechizar(String conjuro, Personaje personaje) {
-		this.hechizos.get(conjuro).afectar(personaje);
+	public void hechizar(String conjuro, Personaje personaje,int efecto) {
+		this.hechizos.get(conjuro).afectar(personaje,efecto);
 		
 	}
 }
