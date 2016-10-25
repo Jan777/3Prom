@@ -26,8 +26,27 @@ public class ItemBuilderTests {
 		Emeritus = ItemBuilder.ConEspadaGorgoroth(Emeritus);
 		Emeritus = ItemBuilder.ConEscudoHyrule(Emeritus);
 		Assert.assertEquals(300, Emeritus.obtenerPuntosDeAtaque());
-		Assert.assertEquals(170, Emeritus.obtenerPuntosDeDefensa());
+		Assert.assertEquals(180, Emeritus.obtenerPuntosDeDefensa());
 		Assert.assertEquals(30, Emeritus.obtenerPuntosDeMagia());
 		Assert.assertEquals(45, Emeritus.obtenerPuntosDeVelocidad());
 	}//veo que modifique adecuadamente un stat que ambos items modifican
+	
+	
+	@Test
+	public void siEquipoBotasFloberAumentaVelocidad(){ 
+		Personaje Emeritus = new GuerreroHumano();
+		Assert.assertEquals(90, Emeritus.obtenerPuntosDeVelocidad());
+		Emeritus = ItemBuilder.ConBotasFlober(Emeritus);
+		Assert.assertEquals((90+1)*2, Emeritus.obtenerPuntosDeVelocidad());
+		
+	}
+	
+	@Test
+	public void siEquipoVaritaMissignoAumentaMagia(){ 
+		Personaje Emeritus = new GuerreroHumano();
+		Assert.assertEquals(20, Emeritus.obtenerPuntosDeMagia());
+		Emeritus = ItemBuilder.ConVaritaMissigno(Emeritus);
+		Assert.assertEquals((20+5)*2, Emeritus.obtenerPuntosDeMagia());
+	}
+	
 }

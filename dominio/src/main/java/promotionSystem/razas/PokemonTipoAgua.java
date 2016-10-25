@@ -3,7 +3,7 @@ package promotionSystem.razas;
 import promotionSystem.Circulo;
 import promotionSystem.Punto;
 
-public class PokemonTipoAgua extends PersonajesDePokemon{
+public class PokemonTipoAgua extends PersonajeDePokemon{
 	
 	public PokemonTipoAgua(){
 		energia=1000;

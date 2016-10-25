@@ -3,7 +3,7 @@ package promotionSystem.razas;
 import promotionSystem.Circulo;
 import promotionSystem.Punto;
 
-public class Jedi extends PersonajesDeStarWars{
+public class Jedi extends PersonajeDeStarWars{
 	
 	public Jedi(){
 		energia=1200;
@@ -30,5 +30,11 @@ public class Jedi extends PersonajesDeStarWars{
 		defensa+=nivel*5;
 		magia+=nivel*10;
 		velocidad+=nivel*10;
+	}
+
+	@Override
+	public void despuesDeAtacar() {
+		magia+=2;
+		
 	}
 }

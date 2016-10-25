@@ -3,7 +3,7 @@ package promotionSystem.razas;
 import promotionSystem.Circulo;
 import promotionSystem.Punto;
 
-public class PokemonTipoFuego extends PersonajesDePokemon {
+public class PokemonTipoFuego extends PersonajeDePokemon {
 	public PokemonTipoFuego(){
 		energia=1000;
 		energiaMaxima=1000;

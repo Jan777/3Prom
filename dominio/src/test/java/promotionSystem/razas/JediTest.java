@@ -7,7 +7,7 @@ public class JediTest {
 	
 	@Test
 	public void siAumentaDeNivelAumentaLosStats(){
-		PersonajesDeStarWars personaje=new Jedi();
+		PersonajeDeStarWars personaje=new Jedi();
 		Assert.assertEquals(0, personaje.getNivel());
 		personaje.subirExperiencia(10);
 
@@ -19,6 +19,15 @@ public class JediTest {
 		Assert.assertEquals(30+3*5, personaje.obtenerPuntosDeDefensa());
 		Assert.assertEquals(120+3*10, personaje.obtenerPuntosDeMagia());
 		Assert.assertEquals(100+3*10, personaje.obtenerPuntosDeVelocidad());
+	}
+	@Test
+	public void siAtacaAumentaLaMagia(){
+		PersonajeDeStarWars personajeAtacante=new Jedi();
+		PersonajeDeStarWars personajeAtacado=new Droide();
+		
+		Assert.assertEquals(120,personajeAtacante.obtenerPuntosDeMagia());
+		personajeAtacante.atacar(personajeAtacado);
+		Assert.assertEquals(120+2,personajeAtacante.obtenerPuntosDeMagia());
 	}
 
 

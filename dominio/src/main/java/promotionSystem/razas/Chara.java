@@ -3,7 +3,7 @@ package promotionSystem.razas;
 import promotionSystem.Circulo;
 import promotionSystem.Punto;
 
-public class Chara extends PersonajesDeUndertale{
+public class Chara extends PersonajeDeUndertale{
 	public Chara(){
 		energia=1000;
 		energiaMaxima=1000;

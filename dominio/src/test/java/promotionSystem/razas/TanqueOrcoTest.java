@@ -20,4 +20,6 @@ public class TanqueOrcoTest {
 		Assert.assertEquals(20+3*5, personaje.obtenerPuntosDeMagia());
 		Assert.assertEquals(20+3*5, personaje.obtenerPuntosDeVelocidad());
 	}
+	
+	
 }

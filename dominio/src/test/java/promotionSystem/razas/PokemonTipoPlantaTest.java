@@ -7,7 +7,7 @@ public class PokemonTipoPlantaTest {
 	
 	@Test
 	public void siAumentaDeNivelAumentaLosStats(){
-		PersonajesDePokemon personaje=new PokemonTipoPlanta();
+		PersonajeDePokemon personaje=new PokemonTipoPlanta();
 		Assert.assertEquals(0, personaje.getNivel());
 		personaje.subirExperiencia(10);
 		Assert.assertEquals(3, personaje.getNivel());

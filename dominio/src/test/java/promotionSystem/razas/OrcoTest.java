@@ -7,7 +7,7 @@ import org.junit.Test;
 public class OrcoTest {
 
 	@Test
-	public void SiUnOrcoAtacaAOtroPersonajeDespuesDeAtacarAumentaEn2SuAtaque(){
+	public void SiUnOrcoAtacaAOtroPersonajeDespuesDeAtacarAumentaEn10SuAtaque(){
 		
 		Orco orcoAtacado=new MagoOrco();
 		Orco orcoAtacante=new MagoOrco();

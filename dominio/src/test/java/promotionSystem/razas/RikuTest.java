@@ -48,5 +48,16 @@ public class RikuTest {
 		
 	}
 	
+	@Test
+	public void siAtacaAumentaDefensa(){
+		PersonajeDeKingdomHearts personajeAtacante=new Riku();
+		PersonajeDeStarWars personajeAtacado=new Droide();
+		
+		Assert.assertEquals(50,personajeAtacante.obtenerPuntosDeDefensa());
+		personajeAtacante.atacar(personajeAtacado);
+		Assert.assertEquals((int) (50*1.125),personajeAtacante.obtenerPuntosDeDefensa());
+		
+	}
+	
 	
 }

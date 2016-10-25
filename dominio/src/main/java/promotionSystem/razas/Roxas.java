@@ -2,13 +2,16 @@ package promotionSystem.razas;
 
 import java.util.HashMap;
 
+import org.junit.Assert;
+import org.junit.Test;
+
 import promotionSystem.Circulo;
 import promotionSystem.Punto;
 import promotionSystem.hechizo.Cura;
 import promotionSystem.hechizo.Hechizo;
 import promotionSystem.hechizo.Trueno;
 
-public class Roxas extends PersonajesDeKingdomHearts {
+public class Roxas extends PersonajeDeKingdomHearts {
 
 	
     public Roxas() {
@@ -42,6 +45,17 @@ public class Roxas extends PersonajesDeKingdomHearts {
         
     }
 
+    @Test
+	public void siAtacaAumentaDefensa(){
+		PersonajeDeKingdomHearts personajeAtacante=new Roxas();
+		PersonajeDeStarWars personajeAtacado=new Droide();
+		
+		Assert.assertEquals(200,personajeAtacante.obtenerPuntosDeDefensa());
+		personajeAtacante.atacar(personajeAtacado);
+		Assert.assertEquals((int) (200*1.125),personajeAtacante.obtenerPuntosDeDefensa());
+		
+	}
+	
     
 
 	

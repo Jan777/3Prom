@@ -19,5 +19,18 @@ public class CharaTest {
 			Assert.assertEquals(50+5*3, personaje.obtenerPuntosDeMagia());
 			Assert.assertEquals(100+10*3, personaje.obtenerPuntosDeVelocidad());
 		}
+		
+		@Test
+		public void siAtacaAumentaElAtaqueYEnergia(){
+			PersonajeDeUndertale personajeAtacante=new Chara();
+			PersonajeDeStarWars personajeAtacado=new Droide();
+			
+			Assert.assertEquals(150,personajeAtacante.obtenerPuntosDeAtaque());
+			Assert.assertEquals(1000,personajeAtacante.getEnergia());
+			personajeAtacante.atacar(personajeAtacado);
+			Assert.assertEquals(150+1,personajeAtacante.obtenerPuntosDeAtaque());
+			Assert.assertEquals(1000-150+1,personajeAtacante.getEnergia());
+			
+		}
 
 }

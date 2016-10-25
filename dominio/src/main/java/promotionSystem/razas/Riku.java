@@ -10,7 +10,7 @@ import promotionSystem.hechizo.Hielo;
 import promotionSystem.hechizo.Piro;
 import promotionSystem.hechizo.Trueno;
 
-public class Riku extends PersonajesDeKingdomHearts {
+public class Riku extends PersonajeDeKingdomHearts {
 
     public Riku() {
         energia = 1000;

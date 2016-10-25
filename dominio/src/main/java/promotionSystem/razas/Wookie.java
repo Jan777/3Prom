@@ -3,7 +3,7 @@ package promotionSystem.razas;
 import promotionSystem.Circulo;
 import promotionSystem.Punto;
 
-public class Wookie extends PersonajesDeStarWars{
+public class Wookie extends PersonajeDeStarWars{
 	
 	public Wookie(){
 		energia=1000;
@@ -31,6 +31,14 @@ public class Wookie extends PersonajesDeStarWars{
 		defensa+=nivel*5;
 		magia+=nivel*5;
 		velocidad+=nivel*5;
+	}
+
+
+	@Override
+	public void despuesDeAtacar() {
+		ataque+=5;
+		defensa-=2;
+		
 	}
 
 }

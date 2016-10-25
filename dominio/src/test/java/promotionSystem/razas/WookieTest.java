@@ -7,7 +7,7 @@ public class WookieTest{
 
 	@Test
 	public void siAumentaDeNivelAumentaLosStats(){
-		PersonajesDeStarWars personaje=new Wookie();
+		PersonajeDeStarWars personaje=new Wookie();
 		Assert.assertEquals(0, personaje.getNivel());
 		personaje.subirExperiencia(10);
 
@@ -20,5 +20,19 @@ public class WookieTest{
 		Assert.assertEquals(50+3*5, personaje.obtenerPuntosDeMagia());
 		Assert.assertEquals(50+3*5, personaje.obtenerPuntosDeVelocidad());
 	}
+	
+	@Test
+	public void siAtacaAumentaElAtaquePeroDisminuyeDefensa(){
+		PersonajeDeStarWars personajeAtacante=new Wookie();
+		PersonajeDeStarWars personajeAtacado=new Droide();
+		
+		Assert.assertEquals(150,personajeAtacante.obtenerPuntosDeAtaque());
+		Assert.assertEquals(70,personajeAtacante.obtenerPuntosDeDefensa());
+		personajeAtacante.atacar(personajeAtacado);
+		Assert.assertEquals(150+5,personajeAtacante.obtenerPuntosDeAtaque());
+		Assert.assertEquals(70-2,personajeAtacante.obtenerPuntosDeDefensa());
+		
+	}
+
 
 }

@@ -341,7 +341,7 @@ public abstract class Personaje {
 	}
 	
 	public boolean puedeEquiparBotas(){
-		return botas;
+		return !botas;
 	}
 	
 	public boolean puedeEquiparBotasInventario(){

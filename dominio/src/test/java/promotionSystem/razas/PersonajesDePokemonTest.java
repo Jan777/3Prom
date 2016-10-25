@@ -7,8 +7,8 @@ public class PersonajesDePokemonTest {
 	
 	@Test
 	public void siAtacaAOtroPersonajeAumentaSuMagia(){
-		PersonajesDePokemon atacante=new PokemonTipoAgua();
-		PersonajesDePokemon atacado=new PokemonTipoFuego();
+		PersonajeDePokemon atacante=new PokemonTipoAgua();
+		PersonajeDePokemon atacado=new PokemonTipoFuego();
 		Assert.assertEquals(150, atacante.obtenerPuntosDeMagia());
 		atacante.atacar(atacado);
 		Assert.assertEquals(160, atacante.obtenerPuntosDeMagia());

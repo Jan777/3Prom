@@ -2,7 +2,7 @@ package promotionSystem.razas;
 
 import promotionSystem.Punto;
 
-public class Droide extends PersonajesDeStarWars{
+public class Droide extends PersonajeDeStarWars{
 	
 	public Droide(){
 		energia=1200;
@@ -28,5 +28,11 @@ public class Droide extends PersonajesDeStarWars{
 		defensa+=nivel*10;
 		magia+=nivel*10;
 		velocidad+=nivel*10;
+	}
+
+	@Override
+	public void despuesDeAtacar() {
+		velocidad+=2;
+		
 	}
 }

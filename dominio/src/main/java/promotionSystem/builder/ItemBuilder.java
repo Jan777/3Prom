@@ -20,7 +20,7 @@ public class ItemBuilder {
 		final int SumadorDeVelocidad = 1;
 		if(braixen.puedeEquiparArma()){
 			braixen.setArma();
-			return new ConArma(braixen,MultiplicadorDeAtaque,SumadorDeAtaque,MultiplicadorDeAtaque,SumadorDeDefensa,MultiplicadorDeMagia,SumadorDeMagia,MultiplicadorDeVelocidad,SumadorDeVelocidad);
+			return new ConArma(braixen,MultiplicadorDeAtaque,SumadorDeAtaque,MultiplicadorDeDefensa,SumadorDeDefensa,MultiplicadorDeMagia,SumadorDeMagia,MultiplicadorDeVelocidad,SumadorDeVelocidad);
 		}
 		else{
 			if(braixen.puedeEquiparArmaInventario()){
@@ -41,7 +41,7 @@ public class ItemBuilder {
 		final int SumadorDeVelocidad = 1;
 		if(braixen.puedeEquiparArma()){
 			braixen.setArma();
-			return new ConArma(braixen,MultiplicadorDeAtaque,SumadorDeAtaque,MultiplicadorDeAtaque,SumadorDeDefensa,MultiplicadorDeMagia,SumadorDeMagia,MultiplicadorDeVelocidad,SumadorDeVelocidad);
+			return new ConArma(braixen,MultiplicadorDeAtaque,SumadorDeAtaque,MultiplicadorDeDefensa,SumadorDeDefensa,MultiplicadorDeMagia,SumadorDeMagia,MultiplicadorDeVelocidad,SumadorDeVelocidad);
 		}
 		else{
 			if(braixen.puedeEquiparArmaInventario()){
@@ -62,7 +62,7 @@ public class ItemBuilder {
 		final int SumadorDeVelocidad = 1;
 		if(braixen.puedeEquiparBotas()){
 			braixen.setBotas();
-			return new ConBotas(braixen,MultiplicadorDeAtaque,SumadorDeAtaque,MultiplicadorDeAtaque,SumadorDeDefensa,MultiplicadorDeMagia,SumadorDeMagia,MultiplicadorDeVelocidad,SumadorDeVelocidad);
+			return new ConBotas(braixen,MultiplicadorDeAtaque,SumadorDeAtaque,MultiplicadorDeDefensa,SumadorDeDefensa,MultiplicadorDeMagia,SumadorDeMagia,MultiplicadorDeVelocidad,SumadorDeVelocidad);
 		}
 		else{
 			if(braixen.puedeEquiparBotasInventario()){
@@ -83,7 +83,7 @@ public class ItemBuilder {
 		final int SumadorDeVelocidad = 0;
 		if(braixen.puedeEquiparCasco()){
 			braixen.setCasco();
-			return new ConCasco(braixen,MultiplicadorDeAtaque,SumadorDeAtaque,MultiplicadorDeAtaque,SumadorDeDefensa,MultiplicadorDeMagia,SumadorDeMagia,MultiplicadorDeVelocidad,SumadorDeVelocidad);
+			return new ConCasco(braixen,MultiplicadorDeAtaque,SumadorDeAtaque,MultiplicadorDeDefensa,SumadorDeDefensa,MultiplicadorDeMagia,SumadorDeMagia,MultiplicadorDeVelocidad,SumadorDeVelocidad);
 		}
 		else{
 			if(braixen.puedeEquiparCascoInventario()){
@@ -104,7 +104,7 @@ public class ItemBuilder {
 		final int SumadorDeVelocidad = -15;
 		if(braixen.puedeEquiparChaleco()){
 			braixen.setChaleco();
-			return new ConChaleco(braixen,MultiplicadorDeAtaque,SumadorDeAtaque,MultiplicadorDeAtaque,SumadorDeDefensa,MultiplicadorDeMagia,SumadorDeMagia,MultiplicadorDeVelocidad,SumadorDeVelocidad);
+			return new ConChaleco(braixen,MultiplicadorDeAtaque,SumadorDeAtaque,MultiplicadorDeDefensa,SumadorDeDefensa,MultiplicadorDeMagia,SumadorDeMagia,MultiplicadorDeVelocidad,SumadorDeVelocidad);
 		}
 		else{
 			if(braixen.puedeEquiparChalecoInventario()){
@@ -125,11 +125,33 @@ public class ItemBuilder {
 		final int SumadorDeVelocidad = 0;
 		if(braixen.puedeEquiparEscudo()){
 			braixen.setEscudo();
-			return new ConEscudo(braixen,MultiplicadorDeAtaque,SumadorDeAtaque,MultiplicadorDeAtaque,SumadorDeDefensa,MultiplicadorDeMagia,SumadorDeMagia,MultiplicadorDeVelocidad,SumadorDeVelocidad);
+			return new ConEscudo(braixen,MultiplicadorDeAtaque,SumadorDeAtaque,MultiplicadorDeDefensa,SumadorDeDefensa,MultiplicadorDeMagia,SumadorDeMagia,MultiplicadorDeVelocidad,SumadorDeVelocidad);
 		}
 		else{
 			if(braixen.puedeEquiparEscudoInventario()){
 				braixen.setEscudoInventario("ConEscudoHyrule");
+			}
+		}
+		return braixen;
+	}
+	
+	
+	public static Personaje ConVaritaMissigno(Personaje braixen){
+		final double MultiplicadorDeAtaque = 1;
+		final int SumadorDeAtaque = 0;
+		final double MultiplicadorDeDefensa = 1;
+		final int SumadorDeDefensa = 0;
+		final double MultiplicadorDeMagia = 2;
+		final int SumadorDeMagia = 5;
+		final double MultiplicadorDeVelocidad = 1;
+		final int SumadorDeVelocidad = -10;
+		if(braixen.puedeEquiparArma()){
+			braixen.setArma();
+			return new ConArma(braixen,MultiplicadorDeAtaque,SumadorDeAtaque,MultiplicadorDeDefensa,SumadorDeDefensa,MultiplicadorDeMagia,SumadorDeMagia,MultiplicadorDeVelocidad,SumadorDeVelocidad);
+		}
+		else{
+			if(braixen.puedeEquiparArmaInventario()){
+				braixen.setArmaInventario("ConVaritaMissigno");
 			}
 		}
 		return braixen;
