@@ -23,7 +23,7 @@ public class Roxas extends PersonajeDeKingdomHearts {
         nivel = 0;
         posicion = new Punto(0, 0);
         radioDeAcccion=new Circulo(posicion,20);
-        hechizos = new HashMap<>();
+        hechizos = new HashMap<String, Hechizo>();
         agregarHechizo("Trueno",new Trueno());
         agregarHechizo("Cura",new Cura());
     }

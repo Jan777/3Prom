@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import promotionSystem.Punto;
 import promotionSystem.hechizo.Cura;
+import promotionSystem.hechizo.Hechizo;
 import promotionSystem.hechizo.IraWookeana;
 
 public class Droide extends PersonajeDeStarWars{
@@ -20,7 +21,7 @@ public class Droide extends PersonajeDeStarWars{
 		experiencia=0;
 		nivel=0;
 		posicion=new Punto(0,0);
-		hechizos = new HashMap<>();
+		hechizos = new HashMap<String, Hechizo>();
 	    agregarHechizo("Cura",new Cura());
 	}
 

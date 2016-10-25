@@ -6,6 +6,7 @@ import java.util.HashMap;
 import promotionSystem.Circulo;
 import promotionSystem.Punto;
 import promotionSystem.hechizo.Cura;
+import promotionSystem.hechizo.Hechizo;
 import promotionSystem.hechizo.Piro;
 
 public class Sora extends PersonajeDeKingdomHearts {
@@ -23,7 +24,7 @@ public class Sora extends PersonajeDeKingdomHearts {
 	 posicion=new Punto(0,0);
 	 magia=100;
 	 radioDeAcccion=new Circulo(posicion,20);
-	 hechizos = new HashMap<>();
+	 hechizos = new HashMap<String, Hechizo>();
      agregarHechizo("Piro",new Piro());
      agregarHechizo("Cura",new Cura());
 		

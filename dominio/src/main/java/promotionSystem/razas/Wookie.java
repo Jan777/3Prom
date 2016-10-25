@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import promotionSystem.Circulo;
 import promotionSystem.Punto;
+import promotionSystem.hechizo.Hechizo;
 import promotionSystem.hechizo.IraWookeana;
 import promotionSystem.hechizo.Piro;
 
@@ -22,7 +23,7 @@ public class Wookie extends PersonajeDeStarWars{
 		nivel=0;
 		posicion=new Punto(0,0);
 		radioDeAcccion=new Circulo(posicion,20);
-		hechizos = new HashMap<>();
+		hechizos = new HashMap<String, Hechizo>();
 	    agregarHechizo("IraWookeana",new IraWookeana());
 	}
 	

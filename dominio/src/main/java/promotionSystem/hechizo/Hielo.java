@@ -7,7 +7,7 @@ public class Hielo extends Hechizo{
 	@Override
 	public void afectar(Personaje personajeAtacado,int efecto) {
 		personajeAtacado.serAtacado(efecto);
-		personajeAtacado.serAlentizado(2);
+		personajeAtacado.serRalentizado(2);
 	}
 
 }
