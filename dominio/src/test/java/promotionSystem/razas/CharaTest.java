@@ -31,7 +31,7 @@ public class CharaTest {
 			Assert.assertEquals(100,personajeAtacante.getEnergia());
 			personajeAtacante.atacar(personajeAtacado);
 			Assert.assertEquals(Constantes.AtaqueChara+1,personajeAtacante.obtenerPuntosDeAtaque());
-			Assert.assertEquals(100-15+1,personajeAtacante.getEnergia());
+			Assert.assertEquals(100-Constantes.AtaqueChara+1,personajeAtacante.getEnergia());
 			
 		}
 

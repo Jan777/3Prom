@@ -60,7 +60,7 @@ public abstract class Personaje {
         if (puedeAtacarConMagia()) {
             int puntosAUsar = calcularPuntosDeMagia();
             hechizar(conjuro, atacado, puntosAUsar);
-            energia -= calcularPuntosDeMagia();
+            energia -= puntosAUsar;
             despuesDeAtacar();
         }
     }
@@ -69,7 +69,7 @@ public abstract class Personaje {
         if (puedeAtacarConMagia()) {
             int puntosAUsar = calcularPuntosDeMagia();
             hechizar(conjuro, this, puntosAUsar);
-            energia -= calcularPuntosDeMagia();
+            energia -= puntosAUsar;
             despuesDeAtacar();
         }
     }
@@ -127,10 +127,12 @@ public abstract class Personaje {
 	}
 
 	public void serCuradoConMagia(int efecto) {
-		if (saludMaxima - salud > efecto)
-			salud += efecto;
-		else
-			salud = saludMaxima;
+		if (saludMaxima - salud > efecto){
+			salud += efecto;			
+		}
+		else {
+			salud = saludMaxima;			
+		}
 	}
 
 	public void serEnergizado() {
@@ -504,3 +506,4 @@ public abstract class Personaje {
 	}
 }
 	
+
