@@ -32,8 +32,8 @@ public class PersonajeTest {
 	public void siAtacaDisminuyeEnergiaPropiaYSaludDelRival(){
 		personajeAtacado.setDefensa(0);
 		personajeAtacante.atacar(personajeAtacado);
-		Assert.assertEquals(0,personajeAtacado.getSalud());
-		Assert.assertEquals(1050,personajeAtacante.getEnergia());
+		Assert.assertEquals(30,personajeAtacado.getSalud());
+		Assert.assertEquals(80,personajeAtacante.getEnergia());
 	}
 	
 	@Test
@@ -64,51 +64,51 @@ public class PersonajeTest {
 	public void siTieneMenosSaludQueLaInicialYEsCuradoLaSaludVuelveAlMaximo(){
 		personajeAtacado.setSalud(10);
 		personajeAtacado.serCurado();
-		Assert.assertEquals(100,personajeAtacado.getSalud());
+		Assert.assertEquals(50,personajeAtacado.getSalud());
 	}
 
 	@Test
 	public void siTieneMenosEnergiaQueLaInicialYEsEnergizadoLaVuelveAlMaximo(){
 		personajeAtacante.setEnergia(10);
 		personajeAtacante.serEnergizado();
-		Assert.assertEquals(1200,personajeAtacante.getEnergia());
+		Assert.assertEquals(100,personajeAtacante.getEnergia());
 	}
 	
 	@Test
 	public void siSeQuedoSinEnergiaNoPuedeAtacar(){
 		personajeAtacante.setEnergia(0);
 		personajeAtacante.atacar(personajeAtacado);
-		Assert.assertEquals(100,personajeAtacado.getSalud());
+		Assert.assertEquals(50,personajeAtacado.getSalud());
 	}
 	
 	@Test
 	public void siTieneVidaAlMaximoNoPuedeAumentarSuSaludAlSerCurado(){
 		personajeAtacado=new GuerreroHumano();
-		Assert.assertEquals(100,personajeAtacado.getSalud());
+		Assert.assertEquals(50,personajeAtacado.getSalud());
 		personajeAtacado.serCurado();
-		Assert.assertEquals(100,personajeAtacado.getSalud());
+		Assert.assertEquals(50,personajeAtacado.getSalud());
 	}
 	
 	@Test
 	public void siTieneEnergiaAlMaximoNoPuedeAumentarSuEnergiaAlSerEnergizado(){
 		personajeAtacante=new GuerreroHumano();
-		Assert.assertEquals(1200,personajeAtacante.getEnergia());
+		Assert.assertEquals(100,personajeAtacante.getEnergia());
 		personajeAtacante.serEnergizado();
-		Assert.assertEquals(1200,personajeAtacante.getEnergia());
+		Assert.assertEquals(100,personajeAtacante.getEnergia());
 	}
 	
 	@Test
 	public void siLaDefensaDelAtacadoEsMayorAlAtaqueDelAtacadoNoRecibeDano(){
 		personajeAtacado.setDefensa(1500);
 		personajeAtacante.atacar(personajeAtacado);
-		Assert.assertEquals(100,personajeAtacado.getSalud());
+		Assert.assertEquals(50,personajeAtacado.getSalud());
 	}
 	
 	@Test
 	public void siUnPersonajeAtacaYLeQuitaVidaAOtro(){
 		personajeAtacado.setDefensa(145);
 		personajeAtacante.atacar(personajeAtacado);
-		Assert.assertEquals(95,personajeAtacado.getSalud());
+		Assert.assertEquals(50,personajeAtacado.getSalud());
 	}
 
 	@Test
@@ -117,22 +117,22 @@ public class PersonajeTest {
 		if(personajeAtacante.estaVivo()){
 			personajeAtacante.atacar(personajeAtacado);
 		}
-		Assert.assertEquals(100, personajeAtacado.getSalud());
+		Assert.assertEquals(50, personajeAtacado.getSalud());
 	}
 
 	@Test
 	public void debeDevolverLosPuntosDeAtaque(){
-		Assert.assertEquals(150,personajeAtacante.obtenerPuntosDeAtaque());
+		Assert.assertEquals(20,personajeAtacante.obtenerPuntosDeAtaque());
 	}
 	
 	@Test
 	public void debeDevolverLosPuntosDeDefensa(){
-		Assert.assertEquals(80,personajeAtacante.obtenerPuntosDeDefensa());
+		Assert.assertEquals(3,personajeAtacante.obtenerPuntosDeDefensa());
 	}
 	
 	@Test
 	public void debeDevolverLosPuntosDeMagia(){
-		Assert.assertEquals(20,personajeAtacante.obtenerPuntosDeMagia());
+		Assert.assertEquals(3,personajeAtacante.obtenerPuntosDeMagia());
 	}
 	
 	@Test
@@ -164,7 +164,7 @@ public class PersonajeTest {
 	public void debeSubirHabilidadYLosStatsCorrespondientes(){
 		personajeAtacante.subirHabilidad("Ataque certero");
         Assert.assertTrue(personajeAtacante.habilidades().contains("Ataque certero"));
-        Assert.assertEquals(152, personajeAtacante.getAtaque());
+        Assert.assertEquals(22, personajeAtacante.getAtaque());
 	}
 
 	@Test

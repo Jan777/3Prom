@@ -4,6 +4,8 @@ import org.junit.Assert;
 
 import org.junit.Test;
 
+import promotionSystem.Constantes;
+
 public class OrcoTest {
 
 	@Test
@@ -11,9 +13,9 @@ public class OrcoTest {
 		
 		Orco orcoAtacado=new MagoOrco();
 		Orco orcoAtacante=new MagoOrco();
-		Assert.assertEquals(40,orcoAtacante.obtenerPuntosDeAtaque());
+		Assert.assertEquals(Constantes.AtaqueMagoOrco,orcoAtacante.obtenerPuntosDeAtaque());
 		orcoAtacante.atacar(orcoAtacado);
-		Assert.assertEquals(50,orcoAtacante.obtenerPuntosDeAtaque());
+		Assert.assertEquals(Constantes.AtaqueMagoOrco+10,orcoAtacante.obtenerPuntosDeAtaque());
 		
 	}
 }

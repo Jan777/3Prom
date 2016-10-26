@@ -1,41 +1,35 @@
 package promotionSystem.razas;
 
-import java.util.ArrayList;
-
 import promotionSystem.Circulo;
-import promotionSystem.Item;
+import promotionSystem.Constantes;
 import promotionSystem.Punto;
 
 public class GuerreroHumano extends Humano{
 	
 	public GuerreroHumano(){
-		energia=1200;
-		energiaMaxima=1200;
-		salud=100;
-		saludMaxima=100;
-		ataque=150;
-		defensa=80;
-		velocidad=90;
-		magia=20;
+		energia=Constantes.EnergiaGuerreroHumano;
+		energiaMaxima=Constantes.EnergiaMaximaGuerreroHumano;
+		salud=Constantes.SaludGuerreroHumano; 
+		saludMaxima=Constantes.SaludMaximaGuerreroHumano;
+		ataque=Constantes.AtaqueGuerreroHumano;
+		defensa=Constantes.DefensaGuerreroHumano;
+		magia=Constantes.MagiaGuerreroHumano;
+		velocidad=Constantes.VelocidadGuerreroHumano;
 		experiencia=0;
-		nivel=0;
-//		items = new ArrayList<Item>();
-		this.alianza=null;
+		nivel=1;
 		posicion=new Punto(0,0);
 		radioDeAcccion=new Circulo(posicion,20);
 	}
 
 	@Override
-	public void subirStats(int nivel) {
-		energia+=nivel*10;
-		energiaMaxima+=nivel*10;
-		saludMaxima+=nivel*10;
-		salud+=nivel*10;
-		ataque+=nivel*10;
-		defensa+=nivel*5;
-		magia+=nivel*5;
-		velocidad+=nivel*5;
-		
+	public void subirStats(int cantidadDeNivelesSubidos) {
+		energia+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
+		energiaMaxima+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
+		saludMaxima+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
+		salud+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
+		ataque+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelEspecial;
+		defensa+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
+		magia+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
+		velocidad+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
 	}
-
 }

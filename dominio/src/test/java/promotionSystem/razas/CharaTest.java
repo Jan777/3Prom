@@ -3,21 +3,23 @@ package promotionSystem.razas;
 import org.junit.Assert;
 import org.junit.Test;
 
+import promotionSystem.Constantes;
+
 public class CharaTest {
 	
 		@Test
 		public void siAumentaDeNivelAumentaLosStats(){
 			Chara personaje=new Chara();
-			Assert.assertEquals(0, personaje.getNivel());
+			Assert.assertEquals(1, personaje.getNivel());
 			personaje.subirExperiencia(10);
 			Assert.assertEquals(3, personaje.getNivel());
 
-			Assert.assertEquals(100+10*3, personaje.getSalud());
-			Assert.assertEquals(1000+10*3, personaje.getEnergia());
-			Assert.assertEquals(150+10*3, personaje.obtenerPuntosDeAtaque());
-			Assert.assertEquals(100+5*3, personaje.obtenerPuntosDeDefensa());
-			Assert.assertEquals(50+5*3, personaje.obtenerPuntosDeMagia());
-			Assert.assertEquals(100+10*3, personaje.obtenerPuntosDeVelocidad());
+			Assert.assertEquals(Constantes.SaludChara+Constantes.MultiplicadorDeNivelNormal*2, personaje.getSalud());
+			Assert.assertEquals(100+Constantes.MultiplicadorDeNivelNormal*2, personaje.getEnergia());
+			Assert.assertEquals(Constantes.AtaqueChara+Constantes.MultiplicadorDeNivelEspecial*2, personaje.obtenerPuntosDeAtaque());
+			Assert.assertEquals(Constantes.DefensaChara+Constantes.MultiplicadorDeNivelNormal*2, personaje.obtenerPuntosDeDefensa());
+			Assert.assertEquals(Constantes.MagiaChara+Constantes.MultiplicadorDeNivelNormal*2, personaje.obtenerPuntosDeMagia());
+			Assert.assertEquals(Constantes.VelocidadChara+Constantes.MultiplicadorDeNivelNormal*2, personaje.obtenerPuntosDeVelocidad());
 		}
 		
 		@Test
@@ -25,11 +27,11 @@ public class CharaTest {
 			PersonajeDeUndertale personajeAtacante=new Chara();
 			PersonajeDeStarWars personajeAtacado=new Droide();
 			
-			Assert.assertEquals(150,personajeAtacante.obtenerPuntosDeAtaque());
-			Assert.assertEquals(1000,personajeAtacante.getEnergia());
+			Assert.assertEquals(Constantes.AtaqueChara,personajeAtacante.obtenerPuntosDeAtaque());
+			Assert.assertEquals(100,personajeAtacante.getEnergia());
 			personajeAtacante.atacar(personajeAtacado);
-			Assert.assertEquals(150+1,personajeAtacante.obtenerPuntosDeAtaque());
-			Assert.assertEquals(1000-150+1,personajeAtacante.getEnergia());
+			Assert.assertEquals(Constantes.AtaqueChara+1,personajeAtacante.obtenerPuntosDeAtaque());
+			Assert.assertEquals(100-15+1,personajeAtacante.getEnergia());
 			
 		}
 

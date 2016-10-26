@@ -2,32 +2,33 @@ package promotionSystem.razas;
 
 import promotionSystem.Circulo;
 import promotionSystem.Punto;
+import promotionSystem.Constantes;
 
 public class Chara extends PersonajeDeUndertale{
 	public Chara(){
-		energia=1000;
-		energiaMaxima=1000;
-		salud=100; 
-		saludMaxima=100;
-		ataque=150;
-		defensa=100;
-		magia=50;
-		velocidad=100;
+		energia=Constantes.EnergiaChara;
+		energiaMaxima=Constantes.EnergiaMaximaChara;
+		salud=Constantes.SaludChara; 
+		saludMaxima=Constantes.SaludMaximaChara;
+		ataque=Constantes.AtaqueChara;
+		defensa=Constantes.DefensaChara;
+		magia=Constantes.MagiaChara;
+		velocidad=Constantes.VelocidadChara;
 		experiencia=0;
-		nivel=0;
+		nivel=1;
 		posicion=new Punto(0,0);
 		radioDeAcccion=new Circulo(posicion,20);
 	}
 
 	@Override
-	public void subirStats(int nivel) {
-		energia+=nivel*10;
-		energiaMaxima+=nivel*10;
-		saludMaxima+=nivel*10;
-		salud+=nivel*10;
-		ataque+=nivel*10;
-		defensa+=nivel*5;
-		magia+=nivel*5;
-		velocidad+=nivel*10;
+	public void subirStats(int cantidadDeNivelesSubidos) {
+		energia+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
+		energiaMaxima+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
+		saludMaxima+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
+		salud+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
+		ataque+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelEspecial;
+		defensa+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
+		magia+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
+		velocidad+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
 	}
 }

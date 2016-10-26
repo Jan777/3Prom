@@ -6,8 +6,8 @@ import promotionSystem.PersonajeEquipado;
 
 public class ConChaleco extends PersonajeEquipado {
 	
-	public ConChaleco(Personaje personajeDecorado, double multiplicadorDeAtaque, int sumadorDeAtaque, double multiplicadorDeDefensa, int sumadorDeDefensa, double multiplicadorDeMagia, int sumadorDeMagia, double multiplicadorDeVelocidad, int sumadorDeVelocidad){
-		super(personajeDecorado, multiplicadorDeAtaque, sumadorDeAtaque, multiplicadorDeDefensa, sumadorDeDefensa, multiplicadorDeMagia, sumadorDeMagia, multiplicadorDeVelocidad, sumadorDeVelocidad);
+	public ConChaleco(Personaje personajeDecorado, double MultiplicadorDeAtaque, int sumadorDeAtaque, double MultiplicadorDeDefensa, int sumadorDeDefensa, double MultiplicadorDeMagia, int sumadorDeMagia, double MultiplicadorDeVelocidad, int sumadorDeVelocidad){
+		super(personajeDecorado, MultiplicadorDeAtaque, sumadorDeAtaque, MultiplicadorDeDefensa, sumadorDeDefensa, MultiplicadorDeMagia, sumadorDeMagia, MultiplicadorDeVelocidad, sumadorDeVelocidad);
 	}
 	
 	@Override

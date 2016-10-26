@@ -3,41 +3,40 @@ package promotionSystem.razas;
 import java.util.HashMap;
 
 import promotionSystem.Circulo;
+import promotionSystem.Constantes;
 import promotionSystem.Punto;
 import promotionSystem.hechizo.Hechizo;
 import promotionSystem.hechizo.IraWookeana;
-import promotionSystem.hechizo.Piro;
 
 public class Wookie extends PersonajeDeStarWars{
 	
 	public Wookie(){
-		energia=1000;
-		energiaMaxima=1000;
-		saludMaxima=110;
-		salud=110;
-		ataque=150;
-		defensa=70;
-		magia=50;
-		velocidad=50;
+		energia=Constantes.EnergiaWookie;
+		energiaMaxima=Constantes.EnergiaMaximaWookie;
+		salud=Constantes.SaludWookie; 
+		saludMaxima=Constantes.SaludMaximaWookie;
+		ataque=Constantes.AtaqueWookie;
+		defensa=Constantes.DefensaWookie;
+		magia=Constantes.MagiaWookie;
+		velocidad=Constantes.VelocidadWookie;
 		experiencia=0;
-		nivel=0;
+		nivel=1;
 		posicion=new Punto(0,0);
 		radioDeAcccion=new Circulo(posicion,20);
 		hechizos = new HashMap<String, Hechizo>();
-	    agregarHechizo("IraWookeana",new IraWookeana());
+        agregarHechizo("IraWookeana",new IraWookeana());
 	}
-	
 
 	@Override
-	public void subirStats(int nivel) {
-		energia+=nivel*10;
-		energiaMaxima+=nivel*10;
-		saludMaxima+=nivel*10;
-		salud+=+nivel*10;
-		ataque+=nivel*10;
-		defensa+=nivel*5;
-		magia+=nivel*5;
-		velocidad+=nivel*5;
+	public void subirStats(int cantidadDeNivelesSubidos) {
+		energia+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
+		energiaMaxima+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
+		saludMaxima+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
+		salud+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
+		ataque+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelEspecial;
+		defensa+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelEspecial;
+		magia+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelPlebe;
+		velocidad+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
 	}
 
 

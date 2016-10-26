@@ -3,6 +3,8 @@ package promotionSystem.personajeEquipado;
 import org.junit.Test;
 
 import org.junit.Assert;
+
+import promotionSystem.Constantes;
 import promotionSystem.Personaje;
 import promotionSystem.personajeEquipado.ConEscudo;
 import promotionSystem.razas.GuerreroHumano;
@@ -14,8 +16,8 @@ public class ConEscudoTests {
 	@Test
 	public void siConEscudoModificaElValorDeLaDefensa(){
 		Personaje Braixen = new GuerreroHumano();
-		Assert.assertEquals(80, Braixen.obtenerPuntosDeDefensa());
+		Assert.assertEquals(Constantes.DefensaGuerreroHumano, Braixen.obtenerPuntosDeDefensa());
 		Braixen = new ConEscudo(Braixen,1,0,1,2,1,0,1,0);
-		Assert.assertEquals(80 + 2, Braixen.obtenerPuntosDeDefensa());
+		Assert.assertEquals(Constantes.DefensaGuerreroHumano + 2, Braixen.obtenerPuntosDeDefensa());
 	}
 }

@@ -14,7 +14,7 @@ public class Batalla {
     }
 
     public void darTurno(Alianza alianza){
-        //Cargar interfaz para que el usuario ataque.
+        //Cargar interfaz para que el usuario Ataque.
     }
 
     public Alianza definirGanador() {

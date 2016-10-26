@@ -29,7 +29,7 @@ public class ArbolDeHabilidades extends ArrayList{
     }
 
     public List<String> listaDeHabilidades(){
-        List<String> listaDeHabilidades = new ArrayList<>();
+        List<String> listaDeHabilidades = new ArrayList<String>();
         for(Habilidad habilidad : habilidades){
             listaDeHabilidades.add(habilidad.getNombreHabilidad());
         }

@@ -2,39 +2,41 @@ package promotionSystem.razas;
 
 import java.util.HashMap;
 
+import promotionSystem.Circulo;
+import promotionSystem.Constantes;
 import promotionSystem.Punto;
 import promotionSystem.hechizo.Cura;
 import promotionSystem.hechizo.Hechizo;
-import promotionSystem.hechizo.IraWookeana;
 
 public class Droide extends PersonajeDeStarWars{
 	
 	public Droide(){
-		energia=1200;
-		energiaMaxima=1200;
-		saludMaxima=80;
-		salud=80;
-		ataque=80;
-		defensa=100;
-		magia=120;
-		velocidad=80;
+		energia=Constantes.EnergiaDroide;
+		energiaMaxima=Constantes.EnergiaMaximaDroide;
+		salud=Constantes.SaludDroide; 
+		saludMaxima=Constantes.SaludMaximaDroide;
+		ataque=Constantes.AtaqueDroide;
+		defensa=Constantes.DefensaDroide;
+		magia=Constantes.MagiaDroide;
+		velocidad=Constantes.VelocidadDroide;
 		experiencia=0;
-		nivel=0;
+		nivel=1;
 		posicion=new Punto(0,0);
+		radioDeAcccion=new Circulo(posicion,20);
 		hechizos = new HashMap<String, Hechizo>();
-	    agregarHechizo("Cura",new Cura());
+        agregarHechizo("Cura",new Cura());
 	}
 
 	@Override
-	public void subirStats(int nivel) {
-		energia+=nivel*10;
-		energiaMaxima+=nivel*10;
-		saludMaxima+=nivel*5;
-		salud+=+nivel*5;
-		ataque+=nivel*5;
-		defensa+=nivel*10;
-		magia+=nivel*10;
-		velocidad+=nivel*10;
+	public void subirStats(int cantidadDeNivelesSubidos) {
+		energia+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
+		energiaMaxima+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
+		saludMaxima+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
+		salud+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
+		ataque+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
+		defensa+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
+		magia+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
+		velocidad+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelEspecial;
 	}
 
 	@Override

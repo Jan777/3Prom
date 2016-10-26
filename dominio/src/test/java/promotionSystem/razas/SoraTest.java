@@ -3,6 +3,7 @@ package promotionSystem.razas;
 import org.junit.Assert;
 import org.junit.Test;
 
+import promotionSystem.Constantes;
 import promotionSystem.Personaje;
 
 
@@ -11,30 +12,26 @@ public class SoraTest {
 	@Test
 	public void siAumentaDeNivelAumentaLosStats(){
 		Sora personaje=new Sora();
-		Assert.assertEquals(0, personaje.getNivel());
+		Assert.assertEquals(1, personaje.getNivel());
 		personaje.subirExperiencia(10);
 		Assert.assertEquals(3, personaje.getNivel());
 		
-		Assert.assertEquals(100+3*10, personaje.obtenerPuntosDeAtaque());
-		Assert.assertEquals(100+3*10, personaje.obtenerPuntosDeDefensa());
-		Assert.assertEquals(100+3*10, personaje.obtenerPuntosDeMagia());
-		Assert.assertEquals(100+3*10, personaje.obtenerPuntosDeVelocidad());
-		Assert.assertEquals(100+3*10, personaje.getSalud());
-		Assert.assertEquals(1000+3*10, personaje.getEnergia());
+		Assert.assertEquals(100+2*Constantes.MultiplicadorDeNivelNormal, personaje.getEnergia());
+		Assert.assertEquals(Constantes.SaludSora+2*Constantes.MultiplicadorDeNivelNormal, personaje.getSalud());
+		Assert.assertEquals(Constantes.AtaqueSora+2*Constantes.MultiplicadorDeNivelNormal, personaje.obtenerPuntosDeAtaque());
+		Assert.assertEquals(Constantes.DefensaSora+2*Constantes.MultiplicadorDeNivelNormal, personaje.obtenerPuntosDeDefensa());
+		Assert.assertEquals(Constantes.MagiaSora+2*Constantes.MultiplicadorDeNivelEspecial, personaje.obtenerPuntosDeMagia());
+		Assert.assertEquals(Constantes.VelocidadSora+2*Constantes.MultiplicadorDeNivelNormal, personaje.obtenerPuntosDeVelocidad());	
 	}
-
-	
-	
-	
 
 	@Test
 	public void siAtacaAumentaDefensa(){
 		PersonajeDeKingdomHearts personajeAtacante=new Sora();
 		PersonajeDeStarWars personajeAtacado=new Droide();
 
-		Assert.assertEquals(100,personajeAtacante.obtenerPuntosDeDefensa());
+		Assert.assertEquals(Constantes.DefensaSora,personajeAtacante.obtenerPuntosDeDefensa());
 		personajeAtacante.atacar(personajeAtacado);
-		Assert.assertEquals((int) (100*1.125),personajeAtacante.obtenerPuntosDeDefensa());
+		Assert.assertEquals((int) (Constantes.DefensaSora*1.125),personajeAtacante.obtenerPuntosDeDefensa());
 
 	}
 }

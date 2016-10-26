@@ -1,35 +1,34 @@
 package promotionSystem.razas;
 
 import promotionSystem.Circulo;
+import promotionSystem.Constantes;
 import promotionSystem.Punto;
 
 public class PokemonTipoFuego extends PersonajeDePokemon {
 	public PokemonTipoFuego(){
-		energia=1000;
-		energiaMaxima=1000;
-		saludMaxima=90;
-		salud=90;
-		ataque=150;
-		defensa=60;
-		magia=150;
-		velocidad=75;
+		energia=Constantes.EnergiaPokemonDeFuego;
+		energiaMaxima=Constantes.EnergiaMaximaPokemonDeFuego;
+		salud=Constantes.SaludPokemonDeFuego; 
+		saludMaxima=Constantes.SaludMaximaPokemonDeFuego;
+		ataque=Constantes.AtaquePokemonDeFuego;
+		defensa=Constantes.DefensaPokemonDeFuego;
+		magia=Constantes.MagiaPokemonDeFuego;
+		velocidad=Constantes.VelocidadPokemonDeFuego;
 		experiencia=0;
-		nivel=0;
+		nivel=1;
 		posicion=new Punto(0,0);
 		radioDeAcccion=new Circulo(posicion,20);
 	}
-	
-	@Override
-	public void subirStats(int nivel) {
-		energia+=nivel*10;
-		energiaMaxima+=nivel*10;
-		saludMaxima+=nivel*5;
-		salud+=+nivel*5;
-		ataque+=nivel*10;
-		defensa+=nivel*2;
-		magia+=nivel*10;
-		velocidad+=nivel*5;
-		
-	}
 
+	@Override
+	public void subirStats(int cantidadDeNivelesSubidos) {
+		energia+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
+		energiaMaxima+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
+		saludMaxima+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
+		salud+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
+		ataque+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
+		defensa+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
+		magia+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelEspecial;
+		velocidad+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
+	}
 }

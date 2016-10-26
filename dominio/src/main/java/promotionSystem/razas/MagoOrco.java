@@ -1,35 +1,35 @@
 package promotionSystem.razas;
 
 import promotionSystem.Circulo;
+import promotionSystem.Constantes;
 import promotionSystem.Punto;
 
 public class MagoOrco extends Orco{
 	
 	public MagoOrco(){
-		energia = 1200;
-		energiaMaxima=1200;
-		saludMaxima=100;
-		salud=100;
-		ataque=40;
-		defensa=75;
-		velocidad=80;
-		magia=100;
+		energia=Constantes.EnergiaMagoOrco;
+		energiaMaxima=Constantes.EnergiaMaximaMagoOrco;
+		salud=Constantes.SaludMagoOrco; 
+		saludMaxima=Constantes.SaludMaximaMagoOrco;
+		ataque=Constantes.AtaqueMagoOrco;
+		defensa=Constantes.DefensaMagoOrco;
+		magia=Constantes.MagiaMagoOrco;
+		velocidad=Constantes.VelocidadMagoOrco;
 		experiencia=0;
-		nivel=0;
+		nivel=1;
 		posicion=new Punto(0,0);
 		radioDeAcccion=new Circulo(posicion,20);
 	}
-	
-	@Override
-	public void subirStats(int nivel) {
-		energia+=nivel*10;
-		energiaMaxima+=nivel*10;
-		saludMaxima+=nivel*5;
-		salud+=nivel*5;
-		ataque+=nivel*5;
-		defensa+=nivel*5;
-		magia+=nivel*10;
-		velocidad+=nivel*10;
-	}
 
+	@Override
+	public void subirStats(int cantidadDeNivelesSubidos) {
+		energia+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
+		energiaMaxima+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
+		saludMaxima+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
+		salud+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
+		ataque+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
+		defensa+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
+		magia+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelEspecial;
+		velocidad+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
+	}
 }

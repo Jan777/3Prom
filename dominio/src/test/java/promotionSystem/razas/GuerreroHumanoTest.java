@@ -3,22 +3,24 @@ package promotionSystem.razas;
 import org.junit.Assert;
 import org.junit.Test;
 
+import promotionSystem.Constantes;
+
 public class GuerreroHumanoTest {
 	
 	@Test
 	public void siAumentaDeNivelAumentaLosStats(){
 		Humano personaje=new GuerreroHumano();
-		Assert.assertEquals(0, personaje.getNivel());
+		Assert.assertEquals(1, personaje.getNivel());
 		personaje.subirExperiencia(10);
 
 		Assert.assertEquals(3, personaje.getNivel());
 
-		Assert.assertEquals(1200+3*10, personaje.getEnergia());
-		Assert.assertEquals(100+3*10, personaje.getSalud());
-		Assert.assertEquals(150+3*10, personaje.obtenerPuntosDeAtaque());
-		Assert.assertEquals(80+3*5, personaje.obtenerPuntosDeDefensa());
-		Assert.assertEquals(20+3*5, personaje.obtenerPuntosDeMagia());
-		Assert.assertEquals(90+3*5, personaje.obtenerPuntosDeVelocidad());
+		Assert.assertEquals(100+2*Constantes.MultiplicadorDeNivelNormal, personaje.getEnergia());
+		Assert.assertEquals(Constantes.SaludGuerreroHumano+2*Constantes.MultiplicadorDeNivelNormal, personaje.getSalud());
+		Assert.assertEquals(Constantes.AtaqueGuerreroHumano+2*Constantes.MultiplicadorDeNivelEspecial, personaje.obtenerPuntosDeAtaque());
+		Assert.assertEquals(Constantes.DefensaGuerreroHumano+2*Constantes.MultiplicadorDeNivelNormal, personaje.obtenerPuntosDeDefensa());
+		Assert.assertEquals(Constantes.MagiaGuerreroHumano+2*Constantes.MultiplicadorDeNivelNormal, personaje.obtenerPuntosDeMagia());
+		Assert.assertEquals(Constantes.VelocidadGuerreroHumano+2*Constantes.MultiplicadorDeNivelNormal, personaje.obtenerPuntosDeVelocidad());
 	}
 
 }

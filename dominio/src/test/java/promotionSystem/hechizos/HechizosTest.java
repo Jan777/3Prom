@@ -3,6 +3,7 @@ package promotionSystem.hechizos;
 import org.junit.Assert;
 import org.junit.Test;
 
+import promotionSystem.Constantes;
 import promotionSystem.Personaje;
 import promotionSystem.razas.GuerreroOrco;
 import promotionSystem.razas.Jedi;
@@ -20,23 +21,22 @@ public class HechizosTest {
 	public void siUsoHechizoHieloAfectaASuOponente(){
 		Personaje riku =new Riku();
 		Personaje pokemon=new PokemonTipoFuego();
-		Assert.assertEquals(90, pokemon.getSalud());
-		Assert.assertEquals(75, pokemon.obtenerPuntosDeVelocidad());
+		Assert.assertEquals(Constantes.SaludPokemonDeFuego, pokemon.getSalud());
+		Assert.assertEquals(Constantes.VelocidadPokemonDeFuego, pokemon.obtenerPuntosDeVelocidad());
 		riku.atacarConMagia(pokemon, "Hielo");
-		Assert.assertEquals(75, pokemon.getSalud());
-		Assert.assertEquals(37, pokemon.obtenerPuntosDeVelocidad());
-		
+		Assert.assertEquals(47, pokemon.getSalud());
+		Assert.assertEquals(2, pokemon.obtenerPuntosDeVelocidad());
 	}
 	
 	@Test
 	public void siLoAtacoLoPuedoCurar(){
 		Personaje Riku =new Riku();
 		Personaje roxas =new GuerreroOrco();
-		Assert.assertEquals(150, roxas.getSalud());
+		Assert.assertEquals(Constantes.SaludRoxas, roxas.getSalud());
 		Riku.atacar(roxas);
-		Assert.assertEquals(50, roxas.getSalud());
+		Assert.assertEquals(41, roxas.getSalud());
 		Riku.usarMagiaSupport(roxas, "Cura");
-		Assert.assertEquals(125, roxas.getSalud());
+		Assert.assertEquals(50, roxas.getSalud());
 
 	}
 	
@@ -44,11 +44,11 @@ public class HechizosTest {
 	public void siUsoHechizoTruenoAfectaASuOponente(){
 		Personaje roxas =new Roxas();
 		Personaje pokemon=new PokemonTipoAgua();
-		Assert.assertEquals(100, pokemon.getSalud());
-		Assert.assertEquals(100, pokemon.obtenerPuntosDeVelocidad());
+		Assert.assertEquals(Constantes.SaludPokemonDeAgua, pokemon.getSalud());
+		Assert.assertEquals(Constantes.VelocidadPokemonDeAgua, pokemon.obtenerPuntosDeVelocidad());
 		roxas.atacarConMagia(pokemon, "Trueno");
-		Assert.assertEquals(0, pokemon.getSalud());
-		Assert.assertEquals(66, pokemon.obtenerPuntosDeVelocidad());
+		Assert.assertEquals(56, pokemon.getSalud());
+		Assert.assertEquals(2, pokemon.obtenerPuntosDeVelocidad());
 		
 	}
 	
@@ -56,18 +56,18 @@ public class HechizosTest {
 	public void siUsoHechizoPiroAfectaASuOponente(){
 		Personaje sora =new Sora();
 		Personaje pokemon=new PokemonTipoPlanta();
-		Assert.assertEquals(150, pokemon.getSalud());
+		Assert.assertEquals(Constantes.SaludPokemonDePlanta, pokemon.getSalud());
 		sora.atacarConMagia(pokemon, "Piro");
-		Assert.assertEquals(120, pokemon.getSalud());
+		Assert.assertEquals(45, pokemon.getSalud());
 		
 	}
 	
 	@Test
 	public void siUsoHechizoIraWookeanaAfectaASuFuerza(){
 		Personaje wookie =new Wookie();
-		Assert.assertEquals(150, wookie.obtenerPuntosDeAtaque());
+		Assert.assertEquals(Constantes.AtaqueWookie, wookie.obtenerPuntosDeAtaque());
 		wookie.usarMagiaDeAlteracion("IraWookeana");
-		Assert.assertEquals(171, wookie.obtenerPuntosDeAtaque());
+		Assert.assertEquals(21, wookie.obtenerPuntosDeAtaque());
 		
 	}
 	
@@ -75,9 +75,9 @@ public class HechizosTest {
 	public void siUsoHechizoEmpujonDeFuerzaAfectaASuOponente(){
 		Personaje jedi =new Jedi();
 		Personaje pokemon=new PokemonTipoPlanta();
-		Assert.assertEquals(150, pokemon.getSalud());
+		Assert.assertEquals(Constantes.SaludPokemonDePlanta, pokemon.getSalud());
 		jedi.atacarConMagia(pokemon, "EmpujonDeFuerza");
-		Assert.assertEquals(100, pokemon.getSalud());
+		Assert.assertEquals(47, pokemon.getSalud());
 		
 	}
 	
@@ -85,9 +85,9 @@ public class HechizosTest {
 	public void siUsoHechizoDeAtaqueAfectaASuEnergia(){
 		Personaje jedi =new Jedi();
 		Personaje pokemon=new PokemonTipoPlanta();
-		Assert.assertEquals(1200, jedi.getEnergia());
+		Assert.assertEquals(100, jedi.getEnergia());
 		jedi.atacarConMagia(pokemon, "EmpujonDeFuerza");
-		Assert.assertEquals(1080, jedi.getEnergia());
+		Assert.assertEquals(84, jedi.getEnergia());
 		
 	}
 	
@@ -95,17 +95,17 @@ public class HechizosTest {
 	public void siUsoHechizoSupportAfectaASuEnergia(){
 		Personaje riku =new Riku();
 		Personaje roxas =new GuerreroOrco();
-		Assert.assertEquals(1000, riku.getEnergia());
+		Assert.assertEquals(100, riku.getEnergia());
 		riku.usarMagiaSupport(roxas, "Cura");
-		Assert.assertEquals(925, riku.getEnergia());
+		Assert.assertEquals(87, riku.getEnergia());
 		
 	}
 	
 	@Test
 	public void siUsoHechizoDeAlteracionAfectaASuEnergia(){
 		Personaje jedi =new Wookie();
-		Assert.assertEquals(1000, jedi.getEnergia());
+		Assert.assertEquals(100, jedi.getEnergia());
 		jedi.usarMagiaDeAlteracion("IraWookeana");
-		Assert.assertEquals(950, jedi.getEnergia());
+		Assert.assertEquals(95, jedi.getEnergia());
 	}
 }

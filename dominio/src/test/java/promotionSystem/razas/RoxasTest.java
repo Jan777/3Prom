@@ -3,22 +3,23 @@ package promotionSystem.razas;
 import org.junit.Assert;
 import org.junit.Test;
 
+import promotionSystem.Constantes;
 import promotionSystem.Personaje;
 
 public class RoxasTest {
 	@Test
 	public void siAumentaDeNivelAumentaLosStats(){
 		Roxas personaje=new Roxas();
-		Assert.assertEquals(0, personaje.getNivel());
+		Assert.assertEquals(1, personaje.getNivel());
 		personaje.subirExperiencia(10);
 		Assert.assertEquals(3, personaje.getNivel());
 
-		Assert.assertEquals(1000+10*3, personaje.getEnergia());
-		Assert.assertEquals(100+5*3, personaje.getSalud());
-		Assert.assertEquals(55+5*3, personaje.obtenerPuntosDeAtaque());
-		Assert.assertEquals(200+10*3, personaje.obtenerPuntosDeDefensa());
-		Assert.assertEquals(200+10*3, personaje.obtenerPuntosDeMagia());
-		Assert.assertEquals(150+10*3, personaje.obtenerPuntosDeVelocidad());
+		Assert.assertEquals(100+Constantes.MultiplicadorDeNivelNormal*2, personaje.getEnergia());
+		Assert.assertEquals(Constantes.SaludRoxas+Constantes.MultiplicadorDeNivelNormal*2, personaje.getSalud());
+		Assert.assertEquals(Constantes.AtaqueRoxas+Constantes.MultiplicadorDeNivelEspecial*2, personaje.obtenerPuntosDeAtaque());
+		Assert.assertEquals(Constantes.DefensaRoxas+Constantes.MultiplicadorDeNivelNormal*2, personaje.obtenerPuntosDeDefensa());
+		Assert.assertEquals(Constantes.MagiaRoxas+Constantes.MultiplicadorDeNivelNormal*2, personaje.obtenerPuntosDeMagia());
+		Assert.assertEquals(Constantes.VelocidadRoxas+Constantes.MultiplicadorDeNivelNormal*2, personaje.obtenerPuntosDeVelocidad());
 	}
 	
 	
@@ -29,8 +30,8 @@ public class RoxasTest {
 		PersonajeDeKingdomHearts personajeAtacante=new Roxas();
 		PersonajeDeStarWars personajeAtacado=new Droide();
 
-		Assert.assertEquals(200,personajeAtacante.obtenerPuntosDeDefensa());
+		Assert.assertEquals(Constantes.DefensaRoxas,personajeAtacante.obtenerPuntosDeDefensa());
 		personajeAtacante.atacar(personajeAtacado);
-		Assert.assertEquals((int) (200*1.125),personajeAtacante.obtenerPuntosDeDefensa());
+		Assert.assertEquals((int) (Constantes.DefensaRoxas*1.125),personajeAtacante.obtenerPuntosDeDefensa());
 	}
 }

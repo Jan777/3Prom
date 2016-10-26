@@ -15,9 +15,9 @@ public class AlianzaDeHumanosTest {
         AlianzaDeHumanos alianzaDeHumanos = crearAlianzaDeHumanos(3);
         Alianza alianzaEnemiga = AlianzaBuilder.crearAlianza(3);
         alianzaDeHumanos.atacar(alianzaEnemiga);
-        assertEquals(0, alianzaEnemiga.getPersonajes().get(0).getSalud());
-        assertEquals(0, alianzaEnemiga.getPersonajes().get(1).getSalud());
-        assertEquals(0, alianzaEnemiga.getPersonajes().get(2).getSalud());
+        assertEquals(50, alianzaEnemiga.getPersonajes().get(0).getSalud());
+        assertEquals(50, alianzaEnemiga.getPersonajes().get(1).getSalud());
+        assertEquals(50, alianzaEnemiga.getPersonajes().get(2).getSalud());
     }
 
     @Test
@@ -25,8 +25,8 @@ public class AlianzaDeHumanosTest {
         AlianzaDeHumanos alianzaDeHumanos = crearAlianzaDeHumanos(3);
         Alianza alianzaEnemiga = AlianzaBuilder.crearAlianza(2);
         alianzaDeHumanos.atacar(alianzaEnemiga);
-        assertEquals(0, alianzaEnemiga.getPersonajes().get(0).getSalud());
-        assertEquals(0, alianzaEnemiga.getPersonajes().get(1).getSalud());
+        assertEquals(50, alianzaEnemiga.getPersonajes().get(0).getSalud());
+        assertEquals(50, alianzaEnemiga.getPersonajes().get(1).getSalud());
     }
 
     @Test
@@ -34,9 +34,9 @@ public class AlianzaDeHumanosTest {
         AlianzaDeHumanos alianzaDeHumanos = crearAlianzaDeHumanos(3);
         Alianza alianzaEnemiga = AlianzaBuilder.crearAlianza(4);
         alianzaDeHumanos.atacar(alianzaEnemiga);
-        assertEquals(0, alianzaEnemiga.getPersonajes().get(0).getSalud());
-        assertEquals(0, alianzaEnemiga.getPersonajes().get(1).getSalud());
-        assertEquals(0, alianzaEnemiga.getPersonajes().get(2).getSalud());
-        assertEquals(90, alianzaEnemiga.getPersonajes().get(3).getSalud());
+        assertEquals(50, alianzaEnemiga.getPersonajes().get(0).getSalud());
+        assertEquals(50, alianzaEnemiga.getPersonajes().get(1).getSalud());
+        assertEquals(50, alianzaEnemiga.getPersonajes().get(2).getSalud());
+        assertEquals(50, alianzaEnemiga.getPersonajes().get(3).getSalud());
     }
 }

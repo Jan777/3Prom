@@ -3,6 +3,8 @@ package promotionSystem.personajeEquipado;
 import org.junit.Test;
 
 import org.junit.Assert;
+
+import promotionSystem.Constantes;
 import promotionSystem.Personaje;
 import promotionSystem.personajeEquipado.ConCasco;
 import promotionSystem.razas.Humano;
@@ -13,8 +15,8 @@ public class ConCascoTests {
 	@Test
 	public void siConCascoModificaElValorDeLaDefensa() {
 		Personaje Braixen = new PokemonTipoFuego();
-		Assert.assertEquals(60, Braixen.obtenerPuntosDeDefensa());
+		Assert.assertEquals(Constantes.DefensaPokemonDeFuego, Braixen.obtenerPuntosDeDefensa());
 		Braixen = new ConCasco(Braixen,1,0,2,0,1,0,1,0);
-		Assert.assertEquals(60 * 2, Braixen.obtenerPuntosDeDefensa());
+		Assert.assertEquals(Constantes.DefensaPokemonDeFuego * 2, Braixen.obtenerPuntosDeDefensa());
 	}
 }

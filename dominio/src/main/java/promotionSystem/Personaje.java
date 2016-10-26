@@ -76,8 +76,8 @@ public abstract class Personaje {
 
 	public abstract void despuesDeAtacar();
 
-	public void serAtacado(int ataque) {
-		salud -= ataque;
+	public void serAtacado(int Ataque) {
+		salud -= Ataque;
 		if (salud < 0) {
 			salud = 0;
 		}
@@ -156,8 +156,8 @@ public abstract class Personaje {
 		return defensa;
 	}
 
-	public void setDefensa(int defensa) {
-		this.defensa = defensa;
+	public void setDefensa(int Defensa) {
+		this.defensa = Defensa;
 
 	}
 
@@ -268,7 +268,7 @@ public abstract class Personaje {
 			alianza.agregarPersonajes(invitador);
 		}
 		else{
-			List<Personaje> personajes= new ArrayList<>();
+			List<Personaje> personajes= new ArrayList<Personaje>();
 			personajes.add(invitador);
 			personajes.add(this);
 			this.alianza = new Alianza(personajes);
@@ -483,8 +483,8 @@ public abstract class Personaje {
 
 	
 
-	public void setVelocidad(int velocidad) {
-		this.velocidad = velocidad;
+	public void setVelocidad(int Velocidad) {
+		this.velocidad = Velocidad;
 	}
 
 	public int getSaludMaxima() {

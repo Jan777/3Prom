@@ -4,21 +4,21 @@ public abstract class PersonajeEquipado extends Personaje {
 	
 	private Personaje personajeDecorado;
 	
-	private double multiplicadorDeAtaque;
+	private double MultiplicadorDeAtaque;
 	private int sumadorDeAtaque;
-	private double multiplicadorDeDefensa;
+	private double MultiplicadorDeDefensa;
 	private int sumadorDeDefensa;
-	private double multiplicadorDeMagia;
+	private double MultiplicadorDeMagia;
 	private int sumadorDeMagia;
-	private double multiplicadorDeVelocidad;
+	private double MultiplicadorDeVelocidad;
 	private int sumadorDeVelocidad;
 	
-	public PersonajeEquipado(Personaje personajeDecorado, double multiplicadorDeAtaque, int sumadorDeAtaque, double multiplicadorDeDefensa, int sumadorDeDefensa, double multiplicadorDeMagia, int sumadorDeMagia, double multiplicadorDeVelocidad, int sumadorDeVelocidad) {
+	public PersonajeEquipado(Personaje personajeDecorado, double MultiplicadorDeAtaque, int sumadorDeAtaque, double MultiplicadorDeDefensa, int sumadorDeDefensa, double MultiplicadorDeMagia, int sumadorDeMagia, double MultiplicadorDeVelocidad, int sumadorDeVelocidad) {
 		this.personajeDecorado = personajeDecorado;
-		this.multiplicadorDeAtaque = multiplicadorDeAtaque;
-		this.multiplicadorDeDefensa = multiplicadorDeDefensa;
-		this.multiplicadorDeMagia = multiplicadorDeMagia;
-		this.multiplicadorDeVelocidad = multiplicadorDeVelocidad;
+		this.MultiplicadorDeAtaque = MultiplicadorDeAtaque;
+		this.MultiplicadorDeDefensa = MultiplicadorDeDefensa;
+		this.MultiplicadorDeMagia = MultiplicadorDeMagia;
+		this.MultiplicadorDeVelocidad = MultiplicadorDeVelocidad;
 		this.sumadorDeAtaque = sumadorDeAtaque;
 		this.sumadorDeDefensa = sumadorDeDefensa;
 		this.sumadorDeMagia = sumadorDeMagia;
@@ -180,11 +180,11 @@ public abstract class PersonajeEquipado extends Personaje {
 	}
 
 	public double getMultiplicadorDeAtaque() {
-		return multiplicadorDeAtaque;
+		return MultiplicadorDeAtaque;
 	}
 
-	public void setMultiplicadorDeAtaque(double multiplicadorDeAtaque) {
-		this.multiplicadorDeAtaque = multiplicadorDeAtaque;
+	public void setMultiplicadorDeAtaque(double MultiplicadorDeAtaque) {
+		this.MultiplicadorDeAtaque = MultiplicadorDeAtaque;
 	}
 
 	public int getSumadorDeAtaque() {
@@ -196,11 +196,11 @@ public abstract class PersonajeEquipado extends Personaje {
 	}
 
 	public double getMultiplicadorDeDefensa() {
-		return multiplicadorDeDefensa;
+		return MultiplicadorDeDefensa;
 	}
 
-	public void setMultiplicadorDeDefensa(double multiplicadorDeDefensa) {
-		this.multiplicadorDeDefensa = multiplicadorDeDefensa;
+	public void setMultiplicadorDeDefensa(double MultiplicadorDeDefensa) {
+		this.MultiplicadorDeDefensa = MultiplicadorDeDefensa;
 	}
 
 	public int getSumadorDeDefensa() {
@@ -212,11 +212,11 @@ public abstract class PersonajeEquipado extends Personaje {
 	}
 
 	public double getMultiplicadorDeMagia() {
-		return multiplicadorDeMagia;
+		return MultiplicadorDeMagia;
 	}
 
-	public void setMultiplicadorDeMagia(double multiplicadorDeMagia) {
-		this.multiplicadorDeMagia = multiplicadorDeMagia;
+	public void setMultiplicadorDeMagia(double MultiplicadorDeMagia) {
+		this.MultiplicadorDeMagia = MultiplicadorDeMagia;
 	}
 
 	public int getSumadorDeMagia() {
@@ -228,11 +228,11 @@ public abstract class PersonajeEquipado extends Personaje {
 	}
 
 	public double getMultiplicadorDeVelocidad() {
-		return multiplicadorDeVelocidad;
+		return MultiplicadorDeVelocidad;
 	}
 
-	public void setMultiplicadorDeVelocidad(double multiplicadorDeVelocidad) {
-		this.multiplicadorDeVelocidad = multiplicadorDeVelocidad;
+	public void setMultiplicadorDeVelocidad(double MultiplicadorDeVelocidad) {
+		this.MultiplicadorDeVelocidad = MultiplicadorDeVelocidad;
 	}
 
 	public int getSumadorDeVelocidad() {

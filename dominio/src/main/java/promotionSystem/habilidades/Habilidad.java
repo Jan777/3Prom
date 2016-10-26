@@ -5,16 +5,16 @@ import java.util.List;
 
 public abstract class Habilidad {
     private String nombreHabilidad;
-    private int ataqueAumentado;
-    private int magiaAumentada;
-    private int defensaAumentada;
+    private int AtaqueAumentado;
+    private int MagiaAumentada;
+    private int DefensaAumentada;
     protected int nivel;
 
-    public Habilidad(String nombreHabilidad, int ataqueAumentado, int magiaAumentada, int defensaAumentada, int nivel) {
+    public Habilidad(String nombreHabilidad, int AtaqueAumentado, int MagiaAumentada, int DefensaAumentada, int nivel) {
         this.nombreHabilidad = nombreHabilidad;
-        this.ataqueAumentado = ataqueAumentado;
-        this.magiaAumentada = magiaAumentada;
-        this.defensaAumentada = defensaAumentada;
+        this.AtaqueAumentado = AtaqueAumentado;
+        this.MagiaAumentada = MagiaAumentada;
+        this.DefensaAumentada = DefensaAumentada;
         this.nivel = nivel;
     }
 
@@ -29,10 +29,10 @@ public abstract class Habilidad {
     public abstract boolean puedeSubirNivel();
 
     public List<Integer> statsASubir(){
-        List<Integer> statsASubir = new ArrayList<>();
-        statsASubir.add(ataqueAumentado);
-        statsASubir.add(magiaAumentada);
-        statsASubir.add(defensaAumentada);
+        List<Integer> statsASubir = new ArrayList<Integer>();
+        statsASubir.add(AtaqueAumentado);
+        statsASubir.add(MagiaAumentada);
+        statsASubir.add(DefensaAumentada);
         return statsASubir;
     }
 
