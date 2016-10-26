@@ -70,16 +70,16 @@
     - **Criterio de aceptación**: Dado un Humano, este podrá ser de las siguientes castas: Mago, Guerrero,  Tanque.
 
 12. Como Humano , quiero que cada vez que suba de nivel, los stats aumentan los stats de manera equitativa.
-    - **Criterio de aceptación**: Dado un humano, cuando aumente de nivel, los todos los stats aumentan en 1.
+    - **Criterio de aceptación**: Dado un humano, cuando aumente de nivel, los todos los stats aumentan en una proporcion constante.
 
 #### Guerrero
 44. Como GuerreroHumano, quiero que tenga más ataque que el resto de los stats
-    - **Criterio de aceptación**: Dado un GuerreroHumano, sus puntos deben ser: SALUD=100, ENERGIA=100, MAGIA=3, ATAQUE=20, DEFENSA=3 y VELOCIDAD=3.
+    - **Criterio de aceptación**: Dado un GuerreroHumano, sus puntos deben ser: SALUD=50, ENERGIA=100, MAGIA=3, ATAQUE=20, DEFENSA=3 y VELOCIDAD=3.
 
 #### Mago
 
 42. Como MagoHumano, quiero que tenga más salud que el resto de los stats
-    - **Criterio de aceptación**: Dado un MagoHumano, sus puntos deben ser: SALUD=100, ENERGIA=100, MAGIA=20, ATAQUE=3, DEFENSA=3 y VELOCIDAD=5.
+    - **Criterio de aceptación**: Dado un MagoHumano, sus puntos deben ser: SALUD=50, ENERGIA=100, MAGIA=20, ATAQUE=3, DEFENSA=3 y VELOCIDAD=4.
 
 #### Tanque
 39. Como TanqueHumano, quiero que tenga más salud y defensa que el resto de los stats
@@ -96,12 +96,12 @@
 #### Guerrero
 
 43. Como GuerreroOrco, quiero que tenga más ataque que el resto de los stats
-    - **Criterio de aceptación**: Dado un GuerreroOrco, sus puntos deben ser: SALUD=100, ENERGIA=100, MAGIA=3, ATAQUE=20, DEFENSA=4 y VELOCIDAD=3.
+    - **Criterio de aceptación**: Dado un GuerreroOrco, sus puntos deben ser: SALUD=50, ENERGIA=100, MAGIA=3, ATAQUE=20, DEFENSA=4 y VELOCIDAD=3.
 
 #### Mago
 
 41. Como MagoOrco, quiero que tenga más salud que el resto de los stats
-    - **Criterio de aceptación**: Dado un MagoOrco, sus puntos deben ser: SALUD=100, ENERGIA=100, MAGIA=20, ATAQUE=4, DEFENSA=4 y VELOCIDAD=3.
+    - **Criterio de aceptación**: Dado un MagoOrco, sus puntos deben ser: SALUD=50, ENERGIA=100, MAGIA=20, ATAQUE=4, DEFENSA=3 y VELOCIDAD=3.
 
 #### Tanque
 
@@ -121,7 +121,7 @@
     - **Criterio de aceptación**: Dado un Jedi,Cada vez que ataca aumenta su magia en 2 puntos.
 
 38. Como Jedi, quiero que tenga más puntos de magia que ataque, defensa y velocidad
-    - **Criterio de aceptación**: Dado un jedi, sus puntos deben ser: SALUD=50, ENERGIA=100, ATAQUE=8,DEFENSA=8,VELOCIDAD=8 y MAGIA=20.
+    - **Criterio de aceptación**: Dado un jedi, sus puntos deben ser: SALUD=40, ENERGIA=100, ATAQUE=11,DEFENSA=11,VELOCIDAD=8 y MAGIA=16.
 
 #### Wookie
 17. Como Wookie, cada vez que suba de nivel, los stats aumentan los stats basandose en ataque, menos en velocidad.
@@ -168,12 +168,12 @@
 
 #### Pokemon de Agua
 31. Como Pokemon de agua, deseo que los stats sean destacados en ataque y defensa pero debil en Velocidad
-    - **Criterio de aceptación**: Criterio de Aceptación: Los puntos del pokemon de agua deben ser: SALUD=50, ENERGIA=100, ATAQUE=12,DEFENSA=12,VELOCIDAD=5 y MAGIA=10.
+    - **Criterio de aceptación**: Criterio de Aceptación: Los puntos del pokemon de agua deben ser: SALUD=50, ENERGIA=100, ATAQUE=13,DEFENSA=13,VELOCIDAD=4 y MAGIA=10.
 
 #### Pokemon de Planta
 
 32. Como Pokemon de Planta , deseo que se destaque en magia y defensa, pero muy débil en velocidad..
-    - **Criterio de aceptación**: Criterio de Aceptación: Los puntos del pokemon de planta deben ser:  SALUD=50, ENERGIA=100, ATAQUE=10,DEFENSA=12,VELOCIDAD=5 y MAGIA=12.
+    - **Criterio de aceptación**: Criterio de Aceptación: Los puntos del pokemon de planta deben ser:  SALUD=50, ENERGIA=100, ATAQUE=10,DEFENSA=13,VELOCIDAD=4 y MAGIA=13.
 
 ### ++Kingdom Hearts++
 27. Como Personaje de Kingdom Hearts , quiero poder elegir una casta para mi personaje
