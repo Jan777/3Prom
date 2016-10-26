@@ -153,7 +153,20 @@ public class PersonajeTest {
 		personajeAtacante.subirExperiencia(1);
 		Assert.assertEquals(1,personajeAtacante.getNivel());
 	}
-	
+
+	@Test
+    public void debeGanarUnPuntoDeHabilidadCuandoSubaDeNivel(){
+	    personajeAtacante.subirNivel();
+        Assert.assertEquals(1, personajeAtacante.getPuntosDeHabilidad());
+    }
+
+	@Test
+	public void debeSubirHabilidadYLosStatsCorrespondientes(){
+		personajeAtacante.subirHabilidad("Ataque certero");
+        Assert.assertTrue(personajeAtacante.habilidades().contains("Ataque certero"));
+        Assert.assertEquals(152, personajeAtacante.getAtaque());
+	}
+
 	@Test
 	public void debeElegirElPrimerPersonajeComoVictima(){
 		Alianza alianzaEnemiga = crearAlianza(1);

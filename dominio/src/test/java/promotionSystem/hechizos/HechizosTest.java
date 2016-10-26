@@ -37,7 +37,7 @@ public class HechizosTest {
 		Assert.assertEquals(50, roxas.getSalud());
 		Riku.usarMagiaSupport(roxas, "Cura");
 		Assert.assertEquals(125, roxas.getSalud());
-		
+
 	}
 	
 	@Test
@@ -91,7 +91,6 @@ public class HechizosTest {
 		
 	}
 	
-
 	@Test
 	public void siUsoHechizoSupportAfectaASuEnergia(){
 		Personaje riku =new Riku();
@@ -108,6 +107,5 @@ public class HechizosTest {
 		Assert.assertEquals(1000, jedi.getEnergia());
 		jedi.usarMagiaDeAlteracion("IraWookeana");
 		Assert.assertEquals(950, jedi.getEnergia());
-		
 	}
 }
