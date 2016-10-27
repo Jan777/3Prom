@@ -1,8 +1,14 @@
 package promotionSystem.razas;
 
+import java.util.HashMap;
+
 import promotionSystem.Circulo;
 import promotionSystem.Constantes;
 import promotionSystem.Punto;
+import promotionSystem.hechizo.Cura;
+import promotionSystem.hechizo.Hechizo;
+import promotionSystem.hechizo.Hielo;
+import promotionSystem.hechizo.Llamarada;
 
 public class PokemonTipoFuego extends PersonajeDePokemon {
 	public PokemonTipoFuego(){
@@ -18,6 +24,9 @@ public class PokemonTipoFuego extends PersonajeDePokemon {
 		nivel=1;
 		posicion=new Punto(0,0);
 		radioDeAcccion=new Circulo(posicion,20);
+		hechizos = new HashMap<String, Hechizo>();
+        agregarHechizo("Llamarada",new Llamarada());
+        
 	}
 
 	@Override

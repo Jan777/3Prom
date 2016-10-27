@@ -5,8 +5,11 @@ import java.util.HashMap;
 import promotionSystem.Circulo;
 import promotionSystem.Constantes;
 import promotionSystem.Punto;
+import promotionSystem.hechizo.ControlMental;
+import promotionSystem.hechizo.Electrificar;
 import promotionSystem.hechizo.EmpujonDeFuerza;
 import promotionSystem.hechizo.Hechizo;
+import promotionSystem.hechizo.Telekinesis;
 
 public class Jedi extends PersonajeDeStarWars{
 	
@@ -25,6 +28,9 @@ public class Jedi extends PersonajeDeStarWars{
 		radioDeAcccion=new Circulo(posicion,20);
 		hechizos = new HashMap<String, Hechizo>();
         agregarHechizo("EmpujonDeFuerza",new EmpujonDeFuerza());
+        agregarHechizo("Telekinesis",new Telekinesis());
+        agregarHechizo("Electrificar",new Electrificar());
+        agregarHechizo("ControlMental",new ControlMental());
 	}
 
 	@Override

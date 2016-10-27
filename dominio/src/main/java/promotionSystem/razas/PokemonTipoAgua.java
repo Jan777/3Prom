@@ -1,8 +1,13 @@
 package promotionSystem.razas;
 
+import java.util.HashMap;
+
 import promotionSystem.Circulo;
 import promotionSystem.Constantes;
 import promotionSystem.Punto;
+import promotionSystem.hechizo.Hechizo;
+import promotionSystem.hechizo.Hidrobomba;
+import promotionSystem.hechizo.Llamarada;
 
 public class PokemonTipoAgua extends PersonajeDePokemon{
 	
@@ -19,6 +24,8 @@ public class PokemonTipoAgua extends PersonajeDePokemon{
 		nivel=1;
 		posicion=new Punto(0,0);
 		radioDeAcccion=new Circulo(posicion,20);
+		hechizos = new HashMap<String, Hechizo>();
+        agregarHechizo("Hidrobomba",new Hidrobomba());
 	}
 
 	@Override

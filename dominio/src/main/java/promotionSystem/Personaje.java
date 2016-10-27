@@ -93,6 +93,18 @@ public abstract class Personaje {
 			velocidad = 0;
 		}
 	}
+	
+	public void serReducidoLaDefensa(int ptos) {
+		defensa -= ptos;
+		if (defensa < 0) {
+			defensa= 0;
+		}
+	}
+	
+	public void serAumentadoLaDefensa(int ptos) {
+		defensa += ptos;
+		
+	}
 
 	private boolean puedeAtacar() {
 		return energia >= ataque;
