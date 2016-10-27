@@ -5,6 +5,7 @@ import java.util.HashMap;
 import promotionSystem.Circulo;
 import promotionSystem.Constantes;
 import promotionSystem.Punto;
+import promotionSystem.hechizo.CampoDeFuerza;
 import promotionSystem.hechizo.Cura;
 import promotionSystem.hechizo.Hechizo;
 
@@ -25,6 +26,7 @@ public class Droide extends PersonajeDeStarWars{
 		radioDeAcccion=new Circulo(posicion,20);
 		hechizos = new HashMap<String, Hechizo>();
         agregarHechizo("Cura",new Cura());
+        agregarHechizo("CampoDeFuerza",new CampoDeFuerza());
 	}
 
 	@Override
