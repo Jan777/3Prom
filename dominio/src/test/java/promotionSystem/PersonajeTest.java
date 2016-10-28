@@ -4,7 +4,10 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import promotionSystem.mapa.Mapa;
+import promotionSystem.mapa.Obstaculo;
 import promotionSystem.razas.castas.humano.GuerreroHumano;
+import promotionSystem.razas.castas.pokemon.PokemonTipoAgua;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -229,19 +232,9 @@ public class PersonajeTest {
 	}
 	
 	@Test
-	public void siLePasoUnaPosicionValidaElPersonajeSeMueveAEsaPosicion(){
-		Punto posicionNueva=new Punto(3,2);
-		
-		personajeAtacante.mover(posicionNueva);
-		
-		Assert.assertEquals(3,personajeAtacante.getPosicion().getX(),0);
-		Assert.assertEquals(2,personajeAtacante.getPosicion().getY(),0);
-	}
-	
-	@Test
 	public void siSeInvocaALosAliadosDentroDelRadioYUnoEstaFueraDeEseRadioNoDebeSerLlamado(){
 		Alianza alianza=crearAlianza(3);
-		alianza.getPersonajes().get(0).mover(new Punto(100,100));
+		alianza.getPersonajes().get(0).setPosicion(new Punto(100,100));
 		
 		ArrayList<Personaje>aliadosEnCombate=(ArrayList<Personaje>) alianza.getPersonajes().get(1).invocarAliados();
 		Assert.assertEquals(2, aliadosEnCombate.size());
@@ -251,8 +244,8 @@ public class PersonajeTest {
 	@Test
 	public void siSeInvocaALosAliadosDentroDelRadioYNingunoEstaEnElRadioElUnicoEnLaListaSeraElInvocador(){
 		Alianza alianza=crearAlianza(3);
-		alianza.getPersonajes().get(0).mover(new Punto(100,100));
-		alianza.getPersonajes().get(2).mover(new Punto(100,100));
+		alianza.getPersonajes().get(0).setPosicion(new Punto(100,100));
+		alianza.getPersonajes().get(2).setPosicion(new Punto(100,100));
 		ArrayList<Personaje>aliadosEnCombate=(ArrayList<Personaje>) alianza.getPersonajes().get(1).invocarAliados();
 		Assert.assertEquals(1, aliadosEnCombate.size());
 		
@@ -266,7 +259,27 @@ public class PersonajeTest {
 		
 	}
 	
+	@Test
+	public void siChocaConObstaculoNoSeMueve(){
+		Mapa mapa = new Mapa(100, 100);
+		Obstaculo obstaculo = new Obstaculo(new Punto(1,1), 2, 3);
+		mapa.agregarObstaculo(obstaculo);
+		Personaje blastoise = new PokemonTipoAgua();
+		blastoise.setMapa(mapa);
+		blastoise.mover(new Punto(2,2));
+		Assert.assertEquals(0, blastoise.getPosicion().getX(),0);
+		Assert.assertEquals(0, blastoise.getPosicion().getY(),0);
+	}
 	
-	
-	
+	@Test
+	public void siNoChocaConObstaculoYSeMueve(){
+		Mapa mapa = new Mapa(100, 100);
+		Obstaculo obstaculo = new Obstaculo(new Punto(1,1), 2, 3);
+		mapa.agregarObstaculo(obstaculo);
+		Personaje blastoise = new PokemonTipoAgua();
+		blastoise.setMapa(mapa);
+		blastoise.mover(new Punto(0,1));
+		Assert.assertEquals(0, blastoise.getPosicion().getX(),0);
+		Assert.assertEquals(1, blastoise.getPosicion().getY(),0);
+	}
 }

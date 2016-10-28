@@ -30,6 +30,4 @@ public class MapaTest {
 			Mapa mapa = new Mapa(100,100);
 			Assert.assertFalse(mapa.posicionValida(new Punto (-1,-5)));
 		}
-		
-		
 }

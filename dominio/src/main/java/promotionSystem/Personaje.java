@@ -2,12 +2,11 @@ package promotionSystem;
 
 import promotionSystem.habilidades.Habilidad;
 import promotionSystem.hechizo.Hechizo;
+import promotionSystem.mapa.Mapa;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-
 
 public abstract class Personaje {
 	protected int salud;
@@ -21,6 +20,7 @@ public abstract class Personaje {
 	protected int puntosDeHabilidad;
 	protected Alianza alianza;
 	protected int velocidad;
+	protected Mapa mapa;
 	protected Punto posicion;
 	protected Circulo radioDeAcccion;
 	private boolean enBatalla = false;
@@ -312,8 +312,10 @@ public abstract class Personaje {
 	public abstract void subirStats(int nivel);
 
 	public void mover(Punto posicionNueva) {
-		posicion = posicionNueva;
-		radioDeAcccion.setCentro(posicion);
+		if(mapa.posicionValida(posicionNueva)){
+			posicion = posicionNueva;
+			radioDeAcccion.setCentro(posicion);
+		}
 	}
 
 	public Punto getPosicion() {
@@ -510,6 +512,19 @@ public abstract class Personaje {
 
 	public void hechizar(String conjuro, Personaje personaje, int efecto) {
 		this.hechizos.get(conjuro).afectar(personaje, efecto);
+	}
+
+	public Mapa getMapa() {
+		return mapa;
+	}
+
+	public void setMapa(Mapa mapa) {
+		this.mapa = mapa;
+	}
+
+	public void setPosicion(Punto punto) {
+		posicion = punto;
+		radioDeAcccion.setCentro(punto);
 	}
 }
 	
