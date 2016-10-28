@@ -1,4 +1,4 @@
-package promotionSystem.razas;
+package promotionSystem.razas.castas.starwars;
 
 import java.util.HashMap;
 
@@ -10,6 +10,7 @@ import promotionSystem.hechizo.Electrificar;
 import promotionSystem.hechizo.EmpujonDeFuerza;
 import promotionSystem.hechizo.Hechizo;
 import promotionSystem.hechizo.Telekinesis;
+import promotionSystem.razas.PersonajeDeStarWars;
 
 public class Jedi extends PersonajeDeStarWars{
 	

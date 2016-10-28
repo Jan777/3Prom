@@ -1,4 +1,4 @@
-package promotionSystem.razas;
+package promotionSystem.razas.castas.pokemon;
 
 import java.util.HashMap;
 
@@ -8,6 +8,7 @@ import promotionSystem.Punto;
 import promotionSystem.hechizo.Gigadrenado;
 import promotionSystem.hechizo.Hechizo;
 import promotionSystem.hechizo.Hidrobomba;
+import promotionSystem.razas.PersonajeDePokemon;
 
 public class PokemonTipoPlanta extends PersonajeDePokemon {
 

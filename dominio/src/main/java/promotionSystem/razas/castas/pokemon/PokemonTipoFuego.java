@@ -1,4 +1,4 @@
-package promotionSystem.razas;
+package promotionSystem.razas.castas.pokemon;
 
 import java.util.HashMap;
 
@@ -9,6 +9,7 @@ import promotionSystem.hechizo.Cura;
 import promotionSystem.hechizo.Hechizo;
 import promotionSystem.hechizo.Hielo;
 import promotionSystem.hechizo.Llamarada;
+import promotionSystem.razas.PersonajeDePokemon;
 
 public class PokemonTipoFuego extends PersonajeDePokemon {
 	public PokemonTipoFuego(){

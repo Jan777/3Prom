@@ -1,4 +1,4 @@
-package promotionSystem.razas;
+package promotionSystem.razas.castas.starwars;
 
 import java.util.HashMap;
 
@@ -8,6 +8,7 @@ import promotionSystem.Punto;
 import promotionSystem.hechizo.CampoDeFuerza;
 import promotionSystem.hechizo.Cura;
 import promotionSystem.hechizo.Hechizo;
+import promotionSystem.razas.PersonajeDeStarWars;
 
 public class Droide extends PersonajeDeStarWars{
 	

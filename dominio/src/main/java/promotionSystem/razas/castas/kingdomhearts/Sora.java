@@ -1,6 +1,7 @@
-package promotionSystem.razas;
+package promotionSystem.razas.castas.kingdomhearts;
 
 import java.util.HashMap;
+
 
 
 import promotionSystem.Circulo;
@@ -9,6 +10,7 @@ import promotionSystem.Punto;
 import promotionSystem.hechizo.Cura;
 import promotionSystem.hechizo.Hechizo;
 import promotionSystem.hechizo.Piro;
+import promotionSystem.razas.PersonajeDeKingdomHearts;
 
 public class Sora extends PersonajeDeKingdomHearts {
 	
