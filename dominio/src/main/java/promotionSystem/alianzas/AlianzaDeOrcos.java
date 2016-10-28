@@ -19,11 +19,12 @@ public class AlianzaDeOrcos extends Alianza{
 	        for(Personaje personaje : personajes){
 	        	if(personaje.estaVivo()){
 	            Personaje victima = getVictima(alianzaEnemiga, index);
-	            while(!victima.estaVivo()){
+	            while(index<alianzaEnemiga.getPersonajes().size()-1 && !victima.estaVivo()){
 	            	index++;
 	            	 victima = getVictima(alianzaEnemiga, index);
 	            }
-	            personaje.atacar(victima);
+	            if(victima.estaVivo())
+	             personaje.atacar(victima);
 	        	}
 	        }
 	    }

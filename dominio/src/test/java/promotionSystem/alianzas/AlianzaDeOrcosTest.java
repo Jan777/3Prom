@@ -31,5 +31,17 @@ public class AlianzaDeOrcosTest {
 	        assertEquals(Constantes.SaludGuerreroHumano, alianzaEnemiga.getPersonajes().get(3).getSalud());
 	        
 	    }
+	 
+	 @Test
+	    public void siHay20OrcosEnLaAlianzaDebenAtacarA4EnemigosDeLaOtraAlianzaTodosMueren(){
+	        AlianzaDeOrcos alianzaDeOrcos = AlianzaBuilder.crearAlianzaDeOrcos(20);
+	        Alianza alianzaEnemiga = AlianzaBuilder.crearAlianza(4);
+	        alianzaDeOrcos.atacar(alianzaEnemiga);
+	        assertEquals(0, alianzaEnemiga.getPersonajes().get(0).getSalud());
+	        assertEquals(0, alianzaEnemiga.getPersonajes().get(1).getSalud());
+	        assertEquals(0, alianzaEnemiga.getPersonajes().get(2).getSalud());
+	        assertEquals(0, alianzaEnemiga.getPersonajes().get(3).getSalud());
+	        
+	    }
 
 }
