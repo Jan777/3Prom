@@ -1,8 +1,14 @@
 package promotionSystem.razas.castas.orco;
 
+import java.util.HashMap;
+
 import promotionSystem.Circulo;
 import promotionSystem.Constantes;
 import promotionSystem.Punto;
+import promotionSystem.hechizo.Cura;
+import promotionSystem.hechizo.Hechizo;
+import promotionSystem.hechizo.Hielo;
+import promotionSystem.hechizo.Piro;
 import promotionSystem.razas.Orco;
 
 public class MagoOrco extends Orco{
@@ -20,6 +26,10 @@ public class MagoOrco extends Orco{
 		nivel=1;
 		posicion=new Punto(0,0);
 		radioDeAcccion=new Circulo(posicion,20);
+		hechizos = new HashMap<String, Hechizo>();
+        agregarHechizo("Piro",new Piro());
+        agregarHechizo("Hielo",new Hielo());
+		
 	}
 
 	@Override

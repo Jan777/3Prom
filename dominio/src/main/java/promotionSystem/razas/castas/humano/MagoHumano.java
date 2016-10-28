@@ -8,6 +8,7 @@ import promotionSystem.Punto;
 import promotionSystem.hechizo.Cura;
 import promotionSystem.hechizo.Hechizo;
 import promotionSystem.hechizo.Hielo;
+import promotionSystem.hechizo.Trueno;
 import promotionSystem.razas.Humano;
 
 public class MagoHumano extends Humano {
@@ -26,7 +27,7 @@ public class MagoHumano extends Humano {
 		posicion=new Punto(0,0);
 		radioDeAcccion=new Circulo(posicion,20);
 		hechizos = new HashMap<String, Hechizo>();
-        agregarHechizo("Trueno",new Hielo());
+        agregarHechizo("Trueno",new Trueno());
         agregarHechizo("Cura",new Cura());
 	}
 
