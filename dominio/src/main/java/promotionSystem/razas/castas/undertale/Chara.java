@@ -1,20 +1,20 @@
-package promotionSystem.razas;
+package promotionSystem.razas.castas.undertale;
 
 import promotionSystem.Circulo;
-import promotionSystem.Constantes;
 import promotionSystem.Punto;
+import promotionSystem.Constantes;
+import promotionSystem.razas.PersonajeDeUndertale;
 
-public class GuerreroHumano extends Humano{
-	
-	public GuerreroHumano(){
-		energia=Constantes.EnergiaGuerreroHumano;
-		energiaMaxima=Constantes.EnergiaMaximaGuerreroHumano;
-		salud=Constantes.SaludGuerreroHumano; 
-		saludMaxima=Constantes.SaludMaximaGuerreroHumano;
-		ataque=Constantes.AtaqueGuerreroHumano;
-		defensa=Constantes.DefensaGuerreroHumano;
-		magia=Constantes.MagiaGuerreroHumano;
-		velocidad=Constantes.VelocidadGuerreroHumano;
+public class Chara extends PersonajeDeUndertale{
+	public Chara(){
+		energia=Constantes.EnergiaChara;
+		energiaMaxima=Constantes.EnergiaMaximaChara;
+		salud=Constantes.SaludChara; 
+		saludMaxima=Constantes.SaludMaximaChara;
+		ataque=Constantes.AtaqueChara;
+		defensa=Constantes.DefensaChara;
+		magia=Constantes.MagiaChara;
+		velocidad=Constantes.VelocidadChara;
 		experiencia=0;
 		nivel=1;
 		posicion=new Punto(0,0);

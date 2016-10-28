@@ -1,12 +1,11 @@
 package promotionSystem;
 
 import org.junit.Test;
-
 import org.junit.Assert;
 
 import promotionSystem.builder.ItemBuilder;
 import promotionSystem.personajeEquipado.*;
-import promotionSystem.razas.PokemonTipoFuego;
+import promotionSystem.razas.castas.pokemon.PokemonTipoFuego;
 
 public class PersonajeEquipadoTests {
 	

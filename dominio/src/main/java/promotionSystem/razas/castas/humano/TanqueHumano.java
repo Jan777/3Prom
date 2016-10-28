@@ -1,8 +1,9 @@
-package promotionSystem.razas;
+package promotionSystem.razas.castas.humano;
 
 import promotionSystem.Circulo;
 import promotionSystem.Constantes;
 import promotionSystem.Punto;
+import promotionSystem.razas.Humano;
 
 public class TanqueHumano extends Humano{
 	

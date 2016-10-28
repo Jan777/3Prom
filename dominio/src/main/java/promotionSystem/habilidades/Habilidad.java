@@ -1,4 +1,4 @@
-package promotionSystem.habilidades;
+ package promotionSystem.habilidades;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package promotionSystem.razas;
+package promotionSystem.razas.castas.starwars;
 
 import java.util.HashMap;
 
@@ -7,6 +7,7 @@ import promotionSystem.Constantes;
 import promotionSystem.Punto;
 import promotionSystem.hechizo.Hechizo;
 import promotionSystem.hechizo.IraWookeana;
+import promotionSystem.razas.PersonajeDeStarWars;
 
 public class Wookie extends PersonajeDeStarWars{
 	

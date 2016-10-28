@@ -2,9 +2,9 @@ package promotionSystem.builder;
 
 import promotionSystem.Alianza;
 import promotionSystem.alianzas.AlianzaDeHumanos;
-import promotionSystem.razas.GuerreroHumano;
 import promotionSystem.razas.Humano;
-import promotionSystem.razas.PokemonTipoFuego;
+import promotionSystem.razas.castas.humano.GuerreroHumano;
+import promotionSystem.razas.castas.pokemon.PokemonTipoFuego;
 import promotionSystem.Personaje;
 
 import java.util.ArrayList;

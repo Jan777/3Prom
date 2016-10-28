@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import promotionSystem.Constantes;
+import promotionSystem.razas.castas.starwars.Droide;
 
 public class DroideTest {
 	

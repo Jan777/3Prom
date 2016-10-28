@@ -5,6 +5,8 @@ import org.junit.Test;
 
 import promotionSystem.Constantes;
 import promotionSystem.Personaje;
+import promotionSystem.razas.castas.kingdomhearts.Roxas;
+import promotionSystem.razas.castas.starwars.Droide;
 
 public class RoxasTest {
 	@Test

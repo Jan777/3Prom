@@ -1,4 +1,4 @@
-package promotionSystem.razas;
+package promotionSystem.razas.castas.kingdomhearts;
 
 import java.util.HashMap;
 
@@ -8,25 +8,27 @@ import promotionSystem.Punto;
 import promotionSystem.hechizo.Cura;
 import promotionSystem.hechizo.Hechizo;
 import promotionSystem.hechizo.Hielo;
+import promotionSystem.razas.PersonajeDeKingdomHearts;
 
-public class MagoHumano extends Humano {
+public class Riku extends PersonajeDeKingdomHearts {
 
-	public MagoHumano(){
-		energia=Constantes.EnergiaMagoHumano;
-		energiaMaxima=Constantes.EnergiaMaximaMagoHumano;
-		salud=Constantes.SaludMagoHumano; 
-		saludMaxima=Constantes.SaludMaximaMagoHumano;
-		ataque=Constantes.AtaqueMagoHumano;
-		defensa=Constantes.DefensaMagoHumano;
-		magia=Constantes.MagiaMagoHumano;
-		velocidad=Constantes.VelocidadMagoHumano;
+	public Riku(){
+		energia=Constantes.EnergiaRiku;
+		energiaMaxima=Constantes.EnergiaMaximaRiku;
+		salud=Constantes.SaludRiku; 
+		saludMaxima=Constantes.SaludMaximaRiku;
+		ataque=Constantes.AtaqueRiku;
+		defensa=Constantes.DefensaRiku;
+		magia=Constantes.MagiaRiku;
+		velocidad=Constantes.VelocidadRiku;
 		experiencia=0;
 		nivel=1;
 		posicion=new Punto(0,0);
 		radioDeAcccion=new Circulo(posicion,20);
 		hechizos = new HashMap<String, Hechizo>();
-        agregarHechizo("Trueno",new Hielo());
+        agregarHechizo("Hielo",new Hielo());
         agregarHechizo("Cura",new Cura());
+
 	}
 
 	@Override
@@ -36,8 +38,8 @@ public class MagoHumano extends Humano {
 		saludMaxima+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
 		salud+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
 		ataque+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		defensa+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
+		defensa+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelPlebe;
 		magia+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelEspecial;
-		velocidad+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
+		velocidad+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelEspecial;
 	}
 }

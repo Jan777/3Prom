@@ -5,15 +5,15 @@ import org.junit.Test;
 
 import promotionSystem.Constantes;
 import promotionSystem.Personaje;
-import promotionSystem.razas.GuerreroOrco;
-import promotionSystem.razas.Jedi;
-import promotionSystem.razas.PokemonTipoAgua;
-import promotionSystem.razas.PokemonTipoFuego;
-import promotionSystem.razas.PokemonTipoPlanta;
-import promotionSystem.razas.Riku;
-import promotionSystem.razas.Roxas;
-import promotionSystem.razas.Sora;
-import promotionSystem.razas.Wookie;
+import promotionSystem.razas.castas.kingdomhearts.Riku;
+import promotionSystem.razas.castas.kingdomhearts.Roxas;
+import promotionSystem.razas.castas.kingdomhearts.Sora;
+import promotionSystem.razas.castas.orco.GuerreroOrco;
+import promotionSystem.razas.castas.pokemon.PokemonTipoAgua;
+import promotionSystem.razas.castas.pokemon.PokemonTipoFuego;
+import promotionSystem.razas.castas.pokemon.PokemonTipoPlanta;
+import promotionSystem.razas.castas.starwars.Jedi;
+import promotionSystem.razas.castas.starwars.Wookie;
 
 public class HechizosTest {
 	
