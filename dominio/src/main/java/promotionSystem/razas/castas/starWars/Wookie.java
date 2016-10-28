@@ -1,4 +1,4 @@
-package promotionSystem.razas.castas.starwars;
+package promotionSystem.razas.castas.starWars;
 
 import java.util.HashMap;
 

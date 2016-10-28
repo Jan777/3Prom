@@ -1,9 +1,10 @@
-package promotionSystem.razas;
+package promotionSystem.razas.castas.pokemon;
 
 import org.junit.Assert;
 import org.junit.Test;
 
 import promotionSystem.Constantes;
+import promotionSystem.razas.PersonajeDePokemon;
 import promotionSystem.razas.castas.pokemon.PokemonTipoPlanta;
 
 public class PokemonTipoPlantaTest {

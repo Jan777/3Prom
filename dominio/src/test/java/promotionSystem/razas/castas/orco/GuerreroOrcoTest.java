@@ -1,9 +1,10 @@
-package promotionSystem.razas;
+package promotionSystem.razas.castas.orco;
 
 import org.junit.Assert;
 import org.junit.Test;
 
 import promotionSystem.Constantes;
+import promotionSystem.razas.Orco;
 import promotionSystem.razas.castas.orco.GuerreroOrco;
 
 public class GuerreroOrcoTest {

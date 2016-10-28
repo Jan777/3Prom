@@ -1,10 +1,11 @@
-package promotionSystem.razas;
+package promotionSystem.razas.castas.starWars;
 
 import org.junit.Assert;
 import org.junit.Test;
 
 import promotionSystem.Constantes;
-import promotionSystem.razas.castas.starwars.Droide;
+import promotionSystem.razas.PersonajeDeStarWars;
+import promotionSystem.razas.castas.starWars.Droide;
 
 public class DroideTest {
 	
