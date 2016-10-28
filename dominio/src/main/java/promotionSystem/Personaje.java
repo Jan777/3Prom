@@ -66,12 +66,7 @@ public abstract class Personaje {
     }
 
     public final void usarMagiaDeAlteracion(String conjuro) {
-        if (puedeAtacarConMagia()) {
-            int puntosAUsar = calcularPuntosDeMagia();
-            hechizar(conjuro, this, puntosAUsar);
-            energia -= puntosAUsar;
-            despuesDeAtacar();
-        }
+        usarMagiaSupport(this,conjuro);
     }
 
 	public abstract void despuesDeAtacar();
@@ -94,15 +89,15 @@ public abstract class Personaje {
 		}
 	}
 	
-	public void serReducidoLaDefensa(int ptos) {
-		defensa -= ptos;
+	public void serReducidoLaDefensa(int puntos) {
+		defensa -= puntos;
 		if (defensa < 0) {
 			defensa= 0;
 		}
 	}
 	
-	public void serAumentadoLaDefensa(int ptos) {
-		defensa += ptos;
+	public void serAumentadoLaDefensa(int puntos) {
+		defensa += puntos;
 		
 	}
 
