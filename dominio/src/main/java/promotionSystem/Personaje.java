@@ -32,11 +32,7 @@ public abstract class Personaje {
 	private String casco;
 	private String chaleco;
 	private String escudo;
-	private String armaDelInventario;
-	private String botasDelInventario;
-	private String cascoDelInventario;
-	private String chalecoDelInventario;
-	private String escudoDelInventario;
+	private Inventario inventario = new Inventario();
 
 	public final void atacar(Personaje atacado) {
 		if (puedeAtacar()) {
@@ -98,7 +94,6 @@ public abstract class Personaje {
 	
 	public void serAumentadoLaDefensa(int puntos) {
 		defensa += puntos;
-		
 	}
 
 	private boolean puedeAtacar() {
@@ -167,7 +162,6 @@ public abstract class Personaje {
 
 	public void setDefensa(int Defensa) {
 		this.defensa = Defensa;
-
 	}
 
 	public int obtenerPuntosDeAtaque() {
@@ -284,7 +278,6 @@ public abstract class Personaje {
 			invitador.alianza = alianza;
 
 		}
-
 	}
 
 	private boolean tieneAlianza() {
@@ -385,46 +378,40 @@ public abstract class Personaje {
 	}
 
 	public void recibirItem(Item item) {
-		// TODO Auto-generated method stub
-		
+		inventario.add(item);
 	}
 
 	public boolean puedeDarItem() {
-		// TODO Auto-generated method stub
-		return false;
+		return inventario.size() != 0;
 	}
 
 	public Item entregarItem() {
-		// TODO Auto-generated method stub
-		return null;
+		return inventario.remove();
 	}
+
+	public List<Item> getItems(){
+        return inventario.getListaDeItems();
+    }
+
+	protected Personaje equiparItem(String nombreItem){
+		return inventario.buscarItem(this, nombreItem).equiparPersonaje(this);
+	}
+
+	public void agregarAInventario(Item item){
+        inventario.add(item);
+    }
 
 	public boolean puedeEquiparArma() {
 		return arma == null;
-	}
-
-	public boolean puedeEquiparArmaInventario() {
-		return armaDelInventario == null;
 	}
 
 	public boolean puedeEquiparBotas() {
 		return botas == null;
 	}
 
-	public boolean puedeEquiparBotasInventario() {
-
-		return botasDelInventario == null;
-	}
-
 	public boolean puedeEquiparCasco() {
 
 		return casco == null;
-
-	}
-
-	public boolean puedeEquiparCascoInventario() {
-
-		return cascoDelInventario == null;
 
 	}
 
@@ -434,65 +421,11 @@ public abstract class Personaje {
 
 	}
 
-	public boolean puedeEquiparChalecoInventario() {
-
-		return chalecoDelInventario == null;
-
-	}
-
 	public boolean puedeEquiparEscudo() {
 
 		return escudo == null;
 
 	}
-
-	public boolean puedeEquiparEscudoInventario() {
-
-		return escudoDelInventario == null;
-
-	}
-
-	public String getArmaDelInventario() {
-		return armaDelInventario;
-	}
-
-	public void setArmaDelInventario(String armaDelInventario) {
-		this.armaDelInventario = armaDelInventario;
-	}
-
-	public String getBotasDelInventario() {
-		return botasDelInventario;
-	}
-
-	public void setBotasDelInventario(String botasDelInventario) {
-		this.botasDelInventario = botasDelInventario;
-	}
-
-	public String getCascoDelInventario() {
-		return cascoDelInventario;
-	}
-
-	public void setCascoDelInventario(String cascoDelInventario) {
-		this.cascoDelInventario = cascoDelInventario;
-	}
-
-	public String getChalecoDelInventario() {
-		return chalecoDelInventario;
-	}
-
-	public void setChalecoDelInventario(String chalecoDelInventario) {
-		this.chalecoDelInventario = chalecoDelInventario;
-	}
-
-	public String getEscudoDelInventario() {
-		return escudoDelInventario;
-	}
-
-	public void setEscudoDelInventario(String escudoDelInventario) {
-		this.escudoDelInventario = escudoDelInventario;
-	}
-
-	
 
 	public void setVelocidad(int Velocidad) {
 		this.velocidad = Velocidad;

@@ -7,8 +7,8 @@ import static promotionSystem.builder.AlianzaBuilder.crearAlianza;
 
 public class AlianzaTest {
     private Alianza alianza;
-/*
-    //FIXME ARREGLAR LOS TEST COMENTADOS
+    private Item item;
+
     @Test
     public void siLaAlianzaTieneTresPersonasDebeEntregar3Items(){
         alianza = crearAlianza(3);
@@ -19,11 +19,12 @@ public class AlianzaTest {
     }
 
     private void darItemsAPersonaje(int numeroDePersonaje, int cantidadDeItems) {
+        item = new Item("ConEspadaGordgoroth", alianza.getPersonajes().get(0));
         for(int i=0; i < cantidadDeItems; i++){
-            alianza.getPersonajes().get(numeroDePersonaje-1).recibirItem(new Item());
+            alianza.getPersonajes().get(numeroDePersonaje-1).recibirItem(item);
         }
     }
-*/
+
     @Test
     public void debeDarLaVictimaQueLeSolicito(){
         alianza = crearAlianza(3);

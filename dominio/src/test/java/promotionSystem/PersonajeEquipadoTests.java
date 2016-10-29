@@ -7,6 +7,8 @@ import promotionSystem.builder.ItemBuilder;
 import promotionSystem.personajeEquipado.*;
 import promotionSystem.razas.castas.pokemon.PokemonTipoFuego;
 
+import static promotionSystem.builder.ItemBuilder.ConEspadaGorgoroth;
+
 public class PersonajeEquipadoTests {
 	
 	@Test
@@ -16,7 +18,7 @@ public class PersonajeEquipadoTests {
 		Assert.assertEquals(Constantes.DefensaPokemonDeFuego, louie.obtenerPuntosDeDefensa());
 		Assert.assertEquals(Constantes.MagiaPokemonDeFuego, louie.obtenerPuntosDeMagia());
 		Assert.assertEquals(Constantes.VelocidadPokemonDeFuego, louie.obtenerPuntosDeVelocidad());
-		louie = ItemBuilder.ConEspadaGorgoroth(louie);
+		louie = ConEspadaGorgoroth(louie);
 		louie = ItemBuilder.ConBotasFlober(louie);
 		louie = ItemBuilder.ConCascoAdamantium(louie);
 		louie = ItemBuilder.ConChalecoKevlar(louie);
@@ -30,27 +32,22 @@ public class PersonajeEquipadoTests {
 	@Test
 	public void siPuedoEquiparmeUnItemDeCadaTipoEnElInventario(){
 		Personaje louie = new PokemonTipoFuego();
-		louie = ItemBuilder.ConEspadaGorgoroth(louie);
-		louie = ItemBuilder.ConBotasFlober(louie);
-		louie = ItemBuilder.ConCascoAdamantium(louie);
-		louie = ItemBuilder.ConChalecoKevlar(louie);
-		louie = ItemBuilder.ConEscudoHyrule(louie);
-		louie = ItemBuilder.ConEspadaGorgoroth(louie);
-		louie = ItemBuilder.ConBotasFlober(louie);
-		louie = ItemBuilder.ConCascoAdamantium(louie);
-		louie = ItemBuilder.ConChalecoKevlar(louie);
-		louie = ItemBuilder.ConEscudoHyrule(louie);
-		Assert.assertNotEquals(null, louie.getArmaDelInventario());
-		Assert.assertNotEquals(null, louie.getBotasDelInventario());
-		Assert.assertNotEquals(null, louie.getCascoDelInventario());
-		Assert.assertNotEquals(null, louie.getChalecoDelInventario());
-		Assert.assertNotEquals(null, louie.getEscudoDelInventario());
+		louie = louie.equiparItem("ConEspadaGorgoroth");
+		louie = louie.equiparItem("ConBotasFlober");
+		louie = louie.equiparItem("ConCascoAdamantium");
+		louie = louie.equiparItem("ConChalecoKevlar");
+		louie = louie.equiparItem("ConEscudoHyrule");
+		louie = louie.equiparItem("ConEspadaGorgoroth");
+		louie = louie.equiparItem("ConBotasFlober");
+		louie = louie.equiparItem("ConCascoAdamantium");
+		louie = louie.equiparItem("ConChalecoKevlar");
+		louie = louie.equiparItem("ConEscudoHyrule");
 	}
 	
 	@Test
 	public void siEquipoItemDeAtaqueSubeElStat(){
 		Personaje louie = new PokemonTipoFuego();
-		louie = ItemBuilder.ConEspadaGorgoroth(louie);
+		louie = ConEspadaGorgoroth(louie);
 		Assert.assertEquals(Constantes.AtaquePokemonDeFuego * 2, louie.obtenerPuntosDeAtaque());
 	}
 	

@@ -29,7 +29,7 @@ public abstract class Habilidad {
     public abstract boolean puedeSubirNivel();
 
     public List<Integer> statsASubir(){
-        List<Integer> statsASubir = new ArrayList<Integer>();
+        List<Integer> statsASubir = new ArrayList<>();
         statsASubir.add(AtaqueAumentado);
         statsASubir.add(MagiaAumentada);
         statsASubir.add(DefensaAumentada);

@@ -41,7 +41,7 @@ public class Alianza {
     public Personaje darVictima(int numeroDePersonaje) {
         return personajes.get(numeroDePersonaje);
     }
-/*
+
     public List<Item> entregarItems(){
         List<Item> itemsPerdidos = new ArrayList<Item>();
         for(Personaje personaje : personajes){
@@ -51,7 +51,7 @@ public class Alianza {
         }
         return itemsPerdidos;
     }
-*/
+
     public void recibirItems(List<Item> items){
         this.items = items;
     }
@@ -66,7 +66,7 @@ public class Alianza {
 	}
 
     public void atacar(Alianza alianzaEnemiga){
-
+        personajeActivo.atacar(alianzaEnemiga.getPersonajeActivo());
     }
 
 	public void agregarPersonajes(List<Personaje> personajes) {

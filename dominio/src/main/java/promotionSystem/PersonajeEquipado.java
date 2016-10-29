@@ -29,28 +29,12 @@ public abstract class PersonajeEquipado extends Personaje {
 		personajeDecorado.setArma(arma);
 	}
 	
-	public void setArmaDelInventario(String arma) {
-		personajeDecorado.setArmaDelInventario(arma);
-	}
-	
-	public String getArmaDelInventario() {
-		return personajeDecorado.getArmaDelInventario();
-	}
-	
 	public String getArma(){
 		return personajeDecorado.getArma();
 	}
-	
+
 	public void setBotas(String botas) {
 		personajeDecorado.setBotas(botas);
-	}
-	
-	public void setBotasDelInventario(String botas) {
-		personajeDecorado.setBotasDelInventario(botas);
-	}
-	
-	public String getBotasDelInventario() {
-		return personajeDecorado.getBotasDelInventario();
 	}
 	
 	public String getBotas(){
@@ -61,14 +45,6 @@ public abstract class PersonajeEquipado extends Personaje {
 		personajeDecorado.setCasco(casco);
 	}
 	
-	public void setCascoDelInventario(String casco) {
-		personajeDecorado.setCascoDelInventario(casco);
-	}
-	
-	public String getCascoDelInventario() {
-		return personajeDecorado.getCascoDelInventario();
-	}
-	
 	public String getCasco(){
 		return personajeDecorado.getCasco();
 	}
@@ -77,28 +53,12 @@ public abstract class PersonajeEquipado extends Personaje {
 		personajeDecorado.setChaleco(chaleco);
 	}
 	
-	public void setChalecoDelInventario(String chaleco) {
-		personajeDecorado.setChalecoDelInventario(chaleco);
-	}
-	
-	public String getChalecoDelInventario() {
-		return personajeDecorado.getChalecoDelInventario();
-	}
-	
 	public String getChaleco(){
 		return personajeDecorado.getChaleco();
 	}
 	
 	public void setEscudo(String escudo) {
 		personajeDecorado.setEscudo(escudo);
-	}
-	
-	public void setEscudoDelInventario(String escudo) {
-		personajeDecorado.setEscudoDelInventario(escudo);
-	}
-	
-	public String getEscudoDelInventario() {
-		return personajeDecorado.getEscudoDelInventario();
 	}
 	
 	public String getEscudo(){
@@ -110,40 +70,20 @@ public abstract class PersonajeEquipado extends Personaje {
 		return personajeDecorado.puedeEquiparArma();
 	}
 	@Override
-	public boolean puedeEquiparArmaInventario(){
-		return personajeDecorado.puedeEquiparArmaInventario();
-	}
-	@Override
 	public boolean puedeEquiparBotas(){
 		return personajeDecorado.puedeEquiparBotas();
-	}
-	@Override
-	public boolean puedeEquiparBotasInventario(){
-		return personajeDecorado.puedeEquiparBotasInventario();
 	}
 	@Override
 	public boolean puedeEquiparCasco(){
 		return personajeDecorado.puedeEquiparCasco();
 	}
 	@Override
-	public boolean puedeEquiparCascoInventario(){
-		return personajeDecorado.puedeEquiparCascoInventario();
-	}
-	@Override
 	public boolean puedeEquiparChaleco(){
 		return personajeDecorado.puedeEquiparChaleco();
 	}
 	@Override
-	public boolean puedeEquiparChalecoInventario(){
-		return personajeDecorado.puedeEquiparChalecoInventario();
-	}
-	@Override
 	public boolean puedeEquiparEscudo(){
 		return personajeDecorado.puedeEquiparEscudo();
-	}
-	@Override
-	public boolean puedeEquiparEscudoInventario(){
-		return personajeDecorado.puedeEquiparEscudoInventario();
 	}
 
 	@Override

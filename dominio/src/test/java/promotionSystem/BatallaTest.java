@@ -10,11 +10,13 @@ import static promotionSystem.builder.AlianzaBuilder.crearAlianza;
 public class BatallaTest {
     private Alianza alianza1;
     private Alianza alianza2;
+    private Item item;
 //FIXME ARREGLAR TEST COMENTADOS
     @Before
     public void setUp(){
         alianza1 = crearAlianza(2);
         alianza2 = crearAlianza(1);
+        item = new Item("ConEspadaGorgoroth", alianza1.getPersonajes().get(0));
     }
 
     @Test
@@ -29,24 +31,24 @@ public class BatallaTest {
         Assert.assertEquals(alianza2, batalla.definirPerdedor());
     }
 
- /*   @Test
+    @Test
     public void siLaAlianzaPerdedoraTieneDosItemsYDosPersonajesDebeEntregarLosDosItems(){
         alianza1 = crearAlianza(3);
         alianza2 = crearAlianza(2);
         Batalla batalla = crearBatalla();
         //hacer comprobacion de que si tiene un arma ya equipada la guarde en el lugar del inventario
         //y si no hay lugar en el inventario que se joda.
-        alianza2.getPersonajes().get(0).recibirItem(new Item());
-        alianza2.getPersonajes().get(1).recibirItem(new Item());
+        alianza2.getPersonajes().get(0).recibirItem(item);
+        alianza2.getPersonajes().get(1).recibirItem(item);
         Assert.assertEquals(batalla.entregarPremio(), alianza1.getItems());
         Assert.assertEquals(2, alianza1.getItems().size());
-    }*/
+    }
 
-   /* @Test
+   @Test
     public void siLaAlianzaPerdedoraTiene2ItemsY1PersonajeDebeEntregarUnSoloItem(){
         Batalla batalla = crearBatalla();
-        alianza2.getPersonajes().get(0).recibirItem(new Item());
-        alianza2.getPersonajes().get(0).recibirItem(new Item());
+        alianza2.getPersonajes().get(0).recibirItem(item);
+        alianza2.getPersonajes().get(0).recibirItem(item);
         Assert.assertEquals(batalla.entregarPremio(), alianza1.getItems());
         Assert.assertEquals(1, alianza1.getItems().size());
     }
@@ -58,7 +60,7 @@ public class BatallaTest {
 	   Assert.assertEquals(0,alianza1.getItems().size());
 	   
    }
-    */
+
     private Batalla crearBatalla(){
         return new Batalla(alianza1, alianza2);
     }

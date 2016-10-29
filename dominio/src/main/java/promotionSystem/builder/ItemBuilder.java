@@ -1,5 +1,6 @@
 package promotionSystem.builder;
 
+import promotionSystem.Item;
 import promotionSystem.Personaje;
 import promotionSystem.personajeEquipado.ConArma;
 import promotionSystem.personajeEquipado.ConBotas;
@@ -7,8 +8,23 @@ import promotionSystem.personajeEquipado.ConCasco;
 import promotionSystem.personajeEquipado.ConChaleco;
 import promotionSystem.personajeEquipado.ConEscudo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ItemBuilder {
-	
+
+	public static List<Item> crearItems(Personaje personaje){
+		List<Item> listaDeItems = new ArrayList<Item>();
+		listaDeItems.add(new Item("ConEspadaGorgoroth", ConEspadaGorgoroth(personaje)));
+		listaDeItems.add(new Item("ConEspadaKokiri", ConEspadaKokiri(personaje)));
+		listaDeItems.add(new Item("ConBotasFlober", ConBotasFlober(personaje)));
+		listaDeItems.add(new Item("ConCascoAdamantium", ConCascoAdamantium(personaje)));
+		listaDeItems.add(new Item("ConChalecoKevlar", ConChalecoKevlar(personaje)));
+		listaDeItems.add(new Item("ConEscudoHyrule", ConEscudoHyrule(personaje)));
+		listaDeItems.add(new Item("ConVaritaMissingno", ConVaritaMissingno(personaje)));
+		return listaDeItems;
+	}
+
 	public static Personaje ConEspadaGorgoroth(Personaje braixen){
 		final double MultiplicadorDeAtaque = 2;
 		final int SumadorDeAtaque = 0;
@@ -24,9 +40,7 @@ public class ItemBuilder {
 			return braixen;
 		}
 		else{
-			if(braixen.puedeEquiparArmaInventario()){
-				braixen.setArmaDelInventario("ConEspadaGorgoroth");
-			}
+            braixen.agregarAInventario(new Item("ConEspadaGorgoroth", braixen));
 		}
 		return braixen;
 	}
@@ -46,9 +60,7 @@ public class ItemBuilder {
 			return braixen;
 		}
 		else{
-			if(braixen.puedeEquiparArmaInventario()){
-				braixen.setArmaDelInventario("ConEspadaKokiri");
-			}
+            braixen.agregarAInventario(new Item("ConEspadaKokiri", braixen));
 		}
 		return braixen;
 	}
@@ -68,9 +80,7 @@ public class ItemBuilder {
 			return braixen;
 		}
 		else{
-			if(braixen.puedeEquiparBotasInventario()){
-				braixen.setBotasDelInventario("ConBotasFlober");
-			}
+            braixen.agregarAInventario(new Item("ConBotasFlober", braixen));
 		}
 		return braixen;
 	}
@@ -90,9 +100,7 @@ public class ItemBuilder {
 			return braixen;
 		}
 		else{
-			if(braixen.puedeEquiparCascoInventario()){
-				braixen.setCascoDelInventario("ConCascoAdamantium");
-			}
+            braixen.agregarAInventario(new Item("ConCascoAdamantium", braixen));
 		}
 		return braixen;
 	}
@@ -112,9 +120,7 @@ public class ItemBuilder {
 			return braixen;
 		}
 		else{
-			if(braixen.puedeEquiparChalecoInventario()){
-				braixen.setChalecoDelInventario("ConChalecoKevlar");
-			}
+            braixen.agregarAInventario(new Item("ConChalecoKevlar", braixen));
 		}
 		return braixen;
 	}
@@ -134,9 +140,7 @@ public class ItemBuilder {
 			return braixen;
 		}
 		else{
-			if(braixen.puedeEquiparEscudoInventario()){
-				braixen.setEscudoDelInventario("ConEscudoHyrule");
-			}
+            braixen.agregarAInventario(new Item("ConEscudoHyrule", braixen));
 		}
 		return braixen;
 	}
@@ -157,9 +161,7 @@ public class ItemBuilder {
 			return braixen;
 		}
 		else{
-			if(braixen.puedeEquiparArmaInventario()){
-				braixen.setArmaDelInventario("ConVaritaMissigno");
-			}
+            braixen.agregarAInventario(new Item("ConVaritaMissigno", braixen));
 		}
 		return braixen;
 	}

@@ -5,7 +5,7 @@ import promotionSystem.habilidades.Habilidad;
 import java.util.ArrayList;
 import java.util.List;
 
-import static promotionSystem.ArbolDeHabilidadesBuilder.crearHabilidades;
+import static promotionSystem.builder.ArbolDeHabilidadesBuilder.crearHabilidades;
 
 public class ArbolDeHabilidades extends ArrayList{
     //TODO Aun no implementado, en un futuro se podría implementar para no tener puntos que no se puedan asignar

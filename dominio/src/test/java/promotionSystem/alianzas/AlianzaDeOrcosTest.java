@@ -17,11 +17,10 @@ public class AlianzaDeOrcosTest {
 	        Alianza alianzaEnemiga = AlianzaBuilder.crearAlianza(3);
 	        alianzaDeOrcos.atacar(alianzaEnemiga);
 	        assertEquals(0, alianzaEnemiga.getPersonajes().get(0).getSalud());
-	        
 	    }
-	 
-	 @Test
-	    public void siHay3OrcosEnLaAlianzaDebenAtacarA4EnemigosDeLaOtraAlianzaLos3UltimosNoRecibeDaño(){
+
+	    @Test
+	    public void siHay3OrcosEnLaAlianzaDebenAtacarA4EnemigosDeLaOtraAlianzaLos3UltimosNoRecibeDanio(){
 	        AlianzaDeOrcos alianzaDeOrcos = AlianzaBuilder.crearAlianzaDeOrcos(3);
 	        Alianza alianzaEnemiga = AlianzaBuilder.crearAlianza(4);
 	        alianzaDeOrcos.atacar(alianzaEnemiga);
@@ -29,7 +28,6 @@ public class AlianzaDeOrcosTest {
 	        assertEquals(Constantes.SaludGuerreroHumano, alianzaEnemiga.getPersonajes().get(1).getSalud());
 	        assertEquals(Constantes.SaludGuerreroHumano, alianzaEnemiga.getPersonajes().get(2).getSalud());
 	        assertEquals(Constantes.SaludGuerreroHumano, alianzaEnemiga.getPersonajes().get(3).getSalud());
-	        
 	    }
 	 
 	 @Test
@@ -41,7 +39,6 @@ public class AlianzaDeOrcosTest {
 	        assertEquals(0, alianzaEnemiga.getPersonajes().get(1).getSalud());
 	        assertEquals(0, alianzaEnemiga.getPersonajes().get(2).getSalud());
 	        assertEquals(0, alianzaEnemiga.getPersonajes().get(3).getSalud());
-	        
 	    }
 
 }

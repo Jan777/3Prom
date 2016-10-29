@@ -169,6 +169,30 @@ public class PersonajeTest {
 	}
 
 	@Test
+	public void siRecibeUnItemLoDebePonerEnElInventario(){
+		personajeAtacante.recibirItem(new Item("ConEspadaGorgoroth", personajeAtacante));
+		Assert.assertEquals(1, personajeAtacante.getItems().size());
+	}
+
+	@Test
+	public void siTieneItemsPuedeDarlos(){
+		personajeAtacante.recibirItem(new Item("ConEspadaGorgoroth", personajeAtacante));
+		Assert.assertTrue(personajeAtacante.puedeDarItem());
+	}
+
+	@Test
+	public void siNoTieneItemsNoPuedeDarlos(){
+		Assert.assertTrue(!personajeAtacante.puedeDarItem());
+	}
+
+	@Test
+    public void siEntregaUnItemDebeEliminarseDelInventario(){
+        personajeAtacante.recibirItem(new Item("ConEspadaGorgoroth", personajeAtacante));
+        personajeAtacante.entregarItem();
+        Assert.assertEquals(0, personajeAtacante.getItems().size());
+    }
+
+	@Test
 	public void debeElegirElPrimerPersonajeComoVictima(){
 		Alianza alianzaEnemiga = crearAlianza(1);
         Personaje victima = personajeAtacante.elegirVictima(alianzaEnemiga, 0);
