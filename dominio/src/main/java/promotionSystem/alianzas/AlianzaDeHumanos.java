@@ -9,14 +9,21 @@ public class AlianzaDeHumanos extends Alianza {
 
     public AlianzaDeHumanos(List<Personaje> personajes) {
         super(personajes);
+        personajeActivo = personajes.get(0);
     }
+
 
     @Override
     public void atacar(Alianza alianzaEnemiga){
-        for(Personaje personaje : personajes){
-            Personaje victima = getVictima(alianzaEnemiga, personaje);
-            personaje.atacar(victima);
-        }
+        objetivo = getVictima(alianzaEnemiga, personajeActivo);
+        personajeActivo.atacar(objetivo);
+        personajeActivo = personajes.get(proximoPersonaje());
+    }
+
+    private int proximoPersonaje() {
+        int personajeActual = personajes.indexOf(personajeActivo);
+        int siguientePersonaje = personajeActual + 1;
+        return personajeActual == personajes.size()-1 ? 0 : siguientePersonaje;
     }
 
     private Personaje getVictima(Alianza alianzaEnemiga, Personaje personaje) {

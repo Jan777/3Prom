@@ -16,6 +16,8 @@ public class AlianzaDeHumanosTest {
         AlianzaDeHumanos alianzaDeHumanos = crearAlianzaDeHumanos(3);
         Alianza alianzaEnemiga = AlianzaBuilder.crearAlianza(3);
         alianzaDeHumanos.atacar(alianzaEnemiga);
+        alianzaDeHumanos.atacar(alianzaEnemiga);
+        alianzaDeHumanos.atacar(alianzaEnemiga);
         assertEquals(Constantes.SaludGuerreroHumano-Constantes.AtaqueGuerreroHumano+Constantes.DefensaGuerreroHumano, alianzaEnemiga.getPersonajes().get(0).getSalud());
         assertEquals(Constantes.SaludGuerreroHumano-Constantes.AtaqueGuerreroHumano+Constantes.DefensaGuerreroHumano, alianzaEnemiga.getPersonajes().get(1).getSalud());
         assertEquals(Constantes.SaludGuerreroHumano-Constantes.AtaqueGuerreroHumano+Constantes.DefensaGuerreroHumano, alianzaEnemiga.getPersonajes().get(2).getSalud());
@@ -26,6 +28,8 @@ public class AlianzaDeHumanosTest {
         AlianzaDeHumanos alianzaDeHumanos = crearAlianzaDeHumanos(3);
         Alianza alianzaEnemiga = AlianzaBuilder.crearAlianza(2);
         alianzaDeHumanos.atacar(alianzaEnemiga);
+        alianzaDeHumanos.atacar(alianzaEnemiga);
+        alianzaDeHumanos.atacar(alianzaEnemiga);
         assertEquals(Constantes.SaludGuerreroHumano-Constantes.AtaqueGuerreroHumano+Constantes.DefensaGuerreroHumano-Constantes.AtaqueGuerreroHumano+Constantes.DefensaGuerreroHumano, alianzaEnemiga.getPersonajes().get(0).getSalud());
         assertEquals(Constantes.SaludGuerreroHumano-Constantes.AtaqueGuerreroHumano+Constantes.DefensaGuerreroHumano, alianzaEnemiga.getPersonajes().get(1).getSalud());
     }
@@ -34,6 +38,8 @@ public class AlianzaDeHumanosTest {
     public void siHay3HumanosQueAtacanA4PersonajesElCuartoNoRecibeDano(){
         AlianzaDeHumanos alianzaDeHumanos = crearAlianzaDeHumanos(3);
         Alianza alianzaEnemiga = AlianzaBuilder.crearAlianza(4);
+        alianzaDeHumanos.atacar(alianzaEnemiga);
+        alianzaDeHumanos.atacar(alianzaEnemiga);
         alianzaDeHumanos.atacar(alianzaEnemiga);
         assertEquals(Constantes.SaludGuerreroHumano-Constantes.AtaqueGuerreroHumano+Constantes.DefensaGuerreroHumano, alianzaEnemiga.getPersonajes().get(0).getSalud());
         assertEquals(Constantes.SaludGuerreroHumano-Constantes.AtaqueGuerreroHumano+Constantes.DefensaGuerreroHumano, alianzaEnemiga.getPersonajes().get(1).getSalud());

@@ -9,7 +9,8 @@ import java.util.List;
 
 public class Alianza {
     protected List<Personaje> personajes;
-    private Personaje personajeActivo;
+    protected Personaje personajeActivo;
+    protected Personaje objetivo;
     private List<Item> items;
     private int id;
 

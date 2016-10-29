@@ -14,6 +14,7 @@ public class Batalla {
     }
 
     public void darTurno(Alianza alianza){
+        alianza.atacar(alianza2);
         //Cargar interfaz para que el usuario Ataque.
     }
 
