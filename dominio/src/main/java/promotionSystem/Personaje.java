@@ -47,7 +47,7 @@ public abstract class Personaje {
 		}
 	}
 
-	public final void atacarConMagia(Personaje atacado, String conjuro) {
+	public void atacarConMagia(Personaje atacado, String conjuro) {
 		if (puedeAtacarConMagia()) {
 			int puntosARestar = calcularPuntosDeMagia() - atacado.calcularPuntosDeDefensa();
 			hechizar(conjuro, atacado, puntosARestar);
@@ -491,8 +491,6 @@ public abstract class Personaje {
 	public void setEscudoDelInventario(String escudoDelInventario) {
 		this.escudoDelInventario = escudoDelInventario;
 	}
-
-	
 
 	public void setVelocidad(int Velocidad) {
 		this.velocidad = Velocidad;

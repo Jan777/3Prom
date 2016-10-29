@@ -25,6 +25,10 @@ public abstract class PersonajeEquipado extends Personaje {
 		this.sumadorDeVelocidad = sumadorDeVelocidad;
 	}
 	
+	public void atacarConMagia(Personaje atacado, String conjuro){
+		personajeDecorado.atacarConMagia(atacado, conjuro);
+	}
+	
 	public void setArma(String arma) {
 		personajeDecorado.setArma(arma);
 	}
