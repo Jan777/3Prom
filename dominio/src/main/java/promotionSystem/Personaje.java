@@ -43,7 +43,7 @@ public abstract class Personaje {
 		}
 	}
 
-	public final void atacarConMagia(Personaje atacado, String conjuro) {
+	public void atacarConMagia(Personaje atacado, String conjuro) {
 		if (puedeAtacarConMagia()) {
 			int puntosARestar = calcularPuntosDeMagia() - atacado.calcularPuntosDeDefensa();
 			hechizar(conjuro, atacado, puntosARestar);
@@ -94,6 +94,7 @@ public abstract class Personaje {
 	
 	public void serAumentadoLaDefensa(int puntos) {
 		defensa += puntos;
+		
 	}
 
 	private boolean puedeAtacar() {
@@ -278,6 +279,7 @@ public abstract class Personaje {
 			invitador.alianza = alianza;
 
 		}
+
 	}
 
 	private boolean tieneAlianza() {

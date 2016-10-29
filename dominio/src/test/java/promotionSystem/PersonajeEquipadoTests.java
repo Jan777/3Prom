@@ -5,6 +5,7 @@ import org.junit.Assert;
 
 import promotionSystem.builder.ItemBuilder;
 import promotionSystem.personajeEquipado.*;
+import promotionSystem.razas.castas.kingdomHearts.Riku;
 import promotionSystem.razas.castas.pokemon.PokemonTipoFuego;
 
 import static promotionSystem.builder.ItemBuilder.ConEspadaGorgoroth;
@@ -70,5 +71,17 @@ public class PersonajeEquipadoTests {
 		Personaje louie = new PokemonTipoFuego();
 		louie = ItemBuilder.ConBotasFlober(louie);
 		Assert.assertEquals((Constantes.VelocidadPokemonDeFuego+15) * 2, louie.obtenerPuntosDeVelocidad());
+	}
+	
+	@Test
+	public void siEquipoItemYTiraHechizo(){
+		Personaje pokemon = new PokemonTipoFuego();
+		Personaje riku=new Riku();
+		riku = ItemBuilder.ConEspadaGorgoroth(riku);
+		Assert.assertEquals(Constantes.SaludPokemonDeFuego, pokemon.getSalud());
+		Assert.assertEquals(Constantes.VelocidadPokemonDeFuego, pokemon.obtenerPuntosDeVelocidad());
+		riku.atacarConMagia(pokemon, "Hielo");
+		Assert.assertEquals(Constantes.SaludPokemonDeFuego-Constantes.MagiaRiku+Constantes.DefensaPokemonDeFuego, pokemon.getSalud());
+		Assert.assertEquals(Constantes.VelocidadPokemonDeFuego/2, pokemon.obtenerPuntosDeVelocidad());
 	}
 }

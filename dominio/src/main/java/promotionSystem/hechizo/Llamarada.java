@@ -10,7 +10,8 @@ public class Llamarada extends Hechizo {
 		
 		if(probabilidad>0.5){
 			personaje.serAtacado(efecto*2);
-		}else{
+		}
+		else{
 			personaje.serAtacado(efecto);
 		}
 				

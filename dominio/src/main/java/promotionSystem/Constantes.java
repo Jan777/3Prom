@@ -151,4 +151,5 @@ public class Constantes {
 	public static final int DefensaGuerreroOrco = 4;
 	public static final int MagiaGuerreroOrco = 3;
 	public static final int VelocidadGuerreroOrco = 3;
+
 }

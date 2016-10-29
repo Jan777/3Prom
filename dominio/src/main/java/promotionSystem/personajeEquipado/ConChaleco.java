@@ -11,6 +11,11 @@ public class ConChaleco extends PersonajeEquipado {
 	}
 	
 	@Override
+	public void atacarConMagia(Personaje atacado, String conjuro){
+		super.atacarConMagia(atacado, conjuro);
+	}
+	
+	@Override
 	public void setArma(String arma) {
 		super.setArma(arma);
 	}
