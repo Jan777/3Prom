@@ -234,7 +234,6 @@ Cliente 2 le indica la lista de sus aliados invocados
 			"Personaje": "Mario"
 		}, {
 			"Personaje": "Roberto"
-		}
 		}]
 	}
 }
@@ -298,7 +297,9 @@ Cliente envia el ataque y el destinatario
         	"Nombre": "Missigno"
         }
 }
+```
 O bien:
+```JSON
 {
 	"Personaje": {
 		"Nombre": "Hanamichi",
@@ -331,7 +332,9 @@ Servidor envia dicho ataque.
         	"Nombre": "Missigno"
         }
 }
+```
 O bien:
+```JSON
 {
 	"Personaje": {
 		"Nombre": "Hanamichi",
