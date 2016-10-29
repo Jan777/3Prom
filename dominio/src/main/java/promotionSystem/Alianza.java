@@ -18,6 +18,14 @@ public class Alianza {
         return personajeActivo;
     }
 
+    public Personaje getObjetivo() {
+        return objetivo;
+    }
+
+    public void setObjetivo(Personaje objetivo) {
+        this.objetivo = objetivo;
+    }
+
     public Alianza(){
 
     }
@@ -71,7 +79,7 @@ public class Alianza {
 	}
 
     public void atacar(Alianza alianzaEnemiga){
-        personajeActivo.atacar(alianzaEnemiga.getPersonajeActivo());
+        personajeActivo.atacar(objetivo);
     }
 
 	public void agregarPersonaje(List<Personaje> personajes) {

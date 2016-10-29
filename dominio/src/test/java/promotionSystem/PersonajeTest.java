@@ -195,7 +195,10 @@ public class PersonajeTest {
 	@Test
 	public void debeElegirElPrimerPersonajeComoVictima(){
 		Alianza alianzaEnemiga = crearAlianza(1);
-        Personaje victima = personajeAtacante.elegirVictima(alianzaEnemiga, 0);
+        alianzaAtacante = crearAlianza(1);
+        personajeAtacante.alianza = alianzaAtacante;
+        personajeAtacante.elegirVictima(alianzaEnemiga, 0);
+        Personaje victima = alianzaAtacante.getObjetivo();
 		Assert.assertEquals(0, alianzaEnemiga.getPersonajes().indexOf(victima));
 	}
 

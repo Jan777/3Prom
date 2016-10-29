@@ -108,8 +108,8 @@ public abstract class Personaje implements Comparable<Personaje>{
 		return energia >= magia;
 	}
 
-	public Personaje elegirVictima(Alianza alianzaEnemiga, int numeroDePersonaje) {
-		return alianzaEnemiga.darVictima(numeroDePersonaje);
+	public void elegirVictima(Alianza alianzaEnemiga, int numeroDePersonaje) {
+		alianza.setObjetivo(alianzaEnemiga.darVictima(numeroDePersonaje));
 	}
 
     public int getAtaque() {

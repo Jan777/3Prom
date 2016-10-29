@@ -73,9 +73,9 @@ public class BatallaTest {
         alianza2.entrarEnBatalla();
         batalla.darTurno(alianza1);
         Personaje atacante =  alianza1.getPersonajeActivo();
-        Personaje victima = atacante.elegirVictima(alianza2, 0);
-        atacante.atacar(victima);
-        if(victima.estaVivo()){
+        atacante.elegirVictima(alianza2, 0);
+        atacante.atacar(alianza1.objetivo);
+        if(alianza1.objetivo.estaVivo()){
 
         }
         Assert.assertEquals(alianza2, batalla.definirGanador());
