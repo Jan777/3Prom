@@ -17,6 +17,10 @@ public class Alianza {
         return personajeActivo;
     }
 
+    public Alianza(){
+
+    }
+
     public Alianza(List<Personaje> personajes) {
         this.personajes = personajes;
     }
@@ -60,7 +64,7 @@ public class Alianza {
 		personajes.remove(personaje);
 	}
 
-	public void agregarPersonajes(Personaje personaje) {
+	public void agregarPersonaje(Personaje personaje) {
 		personajes.add(personaje);
 		personaje.setAlianza(this);
 	}
@@ -69,7 +73,7 @@ public class Alianza {
         personajeActivo.atacar(alianzaEnemiga.getPersonajeActivo());
     }
 
-	public void agregarPersonajes(List<Personaje> personajes) {
+	public void agregarPersonaje(List<Personaje> personajes) {
 		for(Personaje personaje:personajes){
 			personaje.setAlianza(this);
 			this.personajes.add(personaje);

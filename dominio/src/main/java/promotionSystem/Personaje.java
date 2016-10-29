@@ -5,10 +5,13 @@ import promotionSystem.hechizo.Hechizo;
 import promotionSystem.mapa.Mapa;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-public abstract class Personaje {
+import static java.util.Collections.sort;
+
+public abstract class Personaje implements Comparable<Personaje>{
 	protected int salud;
 	protected int energia;
 	protected int ataque;
@@ -264,12 +267,12 @@ public abstract class Personaje {
 	public void aceptarAlianza(Personaje invitador) {
 
 		if (invitador.tieneAlianza() && this.tieneAlianza()) {
-			invitador.alianza.agregarPersonajes(this.alianza.getPersonajes());
+			invitador.alianza.agregarPersonaje(this.alianza.getPersonajes());
 
 		} else if (invitador.tieneAlianza()) {
-			invitador.alianza.agregarPersonajes(this);
+			invitador.alianza.agregarPersonaje(this);
 		} else if (tieneAlianza()) {
-			alianza.agregarPersonajes(invitador);
+			alianza.agregarPersonaje(invitador);
 		}
 		else{
 			List<Personaje> personajes= new ArrayList<Personaje>();
@@ -304,6 +307,12 @@ public abstract class Personaje {
 		alianza.atacar(desafiado.alianza);
 	}
 
+	public void aceptarDesafio(Personaje enemigo){
+        sort(this.alianza.personajes);
+        sort(enemigo.alianza.personajes);
+        Batalla batalla = new Batalla((this.invocarAliados()), enemigo.invocarAliados());
+    }
+
 	public abstract void subirStats(int nivel);
 
 	public void mover(Punto posicionNueva) {
@@ -317,7 +326,7 @@ public abstract class Personaje {
 		return posicion;
 	}
 
-	public final List<Personaje> invocarAliados() {
+	public final Alianza invocarAliados() {
 		int i = 0;
 		List<Personaje> aliadosEnBatalla = new ArrayList<Personaje>();
 		aliadosEnBatalla.add(this);
@@ -331,7 +340,7 @@ public abstract class Personaje {
 				i++;
 			}
 		}
-		return aliadosEnBatalla;
+		return new Alianza(aliadosEnBatalla);
 	}
 
 	private boolean estaEnElRadio(Circulo radioDeAcccion) {
@@ -461,6 +470,17 @@ public abstract class Personaje {
 		posicion = punto;
 		radioDeAcccion.setCentro(punto);
 	}
+
+    @Override
+    public int compareTo(Personaje personaje) {
+        if (velocidad < personaje.velocidad) {
+            return -1;
+        }
+        if (velocidad > personaje.velocidad) {
+            return 1;
+        }
+        return 0;
+    }
 }
 	
 

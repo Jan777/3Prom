@@ -260,9 +260,8 @@ public class PersonajeTest {
 		Alianza alianza=crearAlianza(3);
 		alianza.getPersonajes().get(0).setPosicion(new Punto(100,100));
 		
-		ArrayList<Personaje>aliadosEnCombate=(ArrayList<Personaje>) alianza.getPersonajes().get(1).invocarAliados();
-		Assert.assertEquals(2, aliadosEnCombate.size());
-		
+		Alianza aliadosEnCombate= alianza.getPersonajes().get(1).invocarAliados();
+		Assert.assertEquals(2, aliadosEnCombate.getPersonajes().size());
 	}
 	
 	@Test
@@ -270,16 +269,16 @@ public class PersonajeTest {
 		Alianza alianza=crearAlianza(3);
 		alianza.getPersonajes().get(0).setPosicion(new Punto(100,100));
 		alianza.getPersonajes().get(2).setPosicion(new Punto(100,100));
-		ArrayList<Personaje>aliadosEnCombate=(ArrayList<Personaje>) alianza.getPersonajes().get(1).invocarAliados();
-		Assert.assertEquals(1, aliadosEnCombate.size());
+		Alianza aliadosEnCombate= alianza.getPersonajes().get(1).invocarAliados();
+		Assert.assertEquals(1, aliadosEnCombate.getPersonajes().size());
 		
 	}
 	
 	@Test
 	public void siSeInvocaALosAliadosDentroDelRadioYHayMasAliadosDentroDelRadioQueElMaximoPermitidoSoloSeLlamaraAEseMaximoDePersonajes(){
 		Alianza alianza=crearAlianza(10);
-		ArrayList<Personaje>aliadosEnCombate=(ArrayList<Personaje>) alianza.getPersonajes().get(1).invocarAliados();
-		Assert.assertEquals(5, aliadosEnCombate.size());
+		Alianza aliadosEnCombate= alianza.getPersonajes().get(1).invocarAliados();
+		Assert.assertEquals(5, aliadosEnCombate.getPersonajes().size());
 		
 	}
 	
