@@ -13,10 +13,7 @@ public class ArbolDeHabilidades extends ArrayList{
     private static List<Habilidad> habilidades = crearHabilidades();
 
     public Boolean subirHabilidad(Habilidad habilidad) {
-        if(habilidad.subirNivel()){
-            return true;
-        }
-        return false;
+        return habilidad.subirNivel();
     }
 
     public Habilidad buscarHabilidad(String habilidad){

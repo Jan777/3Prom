@@ -66,7 +66,7 @@ public class HechizosTest {
 		Personaje wookie =new Wookie();
 		Assert.assertEquals(Constantes.AtaqueWookie, wookie.obtenerPuntosDeAtaque());
 		wookie.usarMagiaDeAlteracion("IraWookeana");
-		Assert.assertEquals(Constantes.AtaqueWookie+(int)(Constantes.MagiaWookie/3)+5, wookie.obtenerPuntosDeAtaque());
+		Assert.assertEquals(Constantes.AtaqueWookie+ Constantes.MagiaWookie/3 +5, wookie.obtenerPuntosDeAtaque());
 		
 	}
 	
