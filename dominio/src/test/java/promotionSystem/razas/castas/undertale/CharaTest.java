@@ -2,12 +2,10 @@ package promotionSystem.razas.castas.undertale;
 
 import org.junit.Assert;
 import org.junit.Test;
-
 import promotionSystem.Constantes;
 import promotionSystem.razas.PersonajeDeStarWars;
 import promotionSystem.razas.PersonajeDeUndertale;
 import promotionSystem.razas.castas.starWars.Droide;
-import promotionSystem.razas.castas.undertale.Chara;
 
 public class CharaTest {
 	

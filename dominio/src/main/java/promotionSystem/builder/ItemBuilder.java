@@ -2,11 +2,7 @@ package promotionSystem.builder;
 
 import promotionSystem.Item;
 import promotionSystem.Personaje;
-import promotionSystem.personajeEquipado.ConArma;
-import promotionSystem.personajeEquipado.ConBotas;
-import promotionSystem.personajeEquipado.ConCasco;
-import promotionSystem.personajeEquipado.ConChaleco;
-import promotionSystem.personajeEquipado.ConEscudo;
+import promotionSystem.personajeEquipado.*;
 
 import java.util.ArrayList;
 import java.util.List;

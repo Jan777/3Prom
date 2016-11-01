@@ -3,10 +3,9 @@ package promotionSystem.alianzas;
 import org.junit.Test;
 import promotionSystem.Alianza;
 import promotionSystem.Constantes;
-import promotionSystem.alianzas.AlianzaDeHumanos;
 import promotionSystem.builder.AlianzaBuilder;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static promotionSystem.builder.AlianzaBuilder.crearAlianzaDeHumanos;
 
 public class AlianzaDeHumanosTest {

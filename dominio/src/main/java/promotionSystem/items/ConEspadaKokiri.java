@@ -6,9 +6,6 @@ import promotionSystem.PersonajeEquipado;
 import promotionSystem.personajeEquipado.ConArma;
 
 public class ConEspadaKokiri extends PersonajeEquipado{
-    public ConEspadaKokiri() {
-    }
-
     @Override
     public Personaje equipar(Personaje braixen) throws ClassNotFoundException {
         final double MultiplicadorDeAtaque = 2;

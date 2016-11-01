@@ -1,7 +1,5 @@
 package promotionSystem.razas.castas.starWars;
 
-import java.util.HashMap;
-
 import promotionSystem.Circulo;
 import promotionSystem.Constantes;
 import promotionSystem.Punto;
@@ -9,6 +7,8 @@ import promotionSystem.hechizo.CampoDeFuerza;
 import promotionSystem.hechizo.Cura;
 import promotionSystem.hechizo.Hechizo;
 import promotionSystem.razas.PersonajeDeStarWars;
+
+import java.util.HashMap;
 
 public class Droide extends PersonajeDeStarWars{
 	

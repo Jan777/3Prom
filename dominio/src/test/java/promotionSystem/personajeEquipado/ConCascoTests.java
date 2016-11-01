@@ -1,12 +1,9 @@
 package promotionSystem.personajeEquipado;
 
-import org.junit.Test;
 import org.junit.Assert;
-
+import org.junit.Test;
 import promotionSystem.Constantes;
 import promotionSystem.Personaje;
-import promotionSystem.personajeEquipado.ConCasco;
-import promotionSystem.razas.Humano;
 import promotionSystem.razas.castas.pokemon.PokemonTipoFuego;
 
 public class ConCascoTests {

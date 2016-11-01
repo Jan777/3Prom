@@ -1,9 +1,9 @@
 package promotionSystem.mapa;
 
-import java.util.ArrayList;
-
 import promotionSystem.Personaje;
 import promotionSystem.Punto;
+
+import java.util.ArrayList;
 
 public class Mapa {
 

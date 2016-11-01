@@ -1,15 +1,14 @@
 package promotionSystem.razas.castas.humano;
 
-import java.util.HashMap;
-
 import promotionSystem.Circulo;
 import promotionSystem.Constantes;
 import promotionSystem.Punto;
 import promotionSystem.hechizo.Cura;
 import promotionSystem.hechizo.Hechizo;
-import promotionSystem.hechizo.Hielo;
 import promotionSystem.hechizo.Trueno;
 import promotionSystem.razas.Humano;
+
+import java.util.HashMap;
 
 public class MagoHumano extends Humano {
 

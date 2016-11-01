@@ -1,7 +1,5 @@
 package promotionSystem.razas.castas.kingdomHearts;
 
-import java.util.HashMap;
-
 import promotionSystem.Circulo;
 import promotionSystem.Constantes;
 import promotionSystem.Punto;
@@ -9,6 +7,8 @@ import promotionSystem.hechizo.Cura;
 import promotionSystem.hechizo.Hechizo;
 import promotionSystem.hechizo.Hielo;
 import promotionSystem.razas.PersonajeDeKingdomHearts;
+
+import java.util.HashMap;
 
 public class Roxas extends PersonajeDeKingdomHearts {
 

@@ -1,13 +1,11 @@
 package promotionSystem.alianzas;
 
-import static org.junit.Assert.assertEquals;
-import static promotionSystem.builder.AlianzaBuilder.crearAlianzaDeHumanos;
-
 import org.junit.Test;
-
 import promotionSystem.Alianza;
 import promotionSystem.Constantes;
 import promotionSystem.builder.AlianzaBuilder;
+
+import static org.junit.Assert.assertEquals;
 
 public class AlianzaDeOrcosTest {
 	

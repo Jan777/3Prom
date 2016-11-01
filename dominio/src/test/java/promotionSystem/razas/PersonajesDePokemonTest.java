@@ -2,7 +2,6 @@ package promotionSystem.razas;
 
 import org.junit.Assert;
 import org.junit.Test;
-
 import promotionSystem.Constantes;
 import promotionSystem.razas.castas.pokemon.PokemonTipoAgua;
 import promotionSystem.razas.castas.pokemon.PokemonTipoFuego;

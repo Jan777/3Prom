@@ -2,7 +2,6 @@ package promotionSystem.hechizos;
 
 import org.junit.Assert;
 import org.junit.Test;
-
 import promotionSystem.Constantes;
 import promotionSystem.Personaje;
 import promotionSystem.razas.castas.kingdomHearts.Riku;

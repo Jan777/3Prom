@@ -2,10 +2,8 @@ package promotionSystem.razas.castas.humano;
 
 import org.junit.Assert;
 import org.junit.Test;
-
 import promotionSystem.Constantes;
 import promotionSystem.razas.Humano;
-import promotionSystem.razas.castas.humano.TanqueHumano;
 
 public class TanqueHumanoTest {
 	@Test

@@ -2,7 +2,6 @@ package promotionSystem.mapa;
 
 import org.junit.Assert;
 import org.junit.Test;
-
 import promotionSystem.Punto;
 
 public class MapaTest {

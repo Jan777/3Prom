@@ -1,9 +1,9 @@
 package promotionSystem.alianzas;
 
-import java.util.List;
-
 import promotionSystem.Alianza;
 import promotionSystem.Personaje;
+
+import java.util.List;
 
 public class AlianzaDeOrcos extends Alianza{
 

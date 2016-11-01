@@ -3,7 +3,6 @@ package promotionSystem;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
 import promotionSystem.mapa.Mapa;
 import promotionSystem.mapa.Obstaculo;
 import promotionSystem.razas.castas.humano.GuerreroHumano;

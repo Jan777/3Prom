@@ -2,10 +2,8 @@ package promotionSystem.razas.castas.pokemon;
 
 import org.junit.Assert;
 import org.junit.Test;
-
 import promotionSystem.Constantes;
 import promotionSystem.razas.PersonajeDePokemon;
-import promotionSystem.razas.castas.pokemon.PokemonTipoFuego;
 
 public class PokemonTipoFuegoTest {
 

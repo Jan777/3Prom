@@ -1,8 +1,8 @@
 package promotionSystem.razas.castas.undertale;
 
 import promotionSystem.Circulo;
-import promotionSystem.Punto;
 import promotionSystem.Constantes;
+import promotionSystem.Punto;
 import promotionSystem.razas.PersonajeDeUndertale;
 
 public class Chara extends PersonajeDeUndertale{

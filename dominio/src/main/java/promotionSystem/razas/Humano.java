@@ -1,10 +1,6 @@
 package promotionSystem.razas;
 
-import java.util.ArrayList;
-
-import promotionSystem.Item;
 import promotionSystem.Personaje;
-import promotionSystem.Punto;
 
 public abstract class Humano extends Personaje {
 

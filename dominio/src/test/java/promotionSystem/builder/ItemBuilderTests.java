@@ -2,11 +2,9 @@ package promotionSystem.builder;
 
 import org.junit.Assert;
 import org.junit.Test;
-
 import promotionSystem.Constantes;
 import promotionSystem.Personaje;
 import promotionSystem.razas.castas.humano.GuerreroHumano;
-import promotionSystem.razas.castas.pokemon.PokemonTipoFuego;
 
 public class ItemBuilderTests {
 

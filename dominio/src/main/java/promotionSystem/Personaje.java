@@ -4,7 +4,6 @@ import promotionSystem.habilidades.Habilidad;
 import promotionSystem.hechizo.Hechizo;
 import promotionSystem.mapa.Mapa;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;

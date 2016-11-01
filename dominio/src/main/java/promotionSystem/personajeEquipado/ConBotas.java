@@ -1,6 +1,5 @@
 package promotionSystem.personajeEquipado;
 
-import promotionSystem.Item;
 import promotionSystem.Personaje;
 import promotionSystem.PersonajeEquipado;
 

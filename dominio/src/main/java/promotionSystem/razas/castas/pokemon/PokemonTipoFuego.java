@@ -1,13 +1,13 @@
 package promotionSystem.razas.castas.pokemon;
 
-import java.util.HashMap;
-
 import promotionSystem.Circulo;
 import promotionSystem.Constantes;
 import promotionSystem.Punto;
 import promotionSystem.hechizo.Hechizo;
 import promotionSystem.hechizo.Llamarada;
 import promotionSystem.razas.PersonajeDePokemon;
+
+import java.util.HashMap;
 
 public class PokemonTipoFuego extends PersonajeDePokemon {
 	public PokemonTipoFuego(){
