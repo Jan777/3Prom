@@ -12,7 +12,10 @@ public abstract class PersonajeEquipado extends Personaje {
 	private int sumadorDeMagia;
 	private double MultiplicadorDeVelocidad;
 	private int sumadorDeVelocidad;
-	
+
+	public PersonajeEquipado() {
+	}
+
 	public PersonajeEquipado(Personaje personajeDecorado, double MultiplicadorDeAtaque, int sumadorDeAtaque, double MultiplicadorDeDefensa, int sumadorDeDefensa, double MultiplicadorDeMagia, int sumadorDeMagia, double MultiplicadorDeVelocidad, int sumadorDeVelocidad) {
 		this.personajeDecorado = personajeDecorado;
 		this.MultiplicadorDeAtaque = MultiplicadorDeAtaque;
@@ -186,4 +189,6 @@ public abstract class PersonajeEquipado extends Personaje {
 	public void setSumadorDeVelocidad(int sumadorDeVelocidad) {
 		this.sumadorDeVelocidad = sumadorDeVelocidad;
 	}
+
+	public Personaje equipar(Personaje braixen) throws ClassNotFoundException {return null;}
 }

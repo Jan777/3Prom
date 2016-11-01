@@ -4,8 +4,8 @@ import promotionSystem.habilidades.Habilidad;
 import promotionSystem.hechizo.Hechizo;
 import promotionSystem.mapa.Mapa;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -404,13 +404,17 @@ public abstract class Personaje implements Comparable<Personaje>{
         return inventario.getListaDeItems();
     }
 
-	protected Personaje equiparItem(String nombreItem){
-		return inventario.buscarItem(this, nombreItem).equiparPersonaje(this);
+	public Personaje equiparItem(String nombreItem) throws Exception{
+		return inventario.buscarItem(nombreItem).equiparPersonaje(this);
 	}
 
 	public void agregarAInventario(Item item){
         inventario.add(item);
     }
+
+	public Inventario getInventario() {
+		return inventario;
+	}
 
 	public boolean puedeEquiparArma() {
 		return arma == null;

@@ -12,18 +12,18 @@ public class ItemBuilderTests {
 
 	
 	@Test
-	public void siEquipoUnArmaYSeModificanLosStats(){
+	public void siEquipoUnArmaYSeModificanLosStats() throws Exception {
 		Personaje Emeritus = new GuerreroHumano();
 		Assert.assertEquals(Constantes.AtaqueGuerreroHumano, Emeritus.obtenerPuntosDeAtaque());
-		Emeritus = ItemBuilder.ConEspadaGorgoroth(Emeritus);
+		Emeritus = Emeritus.equiparItem("ConEspadaGorgoroth");
 		Assert.assertEquals(Constantes.AtaqueGuerreroHumano*2, Emeritus.obtenerPuntosDeAtaque());
 		Assert.assertEquals(Constantes.MagiaGuerreroHumano+10, Emeritus.obtenerPuntosDeMagia());
 	}
 	
 	@Test
-	public void siEquipo2TiposDeItemYSeModificanLosStats2(){ 
+	public void siEquipo2TiposDeItemYSeModificanLosStats2() throws Exception {
 		Personaje Emeritus = new GuerreroHumano();
-		Emeritus = ItemBuilder.ConEspadaGorgoroth(Emeritus);
+		Emeritus = Emeritus.equiparItem("ConEspadaGorgoroth");
 		Emeritus = ItemBuilder.ConEscudoHyrule(Emeritus);
 		Assert.assertEquals(Constantes.AtaqueGuerreroHumano*2, Emeritus.obtenerPuntosDeAtaque());
 		Assert.assertEquals((Constantes.DefensaGuerreroHumano+10)*2, Emeritus.obtenerPuntosDeDefensa());

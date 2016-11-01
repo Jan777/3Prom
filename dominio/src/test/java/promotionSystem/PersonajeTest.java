@@ -169,14 +169,14 @@ public class PersonajeTest {
 	}
 
 	@Test
-	public void siRecibeUnItemLoDebePonerEnElInventario(){
-		personajeAtacante.recibirItem(new Item("ConEspadaGorgoroth", personajeAtacante));
+	public void siRecibeUnItemLoDebePonerEnElInventario() throws ClassNotFoundException {
+		personajeAtacante.recibirItem(new Item("ConEspadaGorgoroth"));
 		Assert.assertEquals(1, personajeAtacante.getItems().size());
 	}
 
 	@Test
-	public void siTieneItemsPuedeDarlos(){
-		personajeAtacante.recibirItem(new Item("ConEspadaGorgoroth", personajeAtacante));
+	public void siTieneItemsPuedeDarlos() throws ClassNotFoundException {
+		personajeAtacante.recibirItem(new Item("ConEspadaGorgoroth"));
 		Assert.assertTrue(personajeAtacante.puedeDarItem());
 	}
 
@@ -186,8 +186,8 @@ public class PersonajeTest {
 	}
 
 	@Test
-    public void siEntregaUnItemDebeEliminarseDelInventario(){
-        personajeAtacante.recibirItem(new Item("ConEspadaGorgoroth", personajeAtacante));
+    public void siEntregaUnItemDebeEliminarseDelInventario() throws ClassNotFoundException {
+        personajeAtacante.recibirItem(new Item("ConEspadaGorgoroth"));
         personajeAtacante.entregarItem();
         Assert.assertEquals(0, personajeAtacante.getItems().size());
     }

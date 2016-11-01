@@ -16,7 +16,7 @@ public class BatallaTest {
     public void setUp(){
         alianza1 = crearAlianza(2);
         alianza2 = crearAlianza(1);
-        item = new Item("ConEspadaGorgoroth", alianza1.getPersonajes().get(0));
+//        item = new Item("ConEspadaGorgoroth", alianza1.getPersonajes().get(0));
     }
 
     @Test

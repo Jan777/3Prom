@@ -20,8 +20,8 @@ public class Inventario {
         return listaDeItems.remove((int)(Math.random() * size()));
     }
 
-    public Item buscarItem(Personaje personaje, String nombreItem){
-        for(Item item : crearItems(personaje)){
+    public Item buscarItem(String nombreItem) throws ClassNotFoundException {
+        for(Item item : crearItems()){
             if(item.getNombreItem().equals(nombreItem)){
                 return item;
             }

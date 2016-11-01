@@ -1,32 +1,26 @@
 package promotionSystem;
 
-import promotionSystem.habilidades.Habilidad;
-
-import java.util.List;
+import java.lang.reflect.InvocationTargetException;
 
 import static promotionSystem.builder.ItemBuilder.crearItems;
 
 public class Item {
+    private Class<? extends PersonajeEquipado> item;
     private String nombreItem;
-    private Personaje personajeEquipado;
 
-    public Item(String nombreItem, Personaje personajeEquipado) {
+    public Item(String nombreItem) throws ClassNotFoundException {
         this.nombreItem = nombreItem;
-        this.personajeEquipado = personajeEquipado;
+        this.item = (Class<? extends PersonajeEquipado>) Class.forName("promotionSystem.items." + nombreItem);
     }
 
     public String getNombreItem() {
         return nombreItem;
     }
 
-    public Personaje getPersonajeEquipado() {
-        return personajeEquipado;
-    }
-
-    public Personaje equiparPersonaje(Personaje personaje) {
-        for(Item itemAEquipar : crearItems(personaje)){
+    public Personaje equiparPersonaje(Personaje personaje) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, InstantiationException, ClassNotFoundException {
+        for(Item itemAEquipar : crearItems()){
             if(this.nombreItem.equals(itemAEquipar.nombreItem)){
-                return itemAEquipar.personajeEquipado;
+                return item.newInstance().equipar(personaje);
             }
         }
         return null;

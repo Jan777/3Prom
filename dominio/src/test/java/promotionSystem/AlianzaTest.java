@@ -19,7 +19,7 @@ public class AlianzaTest {
     }
 
     private void darItemsAPersonaje(int numeroDePersonaje, int cantidadDeItems) {
-        item = new Item("ConEspadaGordgoroth", alianza.getPersonajes().get(0));
+//        item = new Item("ConEspadaGordgoroth", alianza.getPersonajes().get(0));
         for(int i=0; i < cantidadDeItems; i++){
             alianza.getPersonajes().get(numeroDePersonaje-1).recibirItem(item);
         }
