@@ -17,10 +17,10 @@ public class PersonajeEquipadoTests {
 		Assert.assertEquals(Constantes.MagiaPokemonDeFuego, louie.obtenerPuntosDeMagia());
 		Assert.assertEquals(Constantes.VelocidadPokemonDeFuego, louie.obtenerPuntosDeVelocidad());
 		louie = louie.equiparItem("ConEspadaGorgoroth");
-		louie = ItemBuilder.ConBotasFlober(louie);
-		louie = ItemBuilder.ConCascoAdamantium(louie);
-		louie = ItemBuilder.ConChalecoKevlar(louie);
-		louie = ItemBuilder.ConEscudoHyrule(louie);
+		louie = louie.equiparItem("ConBotasFlober");
+		louie = louie.equiparItem("ConCascoAdamantium");
+		louie = louie.equiparItem("ConChalecoKevlar");
+		louie = louie.equiparItem("ConEscudoHyrule");
 		Assert.assertEquals((Constantes.AtaquePokemonDeFuego*2)+10+10, louie.obtenerPuntosDeAtaque());
 		Assert.assertEquals((((Constantes.DefensaPokemonDeFuego-10)*3*3)+10)*2, louie.obtenerPuntosDeDefensa());
 		Assert.assertEquals(Constantes.MagiaPokemonDeFuego+10+5, louie.obtenerPuntosDeMagia());
@@ -50,23 +50,23 @@ public class PersonajeEquipadoTests {
 	}
 	
 	@Test
-	public void siEquipoItemDeDefensaSubeElStat(){
+	public void siEquipoItemDeDefensaSubeElStat() throws Exception {
 		Personaje louie = new PokemonTipoFuego();
-		louie = ItemBuilder.ConChalecoKevlar(louie);
+		louie = louie.equiparItem("ConChalecoKevlar");
 		Assert.assertEquals(Constantes.DefensaPokemonDeFuego * 3, louie.obtenerPuntosDeDefensa());
 	}
 	
 	@Test
-	public void siEquipoItemDeMagiaSubeElStat(){
+	public void siEquipoItemDeMagiaSubeElStat() throws Exception {
 		Personaje louie = new PokemonTipoFuego();
-		louie = ItemBuilder.ConVaritaMissingno(louie);
+		louie = louie.equiparItem("ConVaritaMissingno");
 		Assert.assertEquals((Constantes.MagiaPokemonDeFuego+5) * 2, louie.obtenerPuntosDeMagia());
 	}
 	
 	@Test
-	public void siEquipoItemDeVelocidadSubeElStat(){
+	public void siEquipoItemDeVelocidadSubeElStat() throws Exception {
 		Personaje louie = new PokemonTipoFuego();
-		louie = ItemBuilder.ConBotasFlober(louie);
+		louie = louie.equiparItem("ConBotasFlober");
 		Assert.assertEquals((Constantes.VelocidadPokemonDeFuego+15) * 2, louie.obtenerPuntosDeVelocidad());
 	}
 	
