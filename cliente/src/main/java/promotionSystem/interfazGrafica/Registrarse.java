@@ -14,10 +14,10 @@ import javax.swing.JTextField;
 public class Registrarse extends JFrame {
 
 	public Registrarse(){
-		LaminaRegistro lamina=new LaminaRegistro();
+		LaminaRegistro laminaRegistro=new LaminaRegistro();
 		setTitle("Registrarse");
-		setBounds(0,0,600,600);
-		add(lamina);
+		setBounds(0,0,600,300);
+		add(laminaRegistro);
 		
 	}
 	
@@ -28,10 +28,11 @@ public class Registrarse extends JFrame {
  class LaminaRegistro extends JPanel{
 	 
 	 public LaminaRegistro(){
+		 System.out.println("entra");
 		 setLayout(new BorderLayout());
-		 LaminaCentral laminaC =new LaminaCentral();
-		 LaminaNorte laminaN=new LaminaNorte();
-		 LaminaSur laminaS=new LaminaSur();
+		 LaminaCentralR laminaC =new LaminaCentralR();
+		 LaminaNorteR laminaN=new LaminaNorteR();
+		 LaminaSurR laminaS=new LaminaSurR();
 		 add(laminaC,BorderLayout.CENTER);
 		 add(laminaN,BorderLayout.NORTH);
 		 add(laminaS,BorderLayout.SOUTH);
@@ -41,23 +42,23 @@ public class Registrarse extends JFrame {
 	 }
  }
 	 
-	 class LaminaCentral extends JPanel{
+	 class LaminaCentralR extends JPanel{
 		 
-		 public LaminaCentral(){
+		 public LaminaCentralR(){
 			 
 			 setLayout(new GridLayout(3,1));
 			 JLabel nicklabel=new JLabel("NickName: ");
-			 JTextField nick=new JTextField(100);
+			 JTextField nick=new JTextField(10);
 			 JLabel contraseñalabel=new JLabel("Contraseña: ");
-			 JTextField contraseña=new JTextField(100);
+			 JTextField contraseña=new JTextField(10);
 			 JLabel contraseñalabelrepeticion=new JLabel("Repita Contraseña: ");
-			 JTextField contraseñaRepeticion=new JTextField(100);
+			 JTextField contraseñaRepeticion=new JTextField(10);
 			 nicklabel.setBounds(0,10, 100, 20);
-			 nick.setBounds(110, 10, 100, 20);
+			 nick.setBounds(110, 10, 50, 20);
 			 contraseñalabel.setBounds(0, 30, 100, 20);
-			 contraseña.setBounds(110, 30,100,20);
+			 contraseña.setBounds(110, 30,50,20);
 			 contraseñalabelrepeticion.setBounds(0, 60, 100, 20);
-			 contraseñaRepeticion.setBounds(0, 60, 100, 20);
+			 contraseñaRepeticion.setBounds(0, 60, 50, 20);
 			 
 			 LaminaAuxiliarFlow nickname=new LaminaAuxiliarFlow(FlowLayout.LEFT);
 			 LaminaAuxiliarFlow password=new LaminaAuxiliarFlow(FlowLayout.LEFT);
@@ -78,9 +79,9 @@ public class Registrarse extends JFrame {
 		 }
 	 }
 	 
-	 class LaminaNorte extends JPanel{
+	 class LaminaNorteR extends JPanel{
 		 
-		 public LaminaNorte(){
+		 public LaminaNorteR(){
 			 
 			 JLabel Titulo=new JLabel("REGISTRARSE");
 			 Titulo.setFont(new Font("titulo",Font.BOLD,33));
@@ -91,9 +92,9 @@ public class Registrarse extends JFrame {
 		 }
 	 }
 	 
-class LaminaSur extends JPanel{
+class LaminaSurR extends JPanel{
 		 
-		 public LaminaSur(){
+		 public LaminaSurR(){
 			 
 			 JButton  aceptar=new JButton ("Aceptar");
 			 JButton  cancelar=new JButton ("Cancelar");
