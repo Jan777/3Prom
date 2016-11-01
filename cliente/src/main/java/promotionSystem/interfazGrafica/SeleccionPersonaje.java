@@ -47,12 +47,17 @@ class LaminaPrincipal extends JPanel{
 
 class LaminaSur extends JPanel{
 	public LaminaSur(){
+		setLayout(new GridLayout(2,1));
 		LaminaAuxFlow lamina =new LaminaAuxFlow(FlowLayout.CENTER);
+		LaminaAuxFlow informe =new LaminaAuxFlow(FlowLayout.CENTER);
 		JButton salir=new JButton("SALIR");
 		JButton seleccionar=new JButton("SELECCIONAR");
+		JLabel error=new JLabel(" ");
 		lamina.add(salir);
 		lamina.add(seleccionar);
+		informe.add(error);
 		add(lamina);
+		add(informe);
 	}
 }
 

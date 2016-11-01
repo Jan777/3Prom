@@ -46,13 +46,15 @@ public class Registrarse extends JFrame {
 		 
 		 public LaminaCentralR(){
 			 
-			 setLayout(new GridLayout(3,1));
+			 setLayout(new GridLayout(4,1));
 			 JLabel nicklabel=new JLabel("NickName: ");
 			 JTextField nick=new JTextField(10);
 			 JLabel contraseñalabel=new JLabel("Contraseña: ");
 			 JTextField contraseña=new JTextField(10);
 			 JLabel contraseñalabelrepeticion=new JLabel("Repita Contraseña: ");
 			 JTextField contraseñaRepeticion=new JTextField(10);
+			 JLabel error=new JLabel(" ");
+			 error.setBounds(0, 90, 50, 20);
 			 nicklabel.setBounds(0,10, 100, 20);
 			 nick.setBounds(110, 10, 50, 20);
 			 contraseñalabel.setBounds(0, 30, 100, 20);
@@ -63,8 +65,9 @@ public class Registrarse extends JFrame {
 			 LaminaAuxiliarFlow nickname=new LaminaAuxiliarFlow(FlowLayout.LEFT);
 			 LaminaAuxiliarFlow password=new LaminaAuxiliarFlow(FlowLayout.LEFT);
 			 LaminaAuxiliarFlow passwordtry=new LaminaAuxiliarFlow(FlowLayout.LEFT);
+			 LaminaAuxiliarFlow informe=new LaminaAuxiliarFlow(FlowLayout.LEFT);
 			 
-			 
+			informe.add(error); 
 			 nickname.add(nicklabel);
 			 nickname.add(nick);
 			 password.add(contraseñalabel);
@@ -75,7 +78,7 @@ public class Registrarse extends JFrame {
 			 add(nickname);
 			 add(password);
 			 add(passwordtry);
-			
+			add(informe);
 		 }
 	 }
 	 
