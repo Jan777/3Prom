@@ -2,7 +2,6 @@ package promotionSystem;
 
 import org.junit.Assert;
 import org.junit.Test;
-import promotionSystem.builder.ItemBuilder;
 import promotionSystem.razas.castas.kingdomHearts.Riku;
 import promotionSystem.razas.castas.pokemon.PokemonTipoFuego;
 

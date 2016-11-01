@@ -10,7 +10,7 @@ public class AlianzaTest {
     private Item item;
 
     @Test
-    public void siLaAlianzaTieneTresPersonasDebeEntregar3Items(){
+    public void siLaAlianzaTieneTresPersonasDebeEntregar3Items() throws ClassNotFoundException {
         alianza = crearAlianza(3);
         darItemsAPersonaje(1, 1);
         darItemsAPersonaje(2, 1);
@@ -18,8 +18,8 @@ public class AlianzaTest {
         Assert.assertEquals(3,alianza.entregarItems().size());
     }
 
-    private void darItemsAPersonaje(int numeroDePersonaje, int cantidadDeItems) {
-//        item = new Item("ConEspadaGordgoroth", alianza.getPersonajes().get(0));
+    private void darItemsAPersonaje(int numeroDePersonaje, int cantidadDeItems) throws ClassNotFoundException {
+        item = new Item("ConEspadaGorgoroth");
         for(int i=0; i < cantidadDeItems; i++){
             alianza.getPersonajes().get(numeroDePersonaje-1).recibirItem(item);
         }

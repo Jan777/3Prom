@@ -1,11 +1,6 @@
 package promotionSystem;
-
-
-
 import java.util.ArrayList;
 import java.util.List;
-
-
 
 public class Alianza {
     protected List<Personaje> personajes;
