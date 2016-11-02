@@ -6,6 +6,9 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
 import java.io.*;
 
 import javax.imageio.ImageIO;
@@ -36,16 +39,18 @@ class LaminaPrincipal extends JPanel{
 		LaminaNorte laminaN=new LaminaNorte();
 		LaminaOeste laminaE=new LaminaOeste();
 		LaminaCentral laminaC=new LaminaCentral();
+		
 		LaminaSur laminaS = new LaminaSur();
 		add(laminaN,BorderLayout.NORTH);
 		add(laminaE,BorderLayout.WEST);
 		add(laminaC,BorderLayout.CENTER);
+		
 		add(laminaS,BorderLayout.SOUTH);
 		
 	}
 }
 
-class LaminaSur extends JPanel{
+  class LaminaSur extends JPanel{
 	public LaminaSur(){
 		setLayout(new GridLayout(2,1));
 		LaminaAuxFlow lamina =new LaminaAuxFlow(FlowLayout.CENTER);
@@ -72,7 +77,7 @@ class LaminaCentral extends JPanel{
 	 public void paintComponent(Graphics g){
 		 super.paintComponent(g);
 		 
-		 File miImagen=new File("C:/Users/Nahuel/Pictures/Para Juego Progra/Sora.png");
+		 File miImagen=new File("C:/Users/Nahuel/Pictures/Para Juego Progra/Riku.png");
 		 try {
 			imagen=ImageIO.read(miImagen);
 		} catch (IOException e) {
@@ -80,6 +85,7 @@ class LaminaCentral extends JPanel{
 			e.printStackTrace();
 		}
 		 g.drawImage(imagen, 5, 5, null);
+		 
 	 }
 }
 
@@ -95,7 +101,7 @@ class LaminaNorte extends JPanel{
 }
 
 class LaminaOeste extends JPanel{
-	
+	JComboBox castas,razas;
 	public LaminaOeste(){
 		setLayout(new GridLayout(8,1));
 
@@ -107,10 +113,17 @@ class LaminaOeste extends JPanel{
 		LaminaAuxFlow oesteMagia=new LaminaAuxFlow(FlowLayout.LEFT);
 		LaminaAuxFlow oesteEnergia=new LaminaAuxFlow(FlowLayout.LEFT);
 		LaminaAuxFlow oesteVelocidad=new LaminaAuxFlow(FlowLayout.LEFT);
-		JComboBox razas=new JComboBox();
-		JComboBox castas=new JComboBox();
+		 razas=new JComboBox();
+		 castas=new JComboBox();
 		razas.addItem("Seleccione una raza.." );
-		castas.addItem("Seleccione una casta.." );
+		razas.addItem("Humano");
+		razas.addItem("Kingdom Hearts");
+		razas.addItem("Orco");
+		razas.addItem("Pokemon");
+		razas.addItem("Star Wars");
+		razas.addItem("Undertale");
+		
+		razas.addActionListener(new AccionRazas());
 		JLabel ataque=new JLabel("ATAQUE: ");
 		JLabel puntosAtaque=new JLabel();
 		JLabel defensa=new JLabel("DEFENSA: ");
@@ -151,6 +164,57 @@ class LaminaOeste extends JPanel{
 		
 		
 	}
+	
+	private class AccionRazas implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			castas.removeAllItems();
+			String eleccion= (String) razas.getSelectedItem();
+			
+			if(eleccion.equals("Humano")||eleccion.equals("Orco")){
+				castas.addItem("Guerrero");
+				castas.addItem("Mago");
+				castas.addItem("Tanque");
+			}else {
+				if(eleccion.equals("Kingdom Hearts")){
+					castas.addItem("Sora");
+					castas.addItem("Roxas");
+					castas.addItem("Riku");
+				}else{ 
+					if(eleccion.equals("Pokemon")){
+						castas.addItem("Tipo Fuego");
+						castas.addItem("Tipo Agua");
+						castas.addItem("Tipo Planta");
+					}else { if(eleccion.equals("Stars Wars")){
+						castas.addItem("Jedi");
+						castas.addItem("Droide");
+						castas.addItem("Wookie");
+					}else{if(eleccion.equals("Undertale"))
+						castas.addItem("Chara");
+						
+					}
+						
+					}
+				    }
+			        }
+			
+		            }
+		
+		private class AccionCastas implements ActionListener{
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+				String eleccion=(String) castas.getSelectedItem();
+				if(castas.equals("Riku")){
+					
+				}
+			}
+			
+		}
+	}
 }
 
 class LaminaAuxFlow extends JPanel{
@@ -160,3 +224,6 @@ class LaminaAuxFlow extends JPanel{
 		
 	}
 }
+
+
+
