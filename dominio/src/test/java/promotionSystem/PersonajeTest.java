@@ -14,6 +14,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static promotionSystem.Constantes.*;
+import static promotionSystem.builder.AlianzaBuilder.*;
 
 public class PersonajeTest {
 	private Personaje personajeAtacante;
@@ -24,13 +25,6 @@ public class PersonajeTest {
 	public void crearPersonajes(){
 		 personajeAtacante=new GuerreroHumano();
 		 personajeAtacado=new GuerreroHumano();
-	}
-	
-	private Alianza crearAlianza(Personaje personaje) {
-		List<Personaje> personajes = new ArrayList<Personaje>();
-		personajes.add(personaje);
-		personaje.setAlianza(new Alianza(personajes));
-		return personaje.getAlianza();
 	}
 
 	@Test
@@ -208,49 +202,42 @@ public class PersonajeTest {
 
 	@Test
 	public void debeElegirElPrimerPersonajeComoVictima(){
-		Alianza alianzaEnemiga = crearAlianza(1);
-        alianzaAtacante = crearAlianza(1);
-        personajeAtacante.alianza = alianzaAtacante;
-        personajeAtacante.elegirVictima(alianzaEnemiga, 0);
+		Alianza alianzaEnemiga = crearAlianzaDeHumanos(1);
+        alianzaAtacante = crearAlianzaDeHumanosConEnemigos(1, alianzaEnemiga);
         Personaje victima = alianzaAtacante.getObjetivo();
 		assertEquals(0, alianzaEnemiga.getPersonajes().indexOf(victima));
 	}
 
-
 	private Alianza crearAlianza(int cantidadPersonajes) {
-		List<Personaje> personajes=new ArrayList<Personaje>();
-		Alianza alianza = new Alianza(personajes);
+		List<Personaje> listaDePersonajes = new ArrayList<>();
 		for(int i=0;i<cantidadPersonajes;i++){
 			GuerreroHumano personaje = new GuerreroHumano();
-			personaje.alianza=alianza;
-			personajes.add(personaje);
+			listaDePersonajes.add(personaje);
 		}
-		return alianza;
+		return new Alianza(listaDePersonajes);
 	}
 
 	@Test
 	public void siElPersonajePoseeUnaAlianzaYLaAbandonaDejaraDeAparecerEsaAlianza(){
-		Alianza alianzaNueva=crearAlianza(personajeAtacante);
+		Alianza alianzaNueva= crearAlianzaCon(personajeAtacante);
 		personajeAtacante.abandonarAlianza();
 		assertEquals(null,personajeAtacante.getAlianza());
 		assertEquals(0, alianzaNueva.getPersonajes().size());
-
 	}
 
 	
 	@Test
 	public void siElPersonajeNoTieneAlianzasYAceptaUnaNuevaAlianzaPasaATenerla(){
-	    alianzaAtacante = crearAlianza(personajeAtacante);
+	    alianzaAtacante = crearAlianzaCon(personajeAtacante);
 		personajeAtacado.aceptarAlianza(personajeAtacante);
 		assertEquals(personajeAtacante.getAlianza(), personajeAtacado.getAlianza());
 		assertEquals(2, alianzaAtacante.getPersonajes().size());
-
 	}
 	
 	@Test
 	public void siElPersonajeTieneAlianzasYAceptaUnaNuevaAlianzaAmbasAlianzasSeUnen(){
-		alianzaAtacante =crearAlianza(personajeAtacante);
-		Alianza alianzaAtacado=crearAlianza(personajeAtacado);
+		alianzaAtacante =crearAlianzaCon(personajeAtacante);
+		Alianza alianzaAtacado=crearAlianzaCon(personajeAtacado);
 		personajeAtacado.aceptarAlianza(personajeAtacante);
 		assertEquals(personajeAtacante.getAlianza(), personajeAtacado.getAlianza());
 		assertEquals(2, alianzaAtacante.getPersonajes().size());
@@ -296,7 +283,6 @@ public class PersonajeTest {
 		Alianza alianza=crearAlianza(10);
 		Alianza aliadosEnCombate= alianza.getPersonajes().get(1).invocarAliados();
 		assertEquals(5, aliadosEnCombate.getPersonajes().size());
-		
 	}
 	
 	@Test

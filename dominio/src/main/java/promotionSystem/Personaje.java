@@ -29,11 +29,11 @@ public abstract class Personaje implements Comparable<Personaje>{
 	protected int saludMaxima;
 	protected int energiaMaxima;
 	protected Map<String, Hechizo> hechizos;
-	public Item arma;
-    public Item botas;
-    public Item casco;
-    public Item chaleco;
-    public Item escudo;
+	private Item arma;
+    private Item botas;
+    private Item casco;
+    private Item chaleco;
+    private Item escudo;
 	private Inventario inventario = new Inventario();
 
 	public final void atacar(Personaje atacado) {
@@ -105,10 +105,6 @@ public abstract class Personaje implements Comparable<Personaje>{
 
 	private boolean puedeAtacarConMagia() {
 		return energia >= magia;
-	}
-
-	public void elegirVictima(Alianza alianzaEnemiga, int numeroDePersonaje) {
-		alianza.setObjetivo(alianzaEnemiga.darVictima(numeroDePersonaje));
 	}
 
     public int getAtaque() {
@@ -402,13 +398,13 @@ public abstract class Personaje implements Comparable<Personaje>{
 
     private void equipar(Item item) throws Exception {
         inventario.remove(item);
-        this.getClass().getField(item.getTipoDeArma()).set(this, item);
+		this.getClass().getSuperclass().getSuperclass().getDeclaredField(item.getTipoDeItem()).set(this, item);
         activarItem(item);
     }
 
     public void desequiparItem(Item item) throws Exception {
         desactivarItem(item);
-        this.getClass().getField(item.getTipoDeArma()).set(this, null);
+        this.getClass().getSuperclass().getSuperclass().getDeclaredField(item.getTipoDeItem()).set(this, null);
         inventario.add(item);
     }
 

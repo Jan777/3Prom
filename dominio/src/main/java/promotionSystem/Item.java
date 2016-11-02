@@ -2,7 +2,7 @@ package promotionSystem;
 
 public abstract class Item {
     private String nombreItem;
-    protected String tipoDeArma;
+    protected String tipoDeItem;
     protected double multiplicadorDeAtaque = 1;
     protected int sumadorDeAtaque = 0;
     protected double multiplicadorDeDefensa = 1;
@@ -12,17 +12,17 @@ public abstract class Item {
     protected double multiplicadorDeVelocidad = 1;
     protected int sumadorDeVelocidad = 0;
 
-    public Item(String nombreItem, String tipoDeArma){
+    public Item(String nombreItem, String tipoDeItem){
         this.nombreItem = nombreItem;
-        this.tipoDeArma = tipoDeArma;
+        this.tipoDeItem = tipoDeItem;
     }
 
     public String getNombreItem() {
         return nombreItem;
     }
 
-    public String getTipoDeArma() {
-        return tipoDeArma;
+    public String getTipoDeItem() {
+        return tipoDeItem;
     }
 
     public double getMultiplicadorDeAtaque() {
