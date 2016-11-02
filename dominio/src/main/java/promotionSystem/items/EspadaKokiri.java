@@ -6,7 +6,7 @@ public class EspadaKokiri extends Item{
 
     public EspadaKokiri() {
         super("EspadaKokiri", "arma");
-        multiplicadorDeAtaque = 2;
+        sumadorDeAtaque = 5;
         sumadorDeMagia = 10;
         sumadorDeVelocidad = 10;
     }

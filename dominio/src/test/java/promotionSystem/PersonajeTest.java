@@ -308,4 +308,17 @@ public class PersonajeTest {
 		assertEquals(0, blastoise.getPosicion().getX(),0);
 		assertEquals(1, blastoise.getPosicion().getY(),0);
 	}
+	
+	@Test
+	public void siEquipoUnItemSuboDeNivelYDesequipoItemMisStatsSubenSegunElNivelSubido() throws Exception{
+		personajeAtacante.recibirItem(new EspadaGorgoroth());
+		personajeAtacante.equiparItem(new EspadaGorgoroth());
+		personajeAtacante.subirExperiencia(5);
+		assertEquals(2,personajeAtacante.getNivel());
+		personajeAtacante.desequiparItem(personajeAtacante.getArma());
+		
+		assertEquals(AtaqueGuerreroHumano+Constantes.MultiplicadorDeNivelEspecial,personajeAtacante.getAtaque());
+		Assert.assertEquals(Constantes.MagiaGuerreroHumano+Constantes.MultiplicadorDeNivelNormal, personajeAtacante.getMagia());
+		Assert.assertEquals(Constantes.VelocidadGuerreroHumano+Constantes.MultiplicadorDeNivelNormal, personajeAtacante.getVelocidad());
+	}
 }

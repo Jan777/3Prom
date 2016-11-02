@@ -6,8 +6,7 @@ public class VaritaMissingno extends Item{
 
     public VaritaMissingno() {
         super("VaritaMissingno", "arma");
-        multiplicadorDeMagia = 2;
-        sumadorDeMagia = 5;
+        sumadorDeMagia = 10;
         sumadorDeVelocidad = -10;
     }
 }

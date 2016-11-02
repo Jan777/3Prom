@@ -7,6 +7,6 @@ public class CascoAdamantium extends Item{
     public CascoAdamantium() {
         super("CascoAdamantium", "casco");
         sumadorDeAtaque = 10;
-        multiplicadorDeDefensa = 3;
+        sumadorDeDefensa =10;
     }
 }

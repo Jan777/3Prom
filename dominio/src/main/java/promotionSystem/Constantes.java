@@ -154,6 +154,37 @@ public class Constantes {
 
 	//Armas
 	//EspadaGorgoroth
+	public static final int ATAQUE_ESPADA_GORGOROTH = 10;
 	public static final int MAGIA_ESPADA_GORGOROTH = 10;
+	public static final int VELOCIDAD_ESPADA_GORGOROTH=10;
+	
+	//Varita Missigno
+	
+	public static final int MAGIA_VARITA_MISSIGNO=10;
+	public static final int VELOCIDAD_VARITA_MISSIGNO=-10;
+		
+	//Botas Flober
+	public static final int MAGIA_BOTAS_FLOBER=5;
+	public static final int VELOCIDAD_BOTAS_FLOBER=15;
+	public static final int DEFENSA_BOTAS_FLOBER=-10;
+	
+	//Escudo Hyrule
+	public static final int DEFENSA_ESCUDO_HYRULE=10;
+	public static final int VELOCIDAD_ESCUDO_HYRULE=5;
+	
+	//Casco Adamantium
+	public static final int ATAQUE_CASCO_ADAMANTIUM=10;
+	public static final int DEFENSA_CASCO_ADAMANTIUM=10;
+	
+	//Chaleco Kevlar
+	public static final int ATAQUE_CHALECO_KEVLAR = 10;
+	public static final int DEFENSA_CHALECO_KEVLAR = 10;
+	public static final int VELOCIDAD_CHALECO_KEVLAR=-10;
+	
+	//EspadaKOKIRI
+	public static final int ATAQUE_ESPADA_KOKIRI = 5;
+	public static final int MAGIA_ESPADA_KOKIRI = 10;
+	public static final int VELOCIDAD_ESPADA_KOKIRI=10;
 
+	
 }

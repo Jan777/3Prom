@@ -24,10 +24,10 @@ public class PersonajeEquipadoTests {
 		louie.equiparItem(new CascoAdamantium());
 		louie.equiparItem(new ChalecoKevlar());
 		louie.equiparItem(new EscudoHyrule());
-		Assert.assertEquals((AtaquePokemonDeFuego*2)+10+10, louie.getAtaque());
-		Assert.assertEquals((((DEFENSA_POKEMON_DE_FUEGO -10)*3*3)+10)*2, louie.obtenerPuntosDeDefensa());
-		Assert.assertEquals(MagiaPokemonDeFuego+10+5, louie.obtenerPuntosDeMagia());
-		Assert.assertEquals((int)((((VelocidadPokemonDeFuego+10+15)*2)-10)*0.5), louie.obtenerPuntosDeVelocidad());
+		Assert.assertEquals(AtaquePokemonDeFuego+ATAQUE_ESPADA_GORGOROTH+ATAQUE_CHALECO_KEVLAR+ATAQUE_CASCO_ADAMANTIUM, louie.getAtaque());
+		Assert.assertEquals(DEFENSA_POKEMON_DE_FUEGO+DEFENSA_BOTAS_FLOBER+DEFENSA_CASCO_ADAMANTIUM+DEFENSA_ESCUDO_HYRULE+DEFENSA_CHALECO_KEVLAR , louie.obtenerPuntosDeDefensa());
+		Assert.assertEquals(MagiaPokemonDeFuego+MAGIA_BOTAS_FLOBER+MAGIA_ESPADA_GORGOROTH, louie.obtenerPuntosDeMagia());
+		Assert.assertEquals(VelocidadPokemonDeFuego+VELOCIDAD_BOTAS_FLOBER+VELOCIDAD_CHALECO_KEVLAR+VELOCIDAD_ESCUDO_HYRULE+VELOCIDAD_ESPADA_GORGOROTH, louie.obtenerPuntosDeVelocidad());
 	}
 
 	private void agregarAInventario(Personaje louie) throws Exception {
@@ -58,7 +58,7 @@ public class PersonajeEquipadoTests {
 		Personaje louie = new PokemonTipoFuego();
 		louie.recibirItem(new EspadaKokiri());
 		louie.equiparItem(new EspadaKokiri());
-		Assert.assertEquals(AtaquePokemonDeFuego * 2, louie.obtenerPuntosDeAtaque());
+		Assert.assertEquals(AtaquePokemonDeFuego+ATAQUE_ESPADA_KOKIRI, louie.obtenerPuntosDeAtaque());
 	}
 
 	@Test
@@ -66,7 +66,7 @@ public class PersonajeEquipadoTests {
 		Personaje louie = new PokemonTipoFuego();
 		louie.recibirItem(new ChalecoKevlar());
 		louie.equiparItem(new ChalecoKevlar());
-		Assert.assertEquals(DEFENSA_POKEMON_DE_FUEGO * 3, louie.obtenerPuntosDeDefensa());
+		Assert.assertEquals(DEFENSA_POKEMON_DE_FUEGO +DEFENSA_CHALECO_KEVLAR, louie.obtenerPuntosDeDefensa());
 	}
 
 	@Test
@@ -74,7 +74,7 @@ public class PersonajeEquipadoTests {
 		Personaje louie = new PokemonTipoFuego();
 		louie.recibirItem(new VaritaMissingno());
 		louie.equiparItem(new VaritaMissingno());
-		Assert.assertEquals((MagiaPokemonDeFuego+5) * 2, louie.obtenerPuntosDeMagia());
+		Assert.assertEquals(MagiaPokemonDeFuego+MAGIA_VARITA_MISSIGNO,louie.obtenerPuntosDeMagia());
 	}
 
 	@Test
@@ -82,7 +82,7 @@ public class PersonajeEquipadoTests {
 		Personaje louie = new PokemonTipoFuego();
 		louie.recibirItem(new BotasFlober());
 		louie.equiparItem(new BotasFlober());
-		Assert.assertEquals((VelocidadPokemonDeFuego+15) * 2, louie.obtenerPuntosDeVelocidad());
+		Assert.assertEquals(VelocidadPokemonDeFuego+VELOCIDAD_BOTAS_FLOBER, louie.obtenerPuntosDeVelocidad());
 	}
 
 	@Test

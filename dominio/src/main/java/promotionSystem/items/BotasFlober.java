@@ -8,7 +8,6 @@ public class BotasFlober extends Item{
         super("BotasFlober", "botas");
         sumadorDeDefensa = -10;
         sumadorDeMagia = 5;
-        multiplicadorDeVelocidad = 2;
         sumadorDeVelocidad = 15;
     }
 }

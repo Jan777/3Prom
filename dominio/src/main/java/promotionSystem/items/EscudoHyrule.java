@@ -6,8 +6,7 @@ public class EscudoHyrule extends Item{
 
     public EscudoHyrule() {
         super("EscudoHyrule", "escudo");
-        multiplicadorDeDefensa = 2;
         sumadorDeDefensa = 10;
-        multiplicadorDeVelocidad = 0.5;
+        sumadorDeVelocidad = 5;
     }
 }

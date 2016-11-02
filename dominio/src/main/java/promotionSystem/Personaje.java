@@ -410,23 +410,15 @@ public abstract class Personaje implements Comparable<Personaje>{
 
     private void activarItem(Item item) {
         ataque += item.getSumadorDeAtaque();
-        ataque *= item.getMultiplicadorDeAtaque();
         magia += item.getSumadorDeMagia();
-        magia *= item.getMultiplicadorDeMagia();
         defensa += item.getSumadorDeDefensa();
-        defensa *= item.getMultiplicadorDeDefensa();
         velocidad += item.getSumadorDeVelocidad();
-        velocidad *= item.getMultiplicadorDeVelocidad();
     }
 
     private void desactivarItem(Item item) {
-        ataque /= item.getMultiplicadorDeAtaque();
         ataque -= item.getSumadorDeAtaque();
-        magia /= item.getMultiplicadorDeMagia();
         magia -= item.getSumadorDeMagia();
-        defensa /= item.getMultiplicadorDeDefensa();
         defensa -= item.getSumadorDeDefensa();
-        velocidad /= item.getMultiplicadorDeVelocidad();
         velocidad -= item.getSumadorDeVelocidad();
     }
 
