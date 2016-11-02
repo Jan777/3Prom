@@ -22,7 +22,7 @@ public class Constantes {
 	public static final int SaludPokemonDeFuego = 50;
 	public static final int SaludMaximaPokemonDeFuego = 50;
 	public static final int AtaquePokemonDeFuego = 10;
-	public static final int DefensaPokemonDeFuego = 10;
+	public static final int DEFENSA_POKEMON_DE_FUEGO = 10;
 	public static final int MagiaPokemonDeFuego = 15;
 	public static final int VelocidadPokemonDeFuego = 5;
 	// PokemonDeAgua
@@ -151,5 +151,9 @@ public class Constantes {
 	public static final int DefensaGuerreroOrco = 4;
 	public static final int MagiaGuerreroOrco = 3;
 	public static final int VelocidadGuerreroOrco = 3;
+
+	//Armas
+	//EspadaGorgoroth
+	public static final int MAGIA_ESPADA_GORGOROTH = 10;
 
 }

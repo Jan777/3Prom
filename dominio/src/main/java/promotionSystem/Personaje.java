@@ -29,11 +29,11 @@ public abstract class Personaje implements Comparable<Personaje>{
 	protected int saludMaxima;
 	protected int energiaMaxima;
 	protected Map<String, Hechizo> hechizos;
-	private String arma;
-	private String botas;
-	private String casco;
-	private String chaleco;
-	private String escudo;
+	public Item arma;
+    public Item botas;
+    public Item casco;
+    public Item chaleco;
+    public Item escudo;
 	private Inventario inventario = new Inventario();
 
 	public final void atacar(Personaje atacado) {
@@ -113,6 +113,18 @@ public abstract class Personaje implements Comparable<Personaje>{
 
     public int getAtaque() {
         return ataque;
+    }
+
+    public int getDefensa() {
+        return defensa;
+    }
+
+    public int getMagia() {
+        return magia;
+    }
+
+    public int getVelocidad() {
+        return velocidad;
     }
 
     public int getSalud() {
@@ -346,48 +358,27 @@ public abstract class Personaje implements Comparable<Personaje>{
 		return radioDeAcccion.incluye(this.posicion);
 	}
 
-	public String getArma() {
+    public Item getArma() {
+        return arma;
+    }
 
-		return arma;
-	}
+    public Item getBotas() {
+        return botas;
+    }
 
-	public void setArma(String arma) {
-		this.arma = arma;
-	}
+    public Item getCasco() {
+        return casco;
+    }
 
-	public String getBotas() {
-		return botas;
-	}
+    public Item getChaleco() {
+        return chaleco;
+    }
 
-	public void setBotas(String botas) {
-		this.botas = botas;
-	}
+    public Item getEscudo() {
+        return escudo;
+    }
 
-	public String getCasco() {
-		return casco;
-	}
-
-	public void setCasco(String casco) {
-		this.casco = casco;
-	}
-
-	public String getChaleco() {
-		return chaleco;
-	}
-
-	public void setChaleco(String chaleco) {
-		this.chaleco = chaleco;
-	}
-
-	public String getEscudo() {
-		return escudo;
-	}
-
-	public void setEscudo(String escudo) {
-		this.escudo = escudo;
-	}
-
-	public void recibirItem(Item item) {
+    public void recibirItem(Item item) {
 		inventario.add(item);
 	}
 
@@ -403,11 +394,47 @@ public abstract class Personaje implements Comparable<Personaje>{
         return inventario.getListaDeItems();
     }
 
-	public Personaje equiparItem(String nombreItem) throws Exception{
-		return inventario.buscarItem(nombreItem).equiparPersonaje(this);
+	public void equiparItem(Item item) throws Exception{
+		if(inventario.buscarItem(item)){
+            equipar(item);
+        }
 	}
 
-	public void agregarAInventario(Item item){
+    private void equipar(Item item) throws Exception {
+        inventario.remove(item);
+        this.getClass().getField(item.getTipoDeArma()).set(this, item);
+        activarItem(item);
+    }
+
+    public void desequiparItem(Item item) throws Exception {
+        desactivarItem(item);
+        this.getClass().getField(item.getTipoDeArma()).set(this, null);
+        inventario.add(item);
+    }
+
+    private void activarItem(Item item) {
+        ataque += item.getSumadorDeAtaque();
+        ataque *= item.getMultiplicadorDeAtaque();
+        magia += item.getSumadorDeMagia();
+        magia *= item.getMultiplicadorDeMagia();
+        defensa += item.getSumadorDeDefensa();
+        defensa *= item.getMultiplicadorDeDefensa();
+        velocidad += item.getSumadorDeVelocidad();
+        velocidad *= item.getMultiplicadorDeVelocidad();
+    }
+
+    private void desactivarItem(Item item) {
+        ataque /= item.getMultiplicadorDeAtaque();
+        ataque -= item.getSumadorDeAtaque();
+        magia /= item.getMultiplicadorDeMagia();
+        magia -= item.getSumadorDeMagia();
+        defensa /= item.getMultiplicadorDeDefensa();
+        defensa -= item.getSumadorDeDefensa();
+        velocidad /= item.getMultiplicadorDeVelocidad();
+        velocidad -= item.getSumadorDeVelocidad();
+    }
+
+    public void agregarAInventario(Item item){
         inventario.add(item);
     }
 

@@ -13,57 +13,7 @@ public class ConCasco extends PersonajeEquipado {
 	public void atacarConMagia(Personaje atacado, String conjuro){
 		super.atacarConMagia(atacado, conjuro);
 	}
-	
-	@Override
-	public void setArma(String arma) {
-		super.setArma(arma);
-	}
-	
-	@Override
-	public String getArma() {
-		return super.getArma();
-	}
-	
-	@Override
-	public void setBotas(String botas) {
-		super.setBotas(botas);
-	}
-	
-	@Override
-	public String getBotas() {
-		return super.getBotas();
-	}
-	
-	@Override
-	public void setCasco(String casco) {
-		super.setCasco(casco);
-	}
-	
-	@Override
-	public String getCasco() {
-		return super.getCasco();
-	}
-	
-	@Override
-	public void setChaleco(String chaleco) {
-		super.setChaleco(chaleco);
-	}
-	
-	@Override
-	public String getChaleco() {
-		return super.getChaleco();
-	}
-	
-	@Override
-	public void setEscudo(String escudo) {
-		super.setEscudo(escudo);
-	}
-	
-	@Override
-	public String getEscudo() {
-		return super.getEscudo();
-	}
-	
+
 	@Override
 	public int obtenerPuntosDeAtaque() {
 		return (int) ((super.obtenerPuntosDeAtaque()+getSumadorDeAtaque())*getMultiplicadorDeAtaque());

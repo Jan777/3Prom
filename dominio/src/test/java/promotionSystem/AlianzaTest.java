@@ -2,6 +2,7 @@ package promotionSystem;
 
 import org.junit.Assert;
 import org.junit.Test;
+import promotionSystem.items.EspadaGorgoroth;
 
 import static promotionSystem.builder.AlianzaBuilder.crearAlianza;
 
@@ -19,7 +20,7 @@ public class AlianzaTest {
     }
 
     private void darItemsAPersonaje(int numeroDePersonaje, int cantidadDeItems) throws ClassNotFoundException {
-        item = new Item("ConEspadaGorgoroth");
+        item = new EspadaGorgoroth();
         for(int i=0; i < cantidadDeItems; i++){
             alianza.getPersonajes().get(numeroDePersonaje-1).recibirItem(item);
         }

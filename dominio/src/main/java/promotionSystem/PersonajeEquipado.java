@@ -32,46 +32,6 @@ public abstract class PersonajeEquipado extends Personaje {
 		personajeDecorado.atacarConMagia(atacado, conjuro);
 	}
 	
-	public void setArma(String arma) {
-		personajeDecorado.setArma(arma);
-	}
-	
-	public String getArma(){
-		return personajeDecorado.getArma();
-	}
-
-	public void setBotas(String botas) {
-		personajeDecorado.setBotas(botas);
-	}
-	
-	public String getBotas(){
-		return personajeDecorado.getBotas();
-	}
-	
-	public void setCasco(String casco) {
-		personajeDecorado.setCasco(casco);
-	}
-	
-	public String getCasco(){
-		return personajeDecorado.getCasco();
-	}
-	
-	public void setChaleco(String chaleco) {
-		personajeDecorado.setChaleco(chaleco);
-	}
-	
-	public String getChaleco(){
-		return personajeDecorado.getChaleco();
-	}
-	
-	public void setEscudo(String escudo) {
-		personajeDecorado.setEscudo(escudo);
-	}
-	
-	public String getEscudo(){
-		return personajeDecorado.getEscudo();
-	}
-	
 	@Override
 	public boolean puedeEquiparArma(){
 		return personajeDecorado.puedeEquiparArma();

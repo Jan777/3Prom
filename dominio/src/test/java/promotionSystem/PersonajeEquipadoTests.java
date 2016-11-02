@@ -2,8 +2,11 @@ package promotionSystem;
 
 import org.junit.Assert;
 import org.junit.Test;
+import promotionSystem.items.*;
 import promotionSystem.razas.castas.kingdomHearts.Riku;
 import promotionSystem.razas.castas.pokemon.PokemonTipoFuego;
+
+import static promotionSystem.Constantes.*;
 
 
 public class PersonajeEquipadoTests {
@@ -11,73 +14,87 @@ public class PersonajeEquipadoTests {
 	@Test
 	public void siPuedoEquiparmeUnItemDeCadaTipo() throws Exception {
 		Personaje louie = new PokemonTipoFuego();
-		Assert.assertEquals(Constantes.AtaquePokemonDeFuego, louie.obtenerPuntosDeAtaque());
-		Assert.assertEquals(Constantes.DefensaPokemonDeFuego, louie.obtenerPuntosDeDefensa());
-		Assert.assertEquals(Constantes.MagiaPokemonDeFuego, louie.obtenerPuntosDeMagia());
-		Assert.assertEquals(Constantes.VelocidadPokemonDeFuego, louie.obtenerPuntosDeVelocidad());
-		louie = louie.equiparItem("ConEspadaGorgoroth");
-		louie = louie.equiparItem("ConBotasFlober");
-		louie = louie.equiparItem("ConCascoAdamantium");
-		louie = louie.equiparItem("ConChalecoKevlar");
-		louie = louie.equiparItem("ConEscudoHyrule");
-		Assert.assertEquals((Constantes.AtaquePokemonDeFuego*2)+10+10, louie.obtenerPuntosDeAtaque());
-		Assert.assertEquals((((Constantes.DefensaPokemonDeFuego-10)*3*3)+10)*2, louie.obtenerPuntosDeDefensa());
-		Assert.assertEquals(Constantes.MagiaPokemonDeFuego+10+5, louie.obtenerPuntosDeMagia());
-		Assert.assertEquals((int)((((Constantes.VelocidadPokemonDeFuego+10+15)*2)-10)*0.5), louie.obtenerPuntosDeVelocidad());
+		Assert.assertEquals(AtaquePokemonDeFuego, louie.obtenerPuntosDeAtaque());
+		Assert.assertEquals(DEFENSA_POKEMON_DE_FUEGO, louie.obtenerPuntosDeDefensa());
+		Assert.assertEquals(MagiaPokemonDeFuego, louie.obtenerPuntosDeMagia());
+		Assert.assertEquals(VelocidadPokemonDeFuego, louie.obtenerPuntosDeVelocidad());
+		agregarAInventario(louie);
+		louie.equiparItem(new EspadaGorgoroth());
+		louie.equiparItem(new BotasFlober());
+		louie.equiparItem(new CascoAdamantium());
+		louie.equiparItem(new ChalecoKevlar());
+		louie.equiparItem(new EscudoHyrule());
+		Assert.assertEquals((AtaquePokemonDeFuego*2)+10+10, louie.getAtaque());
+		Assert.assertEquals((((DEFENSA_POKEMON_DE_FUEGO -10)*3*3)+10)*2, louie.obtenerPuntosDeDefensa());
+		Assert.assertEquals(MagiaPokemonDeFuego+10+5, louie.obtenerPuntosDeMagia());
+		Assert.assertEquals((int)((((VelocidadPokemonDeFuego+10+15)*2)-10)*0.5), louie.obtenerPuntosDeVelocidad());
 	}
-	
+
+	private void agregarAInventario(Personaje louie) throws Exception {
+		louie.recibirItem(new EspadaGorgoroth());
+		louie.recibirItem(new BotasFlober());
+		louie.recibirItem(new CascoAdamantium());
+		louie.recibirItem(new ChalecoKevlar());
+		louie.recibirItem(new EscudoHyrule());
+	}
+
 	@Test
 	public void siPuedoEquiparmeUnItemDeCadaTipoEnElInventario() throws Exception {
 		Personaje louie = new PokemonTipoFuego();
-		louie = louie.equiparItem("ConEspadaGorgoroth");
-//		louie = louie.equiparItem("ConBotasFlober");
-//		louie = louie.equiparItem("ConCascoAdamantium");
-//		louie = louie.equiparItem("ConChalecoKevlar");
-//		louie = louie.equiparItem("ConEscudoHyrule");
-//		louie = louie.equiparItem("ConEspadaGorgoroth");
-//		louie = louie.equiparItem("ConBotasFlober");
-//		louie = louie.equiparItem("ConCascoAdamantium");
-//		louie = louie.equiparItem("ConChalecoKevlar");
-//		louie = louie.equiparItem("ConEscudoHyrule");
+		louie.equiparItem(new EspadaGorgoroth());
+		louie.equiparItem(new BotasFlober());
+		louie.equiparItem(new CascoAdamantium());
+		louie.equiparItem(new ChalecoKevlar());
+		louie.equiparItem(new EscudoHyrule());
+		louie.equiparItem(new EspadaGorgoroth());
+		louie.equiparItem(new BotasFlober());
+		louie.equiparItem(new CascoAdamantium());
+		louie.equiparItem(new ChalecoKevlar());
+		louie.equiparItem(new EscudoHyrule());
 	}
 	
 	@Test
 	public void siEquipoItemDeAtaqueSubeElStat() throws Exception {
 		Personaje louie = new PokemonTipoFuego();
-		louie = louie.equiparItem("ConEspadaKokiri");
-		Assert.assertEquals(Constantes.AtaquePokemonDeFuego * 2, louie.obtenerPuntosDeAtaque());
+		louie.recibirItem(new EspadaKokiri());
+		louie.equiparItem(new EspadaKokiri());
+		Assert.assertEquals(AtaquePokemonDeFuego * 2, louie.obtenerPuntosDeAtaque());
 	}
-	
+
 	@Test
 	public void siEquipoItemDeDefensaSubeElStat() throws Exception {
 		Personaje louie = new PokemonTipoFuego();
-		louie = louie.equiparItem("ConChalecoKevlar");
-		Assert.assertEquals(Constantes.DefensaPokemonDeFuego * 3, louie.obtenerPuntosDeDefensa());
+		louie.recibirItem(new ChalecoKevlar());
+		louie.equiparItem(new ChalecoKevlar());
+		Assert.assertEquals(DEFENSA_POKEMON_DE_FUEGO * 3, louie.obtenerPuntosDeDefensa());
 	}
-	
+
 	@Test
 	public void siEquipoItemDeMagiaSubeElStat() throws Exception {
 		Personaje louie = new PokemonTipoFuego();
-		louie = louie.equiparItem("ConVaritaMissingno");
-		Assert.assertEquals((Constantes.MagiaPokemonDeFuego+5) * 2, louie.obtenerPuntosDeMagia());
+		louie.recibirItem(new VaritaMissingno());
+		louie.equiparItem(new VaritaMissingno());
+		Assert.assertEquals((MagiaPokemonDeFuego+5) * 2, louie.obtenerPuntosDeMagia());
 	}
-	
+
 	@Test
 	public void siEquipoItemDeVelocidadSubeElStat() throws Exception {
 		Personaje louie = new PokemonTipoFuego();
-		louie = louie.equiparItem("ConBotasFlober");
-		Assert.assertEquals((Constantes.VelocidadPokemonDeFuego+15) * 2, louie.obtenerPuntosDeVelocidad());
+		louie.recibirItem(new BotasFlober());
+		louie.equiparItem(new BotasFlober());
+		Assert.assertEquals((VelocidadPokemonDeFuego+15) * 2, louie.obtenerPuntosDeVelocidad());
 	}
-	
+
 	@Test
 	public void siEquipoItemYTiraHechizo() throws Exception {
 		Personaje pokemon = new PokemonTipoFuego();
 		Personaje riku=new Riku();
-		riku = riku.equiparItem("ConEspadaGorgoroth");
-		Assert.assertEquals(Constantes.SaludPokemonDeFuego, pokemon.getSalud());
-		Assert.assertEquals(Constantes.VelocidadPokemonDeFuego, pokemon.obtenerPuntosDeVelocidad());
+		riku.recibirItem(new EspadaGorgoroth());
+		riku.equiparItem(new EspadaGorgoroth());
+		Assert.assertEquals(SaludPokemonDeFuego, pokemon.getSalud());
+		Assert.assertEquals(VelocidadPokemonDeFuego, pokemon.obtenerPuntosDeVelocidad());
 		riku.atacarConMagia(pokemon, "Hielo");
-		Assert.assertEquals(Constantes.SaludPokemonDeFuego-Constantes.MagiaRiku+Constantes.DefensaPokemonDeFuego, pokemon.getSalud());
-		Assert.assertEquals(Constantes.VelocidadPokemonDeFuego/2, pokemon.obtenerPuntosDeVelocidad());
+		Assert.assertEquals(SaludPokemonDeFuego - MagiaRiku + DEFENSA_POKEMON_DE_FUEGO - MAGIA_ESPADA_GORGOROTH, pokemon.getSalud());
+		Assert.assertEquals(VelocidadPokemonDeFuego/2, pokemon.obtenerPuntosDeVelocidad());
 	}
 }

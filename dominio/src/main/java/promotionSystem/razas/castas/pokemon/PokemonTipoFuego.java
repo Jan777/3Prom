@@ -16,7 +16,7 @@ public class PokemonTipoFuego extends PersonajeDePokemon {
 		salud=Constantes.SaludPokemonDeFuego; 
 		saludMaxima=Constantes.SaludMaximaPokemonDeFuego;
 		ataque=Constantes.AtaquePokemonDeFuego;
-		defensa=Constantes.DefensaPokemonDeFuego;
+		defensa=Constantes.DEFENSA_POKEMON_DE_FUEGO;
 		magia=Constantes.MagiaPokemonDeFuego;
 		velocidad=Constantes.VelocidadPokemonDeFuego;
 		experiencia=0;

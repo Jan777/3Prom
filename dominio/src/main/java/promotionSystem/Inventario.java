@@ -3,8 +3,6 @@ package promotionSystem;
 import java.util.ArrayList;
 import java.util.List;
 
-import static promotionSystem.builder.ItemBuilder.crearItems;
-
 public class Inventario {
     private List<Item> listaDeItems = new ArrayList<>();
 
@@ -20,13 +18,17 @@ public class Inventario {
         return listaDeItems.remove((int)(Math.random() * size()));
     }
 
-    public Item buscarItem(String nombreItem) throws ClassNotFoundException {
-        for(Item item : crearItems()){
-            if(item.getNombreItem().equals(nombreItem)){
-                return item;
+    public void remove(Item item){
+        listaDeItems.remove(item);
+    }
+
+    public boolean buscarItem(Item item) throws ClassNotFoundException {
+        for(Item itemEnInventario : listaDeItems){
+            if(item.equals(itemEnInventario)){
+                return true;
             }
         }
-        return null;
+        return false;
     }
 
     public List<Item> getListaDeItems() {

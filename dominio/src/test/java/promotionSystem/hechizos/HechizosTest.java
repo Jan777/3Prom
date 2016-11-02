@@ -23,7 +23,7 @@ public class HechizosTest {
 		Assert.assertEquals(Constantes.SaludPokemonDeFuego, pokemon.getSalud());
 		Assert.assertEquals(Constantes.VelocidadPokemonDeFuego, pokemon.obtenerPuntosDeVelocidad());
 		riku.atacarConMagia(pokemon, "Hielo");
-		Assert.assertEquals(Constantes.SaludPokemonDeFuego-Constantes.MagiaRiku+Constantes.DefensaPokemonDeFuego, pokemon.getSalud());
+		Assert.assertEquals(Constantes.SaludPokemonDeFuego-Constantes.MagiaRiku+Constantes.DEFENSA_POKEMON_DE_FUEGO, pokemon.getSalud());
 		Assert.assertEquals(Constantes.VelocidadPokemonDeFuego/2, pokemon.obtenerPuntosDeVelocidad());
 	}
 	

@@ -17,7 +17,7 @@ public class PokemonTipoFuegoTest {
 		Assert.assertEquals(100+2*Constantes.MultiplicadorDeNivelNormal, personaje.getEnergia());
 		Assert.assertEquals(Constantes.SaludPokemonDeFuego+2*Constantes.MultiplicadorDeNivelNormal, personaje.getSalud());
 		Assert.assertEquals(Constantes.AtaquePokemonDeFuego+2*Constantes.MultiplicadorDeNivelNormal, personaje.obtenerPuntosDeAtaque());
-		Assert.assertEquals(Constantes.DefensaPokemonDeFuego+2*Constantes.MultiplicadorDeNivelNormal, personaje.obtenerPuntosDeDefensa());
+		Assert.assertEquals(Constantes.DEFENSA_POKEMON_DE_FUEGO +2*Constantes.MultiplicadorDeNivelNormal, personaje.obtenerPuntosDeDefensa());
 		Assert.assertEquals(Constantes.MagiaPokemonDeFuego+2*Constantes.MultiplicadorDeNivelEspecial, personaje.obtenerPuntosDeMagia());
 		Assert.assertEquals(Constantes.VelocidadPokemonDeFuego+2*Constantes.MultiplicadorDeNivelNormal, personaje.obtenerPuntosDeVelocidad());
 	}
