@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
+import promotionSystem.items.EscudoHyrule;
 
 import static promotionSystem.builder.AlianzaBuilder.crearAlianza;
 
@@ -11,12 +12,12 @@ public class BatallaTest {
     private Alianza alianza1;
     private Alianza alianza2;
     private Item item;
-//FIXME ARREGLAR TEST COMENTADOS
+
     @Before
     public void setUp(){
         alianza1 = crearAlianza(2);
         alianza2 = crearAlianza(1);
-//        item = new Item("EspadaGorgoroth", alianza1.getPersonajes().get(0));
+        item = new EscudoHyrule();
     }
 
     @Test
@@ -63,26 +64,5 @@ public class BatallaTest {
 
     private Batalla crearBatalla(){
         return new Batalla(alianza1, alianza2);
-    }
-
-    @Ignore
-    @Test
-    public void batalla(){
-        Batalla batalla = crearBatalla();
-        alianza1.entrarEnBatalla();
-        alianza2.entrarEnBatalla();
-        batalla.darTurno(alianza1);
-        Personaje atacante =  alianza1.getPersonajeActivo();
-//        atacante.elegirVictima(alianza2, 0);
-        atacante.atacar(alianza1.objetivo);
-        if(alianza1.objetivo.estaVivo()){
-
-        }
-        Assert.assertEquals(alianza2, batalla.definirGanador());
-    }
-
-    //FIXME Codigo para ejecutar una batalla, se tiene que mover a los distintos elementos de JForm.
-    public void asd(){
-
     }
 }
