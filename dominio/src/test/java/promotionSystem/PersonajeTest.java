@@ -32,8 +32,8 @@ public class PersonajeTest {
 	@Test
 	public void siAtacaDisminuyeEnergiaPropiaYSaludDelRival(){
 		personajeAtacante.atacar(personajeAtacado);
-		assertEquals(Constantes.SaludGuerreroHumano- AtaqueGuerreroHumano+Constantes.DefensaGuerreroHumano,personajeAtacado.getSalud());
-		assertEquals(100- AtaqueGuerreroHumano,personajeAtacante.getEnergia());
+		assertEquals(Constantes.SALUD_GUERRERO_HUMANO - ATAQUE_GUERRERO_HUMANO +Constantes.DEFENSA_GUERRERO_HUMANO,personajeAtacado.getSalud());
+		assertEquals(100- ATAQUE_GUERRERO_HUMANO,personajeAtacante.getEnergia());
 	}
 	
 	@Test
@@ -64,7 +64,7 @@ public class PersonajeTest {
 	public void siTieneMenosSaludQueLaInicialYEsCuradoLaSaludVuelveAlMaximo(){
 		personajeAtacado.setSalud(10);
 		personajeAtacado.serCurado();
-		assertEquals(Constantes.SaludGuerreroHumano,personajeAtacado.getSalud());
+		assertEquals(Constantes.SALUD_GUERRERO_HUMANO,personajeAtacado.getSalud());
 	}
 
 	@Test
@@ -78,15 +78,15 @@ public class PersonajeTest {
 	public void siSeQuedoSinEnergiaNoPuedeAtacar(){
 		personajeAtacante.setEnergia(0);
 		personajeAtacante.atacar(personajeAtacado);
-		assertEquals(Constantes.SaludGuerreroHumano,personajeAtacado.getSalud());
+		assertEquals(Constantes.SALUD_GUERRERO_HUMANO,personajeAtacado.getSalud());
 	}
 	
 	@Test
 	public void siTieneVidaAlMaximoNoPuedeAumentarSuSaludAlSerCurado(){
 		personajeAtacado=new GuerreroHumano();
-		assertEquals(Constantes.SaludGuerreroHumano,personajeAtacado.getSalud());
+		assertEquals(Constantes.SALUD_GUERRERO_HUMANO,personajeAtacado.getSalud());
 		personajeAtacado.serCurado();
-		assertEquals(Constantes.SaludGuerreroHumano,personajeAtacado.getSalud());
+		assertEquals(Constantes.SALUD_GUERRERO_HUMANO,personajeAtacado.getSalud());
 	}
 	
 	@Test
@@ -101,14 +101,14 @@ public class PersonajeTest {
 	public void siLaDefensaDelAtacadoEsMayorAlAtaqueDelAtacadoNoRecibeDano(){
 		personajeAtacado.setDefensa(1500);
 		personajeAtacante.atacar(personajeAtacado);
-		assertEquals(Constantes.SaludGuerreroHumano,personajeAtacado.getSalud());
+		assertEquals(Constantes.SALUD_GUERRERO_HUMANO,personajeAtacado.getSalud());
 	}
 	
 	@Test
 	public void siUnPersonajeAtacaYLeQuitaVidaAOtro(){
 		personajeAtacado.setDefensa(145);
 		personajeAtacante.atacar(personajeAtacado);
-		assertEquals(Constantes.SaludGuerreroHumano,personajeAtacado.getSalud());
+		assertEquals(Constantes.SALUD_GUERRERO_HUMANO,personajeAtacado.getSalud());
 	}
 
 	@Test
@@ -117,22 +117,22 @@ public class PersonajeTest {
 		if(personajeAtacante.estaVivo()){
 			personajeAtacante.atacar(personajeAtacado);
 		}
-		assertEquals(Constantes.SaludGuerreroHumano, personajeAtacado.getSalud());
+		assertEquals(Constantes.SALUD_GUERRERO_HUMANO, personajeAtacado.getSalud());
 	}
 
 	@Test
 	public void debeDevolverLosPuntosDeAtaque(){
-		assertEquals(AtaqueGuerreroHumano,personajeAtacante.obtenerPuntosDeAtaque());
+		assertEquals(ATAQUE_GUERRERO_HUMANO,personajeAtacante.obtenerPuntosDeAtaque());
 	}
 	
 	@Test
 	public void debeDevolverLosPuntosDeDefensa(){
-		assertEquals(Constantes.DefensaGuerreroHumano,personajeAtacante.obtenerPuntosDeDefensa());
+		assertEquals(Constantes.DEFENSA_GUERRERO_HUMANO,personajeAtacante.obtenerPuntosDeDefensa());
 	}
 	
 	@Test
 	public void debeDevolverLosPuntosDeMagia(){
-		assertEquals(MagiaGuerreroHumano,personajeAtacante.obtenerPuntosDeMagia());
+		assertEquals(MAGIA_GUERRERO_HUMANO,personajeAtacante.obtenerPuntosDeMagia());
 	}
 	
 	@Test
@@ -200,9 +200,9 @@ public class PersonajeTest {
         assertEquals("Espada Kokiri", personajeAtacante.getArma().getNombreItem());
         assertEquals(1, personajeAtacante.getInventario().size());
         assertEquals("Espada Gorgoroth",personajeAtacante.getInventario().buscarItem(new EspadaGorgoroth()).getNombreItem());
-        assertEquals(AtaqueGuerreroHumano + ATAQUE_ESPADA_KOKIRI, personajeAtacante.getAtaque());
-        assertEquals(MagiaGuerreroHumano + MAGIA_ESPADA_KOKIRI, personajeAtacante.getMagia());
-        assertEquals(VelocidadGuerreroHumano + VELOCIDAD_ESPADA_KOKIRI, personajeAtacante.getVelocidad());
+        assertEquals(ATAQUE_GUERRERO_HUMANO + ATAQUE_ESPADA_KOKIRI, personajeAtacante.getAtaque());
+        assertEquals(MAGIA_GUERRERO_HUMANO + MAGIA_ESPADA_KOKIRI, personajeAtacante.getMagia());
+        assertEquals(VELOCIDAD_GUERRERO_HUMANO + VELOCIDAD_ESPADA_KOKIRI, personajeAtacante.getVelocidad());
     }
 
     @Test
@@ -211,9 +211,9 @@ public class PersonajeTest {
 		personajeAtacante.equiparItem(new EspadaGorgoroth());
 		personajeAtacante.desequiparItem(personajeAtacante.getArma());
 		assertEquals(null, personajeAtacante.getArma());
-		assertEquals(AtaqueGuerreroHumano, personajeAtacante.getAtaque());
-		assertEquals(MagiaGuerreroHumano, personajeAtacante.getMagia());
-		assertEquals(VelocidadGuerreroHumano, personajeAtacante.getVelocidad());
+		assertEquals(ATAQUE_GUERRERO_HUMANO, personajeAtacante.getAtaque());
+		assertEquals(MAGIA_GUERRERO_HUMANO, personajeAtacante.getMagia());
+		assertEquals(VELOCIDAD_GUERRERO_HUMANO, personajeAtacante.getVelocidad());
 	}
 
 	@Test
@@ -333,8 +333,8 @@ public class PersonajeTest {
 		assertEquals(2,personajeAtacante.getNivel());
 		personajeAtacante.desequiparItem(personajeAtacante.getArma());
 		
-		assertEquals(AtaqueGuerreroHumano+Constantes.MultiplicadorDeNivelEspecial,personajeAtacante.getAtaque());
-		Assert.assertEquals(Constantes.MagiaGuerreroHumano+Constantes.MultiplicadorDeNivelNormal, personajeAtacante.getMagia());
-		Assert.assertEquals(Constantes.VelocidadGuerreroHumano+Constantes.MultiplicadorDeNivelNormal, personajeAtacante.getVelocidad());
+		assertEquals(ATAQUE_GUERRERO_HUMANO +Constantes.MULTIPLICADOR_DE_NIVEL_ESPECIAL,personajeAtacante.getAtaque());
+		Assert.assertEquals(Constantes.MAGIA_GUERRERO_HUMANO +Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL, personajeAtacante.getMagia());
+		Assert.assertEquals(Constantes.VELOCIDAD_GUERRERO_HUMANO +Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL, personajeAtacante.getVelocidad());
 	}
 }

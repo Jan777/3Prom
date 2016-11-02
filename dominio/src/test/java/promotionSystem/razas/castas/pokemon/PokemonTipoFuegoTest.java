@@ -14,11 +14,11 @@ public class PokemonTipoFuegoTest {
 		personaje.subirExperiencia(10);
 		Assert.assertEquals(3, personaje.getNivel());
 
-		Assert.assertEquals(100+2*Constantes.MultiplicadorDeNivelNormal, personaje.getEnergia());
-		Assert.assertEquals(Constantes.SaludPokemonDeFuego+2*Constantes.MultiplicadorDeNivelNormal, personaje.getSalud());
-		Assert.assertEquals(Constantes.AtaquePokemonDeFuego+2*Constantes.MultiplicadorDeNivelNormal, personaje.obtenerPuntosDeAtaque());
-		Assert.assertEquals(Constantes.DEFENSA_POKEMON_DE_FUEGO +2*Constantes.MultiplicadorDeNivelNormal, personaje.obtenerPuntosDeDefensa());
-		Assert.assertEquals(Constantes.MagiaPokemonDeFuego+2*Constantes.MultiplicadorDeNivelEspecial, personaje.obtenerPuntosDeMagia());
-		Assert.assertEquals(Constantes.VelocidadPokemonDeFuego+2*Constantes.MultiplicadorDeNivelNormal, personaje.obtenerPuntosDeVelocidad());
+		Assert.assertEquals(100+2*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL, personaje.getEnergia());
+		Assert.assertEquals(Constantes.SALUD_POKEMON_DE_FUEGO +2*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL, personaje.getSalud());
+		Assert.assertEquals(Constantes.ATAQUE_POKEMON_DE_FUEGO +2*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL, personaje.obtenerPuntosDeAtaque());
+		Assert.assertEquals(Constantes.DEFENSA_POKEMON_DE_FUEGO +2*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL, personaje.obtenerPuntosDeDefensa());
+		Assert.assertEquals(Constantes.MAGIA_POKEMON_DE_FUEGO +2*Constantes.MULTIPLICADOR_DE_NIVEL_ESPECIAL, personaje.obtenerPuntosDeMagia());
+		Assert.assertEquals(Constantes.VELOCIDAD_POKEMON_DE_FUEGO +2*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL, personaje.obtenerPuntosDeVelocidad());
 	}
 }

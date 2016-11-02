@@ -13,12 +13,12 @@ public class PokemonTipoAguaTest {
 		personaje.subirExperiencia(10);
 		Assert.assertEquals(3, personaje.getNivel());
 
-		Assert.assertEquals(100+2*Constantes.MultiplicadorDeNivelNormal, personaje.getEnergia());
-		Assert.assertEquals(Constantes.SaludPokemonDeAgua+2*Constantes.MultiplicadorDeNivelNormal, personaje.getSalud());
-		Assert.assertEquals(Constantes.AtaquePokemonDeAgua+2*Constantes.MultiplicadorDeNivelEspecial, personaje.obtenerPuntosDeAtaque());
-		Assert.assertEquals(Constantes.DefensaPokemonDeAgua+2*Constantes.MultiplicadorDeNivelEspecial, personaje.obtenerPuntosDeDefensa());
-		Assert.assertEquals(Constantes.MagiaPokemonDeAgua+2*Constantes.MultiplicadorDeNivelNormal, personaje.obtenerPuntosDeMagia());
-		Assert.assertEquals(Constantes.VelocidadPokemonDeAgua+2*Constantes.MultiplicadorDeNivelPlebe, personaje.obtenerPuntosDeVelocidad());
+		Assert.assertEquals(100+2*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL, personaje.getEnergia());
+		Assert.assertEquals(Constantes.SALUD_POKEMON_DE_AGUA +2*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL, personaje.getSalud());
+		Assert.assertEquals(Constantes.ATAQUE_POKEMON_DE_AGUA +2*Constantes.MULTIPLICADOR_DE_NIVEL_ESPECIAL, personaje.obtenerPuntosDeAtaque());
+		Assert.assertEquals(Constantes.DEFENSA_POKEMON_DE_AGUA +2*Constantes.MULTIPLICADOR_DE_NIVEL_ESPECIAL, personaje.obtenerPuntosDeDefensa());
+		Assert.assertEquals(Constantes.MAGIA_POKEMON_DE_AGUA +2*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL, personaje.obtenerPuntosDeMagia());
+		Assert.assertEquals(Constantes.VELOCIDAD_POKEMON_DE_AGUA +2*Constantes.MULTIPLICADOR_DE_NIVEL_PLEBE, personaje.obtenerPuntosDeVelocidad());
 	}
 
 }

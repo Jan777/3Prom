@@ -2,189 +2,197 @@ package promotionSystem;
 
 public class Constantes {
 
-	public static final int MultiplicadorDeNivelPlebe = 2;
-	public static final int MultiplicadorDeNivelNormal = 3;
-	public static final int MultiplicadorDeNivelEspecial = 5;
+	public static final int MULTIPLICADOR_DE_NIVEL_PLEBE = 2;
+	public static final int MULTIPLICADOR_DE_NIVEL_NORMAL = 3;
+	public static final int MULTIPLICADOR_DE_NIVEL_ESPECIAL = 5;
 
 	// Personajes
 	// Chara
-	public static final int EnergiaChara = 100;
-	public static final int EnergiaMaximaChara = 100;
-	public static final int SaludChara = 50;
-	public static final int SaludMaximaChara = 50;
-	public static final int AtaqueChara = 15;
-	public static final int DefensaChara = 10;
-	public static final int MagiaChara = 5;
-	public static final int VelocidadChara = 10;
+	public static final int ENERGIA_CHARA = 100;
+	public static final int ENERGIA_MAXIMA_CHARA = 100;
+	public static final int SALUD_CHARA = 50;
+	public static final int SALUD_MAXIMA_CHARA = 50;
+	public static final int ATAQUE_CHARA = 15;
+	public static final int DEFENSA_CHARA = 10;
+	public static final int MAGIA_CHARA = 5;
+	public static final int VELOCIDAD_CHARA = 10;
 	// PokemonDeFuego
-	public static final int EnergiaPokemonDeFuego = 100;
-	public static final int EnergiaMaximaPokemonDeFuego = 100;
-	public static final int SaludPokemonDeFuego = 50;
-	public static final int SaludMaximaPokemonDeFuego = 50;
-	public static final int AtaquePokemonDeFuego = 10;
+	public static final int ENERGIA_POKEMON_DE_FUEGO = 100;
+	public static final int ENERGIA_MAXIMA_POKEMON_DE_FUEGO = 100;
+	public static final int SALUD_POKEMON_DE_FUEGO = 50;
+	public static final int SALUD_MAXIMA_POKEMON_DE_FUEGO = 50;
+	public static final int ATAQUE_POKEMON_DE_FUEGO = 10;
 	public static final int DEFENSA_POKEMON_DE_FUEGO = 10;
-	public static final int MagiaPokemonDeFuego = 15;
-	public static final int VelocidadPokemonDeFuego = 5;
+	public static final int MAGIA_POKEMON_DE_FUEGO = 15;
+	public static final int VELOCIDAD_POKEMON_DE_FUEGO = 5;
 	// PokemonDeAgua
-	public static final int EnergiaPokemonDeAgua = 100;
-	public static final int EnergiaMaximaPokemonDeAgua = 100;
-	public static final int SaludPokemonDeAgua = 50;
-	public static final int SaludMaximaPokemonDeAgua = 50;
-	public static final int AtaquePokemonDeAgua = 13;
-	public static final int DefensaPokemonDeAgua = 13;
-	public static final int MagiaPokemonDeAgua = 10;
-	public static final int VelocidadPokemonDeAgua = 4;
+	public static final int ENERGIA_POKEMON_DE_AGUA = 100;
+	public static final int ENERGIA_MAXIMA_POKEMON_DE_AGUA = 100;
+	public static final int SALUD_POKEMON_DE_AGUA = 50;
+	public static final int SALUD_MAXIMA_POKEMON_DE_AGUA = 50;
+	public static final int ATAQUE_POKEMON_DE_AGUA = 13;
+	public static final int DEFENSA_POKEMON_DE_AGUA = 13;
+	public static final int MAGIA_POKEMON_DE_AGUA = 10;
+	public static final int VELOCIDAD_POKEMON_DE_AGUA = 4;
 	// PokemonDePlanta
-	public static final int EnergiaPokemonDePlanta = 100;
-	public static final int EnergiaMaximaPokemonDePlanta = 100;
-	public static final int SaludPokemonDePlanta = 50;
-	public static final int SaludMaximaPokemonDePlanta = 50;
-	public static final int AtaquePokemonDePlanta = 10;
-	public static final int DefensaPokemonDePlanta = 13;
-	public static final int MagiaPokemonDePlanta = 13;
-	public static final int VelocidadPokemonDePlanta = 4;
+	public static final int ENERGIA_POKEMON_DE_PLANTA = 100;
+	public static final int ENERGIA_MAXIMA_POKEMON_DE_PLANTA = 100;
+	public static final int SALUD_POKEMON_DE_PLANTA = 50;
+	public static final int SALUD_MAXIMA_POKEMON_DE_PLANTA = 50;
+	public static final int ATAQUE_POKEMON_DE_PLANTA = 10;
+	public static final int DEFENSA_POKEMON_DE_PLANTA = 13;
+	public static final int MAGIA_POKEMON_DE_PLANTA = 13;
+	public static final int VELOCIDAD_POKEMON_DE_PLANTA = 4;
 	// Riku
-	public static final int EnergiaRiku = 100;
-	public static final int EnergiaMaximaRiku = 100;
-	public static final int SaludRiku = 50;
-	public static final int SaludMaximaRiku = 50;
-	public static final int AtaqueRiku = 13;
-	public static final int DefensaRiku = 5;
-	public static final int MagiaRiku = 10;
-	public static final int VelocidadRiku = 10;
+	public static final int ENERGIA_RIKU = 100;
+	public static final int ENERGIA_MAXIMA_RIKU = 100;
+	public static final int SALUD_RIKU = 50;
+	public static final int SALUD_MAXIMA_RIKU = 50;
+	public static final int ATAQUE_RIKU = 13;
+	public static final int DEFENSA_RIKU = 5;
+	public static final int MAGIA_RIKU = 10;
+	public static final int VELOCIDAD_RIKU = 10;
 	// Sora
-	public static final int EnergiaSora = 100;
-	public static final int EnergiaMaximaSora = 100;
-	public static final int SaludSora = 50;
-	public static final int SaludMaximaSora = 50;
-	public static final int AtaqueSora = 7;
-	public static final int DefensaSora = 7;
-	public static final int MagiaSora = 17;
-	public static final int VelocidadSora = 7;
+	public static final int ENERGIA_SORA = 100;
+	public static final int ENERGIA_MAXIMA_SORA = 100;
+	public static final int SALUD_SORA = 50;
+	public static final int SALUD_MAXIMA_SORA = 50;
+	public static final int ATAQUE_SORA = 7;
+	public static final int DEFENSA_SORA = 7;
+	public static final int MAGIA_SORA = 17;
+	public static final int VELOCIDAD_SORA = 7;
 	// Roxas
-	public static final int EnergiaRoxas = 100;
-	public static final int EnergiaMaximaRoxas = 100;
-	public static final int SaludRoxas = 50;
-	public static final int SaludMaximaRoxas = 50;
-	public static final int AtaqueRoxas = 17;
-	public static final int DefensaRoxas = 7;
-	public static final int MagiaRoxas = 7;
-	public static final int VelocidadRoxas = 7;
+	public static final int ENERGIA_ROXAS = 100;
+	public static final int ENERGIA_MAXIMA_ROXAS = 100;
+	public static final int SALUD_ROXAS = 50;
+	public static final int SALUD_MAXIMA_ROXAS = 50;
+	public static final int ATAQUE_ROXAS = 17;
+	public static final int DEFENSA_ROXAS = 7;
+	public static final int MAGIA_ROXAS = 7;
+	public static final int VELOCIDAD_ROXAS = 7;
 	// Wookie
-	public static final int EnergiaWookie = 100;
-	public static final int EnergiaMaximaWookie = 100;
-	public static final int SaludWookie = 50;
-	public static final int SaludMaximaWookie = 50;
-	public static final int AtaqueWookie = 15;
-	public static final int DefensaWookie = 15;
-	public static final int MagiaWookie = 5;
-	public static final int VelocidadWookie = 5;
+	public static final int ENERGIA_WOOKIE = 100;
+	public static final int ENERGIA_MAXIMA_WOOKIE = 100;
+	public static final int SALUD_WOOKIE = 50;
+	public static final int SALUD_MAXIMA_WOOKIE = 50;
+	public static final int ATAQUE_WOOKIE = 15;
+	public static final int DEFENSA_WOOKIE = 15;
+	public static final int MAGIA_WOOKIE = 5;
+	public static final int VELOCIDAD_WOOKIE = 5;
 	// Droide
-	public static final int EnergiaDroide = 100;
-	public static final int EnergiaMaximaDroide = 100;
-	public static final int SaludDroide = 50;
-	public static final int SaludMaximaDroide = 50;
-	public static final int AtaqueDroide = 7;
-	public static final int DefensaDroide = 7;
-	public static final int MagiaDroide = 7;
-	public static final int VelocidadDroide = 17;
+	public static final int ENERGIA_DROIDE = 100;
+	public static final int ENERGIA_MAXIMA_DROIDE = 100;
+	public static final int SALUD_DROIDE = 50;
+	public static final int SALUD_MAXIMA_DROIDE = 50;
+	public static final int ATAQUE_DROIDE = 7;
+	public static final int DEFENSA_DROIDE = 7;
+	public static final int MAGIA_DROIDE = 7;
+	public static final int VELOCIDAD_DROIDE = 17;
 	// Jedi
-	public static final int EnergiaJedi = 100;
-	public static final int EnergiaMaximaJedi = 100;
-	public static final int SaludJedi = 40;
-	public static final int SaludMaximaJedi = 40;
-	public static final int AtaqueJedi = 11;
-	public static final int DefensaJedi = 11;
-	public static final int MagiaJedi = 16;
-	public static final int VelocidadJedi = 8;
+	public static final int ENERGIA_JEDI = 100;
+	public static final int ENERGIA_MAXIMA_JEDI = 100;
+	public static final int SALUD_JEDI = 40;
+	public static final int SALUD_MAXIMA_JEDI = 40;
+	public static final int ATAQUE_JEDI = 11;
+	public static final int DEFENSA_JEDI = 11;
+	public static final int MAGIA_JEDI = 16;
+	public static final int VELOCIDAD_JEDI = 8;
 	// TanqueHumano
-	public static final int EnergiaTanqueHumano = 100;
-	public static final int EnergiaMaximaTanqueHumano = 100;
-	public static final int SaludTanqueHumano = 100;
-	public static final int SaludMaximaTanqueHumano = 100;
-	public static final int AtaqueTanqueHumano = 2;
-	public static final int DefensaTanqueHumano = 15;
-	public static final int MagiaTanqueHumano = 5;
-	public static final int VelocidadTanqueHumano = 2;
+	public static final int ENERGIA_TANQUE_HUMANO = 100;
+	public static final int ENERGIA_MAXIMA_TANQUE_HUMANO = 100;
+	public static final int SALUD_TANQUE_HUMANO = 100;
+	public static final int SALUD_MAXIMA_TANQUE_HUMANO = 100;
+	public static final int ATAQUE_TANQUE_HUMANO = 2;
+	public static final int DEFENSA_TANQUE_HUMANO = 15;
+	public static final int MAGIA_TANQUE_HUMANO = 5;
+	public static final int VELOCIDAD_TANQUE_HUMANO = 2;
 	// MagoHumano
-	public static final int EnergiaMagoHumano = 100;
-	public static final int EnergiaMaximaMagoHumano = 100;
-	public static final int SaludMagoHumano = 50;
-	public static final int SaludMaximaMagoHumano = 50;
-	public static final int AtaqueMagoHumano = 3;
-	public static final int DefensaMagoHumano = 3;
-	public static final int MagiaMagoHumano = 20;
-	public static final int VelocidadMagoHumano = 4;
+	public static final int ENERGIA_MAGO_HUMANO = 100;
+	public static final int ENERGIA_MAXIMA_MAGO_HUMANO = 100;
+	public static final int SALUD_MAGO_HUMANO = 50;
+	public static final int SALUD_MAXIMA_MAGO_HUMANO = 50;
+	public static final int ATAQUE_MAGO_HUMANO = 3;
+	public static final int DEFENSA_MAGO_HUMANO = 3;
+	public static final int MAGIA_MAGO_HUMANO = 20;
+	public static final int VELOCIDAD_MAGO_HUMANO = 4;
 	// GuerreroHumano
-	public static final int EnergiaGuerreroHumano = 100;
-	public static final int EnergiaMaximaGuerreroHumano = 100;
-	public static final int SaludGuerreroHumano = 50;
-	public static final int SaludMaximaGuerreroHumano = 50;
-	public static final int AtaqueGuerreroHumano = 20;
-	public static final int DefensaGuerreroHumano = 3;
-	public static final int MagiaGuerreroHumano = 3;
-	public static final int VelocidadGuerreroHumano = 3;
+	public static final int ENERGIA_GUERRERO_HUMANO = 100;
+	public static final int ENERGIA_MAXIMA_GUERRERO_HUMANO = 100;
+	public static final int SALUD_GUERRERO_HUMANO = 50;
+	public static final int SALUD_MAXIMA_GUERRERO_HUMANO = 50;
+	public static final int ATAQUE_GUERRERO_HUMANO = 20;
+	public static final int DEFENSA_GUERRERO_HUMANO = 3;
+	public static final int MAGIA_GUERRERO_HUMANO = 3;
+	public static final int VELOCIDAD_GUERRERO_HUMANO = 3;
 	// TanqueOrco
-	public static final int EnergiaTanqueOrco = 100;
-	public static final int EnergiaMaximaTanqueOrco = 100;
-	public static final int SaludTanqueOrco = 100;
-	public static final int SaludMaximaTanqueOrco = 100;
-	public static final int AtaqueTanqueOrco = 2;
-	public static final int DefensaTanqueOrco = 15;
-	public static final int MagiaTanqueOrco = 5;
-	public static final int VelocidadTanqueOrco = 2;
+	public static final int ENERGIA_TANQUE_ORCO = 100;
+	public static final int ENERGIA_MAXIMA_TANQUE_ORCO = 100;
+	public static final int SALUD_TANQUE_ORCO = 100;
+	public static final int SALUD_MAXIMA_TANQUE_ORCO = 100;
+	public static final int ATAQUE_TANQUE_ORCO = 2;
+	public static final int DEFENSA_TANQUE_ORCO = 15;
+	public static final int MAGIA_TANQUE_ORCO = 5;
+	public static final int VELOCIDAD_TANQUE_ORCO = 2;
 	// MagoOrco
-	public static final int EnergiaMagoOrco = 100;
-	public static final int EnergiaMaximaMagoOrco = 100;
-	public static final int SaludMagoOrco = 50;
-	public static final int SaludMaximaMagoOrco = 50;
-	public static final int AtaqueMagoOrco = 4;
-	public static final int DefensaMagoOrco = 3;
-	public static final int MagiaMagoOrco = 20;
-	public static final int VelocidadMagoOrco = 3;
+	public static final int ENERGIA_MAGO_ORCO = 100;
+	public static final int ENERGIA_MAXIMA_MAGO_ORCO = 100;
+	public static final int SALUD_MAGO_ORCO = 50;
+	public static final int SALUD_MAXIMA_MAGO_ORCO = 50;
+	public static final int ATAQUE_MAGO_ORCO = 4;
+	public static final int DEFENSA_MAGO_ORCO = 3;
+	public static final int MAGIA_MAGO_ORCO = 20;
+	public static final int VELOCIDAD_MAGO_ORCO = 3;
 	// GuerreroOrco
-	public static final int EnergiaGuerreroOrco = 100;
-	public static final int EnergiaMaximaGuerreroOrco = 100;
-	public static final int SaludGuerreroOrco = 50;
-	public static final int SaludMaximaGuerreroOrco = 50;
-	public static final int AtaqueGuerreroOrco = 20;
-	public static final int DefensaGuerreroOrco = 4;
-	public static final int MagiaGuerreroOrco = 3;
-	public static final int VelocidadGuerreroOrco = 3;
+	public static final int ENERGIA_GUERRERO_ORCO = 100;
+	public static final int ENERGIA_MAXIMA_GUERRERO_ORCO = 100;
+	public static final int SALUD_GUERRERO_ORCO = 50;
+	public static final int SALUD_MAXIMA_GUERRERO_ORCO = 50;
+	public static final int ATAQUE_GUERRERO_ORCO = 20;
+	public static final int DEFENSA_GUERRERO_ORCO = 4;
+	public static final int MAGIA_GUERRERO_ORCO = 3;
+	public static final int VELOCIDAD_GUERRERO_ORCO = 3;
 
+	//Items
 	//Armas
 	//EspadaGorgoroth
 	public static final int ATAQUE_ESPADA_GORGOROTH = 10;
 	public static final int MAGIA_ESPADA_GORGOROTH = 10;
 	public static final int VELOCIDAD_ESPADA_GORGOROTH=10;
-	
-	//Varita Missigno
-	
-	public static final int MAGIA_VARITA_MISSIGNO=10;
-	public static final int VELOCIDAD_VARITA_MISSIGNO=-10;
-		
-	//Botas Flober
-	public static final int MAGIA_BOTAS_FLOBER=5;
-	public static final int VELOCIDAD_BOTAS_FLOBER=15;
-	public static final int DEFENSA_BOTAS_FLOBER=-10;
-	
-	//Escudo Hyrule
-	public static final int DEFENSA_ESCUDO_HYRULE=10;
-	public static final int VELOCIDAD_ESCUDO_HYRULE=5;
-	
-	//Casco Adamantium
-	public static final int ATAQUE_CASCO_ADAMANTIUM=10;
-	public static final int DEFENSA_CASCO_ADAMANTIUM=10;
-	
-	//Chaleco Kevlar
-	public static final int ATAQUE_CHALECO_KEVLAR = 10;
-	public static final int DEFENSA_CHALECO_KEVLAR = 10;
-	public static final int VELOCIDAD_CHALECO_KEVLAR=-10;
-	
+
 	//EspadaKOKIRI
 	public static final int ATAQUE_ESPADA_KOKIRI = 5;
 	public static final int MAGIA_ESPADA_KOKIRI = 10;
 	public static final int VELOCIDAD_ESPADA_KOKIRI=10;
 
+	//Varita Missigno
 	
+	public static final int MAGIA_VARITA_MISSIGNO=10;
+	public static final int VELOCIDAD_VARITA_MISSIGNO=-10;
+
+	//Botas
+	//Botas Flober
+	public static final int MAGIA_BOTAS_FLOBER=5;
+	public static final int VELOCIDAD_BOTAS_FLOBER=15;
+	public static final int DEFENSA_BOTAS_FLOBER=-10;
+
+	//Escudos
+	//Escudo Hyrule
+	public static final int DEFENSA_ESCUDO_HYRULE=10;
+	public static final int VELOCIDAD_ESCUDO_HYRULE=5;
+
+	//Cascos
+	//Casco Adamantium
+	public static final int ATAQUE_CASCO_ADAMANTIUM=10;
+	public static final int DEFENSA_CASCO_ADAMANTIUM=10;
+
+	//Chalecos
+	//Chaleco Kevlar
+	public static final int ATAQUE_CHALECO_KEVLAR = 10;
+	public static final int DEFENSA_CHALECO_KEVLAR = 10;
+	public static final int VELOCIDAD_CHALECO_KEVLAR=-10;
+	
+	//Inventario
+	public static final int CANTIDAD_MAXIMA_DE_ITEMS = 15;
+
+
 }

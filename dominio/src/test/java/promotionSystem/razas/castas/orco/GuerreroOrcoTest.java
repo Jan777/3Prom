@@ -14,12 +14,12 @@ public class GuerreroOrcoTest {
 
 		Assert.assertEquals(3, personaje.getNivel());
 
-		Assert.assertEquals(100+2*Constantes.MultiplicadorDeNivelNormal, personaje.getEnergia());
-		Assert.assertEquals(Constantes.SaludGuerreroOrco+2*Constantes.MultiplicadorDeNivelNormal, personaje.getSalud());
-		Assert.assertEquals(Constantes.AtaqueGuerreroOrco+2*Constantes.MultiplicadorDeNivelEspecial, personaje.obtenerPuntosDeAtaque());
-		Assert.assertEquals(Constantes.DefensaGuerreroOrco+2*Constantes.MultiplicadorDeNivelNormal, personaje.obtenerPuntosDeDefensa());
-		Assert.assertEquals(Constantes.MagiaGuerreroOrco+2*Constantes.MultiplicadorDeNivelNormal, personaje.obtenerPuntosDeMagia());
-		Assert.assertEquals(Constantes.VelocidadGuerreroOrco+2*Constantes.MultiplicadorDeNivelNormal, personaje.obtenerPuntosDeVelocidad());
+		Assert.assertEquals(100+2*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL, personaje.getEnergia());
+		Assert.assertEquals(Constantes.SALUD_GUERRERO_ORCO +2*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL, personaje.getSalud());
+		Assert.assertEquals(Constantes.ATAQUE_GUERRERO_ORCO +2*Constantes.MULTIPLICADOR_DE_NIVEL_ESPECIAL, personaje.obtenerPuntosDeAtaque());
+		Assert.assertEquals(Constantes.DEFENSA_GUERRERO_ORCO +2*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL, personaje.obtenerPuntosDeDefensa());
+		Assert.assertEquals(Constantes.MAGIA_GUERRERO_ORCO +2*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL, personaje.obtenerPuntosDeMagia());
+		Assert.assertEquals(Constantes.VELOCIDAD_GUERRERO_ORCO +2*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL, personaje.obtenerPuntosDeVelocidad());
 	}
 
 }

@@ -15,12 +15,12 @@ public class RoxasTest {
 		personaje.subirExperiencia(10);
 		Assert.assertEquals(3, personaje.getNivel());
 
-		Assert.assertEquals(100+Constantes.MultiplicadorDeNivelNormal*2, personaje.getEnergia());
-		Assert.assertEquals(Constantes.SaludRoxas+Constantes.MultiplicadorDeNivelNormal*2, personaje.getSalud());
-		Assert.assertEquals(Constantes.AtaqueRoxas+Constantes.MultiplicadorDeNivelEspecial*2, personaje.obtenerPuntosDeAtaque());
-		Assert.assertEquals(Constantes.DefensaRoxas+Constantes.MultiplicadorDeNivelNormal*2, personaje.obtenerPuntosDeDefensa());
-		Assert.assertEquals(Constantes.MagiaRoxas+Constantes.MultiplicadorDeNivelNormal*2, personaje.obtenerPuntosDeMagia());
-		Assert.assertEquals(Constantes.VelocidadRoxas+Constantes.MultiplicadorDeNivelNormal*2, personaje.obtenerPuntosDeVelocidad());
+		Assert.assertEquals(100+Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL *2, personaje.getEnergia());
+		Assert.assertEquals(Constantes.SALUD_ROXAS +Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL *2, personaje.getSalud());
+		Assert.assertEquals(Constantes.ATAQUE_ROXAS +Constantes.MULTIPLICADOR_DE_NIVEL_ESPECIAL *2, personaje.obtenerPuntosDeAtaque());
+		Assert.assertEquals(Constantes.DEFENSA_ROXAS +Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL *2, personaje.obtenerPuntosDeDefensa());
+		Assert.assertEquals(Constantes.MAGIA_ROXAS +Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL *2, personaje.obtenerPuntosDeMagia());
+		Assert.assertEquals(Constantes.VELOCIDAD_ROXAS +Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL *2, personaje.obtenerPuntosDeVelocidad());
 	}
 	
 	
@@ -31,8 +31,8 @@ public class RoxasTest {
 		PersonajeDeKingdomHearts personajeAtacante=new Roxas();
 		PersonajeDeStarWars personajeAtacado=new Droide();
 
-		Assert.assertEquals(Constantes.DefensaRoxas,personajeAtacante.obtenerPuntosDeDefensa());
+		Assert.assertEquals(Constantes.DEFENSA_ROXAS,personajeAtacante.obtenerPuntosDeDefensa());
 		personajeAtacante.atacar(personajeAtacado);
-		Assert.assertEquals((int) (Constantes.DefensaRoxas*1.125),personajeAtacante.obtenerPuntosDeDefensa());
+		Assert.assertEquals((int) (Constantes.DEFENSA_ROXAS *1.125),personajeAtacante.obtenerPuntosDeDefensa());
 	}
 }

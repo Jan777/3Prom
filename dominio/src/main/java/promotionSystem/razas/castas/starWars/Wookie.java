@@ -12,14 +12,14 @@ import java.util.HashMap;
 public class Wookie extends PersonajeDeStarWars{
 	
 	public Wookie(){
-		energia=Constantes.EnergiaWookie;
-		energiaMaxima=Constantes.EnergiaMaximaWookie;
-		salud=Constantes.SaludWookie; 
-		saludMaxima=Constantes.SaludMaximaWookie;
-		ataque=Constantes.AtaqueWookie;
-		defensa=Constantes.DefensaWookie;
-		magia=Constantes.MagiaWookie;
-		velocidad=Constantes.VelocidadWookie;
+		energia=Constantes.ENERGIA_WOOKIE;
+		energiaMaxima=Constantes.ENERGIA_MAXIMA_WOOKIE;
+		salud=Constantes.SALUD_WOOKIE;
+		saludMaxima=Constantes.SALUD_MAXIMA_WOOKIE;
+		ataque=Constantes.ATAQUE_WOOKIE;
+		defensa=Constantes.DEFENSA_WOOKIE;
+		magia=Constantes.MAGIA_WOOKIE;
+		velocidad=Constantes.VELOCIDAD_WOOKIE;
 		experiencia=0;
 		nivel=1;
 		posicion=new Punto(0,0);
@@ -30,14 +30,14 @@ public class Wookie extends PersonajeDeStarWars{
 
 	@Override
 	public void subirStats(int cantidadDeNivelesSubidos) {
-		energia+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		energiaMaxima+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		saludMaxima+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		salud+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		ataque+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelEspecial;
-		defensa+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelEspecial;
-		magia+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelPlebe;
-		velocidad+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
+		energia+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		energiaMaxima+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		saludMaxima+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		salud+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		ataque+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_ESPECIAL;
+		defensa+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_ESPECIAL;
+		magia+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_PLEBE;
+		velocidad+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
 	}
 
 

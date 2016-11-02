@@ -17,9 +17,9 @@ public class AlianzaDeHumanosTest {
         alianzaDeHumanos.atacar(alianzaEnemiga);
         alianzaDeHumanos.atacar(alianzaEnemiga);
         alianzaDeHumanos.atacar(alianzaEnemiga);
-        assertEquals(SaludGuerreroHumano- AtaqueGuerreroHumano+ DefensaGuerreroHumano, alianzaEnemiga.getPersonajes().get(0).getSalud());
-        assertEquals(SaludGuerreroHumano- AtaqueGuerreroHumano+ DefensaGuerreroHumano, alianzaEnemiga.getPersonajes().get(1).getSalud());
-        assertEquals(SaludGuerreroHumano- AtaqueGuerreroHumano+ DefensaGuerreroHumano, alianzaEnemiga.getPersonajes().get(2).getSalud());
+        assertEquals(SALUD_GUERRERO_HUMANO - ATAQUE_GUERRERO_HUMANO + DEFENSA_GUERRERO_HUMANO, alianzaEnemiga.getPersonajes().get(0).getSalud());
+        assertEquals(SALUD_GUERRERO_HUMANO - ATAQUE_GUERRERO_HUMANO + DEFENSA_GUERRERO_HUMANO, alianzaEnemiga.getPersonajes().get(1).getSalud());
+        assertEquals(SALUD_GUERRERO_HUMANO - ATAQUE_GUERRERO_HUMANO + DEFENSA_GUERRERO_HUMANO, alianzaEnemiga.getPersonajes().get(2).getSalud());
     }
 
     @Test
@@ -29,8 +29,8 @@ public class AlianzaDeHumanosTest {
         alianzaDeHumanos.atacar(alianzaEnemiga);
         alianzaDeHumanos.atacar(alianzaEnemiga);
         alianzaDeHumanos.atacar(alianzaEnemiga);
-        assertEquals(SaludGuerreroHumano- AtaqueGuerreroHumano+ DefensaGuerreroHumano- AtaqueGuerreroHumano+ DefensaGuerreroHumano, alianzaEnemiga.getPersonajes().get(0).getSalud());
-        assertEquals(SaludGuerreroHumano- AtaqueGuerreroHumano+ DefensaGuerreroHumano, alianzaEnemiga.getPersonajes().get(1).getSalud());
+        assertEquals(SALUD_GUERRERO_HUMANO - ATAQUE_GUERRERO_HUMANO + DEFENSA_GUERRERO_HUMANO - ATAQUE_GUERRERO_HUMANO + DEFENSA_GUERRERO_HUMANO, alianzaEnemiga.getPersonajes().get(0).getSalud());
+        assertEquals(SALUD_GUERRERO_HUMANO - ATAQUE_GUERRERO_HUMANO + DEFENSA_GUERRERO_HUMANO, alianzaEnemiga.getPersonajes().get(1).getSalud());
     }
 
     @Test
@@ -40,9 +40,9 @@ public class AlianzaDeHumanosTest {
         alianzaDeHumanos.atacar(alianzaEnemiga);
         alianzaDeHumanos.atacar(alianzaEnemiga);
         alianzaDeHumanos.atacar(alianzaEnemiga);
-        assertEquals(SaludGuerreroHumano- AtaqueGuerreroHumano+ DefensaGuerreroHumano, alianzaEnemiga.getPersonajes().get(0).getSalud());
-        assertEquals(SaludGuerreroHumano- AtaqueGuerreroHumano+ DefensaGuerreroHumano, alianzaEnemiga.getPersonajes().get(1).getSalud());
-        assertEquals(SaludGuerreroHumano- AtaqueGuerreroHumano+ DefensaGuerreroHumano, alianzaEnemiga.getPersonajes().get(2).getSalud());
-        assertEquals(SaludGuerreroHumano, alianzaEnemiga.getPersonajes().get(3).getSalud());
+        assertEquals(SALUD_GUERRERO_HUMANO - ATAQUE_GUERRERO_HUMANO + DEFENSA_GUERRERO_HUMANO, alianzaEnemiga.getPersonajes().get(0).getSalud());
+        assertEquals(SALUD_GUERRERO_HUMANO - ATAQUE_GUERRERO_HUMANO + DEFENSA_GUERRERO_HUMANO, alianzaEnemiga.getPersonajes().get(1).getSalud());
+        assertEquals(SALUD_GUERRERO_HUMANO - ATAQUE_GUERRERO_HUMANO + DEFENSA_GUERRERO_HUMANO, alianzaEnemiga.getPersonajes().get(2).getSalud());
+        assertEquals(SALUD_GUERRERO_HUMANO, alianzaEnemiga.getPersonajes().get(3).getSalud());
     }
 }

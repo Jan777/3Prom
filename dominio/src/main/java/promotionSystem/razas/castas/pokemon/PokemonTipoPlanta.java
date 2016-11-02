@@ -12,14 +12,14 @@ import java.util.HashMap;
 public class PokemonTipoPlanta extends PersonajeDePokemon {
 
 	public PokemonTipoPlanta(){
-		energia=Constantes.EnergiaPokemonDePlanta;
-		energiaMaxima=Constantes.EnergiaMaximaPokemonDePlanta;
-		salud=Constantes.SaludPokemonDePlanta; 
-		saludMaxima=Constantes.SaludMaximaPokemonDePlanta;
-		ataque=Constantes.AtaquePokemonDePlanta;
-		defensa=Constantes.DefensaPokemonDePlanta;
-		magia=Constantes.MagiaPokemonDePlanta;
-		velocidad=Constantes.VelocidadPokemonDePlanta;
+		energia=Constantes.ENERGIA_POKEMON_DE_PLANTA;
+		energiaMaxima=Constantes.ENERGIA_MAXIMA_POKEMON_DE_PLANTA;
+		salud=Constantes.SALUD_POKEMON_DE_PLANTA;
+		saludMaxima=Constantes.SALUD_MAXIMA_POKEMON_DE_PLANTA;
+		ataque=Constantes.ATAQUE_POKEMON_DE_PLANTA;
+		defensa=Constantes.DEFENSA_POKEMON_DE_PLANTA;
+		magia=Constantes.MAGIA_POKEMON_DE_PLANTA;
+		velocidad=Constantes.VELOCIDAD_POKEMON_DE_PLANTA;
 		experiencia=0;
 		nivel=1;
 		posicion=new Punto(0,0);
@@ -30,13 +30,13 @@ public class PokemonTipoPlanta extends PersonajeDePokemon {
 
 	@Override
 	public void subirStats(int cantidadDeNivelesSubidos) {
-		energia+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		energiaMaxima+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		saludMaxima+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		salud+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		ataque+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		defensa+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelEspecial;
-		magia+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelEspecial;
-		velocidad+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelPlebe;
+		energia+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		energiaMaxima+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		saludMaxima+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		salud+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		ataque+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		defensa+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_ESPECIAL;
+		magia+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_ESPECIAL;
+		velocidad+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_PLEBE;
 	}
 }

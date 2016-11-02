@@ -11,14 +11,14 @@ import java.util.HashMap;
 public class Jedi extends PersonajeDeStarWars{
 	
 	public Jedi(){
-		energia=Constantes.EnergiaJedi;
-		energiaMaxima=Constantes.EnergiaMaximaJedi;
-		salud=Constantes.SaludJedi; 
-		saludMaxima=Constantes.SaludMaximaJedi;
-		ataque=Constantes.AtaqueJedi;
-		defensa=Constantes.DefensaJedi;
-		magia=Constantes.MagiaJedi;
-		velocidad=Constantes.VelocidadJedi;
+		energia=Constantes.ENERGIA_JEDI;
+		energiaMaxima=Constantes.ENERGIA_MAXIMA_JEDI;
+		salud=Constantes.SALUD_JEDI;
+		saludMaxima=Constantes.SALUD_MAXIMA_JEDI;
+		ataque=Constantes.ATAQUE_JEDI;
+		defensa=Constantes.DEFENSA_JEDI;
+		magia=Constantes.MAGIA_JEDI;
+		velocidad=Constantes.VELOCIDAD_JEDI;
 		experiencia=0;
 		nivel=1;
 		posicion=new Punto(0,0);
@@ -32,14 +32,14 @@ public class Jedi extends PersonajeDeStarWars{
 
 	@Override
 	public void subirStats(int cantidadDeNivelesSubidos) {
-		energia+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		energiaMaxima+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		saludMaxima+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		salud+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		ataque+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		defensa+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		magia+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelEspecial;
-		velocidad+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
+		energia+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		energiaMaxima+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		saludMaxima+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		salud+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		ataque+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		defensa+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		magia+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_ESPECIAL;
+		velocidad+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
 	}
 
 	@Override

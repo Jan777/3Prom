@@ -13,14 +13,14 @@ import java.util.HashMap;
 public class Riku extends PersonajeDeKingdomHearts {
 
 	public Riku(){
-		energia=Constantes.EnergiaRiku;
-		energiaMaxima=Constantes.EnergiaMaximaRiku;
-		salud=Constantes.SaludRiku; 
-		saludMaxima=Constantes.SaludMaximaRiku;
-		ataque=Constantes.AtaqueRiku;
-		defensa=Constantes.DefensaRiku;
-		magia=Constantes.MagiaRiku;
-		velocidad=Constantes.VelocidadRiku;
+		energia=Constantes.ENERGIA_RIKU;
+		energiaMaxima=Constantes.ENERGIA_MAXIMA_RIKU;
+		salud=Constantes.SALUD_RIKU;
+		saludMaxima=Constantes.SALUD_MAXIMA_RIKU;
+		ataque=Constantes.ATAQUE_RIKU;
+		defensa=Constantes.DEFENSA_RIKU;
+		magia=Constantes.MAGIA_RIKU;
+		velocidad=Constantes.VELOCIDAD_RIKU;
 		experiencia=0;
 		nivel=1;
 		posicion=new Punto(0,0);
@@ -33,13 +33,13 @@ public class Riku extends PersonajeDeKingdomHearts {
 
 	@Override
 	public void subirStats(int cantidadDeNivelesSubidos) {
-		energia+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		energiaMaxima+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		saludMaxima+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		salud+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		ataque+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		defensa+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelPlebe;
-		magia+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelEspecial;
-		velocidad+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelEspecial;
+		energia+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		energiaMaxima+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		saludMaxima+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		salud+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		ataque+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		defensa+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_PLEBE;
+		magia+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_ESPECIAL;
+		velocidad+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_ESPECIAL;
 	}
 }

@@ -15,12 +15,12 @@ public class MagoHumanoTest {
 
 		Assert.assertEquals(3, personaje.getNivel());
 
-		Assert.assertEquals(100+2*Constantes.MultiplicadorDeNivelNormal, personaje.getEnergia());
-		Assert.assertEquals(Constantes.SaludMagoHumano+2*Constantes.MultiplicadorDeNivelNormal, personaje.getSalud());
-		Assert.assertEquals(Constantes.AtaqueMagoHumano+2*Constantes.MultiplicadorDeNivelNormal, personaje.obtenerPuntosDeAtaque());
-		Assert.assertEquals(Constantes.DefensaMagoHumano+2*Constantes.MultiplicadorDeNivelNormal, personaje.obtenerPuntosDeDefensa());
-		Assert.assertEquals(Constantes.MagiaMagoHumano+2*Constantes.MultiplicadorDeNivelEspecial, personaje.obtenerPuntosDeMagia());
-		Assert.assertEquals(Constantes.VelocidadMagoHumano+2*Constantes.MultiplicadorDeNivelNormal, personaje.obtenerPuntosDeVelocidad());
+		Assert.assertEquals(100+2*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL, personaje.getEnergia());
+		Assert.assertEquals(Constantes.SALUD_MAGO_HUMANO +2*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL, personaje.getSalud());
+		Assert.assertEquals(Constantes.ATAQUE_MAGO_HUMANO +2*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL, personaje.obtenerPuntosDeAtaque());
+		Assert.assertEquals(Constantes.DEFENSA_MAGO_HUMANO +2*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL, personaje.obtenerPuntosDeDefensa());
+		Assert.assertEquals(Constantes.MAGIA_MAGO_HUMANO +2*Constantes.MULTIPLICADOR_DE_NIVEL_ESPECIAL, personaje.obtenerPuntosDeMagia());
+		Assert.assertEquals(Constantes.VELOCIDAD_MAGO_HUMANO +2*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL, personaje.obtenerPuntosDeVelocidad());
 	}
 	
 }

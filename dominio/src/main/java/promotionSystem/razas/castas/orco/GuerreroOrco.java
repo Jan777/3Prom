@@ -8,14 +8,14 @@ import promotionSystem.razas.Orco;
 public class GuerreroOrco extends Orco{
 
 	public GuerreroOrco(){
-		energia=Constantes.EnergiaGuerreroOrco;
-		energiaMaxima=Constantes.EnergiaMaximaGuerreroOrco;
-		salud=Constantes.SaludGuerreroOrco; 
-		saludMaxima=Constantes.SaludMaximaGuerreroOrco;
-		ataque=Constantes.AtaqueGuerreroOrco;
-		defensa=Constantes.DefensaGuerreroOrco;
-		magia=Constantes.MagiaGuerreroOrco;
-		velocidad=Constantes.VelocidadGuerreroOrco;
+		energia=Constantes.ENERGIA_GUERRERO_ORCO;
+		energiaMaxima=Constantes.ENERGIA_MAXIMA_GUERRERO_ORCO;
+		salud=Constantes.SALUD_GUERRERO_ORCO;
+		saludMaxima=Constantes.SALUD_MAXIMA_GUERRERO_ORCO;
+		ataque=Constantes.ATAQUE_GUERRERO_ORCO;
+		defensa=Constantes.DEFENSA_GUERRERO_ORCO;
+		magia=Constantes.MAGIA_GUERRERO_ORCO;
+		velocidad=Constantes.VELOCIDAD_GUERRERO_ORCO;
 		experiencia=0;
 		nivel=1;
 		posicion=new Punto(0,0);
@@ -24,13 +24,13 @@ public class GuerreroOrco extends Orco{
 
 	@Override
 	public void subirStats(int cantidadDeNivelesSubidos) {
-		energia+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		energiaMaxima+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		saludMaxima+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelEspecial;
-		salud+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		ataque+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelEspecial;
-		defensa+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		magia+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		velocidad+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
+		energia+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		energiaMaxima+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		saludMaxima+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_ESPECIAL;
+		salud+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		ataque+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_ESPECIAL;
+		defensa+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		magia+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		velocidad+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
 	}
 }

@@ -12,9 +12,9 @@ public class PersonajesDePokemonTest {
 	public void siAtacaAOtroPersonajeAumentaSuMagia(){
 		PersonajeDePokemon atacante=new PokemonTipoAgua();
 		PersonajeDePokemon atacado=new PokemonTipoFuego();
-		Assert.assertEquals(Constantes.MagiaPokemonDeAgua, atacante.obtenerPuntosDeMagia());
+		Assert.assertEquals(Constantes.MAGIA_POKEMON_DE_AGUA, atacante.obtenerPuntosDeMagia());
 		atacante.atacar(atacado);
-		Assert.assertEquals(Constantes.MagiaPokemonDeAgua+10, atacante.obtenerPuntosDeMagia());
+		Assert.assertEquals(Constantes.MAGIA_POKEMON_DE_AGUA +10, atacante.obtenerPuntosDeMagia());
 	}
 
 }

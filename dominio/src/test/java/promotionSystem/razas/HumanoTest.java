@@ -12,8 +12,8 @@ public class HumanoTest {
 	public void siHumanoAtacaNoCambiaLosStatsDespuesDeAtacar(){
 		Humano man=new GuerreroHumano();
 		Humano man2=new MagoHumano();
-		Assert.assertEquals(Constantes.AtaqueGuerreroHumano, man.obtenerPuntosDeAtaque());
+		Assert.assertEquals(Constantes.ATAQUE_GUERRERO_HUMANO, man.obtenerPuntosDeAtaque());
 		man.atacar(man2);
-		Assert.assertEquals(Constantes.AtaqueGuerreroHumano, man.obtenerPuntosDeAtaque());
+		Assert.assertEquals(Constantes.ATAQUE_GUERRERO_HUMANO, man.obtenerPuntosDeAtaque());
 	}
 }

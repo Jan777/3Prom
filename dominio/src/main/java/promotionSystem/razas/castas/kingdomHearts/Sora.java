@@ -13,14 +13,14 @@ import java.util.HashMap;
 public class Sora extends PersonajeDeKingdomHearts {
 	
 	public Sora(){
-		energia=Constantes.EnergiaSora;
-		energiaMaxima=Constantes.EnergiaMaximaSora;
-		salud=Constantes.SaludSora; 
-		saludMaxima=Constantes.SaludMaximaSora;
-		ataque=Constantes.AtaqueSora;
-		defensa=Constantes.DefensaSora;
-		magia=Constantes.MagiaSora;
-		velocidad=Constantes.VelocidadSora;
+		energia=Constantes.ENERGIA_SORA;
+		energiaMaxima=Constantes.ENERGIA_MAXIMA_SORA;
+		salud=Constantes.SALUD_SORA;
+		saludMaxima=Constantes.SALUD_MAXIMA_SORA;
+		ataque=Constantes.ATAQUE_SORA;
+		defensa=Constantes.DEFENSA_SORA;
+		magia=Constantes.MAGIA_SORA;
+		velocidad=Constantes.VELOCIDAD_SORA;
 		experiencia=0;
 		nivel=1;
 		posicion=new Punto(0,0);
@@ -32,13 +32,13 @@ public class Sora extends PersonajeDeKingdomHearts {
 
 	@Override
 	public void subirStats(int cantidadDeNivelesSubidos) {
-		energia+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		energiaMaxima+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		saludMaxima+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		salud+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		ataque+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		defensa+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		magia+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelEspecial;
-		velocidad+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
+		energia+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		energiaMaxima+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		saludMaxima+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		salud+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		ataque+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		defensa+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		magia+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_ESPECIAL;
+		velocidad+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
 	}
 }

@@ -15,21 +15,21 @@ public class JediTest {
 
 		Assert.assertEquals(3, personaje.getNivel());
 
-		Assert.assertEquals(100+2*Constantes.MultiplicadorDeNivelNormal, personaje.getEnergia());
-		Assert.assertEquals(Constantes.SaludJedi+2*Constantes.MultiplicadorDeNivelNormal, personaje.getSalud());
-		Assert.assertEquals(Constantes.AtaqueJedi+2*Constantes.MultiplicadorDeNivelNormal, personaje.obtenerPuntosDeAtaque());
-		Assert.assertEquals(Constantes.DefensaJedi+2*Constantes.MultiplicadorDeNivelNormal, personaje.obtenerPuntosDeDefensa());
-		Assert.assertEquals(Constantes.MagiaJedi+2*Constantes.MultiplicadorDeNivelEspecial, personaje.obtenerPuntosDeMagia());
-		Assert.assertEquals(Constantes.VelocidadJedi+2*Constantes.MultiplicadorDeNivelNormal, personaje.obtenerPuntosDeVelocidad());
+		Assert.assertEquals(100+2*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL, personaje.getEnergia());
+		Assert.assertEquals(Constantes.SALUD_JEDI +2*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL, personaje.getSalud());
+		Assert.assertEquals(Constantes.ATAQUE_JEDI +2*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL, personaje.obtenerPuntosDeAtaque());
+		Assert.assertEquals(Constantes.DEFENSA_JEDI +2*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL, personaje.obtenerPuntosDeDefensa());
+		Assert.assertEquals(Constantes.MAGIA_JEDI +2*Constantes.MULTIPLICADOR_DE_NIVEL_ESPECIAL, personaje.obtenerPuntosDeMagia());
+		Assert.assertEquals(Constantes.VELOCIDAD_JEDI +2*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL, personaje.obtenerPuntosDeVelocidad());
 	}
 	@Test
 	public void siAtacaAumentaLaMagia(){
 		PersonajeDeStarWars personajeAtacante=new Jedi();
 		PersonajeDeStarWars personajeAtacado=new Droide();
 		
-		Assert.assertEquals(Constantes.MagiaJedi,personajeAtacante.obtenerPuntosDeMagia());
+		Assert.assertEquals(Constantes.MAGIA_JEDI,personajeAtacante.obtenerPuntosDeMagia());
 		personajeAtacante.atacar(personajeAtacado);
-		Assert.assertEquals(Constantes.MagiaJedi+2,personajeAtacante.obtenerPuntosDeMagia());
+		Assert.assertEquals(Constantes.MAGIA_JEDI +2,personajeAtacante.obtenerPuntosDeMagia());
 	}
 
 

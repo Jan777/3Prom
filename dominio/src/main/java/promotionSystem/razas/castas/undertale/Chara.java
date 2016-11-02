@@ -7,14 +7,14 @@ import promotionSystem.razas.PersonajeDeUndertale;
 
 public class Chara extends PersonajeDeUndertale{
 	public Chara(){
-		energia=Constantes.EnergiaChara;
-		energiaMaxima=Constantes.EnergiaMaximaChara;
-		salud=Constantes.SaludChara; 
-		saludMaxima=Constantes.SaludMaximaChara;
-		ataque=Constantes.AtaqueChara;
-		defensa=Constantes.DefensaChara;
-		magia=Constantes.MagiaChara;
-		velocidad=Constantes.VelocidadChara;
+		energia=Constantes.ENERGIA_CHARA;
+		energiaMaxima=Constantes.ENERGIA_MAXIMA_CHARA;
+		salud=Constantes.SALUD_CHARA;
+		saludMaxima=Constantes.SALUD_MAXIMA_CHARA;
+		ataque=Constantes.ATAQUE_CHARA;
+		defensa=Constantes.DEFENSA_CHARA;
+		magia=Constantes.MAGIA_CHARA;
+		velocidad=Constantes.VELOCIDAD_CHARA;
 		experiencia=0;
 		nivel=1;
 		posicion=new Punto(0,0);
@@ -23,13 +23,13 @@ public class Chara extends PersonajeDeUndertale{
 
 	@Override
 	public void subirStats(int cantidadDeNivelesSubidos) {
-		energia+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		energiaMaxima+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		saludMaxima+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		salud+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		ataque+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelEspecial;
-		defensa+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		magia+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		velocidad+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
+		energia+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		energiaMaxima+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		saludMaxima+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		salud+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		ataque+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_ESPECIAL;
+		defensa+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		magia+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		velocidad+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
 	}
 }

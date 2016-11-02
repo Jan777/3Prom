@@ -8,14 +8,14 @@ import promotionSystem.razas.Humano;
 public class GuerreroHumano extends Humano{
 	
 	public GuerreroHumano(){
-		energia=Constantes.EnergiaGuerreroHumano;
-		energiaMaxima=Constantes.EnergiaMaximaGuerreroHumano;
-		salud=Constantes.SaludGuerreroHumano; 
-		saludMaxima=Constantes.SaludMaximaGuerreroHumano;
-		ataque=Constantes.AtaqueGuerreroHumano;
-		defensa=Constantes.DefensaGuerreroHumano;
-		magia=Constantes.MagiaGuerreroHumano;
-		velocidad=Constantes.VelocidadGuerreroHumano;
+		energia=Constantes.ENERGIA_GUERRERO_HUMANO;
+		energiaMaxima=Constantes.ENERGIA_MAXIMA_GUERRERO_HUMANO;
+		salud=Constantes.SALUD_GUERRERO_HUMANO;
+		saludMaxima=Constantes.SALUD_MAXIMA_GUERRERO_HUMANO;
+		ataque=Constantes.ATAQUE_GUERRERO_HUMANO;
+		defensa=Constantes.DEFENSA_GUERRERO_HUMANO;
+		magia=Constantes.MAGIA_GUERRERO_HUMANO;
+		velocidad=Constantes.VELOCIDAD_GUERRERO_HUMANO;
 		experiencia=0;
 		nivel=1;
 		posicion=new Punto(0,0);
@@ -24,13 +24,13 @@ public class GuerreroHumano extends Humano{
 
 	@Override
 	public void subirStats(int cantidadDeNivelesSubidos) {
-		energia+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		energiaMaxima+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		saludMaxima+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		salud+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		ataque+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelEspecial;
-		defensa+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		magia+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		velocidad+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
+		energia+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		energiaMaxima+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		saludMaxima+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		salud+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		ataque+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_ESPECIAL;
+		defensa+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		magia+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		velocidad+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
 	}
 }

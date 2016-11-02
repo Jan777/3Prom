@@ -14,12 +14,12 @@ public class TanqueHumanoTest {
 
 		Assert.assertEquals(3, personaje.getNivel());
 
-		Assert.assertEquals(100+2*Constantes.MultiplicadorDeNivelNormal, personaje.getEnergia());
-		Assert.assertEquals(Constantes.SaludTanqueHumano+2*Constantes.MultiplicadorDeNivelEspecial, personaje.getSalud());
-		Assert.assertEquals(Constantes.AtaqueTanqueHumano+2*Constantes.MultiplicadorDeNivelNormal, personaje.obtenerPuntosDeAtaque());
-		Assert.assertEquals(Constantes.DefensaTanqueHumano+2*Constantes.MultiplicadorDeNivelNormal, personaje.obtenerPuntosDeDefensa());
-		Assert.assertEquals(Constantes.MagiaTanqueHumano+2*Constantes.MultiplicadorDeNivelNormal, personaje.obtenerPuntosDeMagia());
-		Assert.assertEquals(Constantes.VelocidadTanqueHumano+2*Constantes.MultiplicadorDeNivelNormal, personaje.obtenerPuntosDeVelocidad());
+		Assert.assertEquals(100+2*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL, personaje.getEnergia());
+		Assert.assertEquals(Constantes.SALUD_TANQUE_HUMANO +2*Constantes.MULTIPLICADOR_DE_NIVEL_ESPECIAL, personaje.getSalud());
+		Assert.assertEquals(Constantes.ATAQUE_TANQUE_HUMANO +2*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL, personaje.obtenerPuntosDeAtaque());
+		Assert.assertEquals(Constantes.DEFENSA_TANQUE_HUMANO +2*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL, personaje.obtenerPuntosDeDefensa());
+		Assert.assertEquals(Constantes.MAGIA_TANQUE_HUMANO +2*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL, personaje.obtenerPuntosDeMagia());
+		Assert.assertEquals(Constantes.VELOCIDAD_TANQUE_HUMANO +2*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL, personaje.obtenerPuntosDeVelocidad());
 	}
 
 }

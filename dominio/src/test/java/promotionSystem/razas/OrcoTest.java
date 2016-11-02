@@ -12,9 +12,9 @@ public class OrcoTest {
 		
 		Orco orcoAtacado=new MagoOrco();
 		Orco orcoAtacante=new MagoOrco();
-		Assert.assertEquals(Constantes.AtaqueMagoOrco,orcoAtacante.obtenerPuntosDeAtaque());
+		Assert.assertEquals(Constantes.ATAQUE_MAGO_ORCO,orcoAtacante.obtenerPuntosDeAtaque());
 		orcoAtacante.atacar(orcoAtacado);
-		Assert.assertEquals(Constantes.AtaqueMagoOrco+10,orcoAtacante.obtenerPuntosDeAtaque());
+		Assert.assertEquals(Constantes.ATAQUE_MAGO_ORCO +10,orcoAtacante.obtenerPuntosDeAtaque());
 		
 	}
 }

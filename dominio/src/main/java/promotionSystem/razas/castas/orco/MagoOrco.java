@@ -13,14 +13,14 @@ import java.util.HashMap;
 public class MagoOrco extends Orco{
 	
 	public MagoOrco(){
-		energia=Constantes.EnergiaMagoOrco;
-		energiaMaxima=Constantes.EnergiaMaximaMagoOrco;
-		salud=Constantes.SaludMagoOrco; 
-		saludMaxima=Constantes.SaludMaximaMagoOrco;
-		ataque=Constantes.AtaqueMagoOrco;
-		defensa=Constantes.DefensaMagoOrco;
-		magia=Constantes.MagiaMagoOrco;
-		velocidad=Constantes.VelocidadMagoOrco;
+		energia=Constantes.ENERGIA_MAGO_ORCO;
+		energiaMaxima=Constantes.ENERGIA_MAXIMA_MAGO_ORCO;
+		salud=Constantes.SALUD_MAGO_ORCO;
+		saludMaxima=Constantes.SALUD_MAXIMA_MAGO_ORCO;
+		ataque=Constantes.ATAQUE_MAGO_ORCO;
+		defensa=Constantes.DEFENSA_MAGO_ORCO;
+		magia=Constantes.MAGIA_MAGO_ORCO;
+		velocidad=Constantes.VELOCIDAD_MAGO_ORCO;
 		experiencia=0;
 		nivel=1;
 		posicion=new Punto(0,0);
@@ -33,13 +33,13 @@ public class MagoOrco extends Orco{
 
 	@Override
 	public void subirStats(int cantidadDeNivelesSubidos) {
-		energia+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		energiaMaxima+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		saludMaxima+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		salud+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		ataque+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		defensa+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		magia+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelEspecial;
-		velocidad+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
+		energia+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		energiaMaxima+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		saludMaxima+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		salud+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		ataque+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		defensa+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		magia+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_ESPECIAL;
+		velocidad+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
 	}
 }

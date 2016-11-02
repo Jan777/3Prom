@@ -31,9 +31,9 @@ public class AlianzaDeOrcosTest {
         alianzaDeOrcos.atacar(alianzaEnemiga);
         alianzaDeOrcos.atacar(alianzaEnemiga);
         assertEquals(0, alianzaEnemiga.getPersonajes().get(0).getSalud());
-        assertEquals(Constantes.SaludGuerreroHumano, alianzaEnemiga.getPersonajes().get(1).getSalud());
-        assertEquals(Constantes.SaludGuerreroHumano, alianzaEnemiga.getPersonajes().get(2).getSalud());
-        assertEquals(Constantes.SaludGuerreroHumano, alianzaEnemiga.getPersonajes().get(3).getSalud());
+        assertEquals(Constantes.SALUD_GUERRERO_HUMANO, alianzaEnemiga.getPersonajes().get(1).getSalud());
+        assertEquals(Constantes.SALUD_GUERRERO_HUMANO, alianzaEnemiga.getPersonajes().get(2).getSalud());
+        assertEquals(Constantes.SALUD_GUERRERO_HUMANO, alianzaEnemiga.getPersonajes().get(3).getSalud());
     }
 	 
     @Test

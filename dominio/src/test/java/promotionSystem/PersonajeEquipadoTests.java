@@ -14,20 +14,20 @@ public class PersonajeEquipadoTests {
 	@Test
 	public void siPuedoEquiparmeUnItemDeCadaTipo() throws Exception {
 		Personaje louie = new PokemonTipoFuego();
-		Assert.assertEquals(AtaquePokemonDeFuego, louie.obtenerPuntosDeAtaque());
+		Assert.assertEquals(ATAQUE_POKEMON_DE_FUEGO, louie.obtenerPuntosDeAtaque());
 		Assert.assertEquals(DEFENSA_POKEMON_DE_FUEGO, louie.obtenerPuntosDeDefensa());
-		Assert.assertEquals(MagiaPokemonDeFuego, louie.obtenerPuntosDeMagia());
-		Assert.assertEquals(VelocidadPokemonDeFuego, louie.obtenerPuntosDeVelocidad());
+		Assert.assertEquals(MAGIA_POKEMON_DE_FUEGO, louie.obtenerPuntosDeMagia());
+		Assert.assertEquals(VELOCIDAD_POKEMON_DE_FUEGO, louie.obtenerPuntosDeVelocidad());
 		agregarAInventario(louie);
 		louie.equiparItem(new EspadaGorgoroth());
 		louie.equiparItem(new BotasFlober());
 		louie.equiparItem(new CascoAdamantium());
 		louie.equiparItem(new ChalecoKevlar());
 		louie.equiparItem(new EscudoHyrule());
-		Assert.assertEquals(AtaquePokemonDeFuego+ATAQUE_ESPADA_GORGOROTH+ATAQUE_CHALECO_KEVLAR+ATAQUE_CASCO_ADAMANTIUM, louie.getAtaque());
+		Assert.assertEquals(ATAQUE_POKEMON_DE_FUEGO +ATAQUE_ESPADA_GORGOROTH+ATAQUE_CHALECO_KEVLAR+ATAQUE_CASCO_ADAMANTIUM, louie.getAtaque());
 		Assert.assertEquals(DEFENSA_POKEMON_DE_FUEGO+DEFENSA_BOTAS_FLOBER+DEFENSA_CASCO_ADAMANTIUM+DEFENSA_ESCUDO_HYRULE+DEFENSA_CHALECO_KEVLAR , louie.obtenerPuntosDeDefensa());
-		Assert.assertEquals(MagiaPokemonDeFuego+MAGIA_BOTAS_FLOBER+MAGIA_ESPADA_GORGOROTH, louie.obtenerPuntosDeMagia());
-		Assert.assertEquals(VelocidadPokemonDeFuego+VELOCIDAD_BOTAS_FLOBER+VELOCIDAD_CHALECO_KEVLAR+VELOCIDAD_ESCUDO_HYRULE+VELOCIDAD_ESPADA_GORGOROTH, louie.obtenerPuntosDeVelocidad());
+		Assert.assertEquals(MAGIA_POKEMON_DE_FUEGO +MAGIA_BOTAS_FLOBER+MAGIA_ESPADA_GORGOROTH, louie.obtenerPuntosDeMagia());
+		Assert.assertEquals(VELOCIDAD_POKEMON_DE_FUEGO +VELOCIDAD_BOTAS_FLOBER+VELOCIDAD_CHALECO_KEVLAR+VELOCIDAD_ESCUDO_HYRULE+VELOCIDAD_ESPADA_GORGOROTH, louie.obtenerPuntosDeVelocidad());
 	}
 
 	private void agregarAInventario(Personaje louie) throws Exception {
@@ -71,7 +71,7 @@ public class PersonajeEquipadoTests {
 		Personaje louie = new PokemonTipoFuego();
 		louie.recibirItem(new EspadaKokiri());
 		louie.equiparItem(new EspadaKokiri());
-		Assert.assertEquals(AtaquePokemonDeFuego+ATAQUE_ESPADA_KOKIRI, louie.obtenerPuntosDeAtaque());
+		Assert.assertEquals(ATAQUE_POKEMON_DE_FUEGO +ATAQUE_ESPADA_KOKIRI, louie.obtenerPuntosDeAtaque());
 	}
 
 	@Test
@@ -87,7 +87,7 @@ public class PersonajeEquipadoTests {
 		Personaje louie = new PokemonTipoFuego();
 		louie.recibirItem(new VaritaMissingno());
 		louie.equiparItem(new VaritaMissingno());
-		Assert.assertEquals(MagiaPokemonDeFuego+MAGIA_VARITA_MISSIGNO,louie.obtenerPuntosDeMagia());
+		Assert.assertEquals(MAGIA_POKEMON_DE_FUEGO +MAGIA_VARITA_MISSIGNO,louie.obtenerPuntosDeMagia());
 	}
 
 	@Test
@@ -95,7 +95,7 @@ public class PersonajeEquipadoTests {
 		Personaje louie = new PokemonTipoFuego();
 		louie.recibirItem(new BotasFlober());
 		louie.equiparItem(new BotasFlober());
-		Assert.assertEquals(VelocidadPokemonDeFuego+VELOCIDAD_BOTAS_FLOBER, louie.obtenerPuntosDeVelocidad());
+		Assert.assertEquals(VELOCIDAD_POKEMON_DE_FUEGO +VELOCIDAD_BOTAS_FLOBER, louie.obtenerPuntosDeVelocidad());
 	}
 
 	@Test
@@ -104,10 +104,10 @@ public class PersonajeEquipadoTests {
 		Personaje riku=new Riku();
 		riku.recibirItem(new EspadaGorgoroth());
 		riku.equiparItem(new EspadaGorgoroth());
-		Assert.assertEquals(SaludPokemonDeFuego, pokemon.getSalud());
-		Assert.assertEquals(VelocidadPokemonDeFuego, pokemon.obtenerPuntosDeVelocidad());
+		Assert.assertEquals(SALUD_POKEMON_DE_FUEGO, pokemon.getSalud());
+		Assert.assertEquals(VELOCIDAD_POKEMON_DE_FUEGO, pokemon.obtenerPuntosDeVelocidad());
 		riku.atacarConMagia(pokemon, "Hielo");
-		Assert.assertEquals(SaludPokemonDeFuego - MagiaRiku + DEFENSA_POKEMON_DE_FUEGO - MAGIA_ESPADA_GORGOROTH, pokemon.getSalud());
-		Assert.assertEquals(VelocidadPokemonDeFuego/2, pokemon.obtenerPuntosDeVelocidad());
+		Assert.assertEquals(SALUD_POKEMON_DE_FUEGO - MAGIA_RIKU + DEFENSA_POKEMON_DE_FUEGO - MAGIA_ESPADA_GORGOROTH, pokemon.getSalud());
+		Assert.assertEquals(VELOCIDAD_POKEMON_DE_FUEGO /2, pokemon.obtenerPuntosDeVelocidad());
 	}
 }

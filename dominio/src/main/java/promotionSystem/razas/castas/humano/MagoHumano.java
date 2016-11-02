@@ -13,14 +13,14 @@ import java.util.HashMap;
 public class MagoHumano extends Humano {
 
 	public MagoHumano(){
-		energia=Constantes.EnergiaMagoHumano;
-		energiaMaxima=Constantes.EnergiaMaximaMagoHumano;
-		salud=Constantes.SaludMagoHumano; 
-		saludMaxima=Constantes.SaludMaximaMagoHumano;
-		ataque=Constantes.AtaqueMagoHumano;
-		defensa=Constantes.DefensaMagoHumano;
-		magia=Constantes.MagiaMagoHumano;
-		velocidad=Constantes.VelocidadMagoHumano;
+		energia=Constantes.ENERGIA_MAGO_HUMANO;
+		energiaMaxima=Constantes.ENERGIA_MAXIMA_MAGO_HUMANO;
+		salud=Constantes.SALUD_MAGO_HUMANO;
+		saludMaxima=Constantes.SALUD_MAXIMA_MAGO_HUMANO;
+		ataque=Constantes.ATAQUE_MAGO_HUMANO;
+		defensa=Constantes.DEFENSA_MAGO_HUMANO;
+		magia=Constantes.MAGIA_MAGO_HUMANO;
+		velocidad=Constantes.VELOCIDAD_MAGO_HUMANO;
 		experiencia=0;
 		nivel=1;
 		posicion=new Punto(0,0);
@@ -32,13 +32,13 @@ public class MagoHumano extends Humano {
 
 	@Override
 	public void subirStats(int cantidadDeNivelesSubidos) {
-		energia+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		energiaMaxima+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		saludMaxima+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		salud+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		ataque+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		defensa+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
-		magia+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelEspecial;
-		velocidad+=cantidadDeNivelesSubidos*Constantes.MultiplicadorDeNivelNormal;
+		energia+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		energiaMaxima+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		saludMaxima+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		salud+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		ataque+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		defensa+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
+		magia+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_ESPECIAL;
+		velocidad+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
 	}
 }
