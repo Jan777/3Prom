@@ -391,8 +391,13 @@ public abstract class Personaje implements Comparable<Personaje>{
     }
 
 	public void equiparItem(Item item) throws Exception{
-		if(inventario.buscarItem(item)){
-            equipar(item);
+        Item itemEquipado = (Item)this.getClass().getSuperclass().getSuperclass().getDeclaredField(item.getTipoDeItem()).get(this);
+	    if(itemEquipado == null){
+            Item itemEnInventario = inventario.buscarItem(item);
+            equipar(itemEnInventario);
+        }else{
+            desequiparItem(itemEquipado);
+            equiparItem(item);
         }
 	}
 

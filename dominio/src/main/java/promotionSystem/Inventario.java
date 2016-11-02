@@ -22,13 +22,13 @@ public class Inventario {
         listaDeItems.remove(item);
     }
 
-    public boolean buscarItem(Item item) throws ClassNotFoundException {
+    public Item buscarItem(Item item) throws ClassNotFoundException {
         for(Item itemEnInventario : listaDeItems){
             if(item.equals(itemEnInventario)){
-                return true;
+                return itemEnInventario;
             }
         }
-        return false;
+        return null;
     }
 
     public List<Item> getListaDeItems() {

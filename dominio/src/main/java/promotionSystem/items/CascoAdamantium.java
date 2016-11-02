@@ -5,7 +5,7 @@ import promotionSystem.Item;
 public class CascoAdamantium extends Item{
 
     public CascoAdamantium() {
-        super("CascoAdamantium", "casco");
+        super("Casco Adamantium", "casco");
         sumadorDeAtaque = 10;
         sumadorDeDefensa =10;
     }

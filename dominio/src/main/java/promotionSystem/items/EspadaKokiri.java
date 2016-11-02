@@ -5,7 +5,7 @@ import promotionSystem.Item;
 public class EspadaKokiri extends Item{
 
     public EspadaKokiri() {
-        super("EspadaKokiri", "arma");
+        super("Espada Kokiri", "arma");
         sumadorDeAtaque = 5;
         sumadorDeMagia = 10;
         sumadorDeVelocidad = 10;

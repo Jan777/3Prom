@@ -41,6 +41,17 @@ public class PersonajeEquipadoTests {
 	@Test
 	public void siPuedoEquiparmeUnItemDeCadaTipoEnElInventario() throws Exception {
 		Personaje louie = new PokemonTipoFuego();
+		louie.recibirItem(new EspadaGorgoroth());
+		louie.recibirItem(new BotasFlober());
+		louie.recibirItem(new CascoAdamantium());
+		louie.recibirItem(new ChalecoKevlar());
+		louie.recibirItem(new EscudoHyrule());
+		louie.recibirItem(new EspadaGorgoroth());
+		louie.recibirItem(new BotasFlober());
+		louie.recibirItem(new CascoAdamantium());
+		louie.recibirItem(new ChalecoKevlar());
+		louie.recibirItem(new EscudoHyrule());
+
 		louie.equiparItem(new EspadaGorgoroth());
 		louie.equiparItem(new BotasFlober());
 		louie.equiparItem(new CascoAdamantium());
@@ -51,6 +62,8 @@ public class PersonajeEquipadoTests {
 		louie.equiparItem(new CascoAdamantium());
 		louie.equiparItem(new ChalecoKevlar());
 		louie.equiparItem(new EscudoHyrule());
+
+		Assert.assertEquals(5, louie.getInventario().size());
 	}
 	
 	@Test

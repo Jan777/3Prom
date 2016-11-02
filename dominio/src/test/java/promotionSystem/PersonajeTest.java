@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import promotionSystem.items.EspadaGorgoroth;
+import promotionSystem.items.EspadaKokiri;
 import promotionSystem.mapa.Mapa;
 import promotionSystem.mapa.Obstaculo;
 import promotionSystem.razas.castas.humano.GuerreroHumano;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static promotionSystem.Constantes.*;
 import static promotionSystem.builder.AlianzaBuilder.*;
 
@@ -37,12 +39,12 @@ public class PersonajeTest {
 	@Test
 	public void siAtacaUnaVezElPersonajeAtacadoTodaviaSigueVivo(){
 		personajeAtacante.atacar(personajeAtacado);
-		Assert.assertTrue(personajeAtacado.estaVivo());
+		assertTrue(personajeAtacado.estaVivo());
 	}
 	
 	@Test
 	public void siElAtacadoTieneMenosVidaQueElAtaqueDelPersonajeAtacanteElPersonajeAtacadoMuere(){
-		Assert.assertTrue(personajeAtacado.estaVivo());
+		assertTrue(personajeAtacado.estaVivo());
 		personajeAtacado.setDefensa(0);
 		personajeAtacado.setSalud(9);
 		personajeAtacante.atacar(personajeAtacado);
@@ -51,7 +53,7 @@ public class PersonajeTest {
 	
 	@Test
 	public void siElAtacadoTieneIgualVidaQueElAtaqueDelPersonajeAtacanteElPersonajeAtacadoMuere(){
-		Assert.assertTrue(personajeAtacado.estaVivo());
+		assertTrue(personajeAtacado.estaVivo());
 		personajeAtacado.setDefensa(0);
 		personajeAtacado.setSalud(10);
 		personajeAtacante.atacar(personajeAtacado);
@@ -161,7 +163,7 @@ public class PersonajeTest {
 	@Test
 	public void debeSubirHabilidadYLosStatsCorrespondientes(){
 		personajeAtacante.subirHabilidad("Ataque certero");
-        Assert.assertTrue(personajeAtacante.habilidades().contains("Ataque certero"));
+        assertTrue(personajeAtacante.habilidades().contains("Ataque certero"));
         assertEquals(22, personajeAtacante.getAtaque());
 	}
 
@@ -174,12 +176,12 @@ public class PersonajeTest {
 	@Test
 	public void siTieneItemsPuedeDarlos() throws ClassNotFoundException {
 		personajeAtacante.recibirItem(new EspadaGorgoroth());
-		Assert.assertTrue(personajeAtacante.puedeDarItem());
+		assertTrue(personajeAtacante.puedeDarItem());
 	}
 
 	@Test
 	public void siNoTieneItemsNoPuedeDarlos(){
-		Assert.assertTrue(!personajeAtacante.puedeDarItem());
+		assertTrue(!personajeAtacante.puedeDarItem());
 	}
 
 	@Test
@@ -187,6 +189,20 @@ public class PersonajeTest {
         personajeAtacante.recibirItem(new EspadaGorgoroth());
         personajeAtacante.entregarItem();
         assertEquals(0, personajeAtacante.getItems().size());
+    }
+
+    @Test
+    public void siTrataDeEquiparUnItemTeniendoUnoDelMismoTipoEquipadoDebeCambiarDeItemYElViejoIrAlInventario() throws Exception {
+        personajeAtacante.recibirItem(new EspadaGorgoroth());
+        personajeAtacante.recibirItem(new EspadaKokiri());
+        personajeAtacante.equiparItem(new EspadaGorgoroth());
+        personajeAtacante.equiparItem(new EspadaKokiri());
+        assertEquals("Espada Kokiri", personajeAtacante.getArma().getNombreItem());
+        assertEquals(1, personajeAtacante.getInventario().size());
+        assertEquals("Espada Gorgoroth",personajeAtacante.getInventario().buscarItem(new EspadaGorgoroth()).getNombreItem());
+        assertEquals(AtaqueGuerreroHumano + ATAQUE_ESPADA_KOKIRI, personajeAtacante.getAtaque());
+        assertEquals(MagiaGuerreroHumano + MAGIA_ESPADA_KOKIRI, personajeAtacante.getMagia());
+        assertEquals(VelocidadGuerreroHumano + VELOCIDAD_ESPADA_KOKIRI, personajeAtacante.getVelocidad());
     }
 
     @Test

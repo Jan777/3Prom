@@ -2,7 +2,6 @@ package promotionSystem.builder;
 
 import org.junit.Assert;
 import org.junit.Test;
-import promotionSystem.Constantes;
 import promotionSystem.Personaje;
 import promotionSystem.items.BotasFlober;
 import promotionSystem.items.EscudoHyrule;
