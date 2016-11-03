@@ -1,5 +1,6 @@
 package promotionSystem;
 
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -7,7 +8,9 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.Scanner;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import promotionSystem.razas.castas.humano.GuerreroHumano;
 
@@ -57,6 +60,13 @@ public class Cliente {
 		scanner.nextLine();
 		ip=scanner.nextLine();
 		scanner.close();
+	}
+	
+	private void recibirPosicionInicial() throws IOException{
+		String punto = new DataInputStream(cliente.getInputStream()).readUTF();
+		JsonParser parser = new JsonParser();
+		JsonObject json = parser.parse(punto).getAsJsonObject();
+		personaje.setPosicion(new Gson().fromJson(json,Punto.class));	
 	}
 
 }
