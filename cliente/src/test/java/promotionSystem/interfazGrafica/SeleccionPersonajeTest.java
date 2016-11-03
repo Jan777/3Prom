@@ -1,4 +1,4 @@
-package InterfazGrafica;
+package promotionSystem.interfazGrafica;
 
 import javax.swing.JFrame;
 

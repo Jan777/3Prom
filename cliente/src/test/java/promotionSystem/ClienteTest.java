@@ -1,4 +1,4 @@
-package cliente;
+package promotionSystem;
 
 import org.junit.Test;
 

@@ -16,7 +16,7 @@ public class Servidor {
 	private int i = 0;
 	private int puerto;
 	private int cantidadMaximaDeClientes;
-	private String archivoDeConfiguracion="C:\\Users\\Pablo\\Workspace\\GameUltimo\\jrpg\\configuracion.config";
+	private String archivoDeConfiguracion="configuracion.config";
 	private HashMap<Socket,Personaje> jugadores = new HashMap<Socket,Personaje>();
 	
 	
@@ -30,7 +30,7 @@ public class Servidor {
 			
 			servidor.close();
 		} catch (IOException e) {
-			System.err.println("Ocurrió un problema con el Servidor");
+			System.err.println("Ocurriï¿½ un problema con el Servidor");
 		}
 	}
 

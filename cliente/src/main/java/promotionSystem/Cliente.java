@@ -17,7 +17,7 @@ public class Cliente {
 	private String ip;
 	private String sala;
 	private int puerto;
-	private String archivoDeConfiguracion="~/jrpg/configuracion.config";
+	private String archivoDeConfiguracion="configuracion.config";
 	private Personaje personaje;
 	
 	String raza="Humano";
