@@ -7,7 +7,6 @@ import promotionSystem.interfazGrafica.SeleccionPersonaje;
 public class SeleccionPersonajeTest {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		
 		SeleccionPersonaje ventana=new SeleccionPersonaje();
 		

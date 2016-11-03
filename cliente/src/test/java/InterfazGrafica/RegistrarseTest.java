@@ -6,9 +6,7 @@ import promotionSystem.interfazGrafica.Registrarse;
 
 public class RegistrarseTest {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
+	public static void main(String[] args) {		
 		Registrarse marco=new Registrarse();
 		marco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		

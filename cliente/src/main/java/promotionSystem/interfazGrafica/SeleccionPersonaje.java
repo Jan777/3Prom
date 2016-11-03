@@ -81,7 +81,6 @@ class LaminaCentral extends JPanel{
 		 try {
 			imagen=ImageIO.read(miImagen);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		 g.drawImage(imagen, 5, 5, null);
@@ -205,7 +204,6 @@ class LaminaOeste extends JPanel{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				
 				String eleccion=(String) castas.getSelectedItem();
 				if(castas.equals("Riku")){
