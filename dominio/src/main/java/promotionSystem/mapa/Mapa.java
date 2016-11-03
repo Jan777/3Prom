@@ -19,6 +19,7 @@ public class Mapa {
 			personajes = new ArrayList<Personaje>();
 			obstaculos = new ArrayList<Obstaculo>();
 		}
+
 		public boolean posicionValida(Punto punto) {
 				return punto.getX()>=0 && punto.getY()>=0 && punto.getX()<largo && punto.getY()<ancho && !hayObstaculo(punto);
 		}
@@ -31,7 +32,7 @@ public class Mapa {
 			}
 			return false;
 		}
-		
+
 		public void agregarObstaculo(Obstaculo obstaculo) {
 			obstaculos.add(obstaculo);
 		}

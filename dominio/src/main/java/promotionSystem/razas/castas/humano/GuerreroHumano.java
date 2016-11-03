@@ -1,13 +1,13 @@
 package promotionSystem.razas.castas.humano;
 
-import promotionSystem.Circulo;
 import promotionSystem.Constantes;
 import promotionSystem.Punto;
 import promotionSystem.razas.Humano;
 
 public class GuerreroHumano extends Humano{
 	
-	public GuerreroHumano(){
+	public GuerreroHumano(Punto posicion){
+		super(posicion);
 		energia=Constantes.ENERGIA_GUERRERO_HUMANO;
 		energiaMaxima=Constantes.ENERGIA_MAXIMA_GUERRERO_HUMANO;
 		salud=Constantes.SALUD_GUERRERO_HUMANO;
@@ -18,8 +18,6 @@ public class GuerreroHumano extends Humano{
 		velocidad=Constantes.VELOCIDAD_GUERRERO_HUMANO;
 		experiencia=0;
 		nivel=1;
-		posicion=new Punto(0,0);
-		radioDeAcccion=new Circulo(posicion,20);
 	}
 
 	@Override

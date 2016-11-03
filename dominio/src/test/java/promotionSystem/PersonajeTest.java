@@ -13,6 +13,7 @@ import promotionSystem.razas.castas.pokemon.PokemonTipoAgua;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Math.sqrt;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static promotionSystem.Constantes.*;
@@ -25,8 +26,8 @@ public class PersonajeTest {
 
     @Before
 	public void crearPersonajes(){
-		 personajeAtacante=new GuerreroHumano();
-		 personajeAtacado=new GuerreroHumano();
+		 personajeAtacante=new GuerreroHumano(INICIO_MAPA);
+		 personajeAtacado=new GuerreroHumano(INICIO_MAPA);
 	}
 
 	@Test
@@ -83,7 +84,7 @@ public class PersonajeTest {
 	
 	@Test
 	public void siTieneVidaAlMaximoNoPuedeAumentarSuSaludAlSerCurado(){
-		personajeAtacado=new GuerreroHumano();
+		personajeAtacado=new GuerreroHumano(INICIO_MAPA);
 		assertEquals(Constantes.SALUD_GUERRERO_HUMANO,personajeAtacado.getSalud());
 		personajeAtacado.serCurado();
 		assertEquals(Constantes.SALUD_GUERRERO_HUMANO,personajeAtacado.getSalud());
@@ -91,7 +92,7 @@ public class PersonajeTest {
 	
 	@Test
 	public void siTieneEnergiaAlMaximoNoPuedeAumentarSuEnergiaAlSerEnergizado(){
-		personajeAtacante=new GuerreroHumano();
+		personajeAtacante=new GuerreroHumano(INICIO_MAPA);
 		assertEquals(100,personajeAtacante.getEnergia());
 		personajeAtacante.serEnergizado();
 		assertEquals(100,personajeAtacante.getEnergia());
@@ -227,7 +228,7 @@ public class PersonajeTest {
 	private Alianza crearAlianza(int cantidadPersonajes) {
 		List<Personaje> listaDePersonajes = new ArrayList<>();
 		for(int i=0;i<cantidadPersonajes;i++){
-			GuerreroHumano personaje = new GuerreroHumano();
+			GuerreroHumano personaje = new GuerreroHumano(INICIO_MAPA);
 			listaDePersonajes.add(personaje);
 		}
 		return new Alianza(listaDePersonajes);
@@ -300,13 +301,34 @@ public class PersonajeTest {
 		Alianza aliadosEnCombate= alianza.getPersonajes().get(1).invocarAliados();
 		assertEquals(5, aliadosEnCombate.getPersonajes().size());
 	}
-	
+
+	@Test
+	public void debeDevolverLaDistanciaEnUnCaminoHorizontal(){
+	    Punto destino = new Punto(0, 3);
+		Camino camino = personajeAtacante.buscarCamino(destino);
+		assertEquals(Double.valueOf(3), camino.getDistancia());
+	}
+
+    @Test
+    public void debeDevolverLaDistanciaEnUnCaminoVertical(){
+        Punto destino = new Punto(3, 0);
+        Camino camino = personajeAtacante.buscarCamino(destino);
+        assertEquals(Double.valueOf(3), camino.getDistancia());
+    }
+
+    @Test
+    public void debeDevolverLaDistanciaEnUnCaminoEnDiagonal(){
+        Punto destino = new Punto(3, 3);
+        Camino camino = personajeAtacante.buscarCamino(destino);
+        assertEquals(1,Double.valueOf(3d * sqrt(2)).compareTo(camino.getDistancia()));
+    }
+
 	@Test
 	public void siChocaConObstaculoNoSeMueve(){
 		Mapa mapa = new Mapa(100, 100);
 		Obstaculo obstaculo = new Obstaculo(new Punto(1,1), 2, 3);
 		mapa.agregarObstaculo(obstaculo);
-		Personaje blastoise = new PokemonTipoAgua();
+		Personaje blastoise = new PokemonTipoAgua(INICIO_MAPA);
 		blastoise.setMapa(mapa);
 		blastoise.mover(new Punto(2,2));
 		assertEquals(0, blastoise.getPosicion().getX(),0);
@@ -318,7 +340,7 @@ public class PersonajeTest {
 		Mapa mapa = new Mapa(100, 100);
 		Obstaculo obstaculo = new Obstaculo(new Punto(1,1), 2, 3);
 		mapa.agregarObstaculo(obstaculo);
-		Personaje blastoise = new PokemonTipoAgua();
+		Personaje blastoise = new PokemonTipoAgua(INICIO_MAPA);
 		blastoise.setMapa(mapa);
 		blastoise.mover(new Punto(0,1));
 		assertEquals(0, blastoise.getPosicion().getX(),0);

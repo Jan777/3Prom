@@ -5,10 +5,12 @@ import org.junit.Test;
 import promotionSystem.Constantes;
 import promotionSystem.razas.Humano;
 
+import static promotionSystem.Constantes.INICIO_MAPA;
+
 public class TanqueHumanoTest {
 	@Test
 	public void siAumentaDeNivelAumentaLosStats(){
-		Humano personaje=new TanqueHumano();
+		Humano personaje=new TanqueHumano(INICIO_MAPA);
 		Assert.assertEquals(1, personaje.getNivel());
 		personaje.subirExperiencia(10);
 

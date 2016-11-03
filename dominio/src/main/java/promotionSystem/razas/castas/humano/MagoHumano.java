@@ -1,6 +1,5 @@
 package promotionSystem.razas.castas.humano;
 
-import promotionSystem.Circulo;
 import promotionSystem.Constantes;
 import promotionSystem.Punto;
 import promotionSystem.hechizo.Cura;
@@ -12,7 +11,8 @@ import java.util.HashMap;
 
 public class MagoHumano extends Humano {
 
-	public MagoHumano(){
+	public MagoHumano(Punto posicion){
+		super(posicion);
 		energia=Constantes.ENERGIA_MAGO_HUMANO;
 		energiaMaxima=Constantes.ENERGIA_MAXIMA_MAGO_HUMANO;
 		salud=Constantes.SALUD_MAGO_HUMANO;
@@ -23,8 +23,6 @@ public class MagoHumano extends Humano {
 		velocidad=Constantes.VELOCIDAD_MAGO_HUMANO;
 		experiencia=0;
 		nivel=1;
-		posicion=new Punto(0,0);
-		radioDeAcccion=new Circulo(posicion,20);
 		hechizos = new HashMap<String, Hechizo>();
         agregarHechizo("Trueno",new Trueno());
         agregarHechizo("Cura",new Cura());

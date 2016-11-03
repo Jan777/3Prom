@@ -7,11 +7,13 @@ import promotionSystem.razas.PersonajeDeStarWars;
 import promotionSystem.razas.PersonajeDeUndertale;
 import promotionSystem.razas.castas.starWars.Droide;
 
+import static promotionSystem.Constantes.INICIO_MAPA;
+
 public class CharaTest {
 	
 		@Test
 		public void siAumentaDeNivelAumentaLosStats(){
-			Chara personaje=new Chara();
+			Chara personaje=new Chara(INICIO_MAPA);
 			Assert.assertEquals(1, personaje.getNivel());
 			personaje.subirExperiencia(10);
 			Assert.assertEquals(3, personaje.getNivel());
@@ -26,8 +28,8 @@ public class CharaTest {
 		
 		@Test
 		public void siAtacaAumentaElAtaqueYEnergia(){
-			PersonajeDeUndertale personajeAtacante=new Chara();
-			PersonajeDeStarWars personajeAtacado=new Droide();
+			PersonajeDeUndertale personajeAtacante=new Chara(INICIO_MAPA);
+			PersonajeDeStarWars personajeAtacado=new Droide(INICIO_MAPA);
 			
 			Assert.assertEquals(Constantes.ATAQUE_CHARA,personajeAtacante.obtenerPuntosDeAtaque());
 			Assert.assertEquals(100,personajeAtacante.getEnergia());

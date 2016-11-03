@@ -11,7 +11,8 @@ import java.util.HashMap;
 
 public class PokemonTipoAgua extends PersonajeDePokemon{
 	
-	public PokemonTipoAgua(){
+	public PokemonTipoAgua(Punto posicion){
+		super(posicion);
 		energia=Constantes.ENERGIA_POKEMON_DE_AGUA;
 		energiaMaxima=Constantes.ENERGIA_MAXIMA_POKEMON_DE_AGUA;
 		salud=Constantes.SALUD_POKEMON_DE_AGUA;

@@ -12,7 +12,8 @@ import java.util.HashMap;
 
 public class Sora extends PersonajeDeKingdomHearts {
 	
-	public Sora(){
+	public Sora(Punto posicion){
+		super(posicion);
 		energia=Constantes.ENERGIA_SORA;
 		energiaMaxima=Constantes.ENERGIA_MAXIMA_SORA;
 		salud=Constantes.SALUD_SORA;

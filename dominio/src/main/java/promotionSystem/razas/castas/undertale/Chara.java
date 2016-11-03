@@ -6,7 +6,8 @@ import promotionSystem.Punto;
 import promotionSystem.razas.PersonajeDeUndertale;
 
 public class Chara extends PersonajeDeUndertale{
-	public Chara(){
+	public Chara(Punto posicion){
+		super(posicion);
 		energia=Constantes.ENERGIA_CHARA;
 		energiaMaxima=Constantes.ENERGIA_MAXIMA_CHARA;
 		salud=Constantes.SALUD_CHARA;

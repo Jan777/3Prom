@@ -5,11 +5,13 @@ import org.junit.Test;
 import promotionSystem.Constantes;
 import promotionSystem.razas.PersonajeDeStarWars;
 
+import static promotionSystem.Constantes.INICIO_MAPA;
+
 public class WookieTest{
 
 	@Test
 	public void siAumentaDeNivelAumentaLosStats(){
-		PersonajeDeStarWars personaje=new Wookie();
+		PersonajeDeStarWars personaje=new Wookie(INICIO_MAPA);
 		Assert.assertEquals(1, personaje.getNivel());
 		personaje.subirExperiencia(10);
 
@@ -25,8 +27,8 @@ public class WookieTest{
 	
 	@Test
 	public void siAtacaAumentaElAtaquePeroDisminuyeDefensa(){
-		PersonajeDeStarWars personajeAtacante=new Wookie();
-		PersonajeDeStarWars personajeAtacado=new Droide();
+		PersonajeDeStarWars personajeAtacante=new Wookie(INICIO_MAPA);
+		PersonajeDeStarWars personajeAtacado=new Droide(INICIO_MAPA);
 		
 		Assert.assertEquals(Constantes.ATAQUE_WOOKIE,personajeAtacante.obtenerPuntosDeAtaque());
 		Assert.assertEquals(Constantes.DEFENSA_WOOKIE,personajeAtacante.obtenerPuntosDeDefensa());

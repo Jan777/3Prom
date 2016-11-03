@@ -7,11 +7,13 @@ import promotionSystem.razas.PersonajeDeKingdomHearts;
 import promotionSystem.razas.PersonajeDeStarWars;
 import promotionSystem.razas.castas.starWars.Droide;
 
+import static promotionSystem.Constantes.INICIO_MAPA;
+
 public class RikuTest {
 
 	@Test
 	public void siAumentaDeNivelAumentaLosStats(){
-		Riku personaje=new Riku();
+		Riku personaje=new Riku(INICIO_MAPA);
 		Assert.assertEquals(1, personaje.getNivel());
 		personaje.subirExperiencia(10);
 		Assert.assertEquals(5, personaje.getExperiencia());
@@ -29,8 +31,8 @@ public class RikuTest {
 	
 	@Test
 	public void siAtacaAumentaDefensa(){
-		PersonajeDeKingdomHearts personajeAtacante=new Riku();
-		PersonajeDeStarWars personajeAtacado=new Droide();
+		PersonajeDeKingdomHearts personajeAtacante=new Riku(INICIO_MAPA);
+		PersonajeDeStarWars personajeAtacado=new Droide(INICIO_MAPA);
 		
 		Assert.assertEquals(Constantes.DEFENSA_RIKU,personajeAtacante.obtenerPuntosDeDefensa());
 		personajeAtacante.atacar(personajeAtacado);

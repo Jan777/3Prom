@@ -7,7 +7,8 @@ import promotionSystem.razas.Orco;
 
 public class TanqueOrco extends Orco{
 
-	public TanqueOrco(){
+	public TanqueOrco(Punto posicion){
+		super(posicion);
 		energia=Constantes.ENERGIA_TANQUE_ORCO;
 		energiaMaxima=Constantes.ENERGIA_MAXIMA_TANQUE_ORCO;
 		salud=Constantes.SALUD_TANQUE_ORCO;

@@ -194,5 +194,8 @@ public class Constantes {
 	//Inventario
 	public static final int CANTIDAD_MAXIMA_DE_ITEMS = 15;
 
+	//Movimiento
+	public static final Punto INICIO_MAPA = new Punto(0, 0);
+	public static final int RADIO_DE_ACCION = 20;
 
 }

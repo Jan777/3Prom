@@ -7,7 +7,8 @@ import promotionSystem.razas.Orco;
 
 public class GuerreroOrco extends Orco{
 
-	public GuerreroOrco(){
+	public GuerreroOrco(Punto posicion){
+		super(posicion);
 		energia=Constantes.ENERGIA_GUERRERO_ORCO;
 		energiaMaxima=Constantes.ENERGIA_MAXIMA_GUERRERO_ORCO;
 		salud=Constantes.SALUD_GUERRERO_ORCO;

@@ -5,11 +5,13 @@ import org.junit.Test;
 import promotionSystem.Constantes;
 import promotionSystem.razas.PersonajeDeStarWars;
 
+import static promotionSystem.Constantes.INICIO_MAPA;
+
 public class JediTest {
 	
 	@Test
 	public void siAumentaDeNivelAumentaLosStats(){
-		PersonajeDeStarWars personaje=new Jedi();
+		PersonajeDeStarWars personaje=new Jedi(INICIO_MAPA);
 		Assert.assertEquals(1, personaje.getNivel());
 		personaje.subirExperiencia(10);
 
@@ -24,8 +26,8 @@ public class JediTest {
 	}
 	@Test
 	public void siAtacaAumentaLaMagia(){
-		PersonajeDeStarWars personajeAtacante=new Jedi();
-		PersonajeDeStarWars personajeAtacado=new Droide();
+		PersonajeDeStarWars personajeAtacante=new Jedi(INICIO_MAPA);
+		PersonajeDeStarWars personajeAtacado=new Droide(INICIO_MAPA);
 		
 		Assert.assertEquals(Constantes.MAGIA_JEDI,personajeAtacante.obtenerPuntosDeMagia());
 		personajeAtacante.atacar(personajeAtacado);

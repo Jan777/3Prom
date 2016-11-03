@@ -7,12 +7,14 @@ import promotionSystem.razas.PersonajeDeKingdomHearts;
 import promotionSystem.razas.PersonajeDeStarWars;
 import promotionSystem.razas.castas.starWars.Droide;
 
+import static promotionSystem.Constantes.INICIO_MAPA;
+
 
 public class SoraTest {
 	
 	@Test
 	public void siAumentaDeNivelAumentaLosStats(){
-		Sora personaje=new Sora();
+		Sora personaje=new Sora(INICIO_MAPA);
 		Assert.assertEquals(1, personaje.getNivel());
 		personaje.subirExperiencia(10);
 		Assert.assertEquals(3, personaje.getNivel());
@@ -27,8 +29,8 @@ public class SoraTest {
 
 	@Test
 	public void siAtacaAumentaDefensa(){
-		PersonajeDeKingdomHearts personajeAtacante=new Sora();
-		PersonajeDeStarWars personajeAtacado=new Droide();
+		PersonajeDeKingdomHearts personajeAtacante=new Sora(INICIO_MAPA);
+		PersonajeDeStarWars personajeAtacado=new Droide(INICIO_MAPA);
 
 		Assert.assertEquals(Constantes.DEFENSA_SORA,personajeAtacante.obtenerPuntosDeDefensa());
 		personajeAtacante.atacar(personajeAtacado);

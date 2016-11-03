@@ -1,6 +1,5 @@
 package promotionSystem.razas.castas.kingdomHearts;
 
-import promotionSystem.Circulo;
 import promotionSystem.Constantes;
 import promotionSystem.Punto;
 import promotionSystem.hechizo.Cura;
@@ -12,7 +11,8 @@ import java.util.HashMap;
 
 public class Riku extends PersonajeDeKingdomHearts {
 
-	public Riku(){
+	public Riku(Punto posicion){
+		super(posicion);
 		energia=Constantes.ENERGIA_RIKU;
 		energiaMaxima=Constantes.ENERGIA_MAXIMA_RIKU;
 		salud=Constantes.SALUD_RIKU;
@@ -23,8 +23,6 @@ public class Riku extends PersonajeDeKingdomHearts {
 		velocidad=Constantes.VELOCIDAD_RIKU;
 		experiencia=0;
 		nivel=1;
-		posicion=new Punto(0,0);
-		radioDeAcccion=new Circulo(posicion,20);
 		hechizos = new HashMap<String, Hechizo>();
         agregarHechizo("Hielo",new Hielo());
         agregarHechizo("Cura",new Cura());

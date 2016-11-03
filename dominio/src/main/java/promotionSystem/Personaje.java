@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import static java.util.Collections.sort;
+import static promotionSystem.Constantes.RADIO_DE_ACCION;
 
 public abstract class Personaje implements Comparable<Personaje>{
 	protected int salud;
@@ -36,7 +37,12 @@ public abstract class Personaje implements Comparable<Personaje>{
 	private Item escudo;
 	private Inventario inventario = new Inventario();
 
-	public final void atacar(Personaje atacado) {
+    public Personaje(Punto posicion) {
+        this.posicion = posicion;
+        this.radioDeAcccion = new Circulo(posicion, RADIO_DE_ACCION);
+    }
+
+    public final void atacar(Personaje atacado) {
 		if (puedeAtacar()) {
 			int puntosARestar = calcularPuntosDeAtaque() - atacado.calcularPuntosDeDefensa();
 			atacado.serAtacado(puntosARestar < 0 ? 0 : puntosARestar);
@@ -319,6 +325,10 @@ public abstract class Personaje implements Comparable<Personaje>{
 			radioDeAcccion.setCentro(posicion);
 		}
 	}
+
+	public Camino buscarCamino(Punto destino){
+	    return new Camino(posicion, destino);
+    }
 
 	public Punto getPosicion() {
 		return posicion;

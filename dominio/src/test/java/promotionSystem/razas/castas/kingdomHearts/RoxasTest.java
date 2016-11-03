@@ -7,10 +7,12 @@ import promotionSystem.razas.PersonajeDeKingdomHearts;
 import promotionSystem.razas.PersonajeDeStarWars;
 import promotionSystem.razas.castas.starWars.Droide;
 
+import static promotionSystem.Constantes.INICIO_MAPA;
+
 public class RoxasTest {
 	@Test
 	public void siAumentaDeNivelAumentaLosStats(){
-		Roxas personaje=new Roxas();
+		Roxas personaje=new Roxas(INICIO_MAPA);
 		Assert.assertEquals(1, personaje.getNivel());
 		personaje.subirExperiencia(10);
 		Assert.assertEquals(3, personaje.getNivel());
@@ -28,8 +30,8 @@ public class RoxasTest {
 
 	@Test
 	public void siAtacaAumentaDefensa(){
-		PersonajeDeKingdomHearts personajeAtacante=new Roxas();
-		PersonajeDeStarWars personajeAtacado=new Droide();
+		PersonajeDeKingdomHearts personajeAtacante=new Roxas(INICIO_MAPA);
+		PersonajeDeStarWars personajeAtacado=new Droide(INICIO_MAPA);
 
 		Assert.assertEquals(Constantes.DEFENSA_ROXAS,personajeAtacante.obtenerPuntosDeDefensa());
 		personajeAtacante.atacar(personajeAtacado);

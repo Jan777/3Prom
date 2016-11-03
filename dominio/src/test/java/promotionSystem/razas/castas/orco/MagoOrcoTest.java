@@ -5,11 +5,13 @@ import org.junit.Test;
 import promotionSystem.Constantes;
 import promotionSystem.razas.Orco;
 
+import static promotionSystem.Constantes.INICIO_MAPA;
+
 public class MagoOrcoTest {
 
 	@Test
 	public void siAumentaDeNivelAumentaLosStats(){
-		Orco personaje=new MagoOrco();
+		Orco personaje=new MagoOrco(INICIO_MAPA);
 		Assert.assertEquals(1, personaje.getNivel());
 		personaje.subirExperiencia(10);
 

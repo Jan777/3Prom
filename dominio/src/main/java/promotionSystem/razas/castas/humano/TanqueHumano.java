@@ -1,13 +1,13 @@
 package promotionSystem.razas.castas.humano;
 
-import promotionSystem.Circulo;
 import promotionSystem.Constantes;
 import promotionSystem.Punto;
 import promotionSystem.razas.Humano;
 
 public class TanqueHumano extends Humano{
 	
-	public TanqueHumano(){
+	public TanqueHumano(Punto posicion){
+		super(posicion);
 		energia=Constantes.ENERGIA_TANQUE_HUMANO;
 		energiaMaxima=Constantes.ENERGIA_MAXIMA_TANQUE_HUMANO;
 		salud=Constantes.SALUD_TANQUE_HUMANO;
@@ -18,8 +18,6 @@ public class TanqueHumano extends Humano{
 		velocidad=Constantes.VELOCIDAD_TANQUE_HUMANO;
 		experiencia=0;
 		nivel=1;
-		posicion=new Punto(0,0);
-		radioDeAcccion=new Circulo(posicion,20);
 	}
 
 	@Override

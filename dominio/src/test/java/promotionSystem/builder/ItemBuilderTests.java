@@ -16,7 +16,7 @@ public class ItemBuilderTests {
 	
 	@Test
 	public void siEquipoUnArmaYSeModificanLosStats() throws Exception {
-		Personaje Emeritus = new GuerreroHumano();
+		Personaje Emeritus = new GuerreroHumano(INICIO_MAPA);
 		Assert.assertEquals(ATAQUE_GUERRERO_HUMANO, Emeritus.obtenerPuntosDeAtaque());
 		Emeritus.recibirItem(new EspadaGorgoroth());
 		Emeritus.equiparItem(new EspadaGorgoroth());
@@ -26,7 +26,7 @@ public class ItemBuilderTests {
 	
 	@Test
 	public void siEquipo2TiposDeItemYSeModificanLosStats2() throws Exception {
-		Personaje Emeritus = new GuerreroHumano();
+		Personaje Emeritus = new GuerreroHumano(INICIO_MAPA);
 		Emeritus.recibirItem(new EspadaGorgoroth());
 		Emeritus.equiparItem(new EspadaGorgoroth());
 		Emeritus.recibirItem(new EscudoHyrule());
@@ -40,7 +40,7 @@ public class ItemBuilderTests {
 	
 	@Test
 	public void siEquipoBotasFloberAumentaVelocidad() throws Exception {
-		Personaje Emeritus = new GuerreroHumano();
+		Personaje Emeritus = new GuerreroHumano(INICIO_MAPA);
 		Assert.assertEquals(VELOCIDAD_GUERRERO_HUMANO, Emeritus.obtenerPuntosDeVelocidad());
 		Emeritus.recibirItem(new BotasFlober());
 		Emeritus.equiparItem(new BotasFlober());
@@ -50,7 +50,7 @@ public class ItemBuilderTests {
 	
 	@Test
 	public void siEquipoVaritaMissignoAumentaMagia() throws Exception {
-		Personaje Emeritus = new GuerreroHumano();
+		Personaje Emeritus = new GuerreroHumano(INICIO_MAPA);
 		Assert.assertEquals(MAGIA_GUERRERO_HUMANO, Emeritus.obtenerPuntosDeMagia());
 		Emeritus.recibirItem(new VaritaMissingno());
 		Emeritus.equiparItem(new VaritaMissingno());
