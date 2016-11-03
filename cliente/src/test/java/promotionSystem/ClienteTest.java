@@ -6,7 +6,7 @@ import promotionSystem.Cliente;
 
 public class ClienteTest {
 	@Test
-	public void doStuff(){
+	public void doStuff() throws Exception {
 		Cliente cliente=new Cliente("pepe");
 	}
 }

@@ -1,18 +1,12 @@
 package promotionSystem;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.net.Socket;
-import java.util.Scanner;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-import promotionSystem.razas.castas.humano.GuerreroHumano;
+import java.io.*;
+import java.net.Socket;
+import java.util.Scanner;
 
 public class Cliente {
 	private Socket cliente;
@@ -22,27 +16,26 @@ public class Cliente {
 	private int puerto;
 	private String archivoDeConfiguracion="configuracion.config";
 	private Personaje personaje;
-	
-	String raza="Humano";
+
+	String raza="humano";
 	String casta="GuerreroHumano";//viene por swing
-	public Cliente(String name){
+	public Cliente(String name) throws Exception {
 
 		try {
-			
+
 			configurar(archivoDeConfiguracion);
 			this.name=name;
 			cliente = new Socket(ip,puerto);
 			personaje=crearPersonaje(raza,casta);
 			enviarPersonaje(raza,casta);
-			
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 	}
 
-	private Personaje crearPersonaje(String raza, String casta) {
-		return new GuerreroHumano();
+	private Personaje crearPersonaje(String raza, String casta) throws Exception{
+		return (Personaje) Class.forName("promotionSystem.razas.castas." + raza + "." + casta).newInstance();
 	}
 
 	private void enviarPersonaje(String raza, String casta) throws IOException {
@@ -61,12 +54,12 @@ public class Cliente {
 		ip=scanner.nextLine();
 		scanner.close();
 	}
-	
+
 	private void recibirPosicionInicial() throws IOException{
 		String punto = new DataInputStream(cliente.getInputStream()).readUTF();
 		JsonParser parser = new JsonParser();
 		JsonObject json = parser.parse(punto).getAsJsonObject();
-		personaje.setPosicion(new Gson().fromJson(json,Punto.class));	
+		personaje.setPosicion(new Gson().fromJson(json,Punto.class));
 	}
 
 }
