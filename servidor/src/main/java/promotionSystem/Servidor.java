@@ -9,7 +9,11 @@ import java.util.HashMap;
 
 import java.util.Scanner;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonPrimitive;
+
 import promotionSystem.hilos.HiloCreadorServidor;
+import promotionSystem.mapa.Mapa;
 
 public class Servidor {
 	
@@ -18,11 +22,13 @@ public class Servidor {
 	private int cantidadMaximaDeClientes;
 	private String archivoDeConfiguracion="configuracion.config";
 	private HashMap<Socket,Personaje> jugadores = new HashMap<Socket,Personaje>();
-	
+	private HashMap<Personaje,Mapa> jugadoresPorMapa=new HashMap<Personaje,Mapa>();
+	private HashMap<String,Mapa>mapasDisponibles= new HashMap<String,Mapa>();
 	
 	public Servidor(){
 		ServerSocket servidor;
 		try {
+			cargarMapas();
 			configurar();
 			servidor = new ServerSocket(puerto);
 			aceptarClientes(servidor);
@@ -34,10 +40,18 @@ public class Servidor {
 		}
 	}
 
+	private void cargarMapas() {
+		mapasDisponibles.put("Mundo Star Wars",new Mapa(100,100));
+		mapasDisponibles.put("Mundo Pokemom",new Mapa(100,100));
+		mapasDisponibles.put("Mundo Undertale",new Mapa(100,100));
+		mapasDisponibles.put("Mundo Kingdom Hearts",new Mapa(100,100));
+		
+	}
+
 	private void aceptarClientes(ServerSocket servidor) throws IOException {
 		while(i<cantidadMaximaDeClientes){
 			Socket cliente  = servidor.accept();		
-			new HiloCreadorServidor(cliente,jugadores).start();;
+			new HiloCreadorServidor(cliente,jugadores,jugadoresPorMapa,mapasDisponibles).start();;
 			i++;
 			
 		}
@@ -53,6 +67,5 @@ public class Servidor {
 	public int cantidadDeJugadores(){
 		return jugadores.size();
 	}
-	
 
 }

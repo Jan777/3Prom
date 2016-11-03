@@ -6,6 +6,9 @@ import com.google.gson.JsonParser;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 
 public class Cliente {
@@ -16,13 +19,13 @@ public class Cliente {
 	private int puerto;
 	private String archivoDeConfiguracion="configuracion.config";
 	private Personaje personaje;
-
 	String raza="humano";
 	String casta="GuerreroHumano";//viene por swing
-	public Cliente(String name) throws Exception {
+	public Cliente(String name,String raza, String casta) throws Exception {
 
 		try {
-
+			this.raza=raza;
+			this.casta=casta;
 			configurar(archivoDeConfiguracion);
 			this.name=name;
 			cliente = new Socket(ip,puerto);
@@ -55,11 +58,29 @@ public class Cliente {
 		scanner.close();
 	}
 
-	private void recibirPosicionInicial() throws IOException{
+	public void recibirPosicionInicial() throws IOException{
 		String punto = new DataInputStream(cliente.getInputStream()).readUTF();
 		JsonParser parser = new JsonParser();
 		JsonObject json = parser.parse(punto).getAsJsonObject();
 		personaje.setPosicion(new Gson().fromJson(json,Punto.class));
 	}
+	
+	public List<String> recibirMapas() throws IOException{
+		String mapas = new DataInputStream(cliente.getInputStream()).readUTF();
+		JsonParser parser = new JsonParser();
+		JsonObject json = parser.parse(mapas).getAsJsonObject();
+
+		String[] mapasRecibidos = json.get("mapas").getAsJsonArray().toString().split(",");
+		List<String> listaDeMapas = new ArrayList<String>();
+		Collections.addAll(listaDeMapas, mapasRecibidos);
+		return listaDeMapas;
+	}
+	
+	public void enviarMapaSeleccionado(String mapa) throws IOException{
+		JsonObject mapaElegido = new JsonObject();
+	    mapaElegido.addProperty("mapa",mapa);
+	    new DataOutputStream(cliente.getOutputStream()).writeUTF(mapaElegido.toString());
+	}
+	
 
 }
