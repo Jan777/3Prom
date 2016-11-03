@@ -59,9 +59,9 @@ public class ServidorHilo extends Thread {
 	}
 
 	private void mostrarRazas() {
-		 Iterator<Socket> it=jugadores.keySet().iterator();
-		 while(it.hasNext()){
-			 Socket jugador = it.next();
+		 Iterator<Socket> iterator=jugadores.keySet().iterator();
+		 while(iterator.hasNext()){
+			 Socket jugador = iterator.next();
 			 System.out.println(jugadores.get(jugador).getClass().getName());
 			 
 		 }
