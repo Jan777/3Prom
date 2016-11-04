@@ -49,18 +49,18 @@ public class Registrarse extends JFrame {
 			 setLayout(new GridLayout(4,1));
 			 JLabel nicklabel=new JLabel("NickName: ");
 			 JTextField nick=new JTextField(10);
-			 JLabel contraseñalabel=new JLabel("Contraseña: ");
-			 JTextField contraseña=new JTextField(10);
-			 JLabel contraseñalabelrepeticion=new JLabel("Repita Contraseña: ");
-			 JTextField contraseñaRepeticion=new JTextField(10);
+			 JLabel contrasenialabel=new JLabel("contrasenia: ");
+			 JTextField contrasenia=new JTextField(10);
+			 JLabel contrasenialabelrepeticion=new JLabel("Repita contrasenia: ");
+			 JTextField contraseniaRepeticion=new JTextField(10);
 			 JLabel error=new JLabel(" ");
 			 error.setBounds(0, 90, 50, 20);
 			 nicklabel.setBounds(0,10, 100, 20);
 			 nick.setBounds(110, 10, 50, 20);
-			 contraseñalabel.setBounds(0, 30, 100, 20);
-			 contraseña.setBounds(110, 30,50,20);
-			 contraseñalabelrepeticion.setBounds(0, 60, 100, 20);
-			 contraseñaRepeticion.setBounds(0, 60, 50, 20);
+			 contrasenialabel.setBounds(0, 30, 100, 20);
+			 contrasenia.setBounds(110, 30,50,20);
+			 contrasenialabelrepeticion.setBounds(0, 60, 100, 20);
+			 contraseniaRepeticion.setBounds(0, 60, 50, 20);
 			 
 			 LaminaAuxiliarFlow nickname=new LaminaAuxiliarFlow(FlowLayout.LEFT);
 			 LaminaAuxiliarFlow password=new LaminaAuxiliarFlow(FlowLayout.LEFT);
@@ -70,10 +70,10 @@ public class Registrarse extends JFrame {
 			informe.add(error); 
 			 nickname.add(nicklabel);
 			 nickname.add(nick);
-			 password.add(contraseñalabel);
-			 password.add(contraseña);
-			passwordtry.add(contraseñalabelrepeticion);
-			passwordtry.add(contraseñaRepeticion);
+			 password.add(contrasenialabel);
+			 password.add(contrasenia);
+			passwordtry.add(contrasenialabelrepeticion);
+			passwordtry.add(contraseniaRepeticion);
 			 
 			 add(nickname);
 			 add(password);
