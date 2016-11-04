@@ -10,7 +10,7 @@ import static promotionSystem.Constantes.INICIO_MAPA;
 public class TanqueHumanoTest {
 	@Test
 	public void siAumentaDeNivelAumentaLosStats(){
-		Humano personaje=new TanqueHumano(INICIO_MAPA);
+		Humano personaje=new TanqueHumano();
 		Assert.assertEquals(1, personaje.getNivel());
 		personaje.subirExperiencia(10);
 

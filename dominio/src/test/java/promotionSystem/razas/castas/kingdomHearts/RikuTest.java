@@ -13,7 +13,7 @@ public class RikuTest {
 
 	@Test
 	public void siAumentaDeNivelAumentaLosStats(){
-		Riku personaje=new Riku(INICIO_MAPA);
+		Riku personaje=new Riku();
 		Assert.assertEquals(1, personaje.getNivel());
 		personaje.subirExperiencia(10);
 		Assert.assertEquals(5, personaje.getExperiencia());
@@ -31,8 +31,8 @@ public class RikuTest {
 	
 	@Test
 	public void siAtacaAumentaDefensa(){
-		PersonajeDeKingdomHearts personajeAtacante=new Riku(INICIO_MAPA);
-		PersonajeDeStarWars personajeAtacado=new Droide(INICIO_MAPA);
+		PersonajeDeKingdomHearts personajeAtacante=new Riku();
+		PersonajeDeStarWars personajeAtacado=new Droide();
 		
 		Assert.assertEquals(Constantes.DEFENSA_RIKU,personajeAtacante.obtenerPuntosDeDefensa());
 		personajeAtacante.atacar(personajeAtacado);

@@ -11,8 +11,7 @@ import java.util.HashMap;
 
 public class PokemonTipoPlanta extends PersonajeDePokemon {
 
-	public PokemonTipoPlanta(Punto posicion){
-		super(posicion);
+	public PokemonTipoPlanta(){
 		energia=Constantes.ENERGIA_POKEMON_DE_PLANTA;
 		energiaMaxima=Constantes.ENERGIA_MAXIMA_POKEMON_DE_PLANTA;
 		salud=Constantes.SALUD_POKEMON_DE_PLANTA;

@@ -11,7 +11,7 @@ public class GuerreroHumanoTest {
 	
 	@Test
 	public void siAumentaDeNivelAumentaLosStats(){
-		Humano personaje=new GuerreroHumano(INICIO_MAPA);
+		Humano personaje=new GuerreroHumano();
 		Assert.assertEquals(1, personaje.getNivel());
 		personaje.subirExperiencia(10);
 

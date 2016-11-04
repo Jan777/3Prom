@@ -11,7 +11,7 @@ public class DroideTest {
 	
 	@Test
 	public void siAumentaDeNivelAumentaLosStats(){
-		PersonajeDeStarWars personaje=new Droide(INICIO_MAPA);
+		PersonajeDeStarWars personaje=new Droide();
 		Assert.assertEquals(1, personaje.getNivel());
 		personaje.subirExperiencia(10);
 
@@ -27,8 +27,8 @@ public class DroideTest {
 	
 	@Test
 	public void siAtacaAumentaLaVelocidad(){
-		PersonajeDeStarWars personajeAtacante=new Droide(INICIO_MAPA);
-		PersonajeDeStarWars personajeAtacado=new Droide(INICIO_MAPA);
+		PersonajeDeStarWars personajeAtacante=new Droide();
+		PersonajeDeStarWars personajeAtacado=new Droide();
 		
 		Assert.assertEquals(Constantes.VELOCIDAD_DROIDE,personajeAtacante.obtenerPuntosDeVelocidad());
 	

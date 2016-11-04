@@ -11,8 +11,7 @@ import java.util.HashMap;
 
 public class MagoHumano extends Humano {
 
-	public MagoHumano(Punto posicion){
-		super(posicion);
+	public MagoHumano(){
 		energia=Constantes.ENERGIA_MAGO_HUMANO;
 		energiaMaxima=Constantes.ENERGIA_MAXIMA_MAGO_HUMANO;
 		salud=Constantes.SALUD_MAGO_HUMANO;

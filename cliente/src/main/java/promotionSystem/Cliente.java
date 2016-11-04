@@ -19,6 +19,8 @@ public class Cliente {
 	private int puerto;
 	private String archivoDeConfiguracion="configuracion.config";
 	private Personaje personaje;
+	private DataOutputStream salida;
+	private DataInputStream entrada;
 	String raza="humano";
 	String casta="GuerreroHumano";//viene por swing
 	public Cliente(String name,String raza, String casta) throws Exception {
@@ -29,6 +31,8 @@ public class Cliente {
 			configurar(archivoDeConfiguracion);
 			this.name=name;
 			cliente = new Socket(ip,puerto);
+			salida=new DataOutputStream(cliente.getOutputStream());
+			entrada=new DataInputStream(cliente.getInputStream());
 			personaje=crearPersonaje(raza,casta);
 			enviarPersonaje(raza,casta);
 
@@ -45,7 +49,7 @@ public class Cliente {
 		JsonObject personaje = new JsonObject();
 		personaje.addProperty("raza", raza);
 		personaje.addProperty("casta", casta);
-		new DataOutputStream(cliente.getOutputStream()).writeUTF(personaje.toString());
+		salida.writeUTF(personaje.toString());
 
 	}
 
@@ -59,14 +63,14 @@ public class Cliente {
 	}
 
 	public void recibirPosicionInicial() throws IOException{
-		String punto = new DataInputStream(cliente.getInputStream()).readUTF();
+		String punto = entrada.readUTF();
 		JsonParser parser = new JsonParser();
 		JsonObject json = parser.parse(punto).getAsJsonObject();
 		personaje.setPosicion(new Gson().fromJson(json,Punto.class));
 	}
 	
 	public List<String> recibirMapas() throws IOException{
-		String mapas = new DataInputStream(cliente.getInputStream()).readUTF();
+		String mapas = entrada.readUTF();
 		JsonParser parser = new JsonParser();
 		JsonObject json = parser.parse(mapas).getAsJsonObject();
 
@@ -79,7 +83,13 @@ public class Cliente {
 	public void enviarMapaSeleccionado(String mapa) throws IOException{
 		JsonObject mapaElegido = new JsonObject();
 	    mapaElegido.addProperty("mapa",mapa);
-	    new DataOutputStream(cliente.getOutputStream()).writeUTF(mapaElegido.toString());
+	    salida.writeUTF(mapaElegido.toString());
+	}
+	
+	public void enviarInvitacionAAlianza(Personaje invitado) throws IOException{
+		JsonObject personajeInvitado=new JsonObject();
+		personajeInvitado.addProperty("nombre", invitado.getNombre());
+		salida.writeUTF(personajeInvitado.toString());
 	}
 	
 

@@ -10,7 +10,7 @@ import static promotionSystem.Constantes.INICIO_MAPA;
 public class PokemonTipoAguaTest {
 	@Test
 	public void siAumentaDeNivelAumentaLosStats(){
-		PersonajeDePokemon personaje=new PokemonTipoAgua(INICIO_MAPA);
+		PersonajeDePokemon personaje=new PokemonTipoAgua();
 		Assert.assertEquals(1, personaje.getNivel());
 		personaje.subirExperiencia(10);
 		Assert.assertEquals(3, personaje.getNivel());

@@ -14,7 +14,7 @@ public class SoraTest {
 	
 	@Test
 	public void siAumentaDeNivelAumentaLosStats(){
-		Sora personaje=new Sora(INICIO_MAPA);
+		Sora personaje=new Sora();
 		Assert.assertEquals(1, personaje.getNivel());
 		personaje.subirExperiencia(10);
 		Assert.assertEquals(3, personaje.getNivel());
@@ -29,8 +29,8 @@ public class SoraTest {
 
 	@Test
 	public void siAtacaAumentaDefensa(){
-		PersonajeDeKingdomHearts personajeAtacante=new Sora(INICIO_MAPA);
-		PersonajeDeStarWars personajeAtacado=new Droide(INICIO_MAPA);
+		PersonajeDeKingdomHearts personajeAtacante=new Sora();
+		PersonajeDeStarWars personajeAtacado=new Droide();
 
 		Assert.assertEquals(Constantes.DEFENSA_SORA,personajeAtacante.obtenerPuntosDeDefensa());
 		personajeAtacante.atacar(personajeAtacado);

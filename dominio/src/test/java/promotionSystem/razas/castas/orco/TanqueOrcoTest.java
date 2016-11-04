@@ -11,7 +11,7 @@ public class TanqueOrcoTest {
 
 	@Test
 	public void siAumentaDeNivelAumentaLosStats(){
-		Orco personaje=new TanqueOrco(INICIO_MAPA);
+		Orco personaje=new TanqueOrco();
 		Assert.assertEquals(1, personaje.getNivel());
 		personaje.subirExperiencia(10);
 

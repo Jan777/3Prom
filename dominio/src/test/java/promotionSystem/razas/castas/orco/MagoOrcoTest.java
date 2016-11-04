@@ -11,7 +11,7 @@ public class MagoOrcoTest {
 
 	@Test
 	public void siAumentaDeNivelAumentaLosStats(){
-		Orco personaje=new MagoOrco(INICIO_MAPA);
+		Orco personaje=new MagoOrco();
 		Assert.assertEquals(1, personaje.getNivel());
 		personaje.subirExperiencia(10);
 

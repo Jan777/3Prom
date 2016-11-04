@@ -12,6 +12,7 @@ import static java.util.Collections.sort;
 import static promotionSystem.Constantes.RADIO_DE_ACCION;
 
 public abstract class Personaje implements Comparable<Personaje>{
+	protected String nombre;
 	protected int salud;
 	protected int energia;
 	protected int ataque;
@@ -37,10 +38,7 @@ public abstract class Personaje implements Comparable<Personaje>{
 	private Item escudo;
 	private Inventario inventario = new Inventario();
 
-    public Personaje(Punto posicion) {
-        this.posicion = posicion;
-        this.radioDeAcccion = new Circulo(posicion, RADIO_DE_ACCION);
-    }
+  
 
     public final void atacar(Personaje atacado) {
 		if (puedeAtacar()) {
@@ -111,6 +109,10 @@ public abstract class Personaje implements Comparable<Personaje>{
 
 	private boolean puedeAtacarConMagia() {
 		return energia >= magia;
+	}
+	
+	public String getNombre() {
+		return nombre;
 	}
 
 	public int getAtaque() {
@@ -492,7 +494,7 @@ public abstract class Personaje implements Comparable<Personaje>{
 
 	public void setPosicion(Punto punto) {
 		posicion = punto;
-		radioDeAcccion.setCentro(punto);
+		radioDeAcccion= new Circulo(punto,RADIO_DE_ACCION);
 	}
 
 	@Override
@@ -504,6 +506,10 @@ public abstract class Personaje implements Comparable<Personaje>{
 			return 1;
 		}
 		return 0;
+	}
+	
+	public boolean equals(Personaje personaje){
+		return this.nombre==personaje.nombre;
 	}
 }
 

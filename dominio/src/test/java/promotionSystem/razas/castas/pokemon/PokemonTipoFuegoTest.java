@@ -11,7 +11,7 @@ public class PokemonTipoFuegoTest {
 
 	@Test
 	public void siAumentaDeNivelAumentaLosStats(){
-		PersonajeDePokemon personaje=new PokemonTipoFuego(INICIO_MAPA);
+		PersonajeDePokemon personaje=new PokemonTipoFuego();
 		Assert.assertEquals(1, personaje.getNivel());
 		personaje.subirExperiencia(10);
 		Assert.assertEquals(3, personaje.getNivel());

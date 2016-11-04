@@ -12,7 +12,7 @@ import static promotionSystem.Constantes.INICIO_MAPA;
 public class RoxasTest {
 	@Test
 	public void siAumentaDeNivelAumentaLosStats(){
-		Roxas personaje=new Roxas(INICIO_MAPA);
+		Roxas personaje=new Roxas();
 		Assert.assertEquals(1, personaje.getNivel());
 		personaje.subirExperiencia(10);
 		Assert.assertEquals(3, personaje.getNivel());
@@ -30,8 +30,8 @@ public class RoxasTest {
 
 	@Test
 	public void siAtacaAumentaDefensa(){
-		PersonajeDeKingdomHearts personajeAtacante=new Roxas(INICIO_MAPA);
-		PersonajeDeStarWars personajeAtacado=new Droide(INICIO_MAPA);
+		PersonajeDeKingdomHearts personajeAtacante=new Roxas();
+		PersonajeDeStarWars personajeAtacado=new Droide();
 
 		Assert.assertEquals(Constantes.DEFENSA_ROXAS,personajeAtacante.obtenerPuntosDeDefensa());
 		personajeAtacante.atacar(personajeAtacado);

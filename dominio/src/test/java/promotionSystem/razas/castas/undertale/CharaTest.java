@@ -13,7 +13,7 @@ public class CharaTest {
 	
 		@Test
 		public void siAumentaDeNivelAumentaLosStats(){
-			Chara personaje=new Chara(INICIO_MAPA);
+			Chara personaje=new Chara();
 			Assert.assertEquals(1, personaje.getNivel());
 			personaje.subirExperiencia(10);
 			Assert.assertEquals(3, personaje.getNivel());
@@ -28,8 +28,8 @@ public class CharaTest {
 		
 		@Test
 		public void siAtacaAumentaElAtaqueYEnergia(){
-			PersonajeDeUndertale personajeAtacante=new Chara(INICIO_MAPA);
-			PersonajeDeStarWars personajeAtacado=new Droide(INICIO_MAPA);
+			PersonajeDeUndertale personajeAtacante=new Chara();
+			PersonajeDeStarWars personajeAtacado=new Droide();
 			
 			Assert.assertEquals(Constantes.ATAQUE_CHARA,personajeAtacante.obtenerPuntosDeAtaque());
 			Assert.assertEquals(100,personajeAtacante.getEnergia());

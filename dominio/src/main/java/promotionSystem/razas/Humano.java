@@ -4,14 +4,7 @@ import promotionSystem.Personaje;
 import promotionSystem.Punto;
 
 public abstract class Humano extends Personaje {
-
-	public Humano(Punto posicion) {
-		super(posicion);
+	@Override
+	public void despuesDeAtacar() {
 	}
-
-	public void despuesDeAtacar(){
-		// raza sin efectos despues de atacar
-	}
-	
-	public abstract void subirStats(int nivel);
 }

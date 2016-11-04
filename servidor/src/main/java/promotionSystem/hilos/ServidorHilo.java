@@ -28,12 +28,16 @@ public class ServidorHilo extends Thread {
 	private ArrayList<Punto> puntosIniciales;
 	private HashMap<Personaje,Mapa> jugadoresPorMapa;
 	private HashMap<String,Mapa>mapasDisponibles;
+	private DataInputStream entrada;
+	private DataOutputStream salida;
 	
-	public ServidorHilo(Socket cliente,HashMap<Socket,Personaje> jugadores,HashMap<Personaje,Mapa> jugadoresPorMapa,HashMap<String,Mapa> mapasDisponibles){
+	public ServidorHilo(Socket cliente,HashMap<Socket,Personaje> jugadores,HashMap<Personaje,Mapa> jugadoresPorMapa,HashMap<String,Mapa> mapasDisponibles) throws IOException{
 		this.cliente=cliente;
 		this.jugadoresPorMapa=jugadoresPorMapa;
 		this.jugadores=jugadores;
 		this.mapasDisponibles=mapasDisponibles;
+		entrada= new DataInputStream(cliente.getInputStream());
+		salida=new DataOutputStream(cliente.getOutputStream());
 		puntosIniciales =new ArrayList<>();
 		agregarPuntosIniciales();
 	}
@@ -69,7 +73,7 @@ public class ServidorHilo extends Thread {
 	}
 	private void crearPersonaje() throws Exception {
 		String razaYCastaPersonaje;
-			razaYCastaPersonaje = new DataInputStream(cliente.getInputStream()).readUTF();
+			razaYCastaPersonaje = entrada.readUTF();
 			JsonParser parser = new JsonParser();
 			JsonElement elemento = parser.parse(razaYCastaPersonaje);
 			Personaje personaje=crearPersonajeAPartirDeRazaYCasta(elemento.getAsJsonObject().get("raza").getAsString(),elemento.getAsJsonObject().get("casta").getAsString());
@@ -84,7 +88,7 @@ public class ServidorHilo extends Thread {
 	    punto.addProperty("x", puntoInicial.getX());
 		punto.addProperty("y", puntoInicial.getX());	
 		jugadores.get(cliente).setPosicion(puntoInicial);
-		 new DataOutputStream(cliente.getOutputStream()).writeUTF(punto.toString());
+		 salida.writeUTF(punto.toString());
 	}
 	
 	private Personaje crearPersonajeAPartirDeRazaYCasta(String raza, String casta) throws Exception {
@@ -96,7 +100,7 @@ public class ServidorHilo extends Thread {
 		cargarMapas(mapas);
 		JsonObject mapasEnviados = new JsonObject();
 		mapasEnviados.add("mapas", mapas);
-		new DataOutputStream(cliente.getOutputStream()).writeUTF(mapasEnviados.toString());
+		salida.writeUTF(mapasEnviados.toString());
 	}
 
 	private void cargarMapas(JsonArray mapas) {	
@@ -111,9 +115,39 @@ public class ServidorHilo extends Thread {
 	}
 	
 	public void recibirMapaElegido() throws IOException{
-		String mapaElegido = new DataInputStream(cliente.getInputStream()).readUTF();
+		String mapaElegido = entrada.readUTF();
 		JsonParser parser = new JsonParser();
 		JsonElement elemento = parser.parse(mapaElegido);
 		jugadoresPorMapa.put(jugadores.get(cliente), mapasDisponibles.get(elemento.getAsJsonObject().get("mapa")));
 	}
+	
+	public void comunicarInvitacionAAlianza() throws IOException{
+		Personaje personaje = recibirInvitacionAAlianza();
+		enviarInvitacionAAlianza(personaje);		
+	}
+
+	private Personaje recibirInvitacionAAlianza() throws IOException {
+		String personajeInvitado = entrada.readUTF();
+		JsonParser parser = new JsonParser();
+		JsonElement elemento = parser.parse(personajeInvitado);
+		Personaje personaje = new Gson().fromJson(elemento, Personaje.class);
+		return personaje;
+	}
+	
+
+	private void enviarInvitacionAAlianza(Personaje personaje) throws IOException {
+		Iterator<Socket> iterator= jugadores.keySet().iterator();
+		boolean encontro=false;
+		while(!encontro&&iterator.hasNext()){
+			Socket jugador = iterator.next();
+			if(jugadores.get(jugador).equals(personaje)){
+				JsonObject personajeInvitador = new JsonObject();	
+				personajeInvitador.addProperty("nombre", jugadores.get(cliente).getNombre());
+				salida.writeUTF(personajeInvitador.toString());
+				encontro=true;
+			}
+		}
+	}
+
+	
 }

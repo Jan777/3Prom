@@ -17,7 +17,10 @@ public class AlianzaBuilder {
     public static Alianza crearAlianza(int cantidadDePersonajes){
         List<Personaje> personajes = new ArrayList<>();
         for(int i= 0; i < cantidadDePersonajes; i++){
-            personajes.add(new GuerreroHumano(INICIO_MAPA));
+        	Personaje personaje=new GuerreroHumano();
+        	personaje.setPosicion(INICIO_MAPA);
+            personajes.add(personaje);
+            
         }
         return new Alianza(personajes);
     }
@@ -32,7 +35,9 @@ public class AlianzaBuilder {
     public static AlianzaDeHumanos crearAlianzaDeHumanos(int cantidadDePersonajes){
         List<Personaje> personajes = new ArrayList<>();
         for(int i= 0; i < cantidadDePersonajes; i++){
-            personajes.add(new GuerreroHumano(INICIO_MAPA));
+        	Personaje personaje=new GuerreroHumano();
+        	personaje.setPosicion(INICIO_MAPA);
+            personajes.add(personaje);
         }
         return new AlianzaDeHumanos(personajes);
     }
@@ -40,7 +45,9 @@ public class AlianzaBuilder {
     public static AlianzaDeOrcos crearAlianzaDeOrcos(int cantidadDePersonajes){
         List<Personaje> personajes = new ArrayList<>();
         for(int i= 0; i < cantidadDePersonajes; i++){
-            personajes.add(new GuerreroOrco(INICIO_MAPA));
+        	Personaje personaje=new GuerreroOrco();
+        	personaje.setPosicion(INICIO_MAPA);
+            personajes.add(personaje);
         }
         return new AlianzaDeOrcos(personajes);
     }
@@ -48,7 +55,9 @@ public class AlianzaBuilder {
     public static AlianzaDeHumanos crearAlianzaDeHumanosConEnemigos(int cantidadDePersonajes, Alianza alianzaEnemiga){
         List<Personaje> personajes = new ArrayList<>();
         for(int i= 0; i < cantidadDePersonajes; i++){
-            personajes.add(new GuerreroHumano(INICIO_MAPA));
+        	Personaje personaje=new GuerreroHumano();
+        	personaje.setPosicion(INICIO_MAPA);
+            personajes.add(personaje);
         }
         return new AlianzaDeHumanos(personajes, alianzaEnemiga);
     }
@@ -56,7 +65,9 @@ public class AlianzaBuilder {
     public static AlianzaDeOrcos crearAlianzaDeOrcosConEnemigos(int cantidadDePersonajes, Alianza alianzaEnemiga){
         List<Personaje> personajes = new ArrayList<>();
         for(int i= 0; i < cantidadDePersonajes; i++){
-            personajes.add(new GuerreroOrco(INICIO_MAPA));
+        	Personaje personaje=new GuerreroOrco();
+        	personaje.setPosicion(INICIO_MAPA);
+            personajes.add(personaje);
         }
         return new AlianzaDeOrcos(personajes, alianzaEnemiga);
     }

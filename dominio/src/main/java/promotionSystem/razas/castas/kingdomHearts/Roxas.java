@@ -11,8 +11,8 @@ import java.util.HashMap;
 
 public class Roxas extends PersonajeDeKingdomHearts {
 
-	public Roxas(Punto posicion){
-		super(posicion);
+	public Roxas(){
+
 		energia=Constantes.ENERGIA_ROXAS;
 		energiaMaxima=Constantes.ENERGIA_MAXIMA_ROXAS;
 		salud=Constantes.SALUD_ROXAS;

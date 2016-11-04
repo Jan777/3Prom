@@ -11,7 +11,7 @@ public class MagoHumanoTest {
 
 	@Test
 	public void siAumentaDeNivelAumentaLosStats(){
-		Humano personaje=new MagoHumano(INICIO_MAPA);
+		Humano personaje=new MagoHumano();
 		Assert.assertEquals(1, personaje.getNivel());
 		personaje.subirExperiencia(10);
 

@@ -6,8 +6,7 @@ import promotionSystem.razas.Humano;
 
 public class GuerreroHumano extends Humano{
 	
-	public GuerreroHumano(Punto posicion){
-		super(posicion);
+	public GuerreroHumano(){
 		energia=Constantes.ENERGIA_GUERRERO_HUMANO;
 		energiaMaxima=Constantes.ENERGIA_MAXIMA_GUERRERO_HUMANO;
 		salud=Constantes.SALUD_GUERRERO_HUMANO;
@@ -31,4 +30,6 @@ public class GuerreroHumano extends Humano{
 		magia+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
 		velocidad+=cantidadDeNivelesSubidos*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL;
 	}
+
+	
 }

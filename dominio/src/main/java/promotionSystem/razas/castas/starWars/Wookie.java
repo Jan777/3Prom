@@ -11,8 +11,7 @@ import java.util.HashMap;
 
 public class Wookie extends PersonajeDeStarWars{
 	
-	public Wookie(Punto posicion){
-		super(posicion);
+	public Wookie(){
 		energia=Constantes.ENERGIA_WOOKIE;
 		energiaMaxima=Constantes.ENERGIA_MAXIMA_WOOKIE;
 		salud=Constantes.SALUD_WOOKIE;

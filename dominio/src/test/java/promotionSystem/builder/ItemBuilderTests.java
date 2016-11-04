@@ -1,6 +1,7 @@
 package promotionSystem.builder;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import promotionSystem.Personaje;
 import promotionSystem.items.BotasFlober;
@@ -12,49 +13,54 @@ import promotionSystem.razas.castas.humano.GuerreroHumano;
 import static promotionSystem.Constantes.*;
 
 public class ItemBuilderTests {
-
 	
+	Personaje emeritus;
+	@Before
+	public void crearemeritus(){
+		 emeritus = new GuerreroHumano();
+		 emeritus.setPosicion(INICIO_MAPA);
+	}
 	@Test
 	public void siEquipoUnArmaYSeModificanLosStats() throws Exception {
-		Personaje Emeritus = new GuerreroHumano(INICIO_MAPA);
-		Assert.assertEquals(ATAQUE_GUERRERO_HUMANO, Emeritus.obtenerPuntosDeAtaque());
-		Emeritus.recibirItem(new EspadaGorgoroth());
-		Emeritus.equiparItem(new EspadaGorgoroth());
-		Assert.assertEquals(ATAQUE_GUERRERO_HUMANO +ATAQUE_ESPADA_GORGOROTH, Emeritus.obtenerPuntosDeAtaque());
-		Assert.assertEquals(MAGIA_GUERRERO_HUMANO +MAGIA_ESPADA_GORGOROTH, Emeritus.obtenerPuntosDeMagia());
+		crearemeritus();
+		Assert.assertEquals(ATAQUE_GUERRERO_HUMANO, emeritus.obtenerPuntosDeAtaque());
+		emeritus.recibirItem(new EspadaGorgoroth());
+		emeritus.equiparItem(new EspadaGorgoroth());
+		Assert.assertEquals(ATAQUE_GUERRERO_HUMANO +ATAQUE_ESPADA_GORGOROTH, emeritus.obtenerPuntosDeAtaque());
+		Assert.assertEquals(MAGIA_GUERRERO_HUMANO +MAGIA_ESPADA_GORGOROTH, emeritus.obtenerPuntosDeMagia());
 	}
 	
 	@Test
 	public void siEquipo2TiposDeItemYSeModificanLosStats2() throws Exception {
-		Personaje Emeritus = new GuerreroHumano(INICIO_MAPA);
-		Emeritus.recibirItem(new EspadaGorgoroth());
-		Emeritus.equiparItem(new EspadaGorgoroth());
-		Emeritus.recibirItem(new EscudoHyrule());
-		Emeritus.equiparItem(new EscudoHyrule());
-		Assert.assertEquals(ATAQUE_GUERRERO_HUMANO +ATAQUE_ESPADA_GORGOROTH, Emeritus.obtenerPuntosDeAtaque());
-		Assert.assertEquals(DEFENSA_GUERRERO_HUMANO +DEFENSA_ESCUDO_HYRULE, Emeritus.obtenerPuntosDeDefensa());
-		Assert.assertEquals(MAGIA_GUERRERO_HUMANO +MAGIA_ESPADA_GORGOROTH, Emeritus.obtenerPuntosDeMagia());
-		Assert.assertEquals(VELOCIDAD_GUERRERO_HUMANO +VELOCIDAD_ESPADA_GORGOROTH+VELOCIDAD_ESCUDO_HYRULE, Emeritus.obtenerPuntosDeVelocidad());
+		crearemeritus();
+		emeritus.recibirItem(new EspadaGorgoroth());
+		emeritus.equiparItem(new EspadaGorgoroth());
+		emeritus.recibirItem(new EscudoHyrule());
+		emeritus.equiparItem(new EscudoHyrule());
+		Assert.assertEquals(ATAQUE_GUERRERO_HUMANO +ATAQUE_ESPADA_GORGOROTH, emeritus.obtenerPuntosDeAtaque());
+		Assert.assertEquals(DEFENSA_GUERRERO_HUMANO +DEFENSA_ESCUDO_HYRULE, emeritus.obtenerPuntosDeDefensa());
+		Assert.assertEquals(MAGIA_GUERRERO_HUMANO +MAGIA_ESPADA_GORGOROTH, emeritus.obtenerPuntosDeMagia());
+		Assert.assertEquals(VELOCIDAD_GUERRERO_HUMANO +VELOCIDAD_ESPADA_GORGOROTH+VELOCIDAD_ESCUDO_HYRULE, emeritus.obtenerPuntosDeVelocidad());
 	}
 	
 	
 	@Test
 	public void siEquipoBotasFloberAumentaVelocidad() throws Exception {
-		Personaje Emeritus = new GuerreroHumano(INICIO_MAPA);
-		Assert.assertEquals(VELOCIDAD_GUERRERO_HUMANO, Emeritus.obtenerPuntosDeVelocidad());
-		Emeritus.recibirItem(new BotasFlober());
-		Emeritus.equiparItem(new BotasFlober());
-		Assert.assertEquals((VELOCIDAD_GUERRERO_HUMANO +VELOCIDAD_BOTAS_FLOBER), Emeritus.obtenerPuntosDeVelocidad());
+		crearemeritus();
+		Assert.assertEquals(VELOCIDAD_GUERRERO_HUMANO, emeritus.obtenerPuntosDeVelocidad());
+		emeritus.recibirItem(new BotasFlober());
+		emeritus.equiparItem(new BotasFlober());
+		Assert.assertEquals((VELOCIDAD_GUERRERO_HUMANO +VELOCIDAD_BOTAS_FLOBER), emeritus.obtenerPuntosDeVelocidad());
 
 	}
 	
 	@Test
 	public void siEquipoVaritaMissignoAumentaMagia() throws Exception {
-		Personaje Emeritus = new GuerreroHumano(INICIO_MAPA);
-		Assert.assertEquals(MAGIA_GUERRERO_HUMANO, Emeritus.obtenerPuntosDeMagia());
-		Emeritus.recibirItem(new VaritaMissingno());
-		Emeritus.equiparItem(new VaritaMissingno());
-		Assert.assertEquals((MAGIA_GUERRERO_HUMANO +MAGIA_VARITA_MISSIGNO), Emeritus.obtenerPuntosDeMagia());
+		crearemeritus();
+		Assert.assertEquals(MAGIA_GUERRERO_HUMANO, emeritus.obtenerPuntosDeMagia());
+		emeritus.recibirItem(new VaritaMissingno());
+		emeritus.equiparItem(new VaritaMissingno());
+		Assert.assertEquals((MAGIA_GUERRERO_HUMANO +MAGIA_VARITA_MISSIGNO), emeritus.obtenerPuntosDeMagia());
 	}
 	
 }

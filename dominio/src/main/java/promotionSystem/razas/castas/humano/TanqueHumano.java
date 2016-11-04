@@ -6,8 +6,8 @@ import promotionSystem.razas.Humano;
 
 public class TanqueHumano extends Humano{
 	
-	public TanqueHumano(Punto posicion){
-		super(posicion);
+	public TanqueHumano(){
+
 		energia=Constantes.ENERGIA_TANQUE_HUMANO;
 		energiaMaxima=Constantes.ENERGIA_MAXIMA_TANQUE_HUMANO;
 		salud=Constantes.SALUD_TANQUE_HUMANO;

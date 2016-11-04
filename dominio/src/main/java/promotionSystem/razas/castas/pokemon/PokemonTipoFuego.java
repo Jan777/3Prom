@@ -10,8 +10,7 @@ import promotionSystem.razas.PersonajeDePokemon;
 import java.util.HashMap;
 
 public class PokemonTipoFuego extends PersonajeDePokemon {
-	public PokemonTipoFuego(Punto posicion){
-		super(posicion);
+	public PokemonTipoFuego(){
 		energia=Constantes.ENERGIA_POKEMON_DE_FUEGO;
 		energiaMaxima=Constantes.ENERGIA_MAXIMA_POKEMON_DE_FUEGO;
 		salud=Constantes.SALUD_POKEMON_DE_FUEGO;

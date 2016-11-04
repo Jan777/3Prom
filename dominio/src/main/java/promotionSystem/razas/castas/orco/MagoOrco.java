@@ -12,8 +12,8 @@ import java.util.HashMap;
 
 public class MagoOrco extends Orco{
 	
-	public MagoOrco(Punto posicion){
-		super(posicion);
+	public MagoOrco(){
+	
 		energia=Constantes.ENERGIA_MAGO_ORCO;
 		energiaMaxima=Constantes.ENERGIA_MAXIMA_MAGO_ORCO;
 		salud=Constantes.SALUD_MAGO_ORCO;

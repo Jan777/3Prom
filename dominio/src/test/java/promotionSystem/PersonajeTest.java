@@ -26,8 +26,10 @@ public class PersonajeTest {
 
     @Before
 	public void crearPersonajes(){
-		 personajeAtacante=new GuerreroHumano(INICIO_MAPA);
-		 personajeAtacado=new GuerreroHumano(INICIO_MAPA);
+		 personajeAtacante=new GuerreroHumano();
+		 personajeAtacante.setPosicion(INICIO_MAPA);
+		 personajeAtacado=new GuerreroHumano();
+		 personajeAtacado.setPosicion(INICIO_MAPA);
 	}
 
 	@Test
@@ -84,7 +86,7 @@ public class PersonajeTest {
 	
 	@Test
 	public void siTieneVidaAlMaximoNoPuedeAumentarSuSaludAlSerCurado(){
-		personajeAtacado=new GuerreroHumano(INICIO_MAPA);
+		;
 		assertEquals(Constantes.SALUD_GUERRERO_HUMANO,personajeAtacado.getSalud());
 		personajeAtacado.serCurado();
 		assertEquals(Constantes.SALUD_GUERRERO_HUMANO,personajeAtacado.getSalud());
@@ -92,7 +94,7 @@ public class PersonajeTest {
 	
 	@Test
 	public void siTieneEnergiaAlMaximoNoPuedeAumentarSuEnergiaAlSerEnergizado(){
-		personajeAtacante=new GuerreroHumano(INICIO_MAPA);
+
 		assertEquals(100,personajeAtacante.getEnergia());
 		personajeAtacante.serEnergizado();
 		assertEquals(100,personajeAtacante.getEnergia());
@@ -224,16 +226,7 @@ public class PersonajeTest {
         Personaje victima = alianzaAtacante.getObjetivo();
 		assertEquals(0, alianzaEnemiga.getPersonajes().indexOf(victima));
 	}
-
-	private Alianza crearAlianza(int cantidadPersonajes) {
-		List<Personaje> listaDePersonajes = new ArrayList<>();
-		for(int i=0;i<cantidadPersonajes;i++){
-			GuerreroHumano personaje = new GuerreroHumano(INICIO_MAPA);
-			listaDePersonajes.add(personaje);
-		}
-		return new Alianza(listaDePersonajes);
-	}
-
+	
 	@Test
 	public void siElPersonajePoseeUnaAlianzaYLaAbandonaDejaraDeAparecerEsaAlianza(){
 		Alianza alianzaNueva= crearAlianzaCon(personajeAtacante);
@@ -328,7 +321,8 @@ public class PersonajeTest {
 		Mapa mapa = new Mapa(100, 100);
 		Obstaculo obstaculo = new Obstaculo(new Punto(1,1), 2, 3);
 		mapa.agregarObstaculo(obstaculo);
-		Personaje blastoise = new PokemonTipoAgua(INICIO_MAPA);
+		Personaje blastoise = new PokemonTipoAgua();
+		blastoise.setPosicion(INICIO_MAPA);
 		blastoise.setMapa(mapa);
 		blastoise.mover(new Punto(2,2));
 		assertEquals(0, blastoise.getPosicion().getX(),0);
@@ -340,7 +334,8 @@ public class PersonajeTest {
 		Mapa mapa = new Mapa(100, 100);
 		Obstaculo obstaculo = new Obstaculo(new Punto(1,1), 2, 3);
 		mapa.agregarObstaculo(obstaculo);
-		Personaje blastoise = new PokemonTipoAgua(INICIO_MAPA);
+		Personaje blastoise = new PokemonTipoAgua();
+		blastoise.setPosicion(INICIO_MAPA);
 		blastoise.setMapa(mapa);
 		blastoise.mover(new Punto(0,1));
 		assertEquals(0, blastoise.getPosicion().getX(),0);

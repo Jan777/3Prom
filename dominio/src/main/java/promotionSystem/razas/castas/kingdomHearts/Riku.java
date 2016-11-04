@@ -11,8 +11,8 @@ import java.util.HashMap;
 
 public class Riku extends PersonajeDeKingdomHearts {
 
-	public Riku(Punto posicion){
-		super(posicion);
+	public Riku(){
+
 		energia=Constantes.ENERGIA_RIKU;
 		energiaMaxima=Constantes.ENERGIA_MAXIMA_RIKU;
 		salud=Constantes.SALUD_RIKU;

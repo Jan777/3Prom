@@ -12,8 +12,8 @@ import java.util.HashMap;
 
 public class Droide extends PersonajeDeStarWars{
 	
-	public Droide(Punto posicion){
-		super(posicion);
+	public Droide(){
+
 		energia=Constantes.ENERGIA_DROIDE;
 		energiaMaxima=Constantes.ENERGIA_MAXIMA_DROIDE;
 		salud=Constantes.SALUD_DROIDE;

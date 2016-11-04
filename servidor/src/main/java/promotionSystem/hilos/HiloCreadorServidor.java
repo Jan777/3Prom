@@ -1,5 +1,6 @@
 package promotionSystem.hilos;
 
+import java.io.IOException;
 import java.net.Socket;
 import java.util.HashMap;
 
@@ -21,7 +22,11 @@ public class HiloCreadorServidor extends Thread {
 	}
 	
 	public void run(){
-		new ServidorHilo(cliente,jugadores,jugadoresPorMapa,mapasDisponibles).start();
+		try {
+			new ServidorHilo(cliente,jugadores,jugadoresPorMapa,mapasDisponibles).start();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
