@@ -64,8 +64,8 @@ public class Login extends JFrame{
 			 setLayout(new GridLayout(5,1));
 			 JLabel nicklabel=new JLabel("NickName:");
 			 JTextField nick=new JTextField(20);
-			 JLabel contraseñalabel=new JLabel("Contraseña: ");
-			 JTextField contraseña=new JTextField(20);
+			 JLabel contrasenialabel=new JLabel("contrasenia: ");
+			 JTextField contrasenia=new JTextField(20);
 			 JButton ingresar=new JButton("Ingresar");
 			 JLabel label=new JLabel("Aun no te has registrado?");
 			 JButton  registrarse =new JButton("REGISTRATE");
@@ -73,8 +73,8 @@ public class Login extends JFrame{
 			 
 			 nicklabel.setBounds(0,10, 100, 20);
 			 nick.setBounds(110, 10, 100, 20);
-			 contraseñalabel.setBounds(0, 30, 100, 20);
-			 contraseña.setBounds(110, 30,100,20);
+			 contrasenialabel.setBounds(0, 30, 100, 20);
+			 contrasenia.setBounds(110, 30,100,20);
 			 ingresar.setBounds(220,20,100,30);
 			 label.setBounds(0,60,200, 20);
 			 registrarse.setBounds(0, 90, 120, 20);
@@ -88,8 +88,8 @@ public class Login extends JFrame{
 			 
 			 nickName.add(nicklabel);
 			 nickName.add(nick);
-			 password.add(contraseñalabel);
-			 password.add(contraseña);
+			 password.add(contrasenialabel);
+			 password.add(contrasenia);
 			 ingresarBoton.add(ingresar);
 			 registro.add(label);
 			 registro.add(registrarse);
