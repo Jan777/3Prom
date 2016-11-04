@@ -1,11 +1,11 @@
 package promotionSystem;
 
-	public class Punto {
+	public class Punto implements Comparable<Punto>{
 
-		private double x;
-		private double y;
+		private int x;
+		private int y;
 		
-		public Punto(double x, double y) {
+		public Punto(int x, int y) {
 			this.x = x;
 			this.y = y;
 		}
@@ -15,10 +15,16 @@ package promotionSystem;
 					+ Math.pow(this.y - punto.y, 2));
 		}
 
-		public double  getX() {
+		public int  getX() {
 			return x;
 		}
-		public double  getY() {
+		public int  getY() {
 			return y;
+		}
+
+		public int compareTo( Punto otroPunto){              //es necesario definir un comparador para el correcto funcionamiento del PriorityQueue
+			if( y > otroPunto.y ) return 1;
+			if( x == otroPunto.x ) return 0;
+			return -1;
 		}
 }

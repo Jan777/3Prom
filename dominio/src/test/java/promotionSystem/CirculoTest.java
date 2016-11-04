@@ -14,7 +14,7 @@ public class CirculoTest {
 	@Test
 	public void queIntersectan() {
 		Circulo c1 = new Circulo(new Punto(0, 0), 1);
-		Circulo c2 = new Circulo(new Punto(0, 0.5), 1);
+		Circulo c2 = new Circulo(new Punto(0, 1), 1);
 		
 		Assert.assertTrue(c1.intersectaCon(c2));
 	}
