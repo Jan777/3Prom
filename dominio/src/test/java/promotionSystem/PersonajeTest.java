@@ -10,9 +10,6 @@ import promotionSystem.mapa.Obstaculo;
 import promotionSystem.razas.castas.humano.GuerreroHumano;
 import promotionSystem.razas.castas.pokemon.PokemonTipoAgua;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static java.lang.Math.sqrt;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -313,7 +310,7 @@ public class PersonajeTest {
     public void debeDevolverLaDistanciaEnUnCaminoEnDiagonal(){
         Punto destino = new Punto(3, 3);
         Camino camino = personajeAtacante.buscarCamino(destino);
-        assertEquals(1,Double.valueOf(3d * sqrt(2)).compareTo(camino.getDistancia()));
+        assertEquals(3d * sqrt(2),camino.getDistancia(), 12);
     }
 
 	@Test

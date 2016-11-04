@@ -22,7 +22,7 @@ package promotionSystem;
 			return y;
 		}
 
-		public int compareTo( Punto otroPunto){              //es necesario definir un comparador para el correcto funcionamiento del PriorityQueue
+		public int compareTo( Punto otroPunto){
 			if( y > otroPunto.y ) return 1;
 			if( x == otroPunto.x ) return 0;
 			return -1;
