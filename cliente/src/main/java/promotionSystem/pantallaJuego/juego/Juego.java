@@ -149,7 +149,7 @@ public class Juego implements Runnable {
 		return alto;
 	}
 
-	public ManejadorDelMouse getHandlerMouse() {
+	public ManejadorDelMouse getManejadorDeMouse() {
 		return manejador;
 	}
 	

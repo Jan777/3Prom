@@ -10,8 +10,8 @@ public class Mapa {
 	private Juego juego;
 	private int ancho;
 	private int alto;
-	private int spawnX;
-	private int spawnY;
+	private int posicionX;
+	private int posicionY;
 	private int xOffset;
 	private int yOffset;
 	
@@ -61,18 +61,18 @@ public class Mapa {
 	}
 
 	private void cargarMundo(String path) {
-		String archivo = Utilitarias.archivoAString(path);
+		String archivo = CosasUtiles.archivoAString(path);
 		String[] tokens = archivo.split("\\s+");
-		ancho = Utilitarias.parseInt(tokens[0]);
-		alto = Utilitarias.parseInt(tokens[1]);
-		spawnX = Utilitarias.parseInt(tokens[2]);
-		spawnY = Utilitarias.parseInt(tokens[3]);
+		ancho = CosasUtiles.parseInt(tokens[0]);
+		alto = CosasUtiles.parseInt(tokens[1]);
+		posicionX = CosasUtiles.parseInt(tokens[2]);
+		posicionY = CosasUtiles.parseInt(tokens[3]);
 
 		tiles = new int[ancho][alto];
 
 		for (int y = 0; y < alto; y++) {
 			for (int x = 0; x < ancho; x++) {
-				tiles[x][y] = Utilitarias.parseInt(tokens[(x + y * ancho + 4)]);
+				tiles[x][y] = CosasUtiles.parseInt(tokens[(x + y * ancho + 4)]);
 			}
 		}
 	}

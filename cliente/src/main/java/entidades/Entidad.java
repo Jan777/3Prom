@@ -19,7 +19,7 @@ public class Entidad {
 	private int ancho;
 	private int alto;
 
-	// Posiciones
+	
 	private float x;
 	private float y;
 	private float dx;
@@ -32,19 +32,19 @@ public class Entidad {
 	private int yOffset;
 	private int drawX;
 	private int drawY;
-	private int posMouse[];
+	private int posicionMouse[];
 	private int[] tile;
 
-	// Calculo de movimiento
+	
 	private float difX;
 	private float difY;
 	private float relacion;
 
-	// Posicion final
+	
 	private float auxX;
 	private float auxY;
 
-	// Movimiento Actual
+	
 	private boolean enMovimiento;
 	private boolean horizontal;
 	private boolean vertical;
@@ -53,7 +53,7 @@ public class Entidad {
 	private boolean diagonalSupIzq;
 	private boolean diagonalSupDer;
 
-	// Animaciones
+	
 	private LinkedList<BufferedImage[]> animaciones;
 	private final Animacion moverIzq;
 	private final Animacion moverArribaIzq;
@@ -66,11 +66,11 @@ public class Entidad {
 
 	private Mapa mundo;
 
-	public Entidad(Juego juego, Mapa mundo, int ancho, int alto, float spawnX, float spawnY, LinkedList<BufferedImage[]> animaciones, int velAnimacion) {
+	public Entidad(Juego juego, Mapa mapa, int ancho, int alto, float spawnX, float spawnY, LinkedList<BufferedImage[]> animaciones, int velAnimacion) {
 		this.juego = juego;
 		this.ancho = ancho;
 		this.alto = alto;
-		this.mundo = mundo;
+		this.mundo = mapa;
 		xOffset = ancho / 2;
 		yOffset = alto / 2;
 		x = spawnX;
@@ -104,9 +104,9 @@ public class Entidad {
 
 	public void getEntrada() {
 
-		posMouse = juego.getHandlerMouse().obtenerPosicionClick();
+		posicionMouse = juego.getManejadorDeMouse().obtenerPosicionClick();
 
-		if (juego.getHandlerMouse().getNuevoRecorrido()) {
+		if (juego.getManejadorDeMouse().getNuevoRecorrido()) {
 			diagonalInfIzq = false;
 			diagonalInfDer = false;
 			diagonalSupIzq = false;
@@ -118,8 +118,8 @@ public class Entidad {
 			xInicio = x;
 			yInicio = y;
 						
-			xFinal = Math.round(posMouse[0] + juego.getCamara().getxOffset() - xOffset);
-			yFinal = Math.round(posMouse[1] + juego.getCamara().getyOffset() - yOffset);
+			xFinal = Math.round(posicionMouse[0] + juego.getCamara().getxOffset() - xOffset);
+			yFinal = Math.round(posicionMouse[1] + juego.getCamara().getyOffset() - yOffset);
 						
 			difX = Math.abs(xFinal - xInicio);
 			difY = Math.abs(yFinal - yInicio);
@@ -150,7 +150,7 @@ public class Entidad {
 				}
 			}
 
-			juego.getHandlerMouse().setNuevoRecorrido(false);
+			juego.getManejadorDeMouse().setNuevoRecorrido(false);
 			enMovimiento = true;
 		}
 	}
@@ -238,8 +238,8 @@ public class Entidad {
 		drawY = (int) (y - juego.getCamara().getyOffset());
 		g.drawImage(getFrameAnimacionActual(), drawX, drawY, ancho, alto, null);
 		g.setColor(Color.WHITE);
-		g.drawString("<LosCacheFC>", drawX, drawY);
-		g.drawString("Leo - 100", drawX + 10, drawY - 12);
+		g.drawString("<PromotionSystem>", drawX, drawY);
+		g.drawString("Pablo94", drawX + 10, drawY - 12);
 	}
 
 	private BufferedImage getFrameAnimacionActual() {

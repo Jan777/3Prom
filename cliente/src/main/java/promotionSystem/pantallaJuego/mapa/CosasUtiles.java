@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class Utilitarias {
+public class CosasUtiles {
 
 	public static String archivoAString(String path) {
 		StringBuilder builder = new StringBuilder();

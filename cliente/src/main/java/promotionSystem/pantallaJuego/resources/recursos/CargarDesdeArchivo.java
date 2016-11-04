@@ -6,7 +6,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class CargadorImagen {
+public class CargarDesdeArchivo {
 
 	public static BufferedImage cargarImagen(String path) {
 		try {

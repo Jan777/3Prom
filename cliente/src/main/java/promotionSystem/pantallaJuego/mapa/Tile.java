@@ -24,15 +24,15 @@ public class Tile {
 	}
 	
 	public void actualizar() {
-		
-	}
-	
-	public void graficar(Graphics g, int x, int y) {
-		g.drawImage(textura, x, y, ANCHO, ALTO, null);
+	    // nos falto implementar
 	}
 	
 	public boolean esSolido() {
 		return false;
+	}
+	
+	public void graficar(Graphics g, int x, int y) {
+		g.drawImage(textura, x, y, ANCHO, ALTO, null);
 	}
 	
 	public int getId() {

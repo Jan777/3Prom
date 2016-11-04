@@ -7,11 +7,11 @@ public class Animacion {
 	private int velocidad;
 	private int indice;
 	private long ultimoTiempo, temporizador;
-	private BufferedImage[] frames;
+	private BufferedImage[] cuadros;
 	
-	public Animacion(int velocidad, BufferedImage[] frames) {
+	public Animacion(int velocidad, BufferedImage[] cuadros) {
 		this.velocidad = velocidad;
-		this.frames = frames;
+		this.cuadros = cuadros;
 		indice = 0;
 		temporizador = 0;
 		ultimoTiempo = System.currentTimeMillis();
@@ -24,14 +24,14 @@ public class Animacion {
 		if(temporizador > velocidad) {
 			indice++;
 			temporizador = 0;
-			if(indice >= frames.length) {
+			if(indice >= cuadros.length) {
 				indice = 0;
 			}
 		}
 	}
 	
 	public BufferedImage getFrameActual() {
-		return frames[indice];
+		return cuadros[indice];
 	}
 	
 }
