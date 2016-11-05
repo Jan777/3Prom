@@ -45,9 +45,11 @@ public class ManejadorDelMouse implements MouseListener {
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		x = e.getX();
-		y = e.getY();
-		recorrido = true;
+		if(e.getButton()==MouseEvent.BUTTON3){
+			x = e.getX();
+			y = e.getY();
+			recorrido = true;			
+		}
 	}
 	
 	public int[] obtenerPosicionClick() {

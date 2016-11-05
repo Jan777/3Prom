@@ -52,7 +52,7 @@ public class RecursoGrafico {
 		
 		ancho =256;
 		alto = 256;		
-		HojaDeSprite spriteGuerrero = new HojaDeSprite(CargarDesdeArchivo.cargarImagen("C:/Users/Nahuel/Documents/Juego Prog avanzada/jrpg/cliente/recursos/Guerrero.png"));
+		HojaDeSprite spriteGuerrero = new HojaDeSprite(CargarDesdeArchivo.cargarImagen("recursos/Guerrero.png"));
 		
 		guerreroIzquierda = new BufferedImage[4];
 		guerreroArribaIzquierda = new BufferedImage[4];
@@ -104,7 +104,7 @@ public class RecursoGrafico {
 		 guerrero.add(guerreroAbajo);
 		 guerrero.add(guerreroAbajoIzquierda);
 		 
-		 HojaDeSprite spritepokemon = new HojaDeSprite(CargarDesdeArchivo.cargarImagen("C:/Users/Nahuel/Documents/Juego Prog avanzada/jrpg/cliente/recursos/pokemon.png"));
+		 HojaDeSprite spritepokemon = new HojaDeSprite(CargarDesdeArchivo.cargarImagen("recursos/pokemon.png"));
 			
 			pokemonIzquierda = new BufferedImage[2];
 			pokemonArribaIzquierda = new BufferedImage[2];
@@ -156,7 +156,7 @@ public class RecursoGrafico {
 			pokemon.add(pokemonAbajo);
 			pokemon.add(pokemonAbajoIzquierda);
 		 
-		HojaDeSprite spriteOgro = new HojaDeSprite(CargarDesdeArchivo.cargarImagen("C:/Users/Nahuel/Documents/Juego Prog avanzada/jrpg/cliente/recursos/Ogro.png"));
+		HojaDeSprite spriteOgro = new HojaDeSprite(CargarDesdeArchivo.cargarImagen("recursos/Ogro.png"));
 		
 		ogroIzquierda = new BufferedImage[4];
 		ogroArribaIzquierda = new BufferedImage[4];
@@ -209,9 +209,9 @@ public class RecursoGrafico {
 		ogro.add(ogroAbajoIzquierda);
 		
 		
-		piso = CargarDesdeArchivo.cargarImagen("C:/Users/Nahuel/Documents/Juego Prog avanzada/jrpg/cliente/recursos/Verde.png");
-		obstruccion = CargarDesdeArchivo.cargarImagen("C:/Users/Nahuel/Documents/Juego Prog avanzada/jrpg/cliente/recursos/rock.png");
-		fondoDelJuego = CargarDesdeArchivo.cargarImagen("C:/Users/Nahuel/Documents/Juego Prog avanzada/jrpg/cliente/recursos/fondo verde.jpg");
+		piso = CargarDesdeArchivo.cargarImagen("recursos/Verde.png");
+		obstruccion = CargarDesdeArchivo.cargarImagen("recursos/rock.png");
+		fondoDelJuego = CargarDesdeArchivo.cargarImagen("recursos/fondo verde.jpg");
 		
 	}
 }
