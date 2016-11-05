@@ -50,9 +50,8 @@ public class RecursoGrafico {
 	
 	public static void cargar() {
 		
-		ancho = 25;
-		alto = 30;
-		
+		ancho =256;
+		alto = 256;		
 		HojaDeSprite spriteGuerrero = new HojaDeSprite(CargarDesdeArchivo.cargarImagen("C:/Users/Nahuel/Documents/Juego Prog avanzada/jrpg/cliente/recursos/Guerrero.png"));
 		
 		guerreroIzquierda = new BufferedImage[4];
