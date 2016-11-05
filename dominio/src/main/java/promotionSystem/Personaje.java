@@ -3,6 +3,7 @@ package promotionSystem;
 import promotionSystem.habilidades.Habilidad;
 import promotionSystem.hechizo.Hechizo;
 import promotionSystem.mapa.Mapa;
+import promotionSystem.mapa.Rectangulo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +28,7 @@ public abstract class Personaje implements Comparable<Personaje>{
 	protected Mapa mapa;
 	protected Punto posicion;
 	protected Circulo radioDeAcccion;
+	protected Rectangulo rectanguloDeVision;
 	private boolean enBatalla = false;
 	protected int saludMaxima;
 	protected int energiaMaxima;
