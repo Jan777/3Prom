@@ -21,8 +21,8 @@ public class Cliente {
 	private Personaje personaje;
 	private DataOutputStream salida;
 	private DataInputStream entrada;
-	String raza="humano";
-	String casta="GuerreroHumano";//viene por swing
+	private String raza;
+	private String casta;
 	public Cliente(String name) throws Exception {
 		try {
 			configurar(archivoDeConfiguracion);
@@ -35,16 +35,17 @@ public class Cliente {
 		}
 	}
 
-	private Personaje crearPersonaje(String raza, String casta) throws Exception{
+	private Personaje crearPersonaje() throws Exception{
 		return (Personaje) Class.forName("promotionSystem.razas.castas." + raza + "." + casta).newInstance();
 	}
 
+	
+	//FIXME si no me equivoco este metodo seria innecesario
 	private void enviarPersonaje(String raza, String casta) throws IOException {
 		JsonObject personaje = new JsonObject();
 		personaje.addProperty("raza", raza);
 		personaje.addProperty("casta", casta);
 		salida.writeUTF(personaje.toString());
-
 	}
 
 	private void configurar(String path) throws FileNotFoundException {
@@ -63,15 +64,40 @@ public class Cliente {
 		personaje.setPosicion(new Gson().fromJson(json,Punto.class));
 	}
 	
-	public List<String> recibirMapas() throws IOException{
-		String mapas = entrada.readUTF();
-		JsonParser parser = new JsonParser();
-		JsonObject json = parser.parse(mapas).getAsJsonObject();
+	public List<String> recibirRazas() throws IOException{
+		
+		return recibirLista("razas");
+	}
+	
+	public void enviarRazaSeleccionada(String raza) throws IOException{
+		JsonObject mapaElegido = new JsonObject();
+	    mapaElegido.addProperty("raza",raza);
+	    salida.writeUTF(mapaElegido.toString());
+	}
+	
+	public List<String> recibirCasta() throws IOException{
+		
+		return recibirLista("castas");
+	}
 
-		String[] mapasRecibidos = json.get("mapas").getAsJsonArray().toString().split(",");
-		List<String> listaDeMapas = new ArrayList<String>();
-		Collections.addAll(listaDeMapas, mapasRecibidos);
-		return listaDeMapas;
+	private List<String> recibirLista(String propiedad) throws IOException {
+		JsonParser parser = new JsonParser();
+		JsonObject json = parser.parse(entrada.readUTF()).getAsJsonObject();
+		String[] listaRecibidas = json.get(propiedad).getAsJsonArray().toString().split(",");
+		List<String> lista = new ArrayList<String>();
+		Collections.addAll(lista, listaRecibidas);
+		return lista;
+	}
+	
+	public void enviarCastaSeleccionada(String casta) throws Exception{
+		JsonObject castaElegida = new JsonObject();
+		castaElegida.addProperty("casta",casta);
+	    salida.writeUTF(castaElegida.toString());
+	    crearPersonaje();
+	}
+	
+	public List<String> recibirMapas() throws IOException{
+		return recibirLista("mapas");
 	}
 	
 	public void enviarMapaSeleccionado(String mapa) throws IOException{

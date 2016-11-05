@@ -29,6 +29,8 @@ public class ServidorHilo extends Thread {
 	private HashMap<String,Mapa>mapasDisponibles;
 	private DataInputStream entrada;
 	private DataOutputStream salida;
+	private String raza;
+	private String casta;
 	
 	public ServidorHilo(Socket cliente,HashMap<Socket,Personaje> jugadores,HashMap<Personaje,Mapa> jugadoresPorMapa,HashMap<String,Mapa> mapasDisponibles) throws IOException{
 		this.cliente=cliente;
@@ -58,11 +60,7 @@ public class ServidorHilo extends Thread {
 	}
 
 	private void crearPersonaje() throws Exception {
-		String razaYCastaPersonaje;
-			razaYCastaPersonaje = entrada.readUTF();
-			JsonParser parser = new JsonParser();
-			JsonElement elemento = parser.parse(razaYCastaPersonaje);
-			Personaje personaje=crearPersonajeAPartirDeRazaYCasta(elemento.getAsJsonObject().get("raza").getAsString(),elemento.getAsJsonObject().get("casta").getAsString());
+		Personaje personaje=crearPersonajeAPartirDeRazaYCasta(raza,casta);
 			jugadores.put(cliente, personaje);
 	}
 
@@ -77,6 +75,102 @@ public class ServidorHilo extends Thread {
 		 salida.writeUTF(punto.toString());
 	}
 	
+	public void enviarRazas() throws IOException{
+		JsonArray razas = new JsonArray(); 
+		cargarRazas(razas);
+		enviarLista(razas,"razas");
+	}
+
+	private void enviarLista(JsonArray lista,String nombre) throws IOException {
+		JsonObject listaEnviada = new JsonObject();
+		listaEnviada.add(nombre, lista);
+		salida.writeUTF(listaEnviada.toString());
+	}
+	
+	private void cargarRazas(JsonArray razas) {
+		
+		JsonElement razaStarWars = new JsonPrimitive("Personajes Star Wars");
+		JsonElement razaPokemon = new JsonPrimitive("Personajes de Pokemon");
+		JsonElement razaUndertale = new JsonPrimitive("Personajes de Undertale");
+		JsonElement razaKingdomHearts = new JsonPrimitive("Personajes de Kingdom Hearts");
+		JsonElement razaHumano = new JsonPrimitive("Humano");
+		JsonElement razaOrco = new JsonPrimitive("Orco");
+		
+		razas.add(razaStarWars);
+		razas.add(razaPokemon);
+		razas.add(razaUndertale);
+		razas.add(razaKingdomHearts);
+		razas.add(razaHumano);
+		razas.add(razaOrco);
+			
+	}
+	
+	public void recibirRazaElegido() throws Exception{
+		JsonParser parser = new JsonParser();
+		JsonElement elemento = parser.parse(entrada.readUTF());
+		raza=elemento.getAsJsonObject().get("raza").getAsString();
+		enviarCastas();
+	}
+
+	private void enviarCastas() throws Exception {
+		JsonArray castas = new JsonArray(); 
+		cargarCastas(castas);
+		enviarLista(castas,"castas");
+		crearPersonaje();
+	}
+
+	//FIXME esto hay que cambiarlo urgente.
+	private void cargarCastas(JsonArray castas) {
+		if (raza.equals("Humano") || raza.equals("Orco")) {
+			JsonElement casta1 = new JsonPrimitive("Guerrero");
+			JsonElement casta2 = new JsonPrimitive("Mago");
+			JsonElement casta3 = new JsonPrimitive("Tanque");
+			castas.add(casta1);
+			castas.add(casta3);
+			castas.add(casta2);
+		} else {
+			if (raza.equals("Kingdom Hearts")) {
+				JsonElement casta1 = new JsonPrimitive("Riku");
+				JsonElement casta2 = new JsonPrimitive("Sora");
+				JsonElement casta3 = new JsonPrimitive("Roxas");
+				castas.add(casta1);
+				castas.add(casta3);
+				castas.add(casta2);
+			} else {
+				if (raza.equals("Pokemon")) {
+					JsonElement casta1 = new JsonPrimitive("Tipo Fuego");
+					JsonElement casta2 = new JsonPrimitive("Tipo Agua");
+					JsonElement casta3 = new JsonPrimitive("Tipo Planta");
+					castas.add(casta1);
+					castas.add(casta3);
+					castas.add(casta2);
+				} else {
+					if (raza.equals("Stars Wars")) {
+						JsonElement casta1 = new JsonPrimitive("Jedi");
+						JsonElement casta2 = new JsonPrimitive("Droide");
+						JsonElement casta3 = new JsonPrimitive("Wookie");
+						castas.add(casta1);
+						castas.add(casta3);
+						castas.add(casta2);
+					} else {
+						if (raza.equals("Undertale")){
+							JsonElement casta1 = new JsonPrimitive("Chara");
+							castas.add(casta1);							
+						}
+					}
+				}
+			}
+		}
+		
+	}
+	
+	public void recibirCastaElegida() throws IOException{
+		JsonParser parser = new JsonParser();
+		JsonElement elemento = parser.parse(entrada.readUTF());
+		casta=elemento.getAsJsonObject().get("casta").getAsString();
+		
+	}
+
 	private Personaje crearPersonajeAPartirDeRazaYCasta(String raza, String casta) throws Exception {
 		return (Personaje) Class.forName("promotionSystem.razas.castas." + raza + "." + casta).newInstance();
 	}
@@ -84,9 +178,7 @@ public class ServidorHilo extends Thread {
 	public void enviarMapas() throws IOException{
 		JsonArray mapas = new JsonArray(); 
 		cargarMapas(mapas);
-		JsonObject mapasEnviados = new JsonObject();
-		mapasEnviados.add("mapas", mapas);
-		salida.writeUTF(mapasEnviados.toString());
+		enviarLista(mapas,"mapas");
 	}
 
 	private void cargarMapas(JsonArray mapas) {	
@@ -101,10 +193,9 @@ public class ServidorHilo extends Thread {
 	}
 	
 	public void recibirMapaElegido() throws IOException{
-		String mapaElegido = entrada.readUTF();
 		JsonParser parser = new JsonParser();
-		JsonElement elemento = parser.parse(mapaElegido);
-		jugadoresPorMapa.put(jugadores.get(cliente), mapasDisponibles.get(elemento.getAsJsonObject().get("mapa")));
+		JsonElement elemento = parser.parse(entrada.readUTF());
+		jugadoresPorMapa.put(jugadores.get(cliente), mapasDisponibles.get(elemento.getAsJsonObject().get("mapa").getAsString()));
 	}
 	
 	public void comunicarInvitacionAAlianza() throws IOException{
@@ -113,9 +204,8 @@ public class ServidorHilo extends Thread {
 	}
 
 	private Personaje recibirInvitacionAAlianza() throws IOException {
-		String personajeInvitado = entrada.readUTF();
 		JsonParser parser = new JsonParser();
-		JsonElement elemento = parser.parse(personajeInvitado);
+		JsonElement elemento = parser.parse(entrada.readUTF());
 		return new Gson().fromJson(elemento, Personaje.class);
 	}
 	
