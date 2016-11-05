@@ -23,19 +23,13 @@ public class Cliente {
 	private DataInputStream entrada;
 	String raza="humano";
 	String casta="GuerreroHumano";//viene por swing
-	public Cliente(String name,String raza, String casta) throws Exception {
-
+	public Cliente(String name) throws Exception {
 		try {
-			this.raza=raza;
-			this.casta=casta;
 			configurar(archivoDeConfiguracion);
 			this.name=name;
 			cliente = new Socket(ip,puerto);
 			salida=new DataOutputStream(cliente.getOutputStream());
 			entrada=new DataInputStream(cliente.getInputStream());
-			personaje=crearPersonaje(raza,casta);
-			enviarPersonaje(raza,casta);
-
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

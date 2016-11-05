@@ -20,7 +20,6 @@ import com.google.gson.JsonPrimitive;
 import promotionSystem.Personaje;
 import promotionSystem.Punto;
 import promotionSystem.mapa.Mapa;
-import promotionSystem.razas.castas.humano.GuerreroHumano;
 
 public class ServidorHilo extends Thread {
 	private Socket cliente;
@@ -56,21 +55,8 @@ public class ServidorHilo extends Thread {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println(jugadores.size());
-		mostrarRazas();
-		
-		
 	}
 
-	private void mostrarRazas() {
-		 Iterator<Socket> iterator=jugadores.keySet().iterator();
-		 while(iterator.hasNext()){
-			 Socket jugador = iterator.next();
-			 System.out.println(jugadores.get(jugador).getClass().getName());
-			 
-		 }
-		
-	}
 	private void crearPersonaje() throws Exception {
 		String razaYCastaPersonaje;
 			razaYCastaPersonaje = entrada.readUTF();
@@ -86,7 +72,7 @@ public class ServidorHilo extends Thread {
 		Punto puntoInicial=puntosIniciales.get(random.nextInt(puntosIniciales.size()));
 		JsonObject punto = new JsonObject();
 	    punto.addProperty("x", puntoInicial.getX());
-		punto.addProperty("y", puntoInicial.getX());	
+		punto.addProperty("y", puntoInicial.getX());
 		jugadores.get(cliente).setPosicion(puntoInicial);
 		 salida.writeUTF(punto.toString());
 	}
@@ -130,8 +116,7 @@ public class ServidorHilo extends Thread {
 		String personajeInvitado = entrada.readUTF();
 		JsonParser parser = new JsonParser();
 		JsonElement elemento = parser.parse(personajeInvitado);
-		Personaje personaje = new Gson().fromJson(elemento, Personaje.class);
-		return personaje;
+		return new Gson().fromJson(elemento, Personaje.class);
 	}
 	
 
@@ -148,6 +133,4 @@ public class ServidorHilo extends Thread {
 			}
 		}
 	}
-
-	
 }

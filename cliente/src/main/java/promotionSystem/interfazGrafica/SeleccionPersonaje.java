@@ -15,10 +15,7 @@ public class SeleccionPersonaje extends JFrame {
 		setTitle("Seleccion de Personaje");
 		LaminaPrincipal lamina=new LaminaPrincipal();
 		add(lamina);
-
-
 	}
-
 }
 
 class LaminaPrincipal extends JPanel{
@@ -35,7 +32,6 @@ class LaminaPrincipal extends JPanel{
 		add(laminaC,BorderLayout.CENTER);
 
 		add(laminaS,BorderLayout.SOUTH);
-
 	}
 }
 
