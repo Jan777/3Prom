@@ -23,7 +23,7 @@ public class Cliente {
 	private DataInputStream entrada;
 	private String raza;
 	private String casta;
-	public Cliente(String name) throws Exception {
+	public Cliente() throws Exception {
 		try {
 			configurar(archivoDeConfiguracion);
 			this.name=name;
@@ -112,5 +112,16 @@ public class Cliente {
 		salida.writeUTF(personajeInvitado.toString());
 	}
 	
+	public void enviarUsuarioYContraseña(String nombre, String contraseña) throws IOException{
+			int hashContraseña=contraseña.hashCode();
+			JsonObject usuario=new JsonObject();
+			usuario.addProperty("nombre",nombre);
+			usuario.addProperty("contrasena", hashContraseña);
+			salida.writeUTF(usuario.toString());	
+	}
+
+	public String resultado() throws IOException {
+		return entrada.readUTF();
+	}
 
 }

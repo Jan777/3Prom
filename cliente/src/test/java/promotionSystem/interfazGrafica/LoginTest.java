@@ -6,7 +6,7 @@ import promotionSystem.interfazGrafica.Login;
 
 public class LoginTest {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 
 		Login login=new Login();
 		

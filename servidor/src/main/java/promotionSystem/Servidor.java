@@ -16,7 +16,7 @@ import promotionSystem.hilos.HiloCreadorServidor;
 import promotionSystem.mapa.Mapa;
 
 public class Servidor {
-	
+	private Conector conector = new Conector();
 	private int i = 0;
 	private int puerto;
 	private int cantidadMaximaDeClientes;
@@ -51,7 +51,7 @@ public class Servidor {
 	private void aceptarClientes(ServerSocket servidor) throws IOException {
 		while(i<cantidadMaximaDeClientes){
 			Socket cliente  = servidor.accept();		
-			new HiloCreadorServidor(cliente,jugadores,jugadoresPorMapa,mapasDisponibles).start();;
+			new HiloCreadorServidor(cliente,jugadores,jugadoresPorMapa,mapasDisponibles,conector).start();;
 			i++;
 			
 		}

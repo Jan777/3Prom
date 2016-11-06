@@ -5,8 +5,11 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,11 +17,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import promotionSystem.Cliente;
+
 public class Login extends JFrame{
-	
-	public Login(){
+	Cliente cliente;
+	public Login() throws Exception{
 		
-		LaminaLogin lamina=new LaminaLogin();
+		cliente=new Cliente();
+		LaminaLogin lamina=new LaminaLogin(cliente);
 		setTitle("LOGIN");
 		setBounds(0,0,450,400);
 		add(lamina);
@@ -43,9 +49,9 @@ public class Login extends JFrame{
 
  class LaminaLogin extends JPanel{
 	 
-	 public LaminaLogin(){
+	 public LaminaLogin(Cliente cliente){
 		 setLayout(new BorderLayout());
-		 LaminaLoginCentral lamina =new LaminaLoginCentral();
+		 LaminaLoginCentral lamina =new LaminaLoginCentral(cliente);
 		 LaminaLoginNorte laminaN=new LaminaLoginNorte();
 		 LaminaLoginSur laminaS=new LaminaLoginSur();
 		 add(lamina,BorderLayout.CENTER);
@@ -59,17 +65,65 @@ public class Login extends JFrame{
 	 
 	 class LaminaLoginCentral extends JPanel{
 		 
-		 public LaminaLoginCentral(){
-			 
+		 private Cliente cliente;
+		private  JTextField contrasenia ;
+		private JTextField nick;
+		private JLabel error;
+
+		public LaminaLoginCentral(Cliente cliente){
+			 this.cliente=cliente;
 			 setLayout(new GridLayout(5,1));
 			 JLabel nicklabel=new JLabel("NickName:");
-			 JTextField nick=new JTextField(20);
+			 nick=new JTextField(20);
 			 JLabel contrasenialabel=new JLabel("contrasenia: ");
-			 JTextField contrasenia=new JTextField(20);
+			 contrasenia=new JTextField(20);
 			 JButton ingresar=new JButton("Ingresar");
+			 ingresar.addActionListener (new ActionListener(){
+
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						try {
+							iniciarSesion();
+							if(cliente.resultado().equals("true")){		
+								SeleccionPersonaje ventana=new SeleccionPersonaje();
+								ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+								ventana.setVisible(true);
+							
+							}
+							else{								
+								error.setText("Usuario y/o Contraseña incorrecta");
+							}
+									
+
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+						
+				}					
+				);
+			 
 			 JLabel label=new JLabel("Aun no te has registrado?");
 			 JButton  registrarse =new JButton("REGISTRATE");
-			 JLabel error=new JLabel(" ");
+			 registrarse.addActionListener (new ActionListener(){
+
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						Registrarse marco=new Registrarse();
+						marco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+						marco.setVisible(true);
+						
+					}
+
+					
+						
+						
+				}					
+				);
+			 
+			
+
+			 error=new JLabel(" ");
 			 
 			 nicklabel.setBounds(0,10, 100, 20);
 			 nick.setBounds(110, 10, 100, 20);
@@ -101,6 +155,14 @@ public class Login extends JFrame{
 			 add(registro);
 			 add(informe);
 		 }
+		 
+		 private void iniciarSesion() throws IOException {
+				cliente.enviarUsuarioYContraseña(nick.getText(), contrasenia.getText());
+			}
+			private void verResultado() throws IOException {
+				error.setText(cliente.resultado());
+			}
+		
 	 }
 	 
 	 class LaminaLoginNorte extends JPanel{

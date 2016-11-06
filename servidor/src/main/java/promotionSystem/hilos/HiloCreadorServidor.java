@@ -4,18 +4,20 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.HashMap;
 
+import promotionSystem.Conector;
 import promotionSystem.Personaje;
 import promotionSystem.mapa.Mapa;
 
 public class HiloCreadorServidor extends Thread {
-	
+	private Conector conector;
 	private Socket cliente;
 	private HashMap<Socket,Personaje> jugadores;
 	private	HashMap<Personaje,Mapa> jugadoresPorMapa;
 	private HashMap<String,Mapa>mapasDisponibles;
-	public HiloCreadorServidor(Socket cliente,HashMap<Socket,Personaje> jugadores,HashMap<Personaje,Mapa> jugadoresPorMapa,HashMap<String,Mapa>mapasDisponibles){
+	public HiloCreadorServidor(Socket cliente,HashMap<Socket,Personaje> jugadores,HashMap<Personaje,Mapa> jugadoresPorMapa,HashMap<String,Mapa>mapasDisponibles,Conector conector){
 		super();
 		this.jugadoresPorMapa=jugadoresPorMapa;
+		this.conector=conector;
 		this.cliente=cliente;
 		this.jugadores=jugadores;
 		this.mapasDisponibles=mapasDisponibles;
@@ -23,7 +25,7 @@ public class HiloCreadorServidor extends Thread {
 	
 	public void run(){
 		try {
-			new ServidorHilo(cliente,jugadores,jugadoresPorMapa,mapasDisponibles).start();
+			new ServidorHilo(cliente,jugadores,jugadoresPorMapa,mapasDisponibles,conector).start();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

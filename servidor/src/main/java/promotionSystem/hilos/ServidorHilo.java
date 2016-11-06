@@ -4,6 +4,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -16,7 +17,9 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonPrimitive;
+import com.google.gson.JsonSyntaxException;
 
+import promotionSystem.Conector;
 import promotionSystem.Personaje;
 import promotionSystem.Punto;
 import promotionSystem.mapa.Mapa;
@@ -31,12 +34,13 @@ public class ServidorHilo extends Thread {
 	private DataOutputStream salida;
 	private String raza;
 	private String casta;
-	
-	public ServidorHilo(Socket cliente,HashMap<Socket,Personaje> jugadores,HashMap<Personaje,Mapa> jugadoresPorMapa,HashMap<String,Mapa> mapasDisponibles) throws IOException{
+	private Conector conector;
+	public ServidorHilo(Socket cliente,HashMap<Socket,Personaje> jugadores,HashMap<Personaje,Mapa> jugadoresPorMapa,HashMap<String,Mapa> mapasDisponibles,Conector conector) throws IOException{
 		this.cliente=cliente;
 		this.jugadoresPorMapa=jugadoresPorMapa;
 		this.jugadores=jugadores;
 		this.mapasDisponibles=mapasDisponibles;
+		this.conector=conector;
 		entrada= new DataInputStream(cliente.getInputStream());
 		salida=new DataOutputStream(cliente.getOutputStream());
 		puntosIniciales =new ArrayList<>();
@@ -52,11 +56,28 @@ public class ServidorHilo extends Thread {
 	}
 	
 	public void run(){
-		try {
-			crearPersonaje();
+		try {			
+			while(!validarContraseña()){
+				salida.writeUTF("false");
+				
+			}
+			salida.writeUTF("true");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	private void crearUsuario() throws JsonSyntaxException, IOException, SQLException {
+		JsonParser parser = new JsonParser();
+		JsonElement elemento = parser.parse(entrada.readUTF());
+	    conector.agregarUsuario(elemento.getAsJsonObject().get("nombre").getAsString(),Integer.parseInt((elemento.getAsJsonObject().get("contrasena").getAsString())));
+	}
+
+	private boolean validarContraseña() throws Exception {
+		JsonParser parser = new JsonParser();
+		JsonElement elemento = parser.parse(entrada.readUTF());
+		return conector.validarUsuario(elemento.getAsJsonObject().get("nombre").getAsString(),Integer.parseInt((elemento.getAsJsonObject().get("contrasena").getAsString())));
+	
 	}
 
 	private void crearPersonaje() throws Exception {
