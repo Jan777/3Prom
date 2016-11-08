@@ -83,23 +83,22 @@ public class Login extends JFrame{
 					@Override
 					public void actionPerformed(ActionEvent arg0) {
 						try {
+							enviarAccion();
 							iniciarSesion();
 							if(cliente.resultado().equals("true")){		
 								SeleccionPersonaje ventana=new SeleccionPersonaje();
 								ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 								ventana.setVisible(true);
-							
-							}
+									}
 							else{								
 								error.setText("Usuario y/o Contraseña incorrecta");
 							}
-									
-
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
 					}
-						
+
+					
 				}					
 				);
 			 
@@ -109,7 +108,7 @@ public class Login extends JFrame{
 
 					@Override
 					public void actionPerformed(ActionEvent arg0) {
-						Registrarse marco=new Registrarse();
+						Registrarse marco=new Registrarse(cliente);
 						marco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 						marco.setVisible(true);
 						
@@ -162,6 +161,10 @@ public class Login extends JFrame{
 			private void verResultado() throws IOException {
 				error.setText(cliente.resultado());
 			}
+			private void enviarAccion() throws IOException {		
+				cliente.enviarAccion("Login");
+		}
+			
 		
 	 }
 	 

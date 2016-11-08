@@ -3,6 +3,7 @@ package promotionSystem;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
 
 import java.io.*;
 import java.net.Socket;
@@ -122,6 +123,25 @@ public class Cliente {
 
 	public String resultado() throws IOException {
 		return entrada.readUTF();
+	}
+
+	public void enviarUsuario(String nombre) throws IOException {
+		JsonObject usuario=new JsonObject();
+		usuario.addProperty("nombre",nombre);
+		salida.writeUTF(usuario.toString());	
+	}
+
+	public boolean recibirComprobacion() throws Exception {
+		JsonParser parser = new JsonParser();
+		String resultado = parser.parse(entrada.readUTF()).getAsJsonObject().get("Resultado").getAsString();
+		return resultado.equals("false");
+	}
+
+	public void enviarAccion(String accion) throws IOException {
+		JsonObject usuario=new JsonObject();
+		usuario.addProperty("Accion",accion);
+		salida.writeUTF(usuario.toString());
+		
 	}
 
 }

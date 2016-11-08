@@ -56,15 +56,53 @@ public class ServidorHilo extends Thread {
 	}
 	
 	public void run(){
+		try {
+			while(recibirAccion().equals("Registrar")){
+				registrarJugador();
+			}
+			do{
+				loguearJugador();
+			}while(recibirAccion().equals("Login"));
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	
+	}
+
+	private void registrarJugador() throws Exception {
+		if(!comprobarUsuario()){
+			crearUsuario();			
+		}
+	}
+
+	private String recibirAccion() throws Exception{
+		JsonParser parser = new JsonParser();
+		JsonElement elemento = parser.parse(entrada.readUTF());
+		return elemento.getAsJsonObject().get("Accion").getAsString();
+	}
+
+	private void loguearJugador() {
 		try {			
-			while(!validarContraseña()){
+			if(!validarContraseña()){
 				salida.writeUTF("false");
-				
 			}
 			salida.writeUTF("true");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private boolean comprobarUsuario() throws Exception{
+		JsonParser parser = new JsonParser();
+		JsonElement elemento = parser.parse(entrada.readUTF());
+		JsonObject respuesta=new JsonObject();
+		boolean resultado =conector.validarNombreUsuario(elemento.getAsJsonObject().get("nombre").getAsString());
+		respuesta.addProperty("Resultado",resultado);
+		salida.writeUTF(respuesta.toString());
+		
+		return resultado;
 	}
 
 	private void crearUsuario() throws JsonSyntaxException, IOException, SQLException {

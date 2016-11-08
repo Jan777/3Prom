@@ -43,6 +43,18 @@ public class Conector {
 	  
 	      return devolver;
 	}
+
+	public boolean validarNombreUsuario(String nombre) throws Exception {
+		 conector.setAutoCommit(false);
+		  sentencia = conector.prepareStatement("Select Count(*) from Usuarios where nombre like ?");
+	      sentencia.setString(1,nombre);
+	      ResultSet resultado=sentencia.executeQuery();	
+	      boolean devolver=resultado.next()?resultado.getInt(1)==1:false;
+	      sentencia.close();
+	      conector.commit();      
+	      return devolver;
+	      
+	}
 	
 	
 	
