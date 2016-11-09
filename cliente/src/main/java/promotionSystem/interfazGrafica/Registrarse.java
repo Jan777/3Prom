@@ -1,6 +1,7 @@
 package promotionSystem.interfazGrafica;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -12,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import promotionSystem.Cliente;
@@ -19,10 +21,13 @@ import promotionSystem.Cliente;
 public class Registrarse extends JFrame {
 
 	public Registrarse(Cliente cliente){
-		LaminaRegistro laminaRegistro=new LaminaRegistro(cliente);
+		LaminaRegistro laminaRegistro=new LaminaRegistro(cliente,this);
 		setTitle("Registrarse");
-		setBounds(0,0,600,300);
+		setResizable(false);
+		setBounds(100,100,600,400);
 		add(laminaRegistro);
+	
+	
 		
 	}
 	
@@ -32,11 +37,11 @@ public class Registrarse extends JFrame {
 
  class LaminaRegistro extends JPanel{
 	 
-	 public LaminaRegistro(Cliente cliente){
+	 public LaminaRegistro(Cliente cliente,JFrame marco){
 		 setLayout(new BorderLayout());
 		 LaminaCentralR laminaC =new LaminaCentralR(cliente);
 		 LaminaNorteR laminaN=new LaminaNorteR();
-		 LaminaSurR laminaS=new LaminaSurR();
+		 LaminaSurR laminaS=new LaminaSurR(marco);
 		 add(laminaC,BorderLayout.CENTER);
 		 add(laminaN,BorderLayout.NORTH);
 		 add(laminaS,BorderLayout.SOUTH);
@@ -47,8 +52,10 @@ public class Registrarse extends JFrame {
  }
 	 
 	 class LaminaCentralR extends JPanel{
-		 private JTextField contrasenia;
-		 private JTextField contraseniaRepeticion;
+		 
+		 private JPasswordField contraseña ;
+		 
+		 JPasswordField contraseniaRepeticion;
 		 private JLabel error;
 		 private JTextField nick;
 		 private Cliente cliente;
@@ -57,20 +64,20 @@ public class Registrarse extends JFrame {
 			 setLayout(new GridLayout(4,1));
 			 JLabel nicklabel=new JLabel("NickName: ");
 			 nick=new JTextField(10);
-			 JLabel contrasenialabel=new JLabel("contrasenia: ");
-			  contrasenia=new JTextField(10);
-			 JLabel contrasenialabelrepeticion=new JLabel("Repita contrasenia: ");
-			  contraseniaRepeticion=new JTextField(10);
+			 JLabel contrasenialabel=new JLabel("contraseña: ");
+			  contraseña= new JPasswordField(20);
+			 JLabel contrasenialabelrepeticion=new JLabel("Repita contraseña: ");
+			  contraseniaRepeticion= new JPasswordField(20);
 			 error=new JLabel(" ");
 			 error.setBounds(0, 90, 50, 20);
 			 nicklabel.setBounds(0,10, 100, 20);
 			 nick.setBounds(110, 10, 50, 20);
 			 contrasenialabel.setBounds(0, 30, 100, 20);
-			 contrasenia.setBounds(110, 30,50,20);
+			 contraseña.setBounds(110, 30,50,20);
 			 contrasenialabelrepeticion.setBounds(0, 60, 100, 20);
 			 contraseniaRepeticion.setBounds(0, 60, 50, 20);
 			 JButton  aceptar=new JButton ("Aceptar");
-				aceptar.setBounds(0, 70, 10, 10);
+				aceptar.setBounds(0, 80, 10, 10);
 				 aceptar.addActionListener (new ActionListener(){
 
 						@Override
@@ -118,7 +125,7 @@ public class Registrarse extends JFrame {
 			 nickname.add(nicklabel);
 			 nickname.add(nick);
 			 password.add(contrasenialabel);
-			 password.add(contrasenia);
+			 password.add(contraseña);
 			passwordtry.add(contrasenialabelrepeticion);
 			passwordtry.add(contraseniaRepeticion);
 			 
@@ -131,7 +138,7 @@ public class Registrarse extends JFrame {
 		 }
 		 
 		 private boolean comprobarContraseñas() {
-				return contrasenia.getText().equals(contraseniaRepeticion.getText());
+				return contraseña.getText().equals(contraseniaRepeticion.getText());
 			}
 		 
 		 private void informarErrorContraseña() {
@@ -139,7 +146,9 @@ public class Registrarse extends JFrame {
 			}
 		 
 		 private void informarErrorUsuario() {
-			 error.setText("Las el nombre de usuario no esta disponible, ya esta usado");	
+			 
+			 error.setText("Las el nombre de usuario no esta disponible, ya esta usado");
+			
 		 }
 
 		 private boolean comprobarUsuario() throws Exception {
@@ -148,7 +157,7 @@ public class Registrarse extends JFrame {
 		 }
 
 		 private void enviarUsuarioYContraseña() throws IOException {
-			 cliente.enviarUsuarioYContraseña(nick.getText(), contrasenia.getText());
+			 cliente.enviarUsuarioYContraseña(nick.getText(), contraseña.getText());
 		 }
 		 private void enviarAccion() throws IOException {
 			 cliente.enviarAccion("Registrar");
@@ -169,6 +178,7 @@ public class Registrarse extends JFrame {
 			 JLabel Titulo=new JLabel("REGISTRARSE");
 			 Titulo.setFont(new Font("titulo",Font.BOLD,33));
 			 
+			 
 			 add(Titulo);
 			 
 			 
@@ -177,12 +187,22 @@ public class Registrarse extends JFrame {
 	 
 class LaminaSurR extends JPanel{
 		 
-		 public LaminaSurR(){
+		 public LaminaSurR(JFrame marco){
 			 
 			
 			 JButton  cancelar=new JButton ("Cancelar");
 			 
 			 setLayout(new FlowLayout(FlowLayout.CENTER));
+			 
+			 cancelar.addActionListener(new ActionListener(){
+
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					// TODO Auto-generated method stub
+					marco.dispose();
+				}
+				 
+			 });
 			
 			 add(cancelar);
 			 

@@ -36,7 +36,8 @@ public class Servidor {
 			
 			servidor.close();
 		} catch (IOException e) {
-			System.err.println("Ocurri� un problema con el Servidor");
+			e.printStackTrace();
+			//System.err.println("Ocurri� un problema con el Servidor");
 		}
 	}
 

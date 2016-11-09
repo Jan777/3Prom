@@ -59,6 +59,7 @@ public class ServidorHilo extends Thread {
 		try {
 			while(recibirAccion().equals("Registrar")){
 				registrarJugador();
+				recibirAccion();
 				enviarRazas();
 				while(true){
 					recibirRazaElegido();
@@ -73,11 +74,7 @@ public class ServidorHilo extends Thread {
 				loguearJugador();
 			}while(recibirAccion().equals("Login"));
 			
-			enviarRazas();//esto no va en el futuro.
-			while(true){
-				recibirRazaElegido();
-				enviarCastas();
-			}
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();

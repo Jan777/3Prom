@@ -18,6 +18,7 @@ public class SeleccionPersonaje extends JFrame {
 	public SeleccionPersonaje(Cliente cliente) throws IOException{
 		
 		setBounds(0,0,500,500);
+		setResizable(false);
 		setTitle("Seleccion de Personaje");
 		LaminaPrincipal lamina=new LaminaPrincipal(cliente);
 		add(lamina);
@@ -47,10 +48,10 @@ class LaminaSur extends JPanel{
 		setLayout(new GridLayout(2,1));
 		LaminaAuxFlow lamina =new LaminaAuxFlow(FlowLayout.CENTER);
 		LaminaAuxFlow informe =new LaminaAuxFlow(FlowLayout.CENTER);
-		JButton salir=new JButton("SALIR");
+		
 		JButton seleccionar=new JButton("SELECCIONAR");
 		JLabel error=new JLabel(" ");
-		lamina.add(salir);
+		
 		lamina.add(seleccionar);
 		informe.add(error);
 		add(lamina);
