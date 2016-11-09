@@ -70,9 +70,9 @@ public class Cliente {
 	}
 	
 	public void enviarRazaSeleccionada(String raza) throws IOException{
-		JsonObject mapaElegido = new JsonObject();
-	    mapaElegido.addProperty("raza",raza);
-	    salida.writeUTF(mapaElegido.toString());
+		JsonObject razaElegida = new JsonObject();
+		razaElegida.addProperty("raza",raza);
+	    salida.writeUTF(razaElegida.toString());
 	}
 	
 	public List<String> recibirCasta() throws IOException{

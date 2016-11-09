@@ -184,7 +184,16 @@ class LaminaOeste extends JPanel{
 		public void actionPerformed(ActionEvent arg0) {
 			castas.removeAllItems();
 			String eleccion= (String) razas.getSelectedItem();
-
+			
+			try {
+				cliente.enviarRazaSeleccionada(eleccion);
+				cargarCastas();
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+/*
 			if(eleccion.equals("Humano")||eleccion.equals("Orco")){
 				castas.addItem("Guerrero");
 				castas.addItem("Mago");
@@ -211,7 +220,15 @@ class LaminaOeste extends JPanel{
 					}
 				}
 			}
+*/
+		}
 
+		private void cargarCastas() throws IOException {
+			ArrayList<String> castasRecibidas=(ArrayList<String>) cliente.recibirCasta();		
+			for(String casta : castasRecibidas) {
+			    castas.addItem(casta);
+			}
+			
 		}
 
 		private class AccionCastas implements ActionListener{
@@ -220,9 +237,7 @@ class LaminaOeste extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 
 				String eleccion=(String) castas.getSelectedItem();
-				if(castas.equals("Riku")){
-
-				}
+				
 			}
 
 		}

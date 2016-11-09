@@ -60,13 +60,24 @@ public class ServidorHilo extends Thread {
 			while(recibirAccion().equals("Registrar")){
 				registrarJugador();
 				enviarRazas();
+				while(true){
+					recibirRazaElegido();
+					enviarCastas();
+
+				}
+
+			///	crearPersonaje();
+				//recibirCastaElegida();
 			}
 			do{
 				loguearJugador();
 			}while(recibirAccion().equals("Login"));
 			
 			enviarRazas();//esto no va en el futuro.
-			
+			while(true){
+				recibirRazaElegido();
+				enviarCastas();
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -153,7 +164,7 @@ public class ServidorHilo extends Thread {
 	
 	private void cargarRazas(JsonArray razas) {
 		
-		JsonElement razaStarWars = new JsonPrimitive("Personajes Star Wars");
+		JsonElement razaStarWars = new JsonPrimitive("Personajes de Star Wars");
 		JsonElement razaPokemon = new JsonPrimitive("Personajes de Pokemon");
 		JsonElement razaUndertale = new JsonPrimitive("Personajes de Undertale");
 		JsonElement razaKingdomHearts = new JsonPrimitive("Personajes de Kingdom Hearts");
@@ -174,19 +185,19 @@ public class ServidorHilo extends Thread {
 		JsonParser parser = new JsonParser();
 		JsonElement elemento = parser.parse(entrada.readUTF());
 		raza=elemento.getAsJsonObject().get("raza").getAsString();
-		enviarCastas();
+		
 	}
 
 	private void enviarCastas() throws Exception {
 		JsonArray castas = new JsonArray(); 
 		cargarCastas(castas);
 		enviarLista(castas,"castas");
-		crearPersonaje();
+	
 	}
 
 	//FIXME esto hay que cambiarlo urgente.
 	private void cargarCastas(JsonArray castas) {
-		if (raza.equals("Humano") || raza.equals("Orco")) {
+		if (raza.equals("\"Humano\"") || raza.equals("\"Orco\"]")) {
 			JsonElement casta1 = new JsonPrimitive("Guerrero");
 			JsonElement casta2 = new JsonPrimitive("Mago");
 			JsonElement casta3 = new JsonPrimitive("Tanque");
@@ -194,7 +205,7 @@ public class ServidorHilo extends Thread {
 			castas.add(casta3);
 			castas.add(casta2);
 		} else {
-			if (raza.equals("Kingdom Hearts")) {
+			if (raza.equals("\"Personajes de Kingdom Hearts\"")) {
 				JsonElement casta1 = new JsonPrimitive("Riku");
 				JsonElement casta2 = new JsonPrimitive("Sora");
 				JsonElement casta3 = new JsonPrimitive("Roxas");
@@ -202,7 +213,7 @@ public class ServidorHilo extends Thread {
 				castas.add(casta3);
 				castas.add(casta2);
 			} else {
-				if (raza.equals("Pokemon")) {
+				if (raza.equals("\"Personajes de Pokemon\"")) {
 					JsonElement casta1 = new JsonPrimitive("Tipo Fuego");
 					JsonElement casta2 = new JsonPrimitive("Tipo Agua");
 					JsonElement casta3 = new JsonPrimitive("Tipo Planta");
@@ -210,7 +221,7 @@ public class ServidorHilo extends Thread {
 					castas.add(casta3);
 					castas.add(casta2);
 				} else {
-					if (raza.equals("Stars Wars")) {
+					if (raza.equals("[\"Personajes de Star Wars\"")) {
 						JsonElement casta1 = new JsonPrimitive("Jedi");
 						JsonElement casta2 = new JsonPrimitive("Droide");
 						JsonElement casta3 = new JsonPrimitive("Wookie");
@@ -218,7 +229,7 @@ public class ServidorHilo extends Thread {
 						castas.add(casta3);
 						castas.add(casta2);
 					} else {
-						if (raza.equals("Undertale")){
+						if (raza.equals("\"Personajes de Undertale\"")){
 							JsonElement casta1 = new JsonPrimitive("Chara");
 							castas.add(casta1);							
 						}
