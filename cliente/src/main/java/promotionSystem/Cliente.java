@@ -66,7 +66,6 @@ public class Cliente {
 	}
 	
 	public List<String> recibirRazas() throws IOException{
-		
 		return recibirLista("razas");
 	}
 	

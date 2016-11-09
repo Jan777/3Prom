@@ -2,6 +2,9 @@ package promotionSystem.interfazGrafica;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+
+import promotionSystem.Cliente;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,20 +14,23 @@ import java.util.ArrayList;
 
 public class SeleccionPersonaje extends JFrame {
 
-	public SeleccionPersonaje(){
+
+	public SeleccionPersonaje(Cliente cliente) throws IOException{
+		
 		setBounds(0,0,500,500);
 		setTitle("Seleccion de Personaje");
-		LaminaPrincipal lamina=new LaminaPrincipal();
+		LaminaPrincipal lamina=new LaminaPrincipal(cliente);
 		add(lamina);
 	}
 }
 
 class LaminaPrincipal extends JPanel{
 
-	public LaminaPrincipal(){
+	public LaminaPrincipal(Cliente cliente) throws IOException{
+
 		setLayout(new BorderLayout());
 		LaminaNorte laminaN=new LaminaNorte();
-		LaminaOeste laminaE=new LaminaOeste();
+		LaminaOeste laminaE=new LaminaOeste(cliente);
 		LaminaCentral laminaC=new LaminaCentral();
 
 		LaminaSur laminaS = new LaminaSur();
@@ -63,7 +69,7 @@ class LaminaCentral extends JPanel{
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 
-		File miImagen=new File("C:/Users/Nahuel/Pictures/Para Juego Progra/Riku.png");
+		File miImagen=new File("recursos/Razas/Guerrero.jpg");
 		try {
 			imagen=ImageIO.read(miImagen);
 		} catch (IOException e) {
@@ -87,9 +93,11 @@ class LaminaNorte extends JPanel{
 
 class LaminaOeste extends JPanel{
 	JComboBox castas,razas;
-	public LaminaOeste(){
+	private Cliente cliente;
+	public LaminaOeste(Cliente cliente) throws IOException{
 		setLayout(new GridLayout(8,1));
-
+		this.cliente=cliente;
+		enviarAccion();
 		LaminaAuxFlow oesteRazas=new LaminaAuxFlow(FlowLayout.LEFT);
 		LaminaAuxFlow oesteCastas=new LaminaAuxFlow(FlowLayout.LEFT);
 		LaminaAuxFlow oesteSalud=new LaminaAuxFlow(FlowLayout.LEFT);
@@ -100,6 +108,13 @@ class LaminaOeste extends JPanel{
 		LaminaAuxFlow oesteVelocidad=new LaminaAuxFlow(FlowLayout.LEFT);
 		razas=new JComboBox();
 		castas=new JComboBox();
+		try {
+			cargarRazas();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		/*
 		razas.addItem("Seleccione una raza.." );
 		razas.addItem("Humano");
 		razas.addItem("Kingdom Hearts");
@@ -107,7 +122,7 @@ class LaminaOeste extends JPanel{
 		razas.addItem("Pokemon");
 		razas.addItem("Star Wars");
 		razas.addItem("Undertale");
-
+*/
 		razas.addActionListener(new AccionRazas());
 		JLabel ataque=new JLabel("ATAQUE: ");
 		JLabel puntosAtaque=new JLabel();
@@ -148,6 +163,19 @@ class LaminaOeste extends JPanel{
 		this.add(oesteVelocidad);
 
 
+	}
+
+	private void cargarRazas() throws IOException {
+		
+		ArrayList<String> razasRecibidas = (ArrayList<String>) cliente.recibirRazas();
+		for(String raza : razasRecibidas) {
+		    razas.addItem(raza);
+		}
+		
+	}
+	
+	private void enviarAccion() throws IOException {		
+		cliente.enviarAccion("Registro de Personaje");
 	}
 
 	private class AccionRazas implements ActionListener{

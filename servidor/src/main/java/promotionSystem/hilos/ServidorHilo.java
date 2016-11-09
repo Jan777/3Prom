@@ -59,10 +59,14 @@ public class ServidorHilo extends Thread {
 		try {
 			while(recibirAccion().equals("Registrar")){
 				registrarJugador();
+				enviarRazas();
 			}
 			do{
 				loguearJugador();
 			}while(recibirAccion().equals("Login"));
+			
+			enviarRazas();//esto no va en el futuro.
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -138,6 +142,7 @@ public class ServidorHilo extends Thread {
 		JsonArray razas = new JsonArray(); 
 		cargarRazas(razas);
 		enviarLista(razas,"razas");
+		
 	}
 
 	private void enviarLista(JsonArray lista,String nombre) throws IOException {
@@ -161,7 +166,8 @@ public class ServidorHilo extends Thread {
 		razas.add(razaKingdomHearts);
 		razas.add(razaHumano);
 		razas.add(razaOrco);
-			
+		
+	
 	}
 	
 	public void recibirRazaElegido() throws Exception{

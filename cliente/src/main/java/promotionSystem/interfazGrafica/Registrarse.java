@@ -80,9 +80,7 @@ public class Registrarse extends JFrame {
 									enviarAccion();
 									if(comprobarUsuario()){
 										enviarUsuarioYContraseña();
-										SeleccionPersonaje ventana=new SeleccionPersonaje();
-										ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-										ventana.setVisible(true);
+										elegirPersonaje();
 									}
 									else{
 										informarErrorUsuario();
@@ -95,6 +93,8 @@ public class Registrarse extends JFrame {
 								e.printStackTrace();
 							} 	
 						}
+
+					
 
 						
 
@@ -138,21 +138,28 @@ public class Registrarse extends JFrame {
 				error.setText("Las contraseñas no coinciden");
 			}
 		 
-			private void informarErrorUsuario() {
-				error.setText("Las el nombre de usuario no esta disponible, ya esta usado");	
-			}
-			
-			private boolean comprobarUsuario() throws Exception {
-				cliente.enviarUsuario(nick.getText());
-				return cliente.recibirComprobacion();
-			}
-			
+		 private void informarErrorUsuario() {
+			 error.setText("Las el nombre de usuario no esta disponible, ya esta usado");	
+		 }
+
+		 private boolean comprobarUsuario() throws Exception {
+			 cliente.enviarUsuario(nick.getText());
+			 return cliente.recibirComprobacion();
+		 }
+
 		 private void enviarUsuarioYContraseña() throws IOException {
-			  cliente.enviarUsuarioYContraseña(nick.getText(), contrasenia.getText());
-			}
+			 cliente.enviarUsuarioYContraseña(nick.getText(), contrasenia.getText());
+		 }
 		 private void enviarAccion() throws IOException {
-				cliente.enviarAccion("Registrar");
-			}
+			 cliente.enviarAccion("Registrar");
+		 }
+
+		 private void elegirPersonaje() throws IOException {
+			 SeleccionPersonaje ventana=new SeleccionPersonaje(cliente);
+			 ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			 ventana.setVisible(true);
+
+		 }
 	 }
 	 
 	 class LaminaNorteR extends JPanel{
