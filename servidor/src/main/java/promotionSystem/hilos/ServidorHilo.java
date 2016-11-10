@@ -94,8 +94,7 @@ public class ServidorHilo extends Thread {
 	}
 
 	private String recibirAccion() throws Exception{
-		JsonParser parser = new JsonParser();
-		JsonElement elemento = parser.parse(entrada.readUTF());
+		JsonElement elemento = recibirObjetoJson(); 
 		return elemento.getAsJsonObject().get("Accion").getAsString();
 	}
 
@@ -111,8 +110,7 @@ public class ServidorHilo extends Thread {
 	}
 	
 	private boolean comprobarUsuario() throws Exception{
-		JsonParser parser = new JsonParser();
-		JsonElement elemento = parser.parse(entrada.readUTF());
+		JsonElement elemento = recibirObjetoJson(); 
 		JsonObject respuesta=new JsonObject();
 		boolean resultado =conector.validarNombreUsuario(elemento.getAsJsonObject().get("nombre").getAsString());
 		respuesta.addProperty("Resultado",resultado);
@@ -122,14 +120,12 @@ public class ServidorHilo extends Thread {
 	}
 
 	private void crearUsuario() throws JsonSyntaxException, IOException, SQLException {
-		JsonParser parser = new JsonParser();
-		JsonElement elemento = parser.parse(entrada.readUTF());
+		JsonElement elemento = recibirObjetoJson(); 
 	    conector.agregarUsuario(elemento.getAsJsonObject().get("nombre").getAsString(),Integer.parseInt((elemento.getAsJsonObject().get("contrasena").getAsString())));
 	}
 
 	private boolean validarContraseña() throws Exception {
-		JsonParser parser = new JsonParser();
-		JsonElement elemento = parser.parse(entrada.readUTF());
+		JsonElement elemento = recibirObjetoJson(); 
 		return conector.validarUsuario(elemento.getAsJsonObject().get("nombre").getAsString(),Integer.parseInt((elemento.getAsJsonObject().get("contrasena").getAsString())));
 	
 	}
@@ -183,8 +179,7 @@ public class ServidorHilo extends Thread {
 	}
 	
 	public void recibirRazaElegido() throws Exception{
-		JsonParser parser = new JsonParser();
-		JsonElement elemento = parser.parse(entrada.readUTF());
+		JsonElement elemento = recibirObjetoJson(); 
 		raza=elemento.getAsJsonObject().get("raza").getAsString();
 		
 	}
@@ -242,8 +237,7 @@ public class ServidorHilo extends Thread {
 	}
 	
 	public void recibirCastaElegida() throws IOException{
-		JsonParser parser = new JsonParser();
-		JsonElement elemento = parser.parse(entrada.readUTF());
+		JsonElement elemento = recibirObjetoJson(); 
 		casta=elemento.getAsJsonObject().get("casta").getAsString();
 		
 	}
@@ -270,8 +264,7 @@ public class ServidorHilo extends Thread {
 	}
 	
 	public void recibirMapaElegido() throws IOException{
-		JsonParser parser = new JsonParser();
-		JsonElement elemento = parser.parse(entrada.readUTF());
+		JsonElement elemento = recibirObjetoJson(); 
 		jugadoresPorMapa.put(jugadores.get(cliente), mapasDisponibles.get(elemento.getAsJsonObject().get("mapa").getAsString()));
 	}
 	
@@ -281,8 +274,7 @@ public class ServidorHilo extends Thread {
 	}
 
 	private Personaje recibirInvitacionAAlianza() throws IOException {
-		JsonParser parser = new JsonParser();
-		JsonElement elemento = parser.parse(entrada.readUTF());
+		JsonElement elemento = recibirObjetoJson(); 
 		return new Gson().fromJson(elemento, Personaje.class);
 	}
 	
@@ -299,5 +291,32 @@ public class ServidorHilo extends Thread {
 				encontro=true;
 			}
 		}
+	}
+	
+	//FIXME terminar esos metodos
+	public void recibirRespuestaDeInvitacionAAlianza() throws JsonSyntaxException, IOException{
+		JsonElement elemento = recibirObjetoJson(); 
+		if(elemento.getAsJsonObject().get("respuesta").getAsString().equals("true")){
+			comunicarAlianza();
+		}
+		else{
+			enviarBatalla();
+		}
+		
+	}
+
+	private void comunicarAlianza() {
+		//TODO hacer metodo para comunicar alianza
+		
+	}
+
+	private void enviarBatalla() {
+		//TODO hacer metodo para enviar batalla.
+		
+	}
+
+	private JsonElement recibirObjetoJson() throws IOException {
+		JsonParser parser = new JsonParser();
+		return parser.parse(entrada.readUTF());
 	}
 }

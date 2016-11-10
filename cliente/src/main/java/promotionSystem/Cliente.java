@@ -1,6 +1,7 @@
 package promotionSystem;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
@@ -41,13 +42,6 @@ public class Cliente {
 	}
 
 	
-	//FIXME si no me equivoco este metodo seria innecesario
-	private void enviarPersonaje(String raza, String casta) throws IOException {
-		JsonObject personaje = new JsonObject();
-		personaje.addProperty("raza", raza);
-		personaje.addProperty("casta", casta);
-		salida.writeUTF(personaje.toString());
-	}
 
 	private void configurar(String path) throws FileNotFoundException {
 		Scanner scanner = new Scanner(new File(path));
@@ -106,11 +100,7 @@ public class Cliente {
 	    salida.writeUTF(mapaElegido.toString());
 	}
 	
-	public void enviarInvitacionAAlianza(Personaje invitado) throws IOException{
-		JsonObject personajeInvitado=new JsonObject();
-		personajeInvitado.addProperty("nombre", invitado.getNombre());
-		salida.writeUTF(personajeInvitado.toString());
-	}
+	
 	
 	public void enviarUsuarioYContraseña(String nombre, String contraseña) throws IOException{
 			int hashContraseña=contraseña.hashCode();
@@ -142,5 +132,29 @@ public class Cliente {
 		salida.writeUTF(usuario.toString());
 		
 	}
+	
+	public void enviarInvitacionAAlianza(Personaje invitado) throws IOException{
+		JsonObject personajeInvitado=new JsonObject();
+		personajeInvitado.addProperty("nombre", invitado.getNombre());
+		salida.writeUTF(personajeInvitado.toString());
+	}
+	
+	//FIXME Revisar este metodo, no me convence.
+	public void recibirInvitacionAAlianza() throws JsonSyntaxException, IOException{
+		JsonParser parser = new JsonParser();
+		JsonElement elemento = parser.parse(entrada.readUTF());
+		Personaje invitador = new Gson().fromJson(elemento, Personaje.class);
+		personaje.tratarAlianza(invitador);
+
+	}
+	
+	public void enviarRespuestaAInvitacionDeAlianza(boolean respuesta) throws Exception{
+		JsonObject respuestaEnviada = new JsonObject();
+		respuestaEnviada.addProperty("respuesta", respuesta);
+		salida.writeUTF(respuestaEnviada.toString());
+	}
+	
+	
+	
 
 }

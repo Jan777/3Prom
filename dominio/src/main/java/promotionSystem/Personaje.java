@@ -302,7 +302,7 @@ public abstract class Personaje implements Comparable<Personaje>{
 	}
 
 	// FIXME arreglar segun decision del jugador
-	private void tratarAlianza(Personaje invitador) {
+	public void tratarAlianza(Personaje invitador) {
 		aceptarAlianza(invitador);
 		// rechazarAlianza(invitador);
 	}
