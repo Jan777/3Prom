@@ -8,10 +8,12 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import promotionSystem.Cliente;
+import promotionSystem.pantallaJuego.juego.Juego;
 
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -63,6 +65,21 @@ public class SeleccionMapa extends JFrame {
 	
 		btnJugar.setBounds(175, 194, 89, 23);
 		contentPane.add(btnJugar);
+		
+		JButton btnPrueba = new JButton("Prueba");
+		btnPrueba.setBounds(175, 129, 89, 23);
+		btnPrueba.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				Juego Kom = new Juego("King of Multiverse", 800, 600);
+				Kom.start();
+				
+			}
+			
+		});
+		contentPane.add(btnPrueba);
 	}
 	private void agregarMapas() throws IOException {
 		ArrayList<String> razasRecibidas = (ArrayList<String>) cliente.recibirMapas();
