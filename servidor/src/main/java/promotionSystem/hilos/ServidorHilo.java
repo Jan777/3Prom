@@ -74,6 +74,10 @@ public class ServidorHilo extends Thread {
 				loguearJugador();
 			}while(recibirAccion().equals("Login"));
 			
+			enviarMapas();
+			do{
+				recibirMapaElegido();
+			}while(recibirAccion().equals("Seleccionar Mapa"));
 			
 			
 		} catch (Exception e) {

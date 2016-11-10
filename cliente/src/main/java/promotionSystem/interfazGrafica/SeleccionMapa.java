@@ -6,36 +6,25 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import promotionSystem.Cliente;
+
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class SeleccionMapa extends JFrame {
 
 	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					SeleccionMapa frame = new SeleccionMapa();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public SeleccionMapa() {
+	private Cliente cliente;
+	private JComboBox comboBox;
+	public SeleccionMapa(Cliente cliente) throws IOException {
+		this.cliente=cliente;
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		setResizable(false);
@@ -48,9 +37,11 @@ public class SeleccionMapa extends JFrame {
 		lblSeleccioneUnMapa.setBounds(175, 11, 114, 14);
 		contentPane.add(lblSeleccioneUnMapa);
 		 
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(205, 51, 28, 20);
+		comboBox = new JComboBox<String>();
+		comboBox.setBounds(150, 51,200, 20);
 		contentPane.add(comboBox);
+		
+		agregarMapas();
 		
 		JButton btnVolver = new JButton("Volver");
 		btnVolver.addActionListener(new ActionListener() {
@@ -60,9 +51,33 @@ public class SeleccionMapa extends JFrame {
 		});
 		btnVolver.setBounds(175, 228, 89, 23);
 		contentPane.add(btnVolver);
-		
-		JButton btnJugar = new JButton("JUGAR!!!");
+		btnVolver.setEnabled(false);
+		JButton btnJugar = new JButton("JUGAR");
+		btnJugar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+			}
+
+			
+		});
+	
 		btnJugar.setBounds(175, 194, 89, 23);
 		contentPane.add(btnJugar);
+	}
+	private void agregarMapas() throws IOException {
+		ArrayList<String> razasRecibidas = (ArrayList<String>) cliente.recibirMapas();
+		for(String raza : razasRecibidas) {
+		    comboBox.addItem(raza);
+		}
+		
+	}
+	private void enviarAccion() throws IOException {
+		cliente.enviarAccion("Seleccionar Mapa");
+	}
+	
+	 private void cargarRazas() throws IOException {
+		
+	
+		
 	}
 }

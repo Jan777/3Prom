@@ -31,13 +31,7 @@ public class Login extends JFrame{
 		setTitle("LOGIN");
 		setResizable(false);
 		setBounds(0,0,450,400);
-		add(lamina);
-		
-		
-		
-		 
-		
-		
+		add(lamina);	
 	}
 	
 	
@@ -62,8 +56,8 @@ public class Login extends JFrame{
 	 
 	 class LaminaLoginCentral extends JPanel{
 		 
-		 private Cliente cliente;
-		private  JTextField contrasenia ;
+		private Cliente cliente;
+		private  JPasswordField contraseña ;
 		private JTextField nick;
 		private JLabel error;
 
@@ -75,33 +69,33 @@ public class Login extends JFrame{
 			 JButton  registrarse ;
 			 registrarse =new JButton("REGISTRATE");
 			 JLabel contrasenialabel=new JLabel("contraseña: ");
-			 JPasswordField contraseña = new JPasswordField(20); 
+			 contraseña = new JPasswordField(20); 
 			 
 			 JButton ingresar=new JButton("Ingresar");
 			 ingresar.addActionListener (new ActionListener(){
-
 					@Override
 					public void actionPerformed(ActionEvent arg0) {
 						try {
-							registrarse.setEnabled(false);
-							enviarAccion();
-							iniciarSesion(contraseña);
-							if(resultado()){		
-								menuPrincipal(frame);
+							if(camposNoVacios()){
+
+								registrarse.setEnabled(false);
+								enviarAccion();
+								iniciarSesion();
+								if(resultado()){		
+									menuPrincipal(frame);
+								}
+								else{								
+									error.setText("Usuario y/o Contraseña incorrecta");
+								}
 							}
-							else{								
-								error.setText("Usuario y/o Contraseña incorrecta");
+							else{
+								error.setText("Los Campos no deben estar vacios");
 							}
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
 					}
-
-					
-
-					
-
-					
+			
 				}					
 				);
 			 
@@ -111,65 +105,12 @@ public class Login extends JFrame{
 
 					@Override
 					public void actionPerformed(ActionEvent arg0) {
-						Registrarse marco=new Registrarse(cliente);
-						marco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-						marco.setVisible(true);
-						
-						marco.addWindowListener(new WindowListener(){
-
-							@Override
-							public void windowActivated(WindowEvent arg0) {
-								// TODO Auto-generated method stub
-								
-							}
-
-							@Override
-							public void windowClosed(WindowEvent arg0) {
-								// TODO Auto-generated method stub
-								frame.setEnabled(true);
-							}
-
-							@Override
-							public void windowClosing(WindowEvent arg0) {
-								// TODO Auto-generated method stub
-								
-							}
-
-							@Override
-							public void windowDeactivated(WindowEvent arg0) {
-								// TODO Auto-generated method stub
-								
-							}
-
-							@Override
-							public void windowDeiconified(WindowEvent arg0) {
-								// TODO Auto-generated method stub
-								
-							}
-
-							@Override
-							public void windowIconified(WindowEvent arg0) {
-								// TODO Auto-generated method stub
-								
-							}
-
-							@Override
-							public void windowOpened(WindowEvent arg0) {
-								// TODO Auto-generated method stub
-								frame.setEnabled(false);
-							}
-							
-						});
-						
+						abrirRegistrar(cliente, frame);						
 					}
-	
+
 				}					
 				);
 			 
-			 
-			 
-			
-
 			 error=new JLabel(" ");
 			 
 			 nicklabel.setBounds(0,10, 100, 20);
@@ -203,13 +144,55 @@ public class Login extends JFrame{
 			 add(informe);
 		 }
 		 
-		 private void iniciarSesion(JPasswordField contraseña) throws IOException {
+		private void abrirRegistrar(Cliente cliente, JFrame frame) {
+			Registrarse marco=new Registrarse(cliente);
+			marco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			marco.setVisible(true);
+			
+			marco.addWindowListener(new WindowListener(){
+
+				@Override
+				public void windowActivated(WindowEvent arg0) {
+				}
+
+				@Override
+				public void windowClosed(WindowEvent arg0) {
+					frame.setEnabled(true);
+				}
+
+				@Override
+				public void windowClosing(WindowEvent arg0) {
+				}
+
+				@Override
+				public void windowDeactivated(WindowEvent arg0) {
+				}
+
+				@Override
+				public void windowDeiconified(WindowEvent arg0) {	
+				}
+
+				@Override
+				public void windowIconified(WindowEvent arg0) {
+				}
+
+				@Override
+				public void windowOpened(WindowEvent arg0) {
+					frame.setEnabled(false);
+				}
+				
+			});
+		}
+		
+
+		private boolean camposNoVacios() {
+			return !nick.getText().equals("")&&!contraseña.getText().equals("");
+		}
+		 private void iniciarSesion() throws IOException {
 			
 				cliente.enviarUsuarioYContraseña(nick.getText(), contraseña.getText());
 			}
-			private void verResultado() throws IOException {
-				error.setText(cliente.resultado());
-			}
+	
 			private void enviarAccion() throws IOException {		
 				cliente.enviarAccion("Login");
 			}
@@ -226,44 +209,40 @@ public class Login extends JFrame{
 
 					@Override
 					public void windowActivated(WindowEvent arg0) {
-						// TODO Auto-generated method stub
+						
 						
 					}
 
 					@Override
 					public void windowClosed(WindowEvent arg0) {
-						// TODO Auto-generated method stub
-						
+		
 					}
 
 					@Override
 					public void windowClosing(WindowEvent arg0) {
-						// TODO Auto-generated method stub
+				
 						
 					}
 
 					@Override
 					public void windowDeactivated(WindowEvent arg0) {
-						// TODO Auto-generated method stub
-						
+				
 					}
 
 					@Override
 					public void windowDeiconified(WindowEvent arg0) {
-						// TODO Auto-generated method stub
-						
+		
 					}
 
 					@Override
 					public void windowIconified(WindowEvent arg0) {
-						// TODO Auto-generated method stub
+						
 						
 					}
 
 					@Override
 					public void windowOpened(WindowEvent arg0) {
-						// TODO Auto-generated method stub
-						//marco.setEnabled(false);
+					
 						marco.dispose();
 					}
 					

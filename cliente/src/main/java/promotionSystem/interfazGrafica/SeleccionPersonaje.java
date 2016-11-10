@@ -93,7 +93,7 @@ class LaminaNorte extends JPanel{
 }
 
 class LaminaOeste extends JPanel{
-	JComboBox castas,razas;
+	JComboBox<String> castas,razas;
 	private Cliente cliente;
 	public LaminaOeste(Cliente cliente) throws IOException{
 		setLayout(new GridLayout(8,1));
@@ -107,23 +107,11 @@ class LaminaOeste extends JPanel{
 		LaminaAuxFlow oesteMagia=new LaminaAuxFlow(FlowLayout.LEFT);
 		LaminaAuxFlow oesteEnergia=new LaminaAuxFlow(FlowLayout.LEFT);
 		LaminaAuxFlow oesteVelocidad=new LaminaAuxFlow(FlowLayout.LEFT);
-		razas=new JComboBox();
-		castas=new JComboBox();
-		try {
-			cargarRazas();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		/*
-		razas.addItem("Seleccione una raza.." );
-		razas.addItem("Humano");
-		razas.addItem("Kingdom Hearts");
-		razas.addItem("Orco");
-		razas.addItem("Pokemon");
-		razas.addItem("Star Wars");
-		razas.addItem("Undertale");
-*/
+		razas=new JComboBox<String>();
+		castas=new JComboBox<String>();
+		cargarRazas();
+	
+
 		razas.addActionListener(new AccionRazas());
 		JLabel ataque=new JLabel("ATAQUE: ");
 		JLabel puntosAtaque=new JLabel();
@@ -193,35 +181,7 @@ class LaminaOeste extends JPanel{
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			
-/*
-			if(eleccion.equals("Humano")||eleccion.equals("Orco")){
-				castas.addItem("Guerrero");
-				castas.addItem("Mago");
-				castas.addItem("Tanque");
-			}else {
-				if(eleccion.equals("Kingdom Hearts")){
-					castas.addItem("Sora");
-					castas.addItem("Roxas");
-					castas.addItem("Riku");
-				}else{
-					if(eleccion.equals("Pokemon")){
-						castas.addItem("Tipo Fuego");
-						castas.addItem("Tipo Agua");
-						castas.addItem("Tipo Planta");
-					}else { if(eleccion.equals("Stars Wars")){
-						castas.addItem("Jedi");
-						castas.addItem("Droide");
-						castas.addItem("Wookie");
-					}else{if(eleccion.equals("Undertale"))
-						castas.addItem("Chara");
 
-					}
-
-					}
-				}
-			}
-*/
 		}
 
 		private void cargarCastas() throws IOException {
