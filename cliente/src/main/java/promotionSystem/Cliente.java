@@ -5,6 +5,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
@@ -13,6 +14,7 @@ import java.lang.reflect.Type;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -157,7 +159,45 @@ public class Cliente {
 		personaje.setPosicion(new Gson().fromJson(json,Punto.class));
 	}
 	
+	public void enviarEnemigoYListaDePersonajesParaBatalla(Personaje enemigo, ArrayList<Personaje> amiga) throws IOException{
+		JsonObject personaje=new JsonObject();
+		JsonObject personajeEnemigo=new JsonObject();
+		JsonArray listaDeAmigos=new JsonArray();
+		personajeEnemigo.addProperty("nombre", enemigo.getNombre());
+		personaje.addProperty("personajeEnemigo", personajeEnemigo.toString());
+		Iterator<Personaje> iterator = amiga.iterator();
+		while(iterator.hasNext()){
+			listaDeAmigos.add(new JsonPrimitive(iterator.next().getNombre()));
+		}
+		personaje.addProperty("aliados", listaDeAmigos.toString());
+		salida.writeUTF(personaje.toString());
+	}
 	
+	private JsonElement recibirObjetoJson() throws IOException {
+		JsonParser parser = new JsonParser();
+		return parser.parse(entrada.readUTF());
+	}
+	
+	public void recibirNotificacionDeBatalla() throws IOException{
+		JsonElement elemento = recibirObjetoJson();
+		String atacante = elemento.getAsJsonObject().get("personajeEnemigo").getAsString();
+		String accion = elemento.getAsJsonObject().get("accion").getAsString();
+	}
+	
+	public void enviarListaDeAliados(ArrayList<Personaje> aliados) throws IOException{
+		JsonObject personaje=new JsonObject();
+		JsonObject personajePropio=new JsonObject();
+		JsonArray listaDeAmigos=new JsonArray();
+		personajePropio.addProperty("nombre", this.personaje.getNombre());
+		personaje.addProperty("personajePropio", personajePropio.toString());
+		Iterator<Personaje> iterator = aliados.iterator();
+		while(iterator.hasNext()){
+			listaDeAmigos.add(new JsonPrimitive(iterator.next().getNombre()));
+		}
+		personaje.addProperty("aliados", listaDeAmigos.toString());
+		salida.writeUTF(personaje.toString());
+	}
+
 	
 
 }

@@ -4,6 +4,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.lang.reflect.Type;
 import java.net.Socket;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSyntaxException;
+import com.google.gson.reflect.TypeToken;
 
 import promotionSystem.Conector;
 import promotionSystem.Personaje;
@@ -334,6 +336,81 @@ public class ServidorHilo extends Thread {
 		jugadores.get(cliente).setPosicion(puntoInicial);
 		 salida.writeUTF(punto.toString());
 	}
-
 	
+	public void recibirEnemigoYListaDeAliados() throws IOException{
+		JsonElement elemento = recibirObjetoJson();
+		String atacado = elemento.getAsJsonObject().get("personajeEnemigo").getAsString();
+		JsonArray iterator = elemento.getAsJsonObject().get("aliados").getAsJsonArray();
+		Type tipoListaAliados = new TypeToken<ArrayList<Personaje>>(){}.getType();
+		ArrayList<Personaje> listaAliados = new Gson().fromJson(iterator, tipoListaAliados);
+	}
+	
+	public void enviarNotificacionDeBatalla(Personaje atacado, String accion, Personaje atacante) throws IOException{
+		JsonObject personaje=new JsonObject();
+		personaje.addProperty("personajeAtacado", atacado.toString());
+		personaje.addProperty("accion", accion);
+		personaje.addProperty("personajeAtacante", atacante.toString());
+		salida.writeUTF(personaje.toString());
+	}
+	
+	public void recibirListaDeAliadosDeAtacado() throws IOException{
+		JsonElement elemento = recibirObjetoJson();
+		String atacado = elemento.getAsJsonObject().get("personajePropio").getAsString();
+		JsonArray iterator = elemento.getAsJsonObject().get("aliados").getAsJsonArray();
+		Type tipoListaAliados = new TypeToken<ArrayList<Personaje>>(){}.getType();
+		ArrayList<Personaje> listaAliados = new Gson().fromJson(iterator, tipoListaAliados);
+	}
+	
+	public void enviarNotificacionDeBatallaATodosLosParticipantes(ArrayList<Personaje> participantes) throws IOException{
+		JsonArray personajeBatalla=new JsonArray();
+		Iterator<Personaje> iterator = participantes.iterator();
+		while(iterator.hasNext()){
+			personajeBatalla.add(new JsonPrimitive(iterator.next().getNombre()));
+		}
+		Iterator<Personaje> iteratorPersonajes = participantes.iterator();
+		while(iteratorPersonajes.hasNext()){
+			String personaje = iteratorPersonajes.next().getNombre();
+			Iterator<Socket> iteratorSocket= jugadores.keySet().iterator();
+			boolean encontro=false;
+			while(!encontro && iteratorSocket.hasNext()){
+				Socket jugador = iteratorSocket.next();
+				if(jugadores.get(jugador).equals(personaje)){
+					new DataOutputStream(jugador.getOutputStream()).writeUTF(personajeBatalla.toString());;
+					encontro = true;
+				}
+			}
+		}
+	}
+	
+	public void librarBatalla(){
+		do{
+//			Personaje personajeConTurno = decidirTurno();
+//			enviarTurno(personajeConTurno);
+		}while(hayAlMenosUnPersonajeDeAlMenosUnEquipoVivo());
+		
+	}
+	
+	private void decidirTurno() {
+		
+	}
+
+	private boolean hayAlMenosUnPersonajeDeAlMenosUnEquipoVivo() {
+		return true;
+	}
+
+	public void enviarTurno(Personaje personaje) throws IOException{
+		JsonObject personajeConTurno=new JsonObject();
+		personajeConTurno.addProperty("accion", "turno");
+		/*Iterator<Personaje> iterator = jugadores.entrySet().iterator();
+		while(iterator.hasNext()){
+			if(jugadores.entrySet().equals(personaje)){
+				
+			}
+			personajeBatalla.add(new JsonPrimitive(iterator.next().getNombre()));
+		}
+		
+		Socket socket = jugadores;
+		new DataOutputStream(socket.getOutputStream()).writeUTF(personajeConTurno.toString());;
+		*/
+	}
 }
