@@ -173,7 +173,7 @@ public class Registrarse extends JFrame {
 
 		 private void elegirPersonaje(JFrame marco) throws IOException {
 			 SeleccionPersonaje ventana=new SeleccionPersonaje(cliente);
-			 //ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			 ventana.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 			 ventana.setVisible(true);
 			 marco.dispose();
 

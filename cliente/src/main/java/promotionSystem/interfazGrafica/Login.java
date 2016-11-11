@@ -103,7 +103,7 @@ public class Login extends JFrame{
 		 setLayout(new BorderLayout());
 		 LaminaLoginCentral lamina =new LaminaLoginCentral(cliente,marco);
 		 LaminaLoginNorte laminaN=new LaminaLoginNorte();
-		 LaminaLoginSur laminaS=new LaminaLoginSur();
+		 LaminaLoginSur laminaS=new LaminaLoginSur(cliente,marco);
 		 add(lamina,BorderLayout.CENTER);
 		 add(laminaN,BorderLayout.NORTH);
 		 add(laminaS,BorderLayout.SOUTH);
@@ -337,11 +337,26 @@ public class Login extends JFrame{
 	 
 class LaminaLoginSur extends JPanel{
 		 
-		 public LaminaLoginSur(){
+		 public LaminaLoginSur(Cliente cliente,JFrame marco){
 			 
 			
 			 
 			 JButton  salir=new JButton ("SALIR");
+			 
+			 salir.addActionListener(new ActionListener(){
+
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						enviarAccionDeCerrar(cliente);
+					} catch (IOException e) {
+						
+						e.printStackTrace();
+					}
+					marco.dispose();
+				}
+				 
+			 });
 			 
 			 
 			 salir.setSize(50, 50);
@@ -350,6 +365,10 @@ class LaminaLoginSur extends JPanel{
 			 add(salir);
 			 
 			 
+		 }
+		 
+		 private void enviarAccionDeCerrar(Cliente cliente) throws IOException {
+			 cliente.enviarAccion("cerrar");
 		 }
 	 }
 	 

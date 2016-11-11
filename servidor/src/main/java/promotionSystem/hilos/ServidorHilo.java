@@ -89,8 +89,7 @@ public class ServidorHilo extends Thread {
 	
 	public void registrar() throws Exception{
 		registrarJugador();
-		enviarRazas();
-		enviarListaDeCastas();
+	
 	}
 	
 	public void login(){
@@ -111,7 +110,9 @@ public class ServidorHilo extends Thread {
 
 	private void registrarJugador() throws Exception {
 		if(!comprobarUsuario()){
-			crearUsuario();			
+			crearUsuario();	
+			enviarRazas();
+			enviarListaDeCastas();
 		}
 	}
 

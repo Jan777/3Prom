@@ -118,7 +118,7 @@ public class MenuPrincipal extends JFrame {
 
 	private void abrirSeleccionDeMapa(JFrame marco) throws IOException {
 		SeleccionMapa mapa=new SeleccionMapa(cliente);
-		mapa.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		mapa.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		mapa.setVisible(true);
 		
 		mapa.addWindowListener(new WindowListener(){
@@ -139,7 +139,7 @@ public class MenuPrincipal extends JFrame {
 			@Override
 			public void windowClosing(WindowEvent arg0) {
 			
-				
+				marco.setEnabled(true);
 			}
 
 			@Override
