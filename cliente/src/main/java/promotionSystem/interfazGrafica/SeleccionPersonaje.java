@@ -26,15 +26,17 @@ public class SeleccionPersonaje extends JFrame {
 }
 
 class LaminaPrincipal extends JPanel{
+	JComboBox<String> castas,razas;
 
 	public LaminaPrincipal(Cliente cliente) throws IOException{
-
+		castas=new JComboBox<String>();
+		razas=new JComboBox<String>();
 		setLayout(new BorderLayout());
 		LaminaNorte laminaN=new LaminaNorte();
-		LaminaOeste laminaE=new LaminaOeste(cliente);
+		LaminaOeste laminaE=new LaminaOeste(cliente,castas,razas);
 		LaminaCentral laminaC=new LaminaCentral();
 
-		LaminaSur laminaS = new LaminaSur();
+		LaminaSur laminaS = new LaminaSur(cliente,castas,razas);
 		add(laminaN,BorderLayout.NORTH);
 		add(laminaE,BorderLayout.WEST);
 		add(laminaC,BorderLayout.CENTER);
@@ -44,18 +46,51 @@ class LaminaPrincipal extends JPanel{
 }
 
 class LaminaSur extends JPanel{
-	public LaminaSur(){
+	JComboBox<String> castas,razas;
+	private Cliente cliente;
+	
+	public LaminaSur(Cliente cliente,JComboBox<String> castas, JComboBox<String> razas){
+		this.cliente=cliente;
+		this.castas=castas;
+		this.razas=razas;
+		
 		setLayout(new GridLayout(2,1));
 		LaminaAuxFlow lamina =new LaminaAuxFlow(FlowLayout.CENTER);
 		LaminaAuxFlow informe =new LaminaAuxFlow(FlowLayout.CENTER);
 		
 		JButton seleccionar=new JButton("SELECCIONAR");
+		seleccionar.addActionListener (new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					enviarRazaYCasta();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+
+		
+			
+		});
+		
 		JLabel error=new JLabel(" ");
 		
 		lamina.add(seleccionar);
 		informe.add(error);
 		add(lamina);
 		add(informe);
+	}
+	
+	private void enviarRazaYCasta() throws Exception {
+		cliente.enviarAccion("seleccionarRazaYCasta");
+		String raza=(String) razas.getSelectedItem();
+		String casta=(String) castas.getSelectedItem();
+		cliente.enviarRazaYCastaSeleccionada(raza,casta);
+		
+		
 	}
 }
 
@@ -80,6 +115,10 @@ class LaminaCentral extends JPanel{
 
 	}
 }
+/*
+cliente.enviarAccion("enviarRaza");
+cliente.enviarRazaSeleccionada(eleccion);
+cargarCastas();*/
 
 class LaminaNorte extends JPanel{
 
@@ -95,10 +134,14 @@ class LaminaNorte extends JPanel{
 class LaminaOeste extends JPanel{
 	JComboBox<String> castas,razas;
 	private Cliente cliente;
-	public LaminaOeste(Cliente cliente) throws IOException{
+	private ArrayList<String> listaDeCastas;
+	private String razaElegida;
+	private String castaElegida;
+	public LaminaOeste(Cliente cliente,JComboBox<String> castas, JComboBox<String> razas) throws IOException{
+		this.castas=castas;
+		this.razas=razas;
 		setLayout(new GridLayout(8,1));
 		this.cliente=cliente;
-		enviarAccion();
 		LaminaAuxFlow oesteRazas=new LaminaAuxFlow(FlowLayout.LEFT);
 		LaminaAuxFlow oesteCastas=new LaminaAuxFlow(FlowLayout.LEFT);
 		LaminaAuxFlow oesteSalud=new LaminaAuxFlow(FlowLayout.LEFT);
@@ -107,12 +150,16 @@ class LaminaOeste extends JPanel{
 		LaminaAuxFlow oesteMagia=new LaminaAuxFlow(FlowLayout.LEFT);
 		LaminaAuxFlow oesteEnergia=new LaminaAuxFlow(FlowLayout.LEFT);
 		LaminaAuxFlow oesteVelocidad=new LaminaAuxFlow(FlowLayout.LEFT);
-		razas=new JComboBox<String>();
-		castas=new JComboBox<String>();
+		
 		cargarRazas();
+		listaDeCastas=recibirListaDeCastas();
+		
+		castas.setEnabled(false);
+	    
+	    castas.addActionListener(new AccionCastas(castas));
+	    
+		razas.addActionListener(new AccionRazas(razas));
 	
-
-		razas.addActionListener(new AccionRazas());
 		JLabel ataque=new JLabel("ATAQUE: ");
 		JLabel puntosAtaque=new JLabel();
 		JLabel defensa=new JLabel("DEFENSA: ");
@@ -154,6 +201,10 @@ class LaminaOeste extends JPanel{
 
 	}
 
+	private ArrayList<String> recibirListaDeCastas() throws IOException {
+		return (ArrayList<String>) cliente.recibirListaDeCastas();
+	}
+
 	private void cargarRazas() throws IOException {
 		
 		ArrayList<String> razasRecibidas = (ArrayList<String>) cliente.recibirRazas();
@@ -163,45 +214,75 @@ class LaminaOeste extends JPanel{
 		
 	}
 	
-	private void enviarAccion() throws IOException {		
-		cliente.enviarAccion("Registro de Personaje");
-	}
 
-	private class AccionRazas implements ActionListener{
+	private class AccionCastas implements ActionListener{
+		JComboBox castas;
+
+		public AccionCastas(JComboBox castas){
+			this.castas=castas;
+		}
 
 		@Override
+		public void actionPerformed(ActionEvent e) {
+		  String castaElegida=(String) this.castas.getSelectedItem();	
+		}
+
+	}
+	private class AccionRazas implements ActionListener{
+		JComboBox razas;
+
+		public AccionRazas(JComboBox razas){
+			this.razas=razas;
+		}
+		@Override
 		public void actionPerformed(ActionEvent arg0) {
+			
 			castas.removeAllItems();
-			String eleccion= (String) razas.getSelectedItem();
-			
-			try {
-				cliente.enviarRazaSeleccionada(eleccion);
-				cargarCastas();
+			String razaElegida= (String) this.razas.getSelectedItem();
+			cargarCastas(razaElegida);
+		    castas.setEnabled(true);
 				
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+		
 
 		}
-
-		private void cargarCastas() throws IOException {
-			ArrayList<String> castasRecibidas=(ArrayList<String>) cliente.recibirCasta();		
-			for(String casta : castasRecibidas) {
-			    castas.addItem(casta);
+		
+		private void cargarCastas(String raza) {
+			if (raza.equals("Humano")){
+				castas.addItem(listaDeCastas.get(0));
+				castas.addItem(listaDeCastas.get(1));
+				castas.addItem(listaDeCastas.get(2));
+				
+			} else {
+				if (raza.equals("Kingdom Hearts")) {
+					castas.addItem(listaDeCastas.get(3));
+					castas.addItem(listaDeCastas.get(4));
+					castas.addItem(listaDeCastas.get(5));
+				} else {
+					if (raza.equals("Pokemon")) {
+						castas.addItem(listaDeCastas.get(6));
+						castas.addItem(listaDeCastas.get(7));
+						castas.addItem(listaDeCastas.get(8));
+					} else {
+						if (raza.equals("Star Wars")) {
+							castas.addItem(listaDeCastas.get(9));
+							castas.addItem(listaDeCastas.get(10));
+							castas.addItem(listaDeCastas.get(11));
+						} else {
+							if (raza.equals("Undertale")){
+								castas.addItem(listaDeCastas.get(12));		
+							}else if(raza.equals("Orco")){
+								castas.addItem(listaDeCastas.get(13));
+								castas.addItem(listaDeCastas.get(14));
+								castas.addItem(listaDeCastas.get(15));
+							}
+						}
+					}
+				}
 			}
 			
 		}
 
-		private class AccionCastas implements ActionListener{
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				String eleccion=(String) castas.getSelectedItem();
-				
-			}
-
-		}
+		
 	}
 }
 

@@ -1,12 +1,15 @@
 package promotionSystem;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.*;
+import java.lang.reflect.Type;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -41,8 +44,6 @@ public class Cliente {
 		return (Personaje) Class.forName("promotionSystem.razas.castas." + raza + "." + casta).newInstance();
 	}
 
-	
-
 	private void configurar(String path) throws FileNotFoundException {
 		Scanner scanner = new Scanner(new File(path));
 		puerto=scanner.nextInt();
@@ -52,42 +53,35 @@ public class Cliente {
 		scanner.close();
 	}
 
-	public void recibirPosicionInicial() throws IOException{
-		String punto = entrada.readUTF();
-		JsonParser parser = new JsonParser();
-		JsonObject json = parser.parse(punto).getAsJsonObject();
-		personaje.setPosicion(new Gson().fromJson(json,Punto.class));
-	}
+
 	
 	public List<String> recibirRazas() throws IOException{
 		return recibirLista("razas");
 	}
 	
-	public void enviarRazaSeleccionada(String raza) throws IOException{
-		JsonObject razaElegida = new JsonObject();
-		razaElegida.addProperty("raza",raza);
-	    salida.writeUTF(razaElegida.toString());
+	public ArrayList<String> recibirListaDeCastas() throws IOException {
+		return (ArrayList<String>) recibirLista("castas");
 	}
+
 	
-	public List<String> recibirCasta() throws IOException{
-		
-		return recibirLista("castas");
-	}
 
 	private List<String> recibirLista(String propiedad) throws IOException {
 		JsonParser parser = new JsonParser();
-		JsonObject json = parser.parse(entrada.readUTF()).getAsJsonObject();
-		String[] listaRecibidas = json.get(propiedad).getAsJsonArray().toString().split(",");
-		List<String> lista = new ArrayList<String>();
-		Collections.addAll(lista, listaRecibidas);
-		return lista;
+		JsonArray json = parser.parse(entrada.readUTF()).getAsJsonArray();
+		Type tipoListaRazas = new TypeToken<List<String>>(){}.getType();
+		List<String> listaRecibidas = new Gson().fromJson(json, tipoListaRazas);
+		return listaRecibidas;
 	}
-	
-	public void enviarCastaSeleccionada(String casta) throws Exception{
-		JsonObject castaElegida = new JsonObject();
-		castaElegida.addProperty("casta",casta);
-	    salida.writeUTF(castaElegida.toString());
-	    crearPersonaje();
+
+	public void enviarRazaYCastaSeleccionada(String raza, String casta) throws Exception {
+		this.raza=raza.replaceAll(" ", "").replace(raza.charAt(0),Character.toLowerCase(raza.charAt(0))); 
+		this.casta=casta.replaceAll(" ", ""); 
+		JsonObject razaYCastaElegidas = new JsonObject();
+		razaYCastaElegidas.addProperty("raza",this.raza);
+		razaYCastaElegidas.addProperty("casta",this.casta);
+		salida.writeUTF(razaYCastaElegidas.toString());
+		crearPersonaje();
+		
 	}
 	
 	public List<String> recibirMapas() throws IOException{
@@ -132,7 +126,9 @@ public class Cliente {
 		salida.writeUTF(usuario.toString());
 		
 	}
+
 	
+	///No implementados.
 	public void enviarInvitacionAAlianza(Personaje invitado) throws IOException{
 		JsonObject personajeInvitado=new JsonObject();
 		personajeInvitado.addProperty("nombre", invitado.getNombre());
@@ -152,6 +148,13 @@ public class Cliente {
 		JsonObject respuestaEnviada = new JsonObject();
 		respuestaEnviada.addProperty("respuesta", respuesta);
 		salida.writeUTF(respuestaEnviada.toString());
+	}
+
+	public void recibirPosicionInicial() throws IOException{
+		String punto = entrada.readUTF();
+		JsonParser parser = new JsonParser();
+		JsonObject json = parser.parse(punto).getAsJsonObject();
+		personaje.setPosicion(new Gson().fromJson(json,Punto.class));
 	}
 	
 	

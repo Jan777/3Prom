@@ -160,7 +160,7 @@ public class Registrarse extends JFrame {
 			 cliente.enviarUsuarioYContraseña(nick.getText(), contraseña.getText());
 		 }
 		 private void enviarAccion() throws IOException {
-			 cliente.enviarAccion("Registrar");
+			 cliente.enviarAccion("registrar");
 		 }
 
 		 private void elegirPersonaje() throws IOException {

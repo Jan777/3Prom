@@ -28,7 +28,7 @@ public class SeleccionMapa extends JFrame {
 	private JComboBox comboBox;
 	public SeleccionMapa(Cliente cliente) throws IOException {
 		this.cliente=cliente;
-		
+		cliente.enviarAccion("recibirMapas");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		setResizable(false);
@@ -103,7 +103,7 @@ public class SeleccionMapa extends JFrame {
 		
 	}
 	private void enviarAccion() throws IOException {
-		cliente.enviarAccion("Seleccionar Mapa");
+		cliente.enviarAccion("seleccionarMapa");
 	}
 	
 	 private void cargarRazas() throws IOException {

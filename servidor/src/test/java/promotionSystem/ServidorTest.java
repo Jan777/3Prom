@@ -4,8 +4,8 @@ import org.junit.Test;
 
 public class ServidorTest {
 
-	@Test
-	public void doStuff(){
+	public static void main(String[] args) throws Exception {
+
 		Servidor server= new Servidor();
 		
 	}

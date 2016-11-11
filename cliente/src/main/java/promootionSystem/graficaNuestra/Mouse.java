@@ -14,7 +14,7 @@ public class Mouse implements MouseListener{
 		x=0;
 		y=0;
 		
-		System.out.println(pos[0]+pos[1]);
+//		System.out.println(pos[0]+pos[1]);
 	}
 
 	@Override

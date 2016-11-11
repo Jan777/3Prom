@@ -25,7 +25,6 @@ public class MenuPrincipal extends JFrame {
 		JFrame marco=this;
 		setTitle("Menu Principal");
 		this.cliente=cliente;
-		cliente.enviarAccion("MenuPrincipal");
 		setBounds(100, 100, 450, 300);
 		setResizable(false);
 		contentPane = new JPanel();

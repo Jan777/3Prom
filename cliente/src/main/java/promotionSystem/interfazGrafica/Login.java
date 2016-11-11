@@ -77,7 +77,6 @@ public class Login extends JFrame{
 					public void actionPerformed(ActionEvent arg0) {
 						try {
 							if(camposNoVacios()){
-
 								registrarse.setEnabled(false);
 								enviarAccion();
 								iniciarSesion();
@@ -194,7 +193,7 @@ public class Login extends JFrame{
 			}
 	
 			private void enviarAccion() throws IOException {		
-				cliente.enviarAccion("Login");
+				cliente.enviarAccion("login");
 			}
 			private boolean resultado() throws IOException {
 				return cliente.resultado().equals("true");
