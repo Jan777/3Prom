@@ -71,6 +71,11 @@ public class ServidorHilo extends Thread {
 		
 	
 	}
+	
+	public void cerrar() throws IOException{
+		cliente.close();
+	}
+	
 	public void recibirMapas() throws IOException{
 		enviarMapas();
 	}
