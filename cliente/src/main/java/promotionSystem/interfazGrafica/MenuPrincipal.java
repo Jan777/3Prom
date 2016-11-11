@@ -59,8 +59,62 @@ public class MenuPrincipal extends JFrame {
 		});
 		btnSalir.setBounds(170, 228, 89, 23);
 		contentPane.add(btnSalir);
+		
+		
+		addWindowListener(new WindowListener(){
+
+			@Override
+			public void windowActivated(WindowEvent e) {
+			
+				
+			}
+
+			@Override
+			public void windowClosed(WindowEvent e) {
+				
+			}
+
+			@Override
+			public void windowClosing(WindowEvent e) {
+				
+				try {
+					enviarAccionDeCerrar();
+				} catch (IOException e1) {
+					
+					e1.printStackTrace();
+				}
+			}
+
+			@Override
+			public void windowDeactivated(WindowEvent e) {
+				
+				
+			}
+
+			@Override
+			public void windowDeiconified(WindowEvent e) {
+			
+				
+			}
+
+			@Override
+			public void windowIconified(WindowEvent e) {
+			
+				
+			}
+
+			@Override
+			public void windowOpened(WindowEvent e) {
+			
+				
+			}
+			
+		});
 	}
 	
+	private void enviarAccionDeCerrar() throws IOException {
+		 cliente.enviarAccion("cerrar");
+	 }
 
 	private void abrirSeleccionDeMapa(JFrame marco) throws IOException {
 		SeleccionMapa mapa=new SeleccionMapa(cliente);

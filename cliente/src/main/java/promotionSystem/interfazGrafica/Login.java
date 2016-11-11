@@ -28,6 +28,56 @@ public class Login extends JFrame{
 		
 		cliente=new Cliente();
 		crearInterfaz();	
+		
+		addWindowListener(new WindowListener(){
+
+			@Override
+			public void windowActivated(WindowEvent e) {
+				
+				
+			}
+
+			@Override
+			public void windowClosed(WindowEvent e) {
+				
+			}
+
+			@Override
+			public void windowClosing(WindowEvent e) {
+				
+				try {
+					enviarAccionDeCerrar();
+				} catch (IOException e1) {
+					
+					e1.printStackTrace();
+				}
+			}
+
+			@Override
+			public void windowDeactivated(WindowEvent e) {
+				
+				
+			}
+
+			@Override
+			public void windowDeiconified(WindowEvent e) {
+				
+				
+			}
+
+			@Override
+			public void windowIconified(WindowEvent e) {
+				
+				
+			}
+
+			@Override
+			public void windowOpened(WindowEvent e) {
+				
+				
+			}
+			
+		});
 	}
 	private void crearInterfaz() {
 		LaminaLogin lamina=new LaminaLogin(cliente,this);
@@ -41,7 +91,9 @@ public class Login extends JFrame{
 		crearInterfaz();
 	}
 	
-	
+	private void enviarAccionDeCerrar() throws IOException {
+		 cliente.enviarAccion("cerrar");
+	 }
 
 }
 
@@ -155,7 +207,7 @@ public class Login extends JFrame{
 		 
 		private void abrirRegistrar(Cliente cliente, JFrame frame) {
 			Registrarse marco=new Registrarse(cliente);
-			marco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			marco.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			marco.setVisible(true);
 			
 			marco.addWindowListener(new WindowListener(){

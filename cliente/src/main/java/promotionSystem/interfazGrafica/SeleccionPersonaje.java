@@ -20,7 +20,7 @@ public class SeleccionPersonaje extends JFrame {
 		setBounds(0,0,500,500);
 		setResizable(false);
 		setTitle("Seleccion de Personaje");
-		LaminaPrincipal lamina=new LaminaPrincipal(cliente);
+		LaminaPrincipal lamina=new LaminaPrincipal(cliente,this);
 		add(lamina);
 	}
 }
@@ -28,7 +28,7 @@ public class SeleccionPersonaje extends JFrame {
 class LaminaPrincipal extends JPanel{
 	JComboBox<String> castas,razas;
 
-	public LaminaPrincipal(Cliente cliente) throws IOException{
+	public LaminaPrincipal(Cliente cliente,JFrame marco) throws IOException{
 		castas=new JComboBox<String>();
 		razas=new JComboBox<String>();
 		setLayout(new BorderLayout());
@@ -36,7 +36,7 @@ class LaminaPrincipal extends JPanel{
 		LaminaOeste laminaE=new LaminaOeste(cliente,castas,razas);
 		LaminaCentral laminaC=new LaminaCentral();
 
-		LaminaSur laminaS = new LaminaSur(cliente,castas,razas);
+		LaminaSur laminaS = new LaminaSur(cliente,castas,razas,marco);
 		add(laminaN,BorderLayout.NORTH);
 		add(laminaE,BorderLayout.WEST);
 		add(laminaC,BorderLayout.CENTER);
@@ -49,7 +49,7 @@ class LaminaSur extends JPanel{
 	JComboBox<String> castas,razas;
 	private Cliente cliente;
 	
-	public LaminaSur(Cliente cliente,JComboBox<String> castas, JComboBox<String> razas){
+	public LaminaSur(Cliente cliente,JComboBox<String> castas, JComboBox<String> razas,JFrame marco){
 		this.cliente=cliente;
 		this.castas=castas;
 		this.razas=razas;
@@ -65,9 +65,7 @@ class LaminaSur extends JPanel{
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					enviarRazaYCasta();
-					Login ventana=new Login(cliente);
-					ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					ventana.setVisible(true);
+					marco.dispose();
 				
 				} catch (Exception e) {
 			

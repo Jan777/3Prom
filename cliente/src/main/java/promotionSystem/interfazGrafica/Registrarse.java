@@ -7,6 +7,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.IOException;
 
 import javax.swing.JButton;
@@ -26,6 +28,8 @@ public class Registrarse extends JFrame {
 		setResizable(false);
 		setBounds(100,100,600,400);
 		add(laminaRegistro);
+		
+		
 	
 	
 		
@@ -39,7 +43,7 @@ public class Registrarse extends JFrame {
 	 
 	 public LaminaRegistro(Cliente cliente,JFrame marco){
 		 setLayout(new BorderLayout());
-		 LaminaCentralR laminaC =new LaminaCentralR(cliente);
+		 LaminaCentralR laminaC =new LaminaCentralR(cliente,marco);
 		 LaminaNorteR laminaN=new LaminaNorteR();
 		 LaminaSurR laminaS=new LaminaSurR(marco);
 		 add(laminaC,BorderLayout.CENTER);
@@ -59,7 +63,7 @@ public class Registrarse extends JFrame {
 		 private JLabel error;
 		 private JTextField nick;
 		 private Cliente cliente;
-		 public LaminaCentralR(Cliente cliente){
+		 public LaminaCentralR(Cliente cliente,JFrame marco){
 			 this.cliente=cliente;
 			 setLayout(new GridLayout(4,1));
 			 JLabel nicklabel=new JLabel("NickName: ");
@@ -87,7 +91,7 @@ public class Registrarse extends JFrame {
 									enviarAccion();
 									if(comprobarUsuario()){
 										enviarUsuarioYContraseña();
-										elegirPersonaje();
+										elegirPersonaje(marco);
 									}
 									else{
 										informarErrorUsuario();
@@ -162,11 +166,16 @@ public class Registrarse extends JFrame {
 		 private void enviarAccion() throws IOException {
 			 cliente.enviarAccion("registrar");
 		 }
+		 
+		 private void enviarAccionDeCerrar() throws IOException {
+			 cliente.enviarAccion("cerrar");
+		 }
 
-		 private void elegirPersonaje() throws IOException {
+		 private void elegirPersonaje(JFrame marco) throws IOException {
 			 SeleccionPersonaje ventana=new SeleccionPersonaje(cliente);
-			 ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			 //ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			 ventana.setVisible(true);
+			 marco.dispose();
 
 		 }
 	 }
@@ -198,7 +207,7 @@ class LaminaSurR extends JPanel{
 
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					// TODO Auto-generated method stub
+					
 					marco.dispose();
 				}
 				 

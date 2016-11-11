@@ -16,6 +16,8 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -29,7 +31,7 @@ public class SeleccionMapa extends JFrame {
 	public SeleccionMapa(Cliente cliente) throws IOException {
 		this.cliente=cliente;
 		cliente.enviarAccion("recibirMapas");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		setResizable(false);
 		contentPane = new JPanel();
@@ -55,7 +57,7 @@ public class SeleccionMapa extends JFrame {
 		});
 		btnVolver.setBounds(175, 228, 89, 23);
 		contentPane.add(btnVolver);
-		btnVolver.setEnabled(false);
+		
 		JButton btnJugar = new JButton("JUGAR");
 		btnJugar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -90,11 +92,68 @@ public class SeleccionMapa extends JFrame {
 				juego.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				juego.setVisible(true);
 				
+				juego.addWindowListener(new WindowListener(){
+
+					@Override
+					public void windowActivated(WindowEvent e) {
+						
+						
+					}
+
+					@Override
+					public void windowClosed(WindowEvent e) {
+						
+						
+					}
+
+					@Override
+					public void windowClosing(WindowEvent e) {
+						
+						try {
+							enviarAccionDeCerrar();
+						} catch (IOException e1) {
+							
+							e1.printStackTrace();
+						}
+					
+					}
+
+					@Override
+					public void windowDeactivated(WindowEvent e) {
+						
+						
+					}
+
+					@Override
+					public void windowDeiconified(WindowEvent e) {
+						
+						
+					}
+
+					@Override
+					public void windowIconified(WindowEvent e) {
+						
+						
+					}
+
+					@Override
+					public void windowOpened(WindowEvent e) {
+						
+						
+					}
+					
+				});
+				
 			}
 			
 		});
 		contentPane.add(btnPrueba);
+		
 	}
+	
+	private void enviarAccionDeCerrar() throws IOException {
+		 cliente.enviarAccion("cerrar");
+	 }
 	private void agregarMapas() throws IOException {
 		ArrayList<String> mapasRecibidos = (ArrayList<String>) cliente.recibirMapas();
 		for(String mapa : mapasRecibidos) {

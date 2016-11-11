@@ -27,6 +27,7 @@ import promotionSystem.mapa.Mapa;
 
 public class ServidorHilo extends Thread {
 	private Socket cliente;
+	private boolean continuar=true;
 	private HashMap<Socket,Personaje> jugadores;
 	private ArrayList<Punto> puntosIniciales;
 	private HashMap<Personaje,Mapa> jugadoresPorMapa;
@@ -60,7 +61,7 @@ public class ServidorHilo extends Thread {
 	public void run(){
 		try {
 
-			while(true){
+			while(continuar){
 				Method miMetodo = ServidorHilo.class.getMethod(recibirAccion());
 				miMetodo.invoke(this);
 			}
@@ -74,6 +75,7 @@ public class ServidorHilo extends Thread {
 	
 	public void cerrar() throws IOException{
 		cliente.close();
+	    continuar=false;
 	}
 	
 	public void recibirMapas() throws IOException{
