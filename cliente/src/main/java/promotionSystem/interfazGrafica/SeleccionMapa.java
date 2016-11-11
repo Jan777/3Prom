@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import promootionSystem.graficaNuestra.JuegoPanel;
 import promotionSystem.Cliente;
 import promotionSystem.pantallaJuego.juego.Juego;
 
@@ -15,6 +16,7 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
@@ -72,9 +74,21 @@ public class SeleccionMapa extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
-				Juego Kom = new Juego("King of Multiverse", 800, 600);
-				Kom.start();
+				
+				JFrame juego=new JFrame("King of Multiverse V1.0");
+				juego.setBounds(100, 100, 800, 600);
+				JuegoPanel panel;
+				try {
+					panel = new JuegoPanel(juego);
+					juego.add(panel);
+				} catch (FileNotFoundException e) {
+					
+					e.printStackTrace();
+				}
+				
+				juego.setResizable(false);
+				juego.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				juego.setVisible(true);
 				
 			}
 			

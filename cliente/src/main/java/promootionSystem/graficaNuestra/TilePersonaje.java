@@ -17,17 +17,10 @@ public class TilePersonaje {
 	private int yInicio;
 	private int xDestino;
 	private int yDestino;
-	// Movimiento Actual
+	
 	private boolean nuevoRecorrido;
 	
-	/*
-	private boolean horizontal;
-	private boolean vertical;
-	private boolean diagonalInfIzq;
-	private boolean diagonalInfDer;
-	private boolean diagonalSupIzq;
-	private boolean diagonalSupDer;
-	*/
+
 
 	
 	public TilePersonaje(int x, int y, int sprite,String nombre,Mouse mouse) {
@@ -46,12 +39,7 @@ public class TilePersonaje {
 		this.yInicio = yInicio;
 	}
 
-	/**
-	 * Ver si le mando las coordenadas donde  esto al personaje.
-	 * @param g2d
-	 * @param deltaX
-	 * @param deltaY
-	 */
+	
 	public void dibujarCentro(Graphics g) {
 		g.drawImage( Mapa.getImage(tipoDeSprite), xCentro, yCentro, null);
 		Font fuente=new Font("Arial", Font.BOLD, 16);
@@ -73,7 +61,7 @@ public class TilePersonaje {
 			
 
 			
-			//esto es para animaciones no le des bola:
+			
 			/*
 			diagonalInfIzq = false;
 			diagonalInfDer = false;
@@ -110,10 +98,7 @@ public class TilePersonaje {
 	}
 
 
-	/**
-	 * Por un extraño motivo dan negativas :c
-	 * @return
-	 */
+	
 	public int getXDestino() {
 		return xDestino;
 	}
@@ -123,10 +108,10 @@ public class TilePersonaje {
 	}
 	
 	public void mover() {
-		//me muevo de inicio  a fin.
+		
 		xInicio = xDestino;  
 		yInicio = yDestino;	
-		setNuevoRecorrido(false); // cuando me muevo ya no es nuevo recorrido.
+		setNuevoRecorrido(false); 
 	}
 		
 	public void setNuevoRecorrido(boolean bs){

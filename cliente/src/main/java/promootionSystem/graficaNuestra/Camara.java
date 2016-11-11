@@ -9,14 +9,14 @@ public class Camara {
 	
 	public Camara(int ancho, int alto, int xCamara, int yCamara) {
 
-		int x0 = xCamara; //ancho/2
+		int x0 = xCamara; 
 		int y0 = yCamara;
 
 		int auxX = y0 + (x0 / 2);
 		int auxY = y0 - (x0 / 2);
 
 		if(auxX < 0)
-			auxX -= 31; // 32X64
+			auxX -= 31;
 		if(auxY < 0)
 			auxY -= 31;
 

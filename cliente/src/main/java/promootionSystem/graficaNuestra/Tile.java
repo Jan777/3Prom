@@ -10,7 +10,7 @@ public class Tile {
 	protected int posicionX;
 	protected int posicionY;
 	private boolean obstaculo;
-	protected int posicionXConvertida; // Pasar de coordenadas logicas a coordenadas reales
+	protected int posicionXConvertida; 
 	protected int posicionYConvertida;
 	protected int altoImagen;
 

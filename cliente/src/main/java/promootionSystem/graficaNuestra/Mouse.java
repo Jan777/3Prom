@@ -19,7 +19,7 @@ public class Mouse implements MouseListener{
 
 	@Override
 	public void mouseClicked(MouseEvent evento) {
-		// TODO Auto-generated method stub
+		
 		x = evento.getX();
 		y = evento.getY();
 		recorrido = true;
@@ -28,25 +28,25 @@ public class Mouse implements MouseListener{
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
+	
 		
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
+	
 		
 	}
 	
@@ -59,7 +59,7 @@ public class Mouse implements MouseListener{
 	}
 	public void actualizar() {
 		
-		int x0 = x - ( Tile.ANCHO / 2 ); //ancho/2
+		int x0 = x - ( Tile.ANCHO / 2 ); 
 		int y0 = y;
 
 		int auxX = y0 + (x0 / 2);

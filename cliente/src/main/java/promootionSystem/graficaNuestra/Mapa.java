@@ -22,7 +22,7 @@ public class Mapa {
 	protected String nombre;
 
 
-	// BUGERO
+
 	protected int x;
 	protected int y;
 
@@ -116,21 +116,7 @@ private void cargarSprites(String nombre) {
 		return enMovimiento;
 	}
 
-	/**
-	 * Aca alex tiene que hacer la hoja de sprite y ir cortandola.
-	 * lo que yo pense (que ya esta casi echo)
-	 * es tener una carpeta (o unos sprites) con distintos nombres para 
-	 * distintos mapas.
-	 * por ejemplo:
-	 * exterior va a hacer un a hoja de sprite con todo los sprite del exterior
-	 * 
-	 * pero si el mapa tiene la palabra castillo.
-	 * va a cargar la hoja de sprite de castillo.
-	 * 
-	 * pero como dije necesitamos los sprite y a alex que haga el corte
-	 * si no lo dejamos como esta :D
-	 * @param nombre
-	 */
+	
 	
 
 	public static Image loadImage(String path) {
@@ -151,13 +137,7 @@ private void cargarSprites(String nombre) {
 
 	}
 
-	/**
-	 * Segun la las coordenadas que recibe devuelve 
-	 * verdadero si hay un obstaculo y falso si no.
-	 * @param x
-	 * @param y
-	 * @return
-	 */
+	
 	public boolean hayObstaculo(int x,int y){
 		return obstaculos[x][y];
 	}
@@ -215,16 +195,10 @@ private void cargarSprites(String nombre) {
 	}*/
 
 
-	/**
-	 * tengo que buscar la forma de dibujar solo la pantalla.
-	 *
-	 * 			      (0,0)
-	 * 			 (0,1)(1,1)(1,0)
-	 *		(0,2)(1,2)(2,2)(2,1)(2,0)
-	 */
+	
 	public void dibujar(Graphics2D g2d) {
 		g2d.setBackground(Color.BLACK);
-//<<<<<<< Updated upstream
+
 		g2d.clearRect(0, 0, 810, 610);		
 		for (int i = 0; i <  alto; i++) { 
 			for (int j = 0; j < ancho ; j++) { 
@@ -235,7 +209,7 @@ private void cargarSprites(String nombre) {
 	
 	public void dibujarObstaculo(Graphics2D g2d) {
 		
-//<<<<<<< Updated upstream
+
 		g2d.clearRect(0, 0, 810, 610);		
 		for (int i = 0; i <  alto; i++) { 
 			for (int j = 0; j < ancho ; j++) { 
@@ -243,15 +217,14 @@ private void cargarSprites(String nombre) {
 			}
 		}
 	}
-//=======
-	
-//>>>>>>> Stashed changes
+
+
 
 	public void mover(Graphics2D g2d) {
 		g2d.setBackground(Color.BLACK);
 		g2d.clearRect(0, 0, 810, 610);		
-		//Tiene que ser uno por uno entonces si cancelo termino el movimiento (sino se descuajaina todo).
-		x = tiles[0][0].getXIso(); // puedo agarrar el centro. pero por ahora asi.
+		
+		x = tiles[0][0].getXIso(); 
 		y = tiles[0][0].getYIso();
 		for (int i = 0; i <  alto; i++) { 
 			for (int j = 0; j < ancho ; j++) { 
