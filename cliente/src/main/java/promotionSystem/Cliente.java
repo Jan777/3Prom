@@ -20,7 +20,7 @@ import java.util.Scanner;
 
 public class Cliente {
 	private Socket cliente;
-	private String name;
+	private String nombre;
 	private String ip;
 	private String sala;
 	private int puerto;
@@ -33,7 +33,6 @@ public class Cliente {
 	public Cliente() throws Exception {
 		try {
 			configurar(archivoDeConfiguracion);
-			this.name=name;
 			cliente = new Socket(ip,puerto);
 			salida=new DataOutputStream(cliente.getOutputStream());
 			entrada=new DataInputStream(cliente.getInputStream());
@@ -82,8 +81,13 @@ public class Cliente {
 		razaYCastaElegidas.addProperty("raza",this.raza);
 		razaYCastaElegidas.addProperty("casta",this.casta);
 		salida.writeUTF(razaYCastaElegidas.toString());
-		crearPersonaje();
+		crearPersonajeAPartirDeRazaYCasta();
 		
+	}
+
+	private void crearPersonajeAPartirDeRazaYCasta() throws Exception {
+		personaje = crearPersonaje();
+		personaje.setNombre(nombre);
 	}
 	
 	public List<String> recibirMapas() throws IOException{
@@ -158,6 +162,23 @@ public class Cliente {
 		JsonObject json = parser.parse(punto).getAsJsonObject();
 		personaje.setPosicion(new Gson().fromJson(json,Punto.class));
 	}
+
+	public boolean tienePersonaje() {
+		return this.personaje!=null;
+	}
+
+	public void recibirPersonaje() throws Exception {
+		
+		JsonParser parser = new JsonParser();
+		JsonObject personajeACrear=parser.parse(entrada.readUTF()).getAsJsonObject();
+		raza = personajeACrear.get("raza").getAsString();
+		casta = personajeACrear.get("casta").getAsString();
+		int nivel = Integer.parseInt(personajeACrear.get("nivel").getAsString());
+		this.personaje=crearPersonaje();
+		this.personaje.subirStats(nivel-1);
+		
+	}
+
 	
 	public void enviarEnemigoYListaDePersonajesParaBatalla(Personaje enemigo, ArrayList<Personaje> amiga) throws IOException{
 		JsonObject personaje=new JsonObject();

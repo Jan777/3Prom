@@ -113,6 +113,10 @@ public abstract class Personaje implements Comparable<Personaje>{
 		return energia >= magia;
 	}
 	
+	public void setNombre(String nombre) {
+		this.nombre=nombre;
+		
+	}
 	public String getNombre() {
 		return nombre;
 	}
@@ -513,6 +517,8 @@ public abstract class Personaje implements Comparable<Personaje>{
 	public boolean equals(Personaje personaje){
 		return this.nombre==personaje.nombre;
 	}
+
+
 }
 
 
