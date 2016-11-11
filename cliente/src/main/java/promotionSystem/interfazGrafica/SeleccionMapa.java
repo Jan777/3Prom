@@ -61,94 +61,38 @@ public class SeleccionMapa extends JFrame {
 		JButton btnJugar = new JButton("JUGAR");
 		btnJugar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				try {
+					enviarAccion();
+					enviarMapaElegido();
+					abrirMapa();
+					
+				} catch (IOException e1) {
+					
+					e1.printStackTrace();
+				}
 			}
 
+			
 			
 		});
 	
 		btnJugar.setBounds(175, 194, 89, 23);
 		contentPane.add(btnJugar);
 		
-		JButton btnPrueba = new JButton("Prueba");
+	/*	JButton btnPrueba = new JButton("Prueba");
 		btnPrueba.setBounds(175, 129, 89, 23);
 		btnPrueba.addActionListener(new ActionListener(){
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
-				JFrame juego=new JFrame("King of Multiverse V1.0");
-				juego.setBounds(100, 100, 800, 600);
-				JuegoPanel panel;
-				try {
-					panel = new JuegoPanel(juego);
-					juego.add(panel);
-				} catch (FileNotFoundException e) {
-					
-					e.printStackTrace();
-				}
-				
-				juego.setResizable(false);
-				juego.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				juego.setVisible(true);
-				
-				juego.addWindowListener(new WindowListener(){
-
-					@Override
-					public void windowActivated(WindowEvent e) {
-						
-						
-					}
-
-					@Override
-					public void windowClosed(WindowEvent e) {
-						
-						
-					}
-
-					@Override
-					public void windowClosing(WindowEvent e) {
-						
-						try {
-							enviarAccionDeCerrar();
-						} catch (IOException e1) {
-							
-							e1.printStackTrace();
-						}
-					
-					}
-
-					@Override
-					public void windowDeactivated(WindowEvent e) {
-						
-						
-					}
-
-					@Override
-					public void windowDeiconified(WindowEvent e) {
-						
-						
-					}
-
-					@Override
-					public void windowIconified(WindowEvent e) {
-						
-						
-					}
-
-					@Override
-					public void windowOpened(WindowEvent e) {
-						
-						
-					}
-					
-				});
+				abrirMapa();
 				
 			}
 			
 		});
 		contentPane.add(btnPrueba);
-		
+		*/
 	}
 	
 	private void enviarAccionDeCerrar() throws IOException {
@@ -165,5 +109,78 @@ public class SeleccionMapa extends JFrame {
 		cliente.enviarAccion("seleccionarMapa");
 	}
 	
+	private void enviarMapaElegido() throws IOException {
+		String mapa = (String)comboBox.getSelectedItem();
+		cliente.enviarMapaSeleccionado(mapa);
+	}
+
+	private void abrirMapa() {
+		JFrame juego=new JFrame("King of Multiverse V1.0");
+		juego.setBounds(100, 100, 800, 600);
+		JuegoPanel panel;
+		try {
+			panel = new JuegoPanel(juego);
+			juego.add(panel);
+		} catch (FileNotFoundException e) {
+			
+			e.printStackTrace();
+		}
+		
+		juego.setResizable(false);
+		juego.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		juego.setVisible(true);
+		
+		juego.addWindowListener(new WindowListener(){
+
+			@Override
+			public void windowActivated(WindowEvent e) {
+				
+				
+			}
+
+			@Override
+			public void windowClosed(WindowEvent e) {
+				
+				
+			}
+
+			@Override
+			public void windowClosing(WindowEvent e) {
+				
+				try {
+					enviarAccionDeCerrar();
+				} catch (IOException e1) {
+					
+					e1.printStackTrace();
+				}
+			
+			}
+
+			@Override
+			public void windowDeactivated(WindowEvent e) {
+				
+				
+			}
+
+			@Override
+			public void windowDeiconified(WindowEvent e) {
+				
+				
+			}
+
+			@Override
+			public void windowIconified(WindowEvent e) {
+				
+				
+			}
+
+			@Override
+			public void windowOpened(WindowEvent e) {
+
+			}
+			
+		});
+	}
+
 	
 }

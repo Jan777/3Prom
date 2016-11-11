@@ -38,6 +38,7 @@ public class ServidorHilo extends Thread {
 	private String casta;
 	private Conector conector;
 	private String nombreCliente;
+	private int nivel;
 	public ServidorHilo(Socket cliente,HashMap<Socket,Personaje> jugadores,HashMap<Personaje,Mapa> jugadoresPorMapa,HashMap<String,Mapa> mapasDisponibles,Conector conector) throws IOException{
 		this.cliente=cliente;
 		this.jugadoresPorMapa=jugadoresPorMapa;
@@ -73,6 +74,30 @@ public class ServidorHilo extends Thread {
 	
 	}
 	
+	public void cargarPersonaje() throws Exception{
+		jugadores.put(cliente,obtenerPersonaje()); 
+		enviarPersonaje();
+		
+	}
+	
+	private Personaje obtenerPersonaje() throws Exception {
+		raza=conector.obtenerRazaPersonaje(nombreCliente);
+		casta=conector.obtenerCastaPersonaje(nombreCliente);
+		nivel=conector.obtenerNivelPersonaje(nombreCliente);
+		Personaje personaje = crearPersonajeAPartirDeRazaYCasta();
+		personaje.subirStats(nivel-1);
+		personaje.setNombre(nombreCliente);
+		return personaje;
+	}
+
+	private void enviarPersonaje() throws IOException {
+		JsonObject personaje= new JsonObject();
+		personaje.addProperty("raza", raza);
+		personaje.addProperty("casta", casta);
+		personaje.addProperty("nivel", nivel);
+		salida.writeUTF(personaje.toString());
+	}
+
 	public void cerrar() throws IOException{
 		cliente.close();
 	    continuar=false;
@@ -151,14 +176,16 @@ public class ServidorHilo extends Thread {
 
 	private boolean validarContraseña() throws Exception {
 		JsonElement elemento = recibirObjetoJson(); 
-		return conector.validarUsuario(elemento.getAsJsonObject().get("nombre").getAsString(),Integer.parseInt((elemento.getAsJsonObject().get("contrasena").getAsString())));
+		nombreCliente=elemento.getAsJsonObject().get("nombre").getAsString();
+		return conector.validarUsuario(nombreCliente,Integer.parseInt((elemento.getAsJsonObject().get("contrasena").getAsString())));
 	
 	}
 
 	private void crearPersonaje() throws Exception {
 		Personaje personaje=crearPersonajeAPartirDeRazaYCasta();
+		personaje.setNombre(nombreCliente);
 		jugadores.put(cliente, personaje);
-		conector.agregarPersonaje(nombreCliente,personaje,raza,casta);
+		conector.agregarPersonaje(personaje,raza,casta);
 	}
 
 

@@ -139,7 +139,8 @@ public class Login extends JFrame{
 								registrarse.setEnabled(false);
 								enviarAccion();
 								iniciarSesion();
-								if(resultado()){		
+								if(resultado()){	
+									cargarPersonaje();
 									menuPrincipal(frame);
 								}
 								else{								
@@ -150,7 +151,7 @@ public class Login extends JFrame{
 							else{
 								error.setText("Los Campos no deben estar vacios");
 							}
-						} catch (IOException e) {
+						} catch (Exception e) {
 							e.printStackTrace();
 						}
 					}
@@ -205,6 +206,14 @@ public class Login extends JFrame{
 			 add(informe);
 		 }
 		 
+		
+		private void cargarPersonaje() throws Exception {
+			if(!cliente.tienePersonaje()){
+				cliente.enviarAccion("cargarPersonaje");
+				cliente.recibirPersonaje();	
+			}
+		}
+		
 		private void abrirRegistrar(Cliente cliente, JFrame frame) {
 			Registrarse marco=new Registrarse(cliente);
 			marco.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -265,7 +274,7 @@ public class Login extends JFrame{
 				return cliente.resultado().equals("true");
 			}
 			
-			private void menuPrincipal(JFrame marco) throws IOException {
+			private void menuPrincipal(JFrame marco) throws Exception {
 				
 				MenuPrincipal ventana=new MenuPrincipal(cliente);
 				ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

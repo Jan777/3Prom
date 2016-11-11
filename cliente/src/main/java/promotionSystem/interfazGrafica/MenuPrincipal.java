@@ -20,11 +20,14 @@ public class MenuPrincipal extends JFrame {
 	private JPanel contentPane;
 	private Cliente cliente;
 
-	public MenuPrincipal(Cliente cliente) throws IOException {
+	public MenuPrincipal(Cliente cliente) throws Exception {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JFrame marco=this;
 		setTitle("Menu Principal");
 		this.cliente=cliente;
+		
+		
+		
 		setBounds(100, 100, 450, 300);
 		setResizable(false);
 		contentPane = new JPanel();
@@ -35,6 +38,8 @@ public class MenuPrincipal extends JFrame {
 		JLabel lblMenu = new JLabel("MENU PRINCIPAL");
 		lblMenu.setBounds(181, 11, 126, 14);
 		contentPane.add(lblMenu);
+		
+		
 		
 		JButton btnSeleccionarMapa = new JButton("Seleccionar Mapa");
 		btnSeleccionarMapa.addActionListener(new ActionListener() {
@@ -112,6 +117,8 @@ public class MenuPrincipal extends JFrame {
 		});
 	}
 	
+	
+
 	private void enviarAccionDeCerrar() throws IOException {
 		 cliente.enviarAccion("cerrar");
 	 }

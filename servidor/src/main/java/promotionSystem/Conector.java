@@ -56,16 +56,63 @@ public class Conector {
 	      
 	}
 
-	public void agregarPersonaje(String nombreCliente, Personaje personaje,String raza, String casta) throws SQLException {
+	public void agregarPersonaje(Personaje personaje,String raza, String casta) throws SQLException {
 		  conector.setAutoCommit(false);
 		  sentencia = conector.prepareStatement("INSERT INTO Personajes (nombre,raza,casta,nivel) values (?,?,?,?);");
-	      sentencia.setString(1,nombreCliente);
+	      sentencia.setString(1,personaje.getNombre());
 	      sentencia.setString(2,raza);
 	      sentencia.setString(3,casta);
 	      sentencia.setInt(4,personaje.getNivel());
 	      sentencia.executeUpdate();	     
 	      sentencia.close();
 	      conector.commit();
+	}
+
+
+	public String obtenerRazaPersonaje(String nombreCliente) throws SQLException {
+		conector.setAutoCommit(false);
+		  sentencia = conector.prepareStatement("Select * from Personajes where nombre like ?");
+	      sentencia.setString(1,nombreCliente);
+	      ResultSet resultado=sentencia.executeQuery();
+	      String raza=null;
+	      while(resultado.next()){
+	    	  raza = resultado.getString(2);	    	  
+	      }
+	   
+	      sentencia.close();
+	      conector.commit();
+	     
+		return raza;      
+	}
+
+	public String obtenerCastaPersonaje(String nombreCliente) throws SQLException {
+		conector.setAutoCommit(false);
+		  sentencia = conector.prepareStatement("Select * from Personajes where nombre like ?");
+	      sentencia.setString(1,nombreCliente);
+	      ResultSet resultado=sentencia.executeQuery();	
+	      String casta=null;
+	      while(resultado.next()){
+	    	   casta = resultado.getString(3);	    	  
+	      }
+	      sentencia.close();
+	      conector.commit();
+
+		return casta;      
+	}
+
+	public int obtenerNivelPersonaje(String nombreCliente) throws SQLException {
+		conector.setAutoCommit(false);
+		  sentencia = conector.prepareStatement("Select * from Personajes where nombre like ?");
+	      sentencia.setString(1,nombreCliente);
+	      ResultSet resultado=sentencia.executeQuery();	
+	      int nivel=1;
+	      while(resultado.next()){
+	    	  nivel=resultado.getInt(4);	    	  
+	      }
+	      sentencia.close();
+	      conector.commit();
+
+		return nivel;      
 	}
 	
 	
