@@ -65,8 +65,12 @@ class LaminaSur extends JPanel{
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					enviarRazaYCasta();
+					Login ventana=new Login(cliente);
+					ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					ventana.setVisible(true);
+				
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
+			
 					e.printStackTrace();
 				}
 				

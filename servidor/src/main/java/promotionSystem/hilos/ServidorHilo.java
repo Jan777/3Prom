@@ -36,6 +36,7 @@ public class ServidorHilo extends Thread {
 	private String raza;
 	private String casta;
 	private Conector conector;
+	private String nombreCliente;
 	public ServidorHilo(Socket cliente,HashMap<Socket,Personaje> jugadores,HashMap<Personaje,Mapa> jugadoresPorMapa,HashMap<String,Mapa> mapasDisponibles,Conector conector) throws IOException{
 		this.cliente=cliente;
 		this.jugadoresPorMapa=jugadoresPorMapa;
@@ -117,7 +118,9 @@ public class ServidorHilo extends Thread {
 			if(!validarContraseña()){
 				salida.writeUTF("false");
 			}
-			salida.writeUTF("true");
+			else{
+				salida.writeUTF("true");				
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -134,7 +137,8 @@ public class ServidorHilo extends Thread {
 
 	private void crearUsuario() throws JsonSyntaxException, IOException, SQLException {
 		JsonElement elemento = recibirObjetoJson(); 
-	    conector.agregarUsuario(elemento.getAsJsonObject().get("nombre").getAsString(),Integer.parseInt((elemento.getAsJsonObject().get("contrasena").getAsString())));
+		nombreCliente=elemento.getAsJsonObject().get("nombre").getAsString();
+	    conector.agregarUsuario(nombreCliente,Integer.parseInt((elemento.getAsJsonObject().get("contrasena").getAsString())));
 	}
 
 	private boolean validarContraseña() throws Exception {
@@ -145,8 +149,8 @@ public class ServidorHilo extends Thread {
 
 	private void crearPersonaje() throws Exception {
 		Personaje personaje=crearPersonajeAPartirDeRazaYCasta();
-			jugadores.put(cliente, personaje);
-		
+		jugadores.put(cliente, personaje);
+		conector.agregarPersonaje(nombreCliente,personaje,raza,casta);
 	}
 
 

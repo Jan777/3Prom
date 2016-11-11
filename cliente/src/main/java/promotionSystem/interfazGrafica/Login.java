@@ -27,11 +27,18 @@ public class Login extends JFrame{
 	public Login() throws Exception{
 		
 		cliente=new Cliente();
+		crearInterfaz();	
+	}
+	private void crearInterfaz() {
 		LaminaLogin lamina=new LaminaLogin(cliente,this);
 		setTitle("LOGIN");
 		setResizable(false);
 		setBounds(0,0,450,400);
-		add(lamina);	
+		add(lamina);
+	}
+	public Login(Cliente cliente) {
+		this.cliente=cliente;
+		crearInterfaz();
 	}
 	
 	
@@ -85,6 +92,7 @@ public class Login extends JFrame{
 								}
 								else{								
 									error.setText("Usuario y/o Contraseña incorrecta");
+									vaciarCampos();
 								}
 							}
 							else{
@@ -94,6 +102,8 @@ public class Login extends JFrame{
 							e.printStackTrace();
 						}
 					}
+
+					
 			
 				}					
 				);
@@ -183,7 +193,11 @@ public class Login extends JFrame{
 			});
 		}
 		
-
+		private void vaciarCampos() {
+			nick.setText("");
+			contraseña.setText("");
+		}
+		
 		private boolean camposNoVacios() {
 			return !nick.getText().equals("")&&!contraseña.getText().equals("");
 		}

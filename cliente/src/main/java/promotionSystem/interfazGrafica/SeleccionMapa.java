@@ -59,7 +59,7 @@ public class SeleccionMapa extends JFrame {
 		JButton btnJugar = new JButton("JUGAR");
 		btnJugar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				
 			}
 
 			
@@ -96,9 +96,9 @@ public class SeleccionMapa extends JFrame {
 		contentPane.add(btnPrueba);
 	}
 	private void agregarMapas() throws IOException {
-		ArrayList<String> razasRecibidas = (ArrayList<String>) cliente.recibirMapas();
-		for(String raza : razasRecibidas) {
-		    comboBox.addItem(raza);
+		ArrayList<String> mapasRecibidos = (ArrayList<String>) cliente.recibirMapas();
+		for(String mapa : mapasRecibidos) {
+		    comboBox.addItem(mapa);
 		}
 		
 	}
@@ -106,9 +106,5 @@ public class SeleccionMapa extends JFrame {
 		cliente.enviarAccion("seleccionarMapa");
 	}
 	
-	 private void cargarRazas() throws IOException {
-		
 	
-		
-	}
 }
