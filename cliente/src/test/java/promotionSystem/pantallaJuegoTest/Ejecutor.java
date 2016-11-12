@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import javax.swing.JFrame;
 
 import promootionSystem.graficaNuestra.JuegoPanel;
-import promotionSystem.pantallaJuego.juego.Juego;
+
 
 public class Ejecutor {
 

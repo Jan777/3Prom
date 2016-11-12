@@ -9,7 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 import promootionSystem.graficaNuestra.JuegoPanel;
 import promotionSystem.Cliente;
-import promotionSystem.pantallaJuego.juego.Juego;
+
 
 import javax.swing.JLabel;
 import javax.swing.JComboBox;

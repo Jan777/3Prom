@@ -24,7 +24,7 @@ public class TilePersonaje {
 
 	
 	public TilePersonaje(int x, int y, int sprite,String nombre,Mouse mouse) {
-		this.xCentro = 420;
+		this.xCentro = 380;
 		this.yCentro = 500;
 		this.tipoDeSprite = sprite;
 		this.nombre = nombre;	
