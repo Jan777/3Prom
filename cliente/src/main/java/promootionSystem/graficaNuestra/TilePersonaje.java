@@ -24,8 +24,8 @@ public class TilePersonaje {
 
 	
 	public TilePersonaje(int x, int y, int sprite,String nombre,Mouse mouse) {
-		this.xCentro = 320;
-		this.yCentro = 320;
+		this.xCentro = 420;
+		this.yCentro = 500;
 		this.tipoDeSprite = sprite;
 		this.nombre = nombre;	
 		this.mouse = mouse;
@@ -50,16 +50,16 @@ public class TilePersonaje {
 	}
 
 	public void actualizar() {
-		int posMouse[] = mouse.getPos();
+		//int posMouse[] = mouse.getPos();
 		
 
-		if (mouse.getRecorrido()) {
+		//if (mouse.getRecorrido()) {
 			
 			setNuevoRecorrido(true);
-			xDestino = xInicio - posMouse[0] + JuegoPanel.xOffCamara;
-			yDestino = yInicio - posMouse[1] + JuegoPanel.yOffCamara;
-			
-
+			//xDestino = xInicio - posMouse[0] + JuegoPanel.xOffCamara;
+			//yDestino = yInicio - posMouse[1] + JuegoPanel.yOffCamara;
+			xDestino = xCentro + JuegoPanel.xOffCamara;
+			yDestino = yCentro + JuegoPanel.yOffCamara;
 			
 			
 			/*
@@ -93,7 +93,7 @@ public class TilePersonaje {
 			 */
 			mouse.setRecorrido(false); 
 		//	enMovimiento = true;// Cuando llego a destino tengo que poner esto en false
-		}
+		//}
 
 	}
 
@@ -121,6 +121,22 @@ public class TilePersonaje {
 	public boolean getNuevoRecorrido() {
 		return nuevoRecorrido;
 		
+	}
+
+	public int getxCentro() {
+		return xCentro;
+	}
+
+	public void setxCentro(int xCentro) {
+		this.xCentro = xCentro;
+	}
+
+	public int getyCentro() {
+		return yCentro;
+	}
+
+	public void setyCentro(int yCentro) {
+		this.yCentro = yCentro;
 	}
 
 

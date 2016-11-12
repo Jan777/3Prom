@@ -41,6 +41,8 @@ public class Mapa {
 	protected int yDestino;
 	protected int xActual;
 	protected int yActual;
+	int xCentro ;
+	int yCentro; 
 
 	/*protected Grafo grafoDeObstaculo;
 	protected List<Nodo> camino;
@@ -52,6 +54,9 @@ public class Mapa {
 		enMovimiento = false;
 		xDestino = pj.getXDestino();
 		yDestino = pj.getYDestino();
+		 xCentro = pj.getxCentro();
+		 yCentro = pj.getyCentro();
+		
 
 		xActual = -xDestino;
 		yActual = -yDestino;
@@ -89,6 +94,9 @@ public class Mapa {
 			for (int j = 0; j < alto; j++) {
 				obstaculo = sc.nextInt();
 				obstaculos[i][j] = obstaculo>=1?true:false;
+				if(obstaculos[i][j]){
+				tilesObstaculo[i][j]=new TileObstaculo(i,j,2,64,63);
+				}
 			}
 		}
 
@@ -200,23 +208,32 @@ private void cargarSprites(String nombre) {
 		g2d.setBackground(Color.BLACK);
 
 		g2d.clearRect(0, 0, 810, 610);		
-		for (int i = 0; i <  alto; i++) { 
+		for (int i = 0; i <  alto; i++) { // sin estos hace efecto de movimiento de piso 
 			for (int j = 0; j < ancho ; j++) { 
 				tiles[i][j].dibujar(g2d,xDestino+JuegoPanel.xOffCamara,yDestino+JuegoPanel.yOffCamara);			
-			}
+			} 
 		}
+		
+		/*for (int i = 0; i <  alto; i++) { 
+			for (int j = 0; j < ancho ; j++) { 
+				
+				if(obstaculos[i][j])
+				tilesObstaculo[i][j].dibujar(g2d,xDestino+JuegoPanel.xOffCamara,yDestino+JuegoPanel.yOffCamara);			
+			} 
+		}*/
+		
 	}
 	
-	public void dibujarObstaculo(Graphics2D g2d) {
+	/*public void dibujarObstaculo(Graphics2D g2d) {
 		
 
 		g2d.clearRect(0, 0, 810, 610);		
 		for (int i = 0; i <  alto; i++) { 
 			for (int j = 0; j < ancho ; j++) { 
-				tiles[i][j].dibujar(g2d,xDestino+JuegoPanel.xOffCamara,yDestino+JuegoPanel.yOffCamara);			
+				tiles[i][j].mover(g2d,xDestino+JuegoPanel.xOffCamara,yDestino+JuegoPanel.yOffCamara);			
 			}
 		}
-	}
+	}*/
 
 
 
@@ -226,14 +243,38 @@ private void cargarSprites(String nombre) {
 		
 		x = tiles[0][0].getXIso(); 
 		y = tiles[0][0].getYIso();
-		for (int i = 0; i <  alto; i++) { 
+		for (int i = 0; i <  alto; i++) {   ///sin estos for no dibuja el piso
 			for (int j = 0; j < ancho ; j++) { 
 				tiles[i][j].mover(g2d,xDestino+ JuegoPanel.xOffCamara,yDestino+JuegoPanel.yOffCamara);
 			}
 		}
-		g2d.drawImage( getImage(tipoDeSprite), 0, 0 , null);	
+		
+		for (int i = 0; i <  alto; i++) { // sin estos no dibuja los obstaculos
+			for (int j = 0; j < ancho ; j++) { 
+				
+				if(obstaculos[i][j])
+				tilesObstaculo[i][j].dibujar(g2d,xDestino+JuegoPanel.xOffCamara,yDestino+JuegoPanel.yOffCamara);			
+			} 
+		}
+		//g2d.drawImage( getImage(tipoDeSprite), 0, 0 , null);	
 		termino();
 	}
+	
+	/*public void mover(Graphics2D g2d) {
+		g2d.setBackground(Color.BLACK);
+		g2d.clearRect(0, 0, 810, 610);	
+		
+		
+		x = tiles[0][0].getXIso(); 
+		y = tiles[0][0].getYIso();
+		for (int i = 0; i <  alto; i++) { 
+			for (int j = 0; j < ancho ; j++) { 
+				tiles[i][j].mover(g2d,xCentro+ JuegoPanel.xOffCamara,yCentro+JuegoPanel.yOffCamara);
+			}
+		}
+		//g2d.drawImage( getImage(tipoDeSprite), 0, 0 , null);	
+		termino();
+	}*/
 
 	private void termino() {
 		if ( x == tiles[0][0].getXIso() && y == tiles[0][0].getYIso() )

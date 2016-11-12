@@ -60,7 +60,7 @@ public class JuegoPanel extends JPanel implements Runnable{
 	public void actualizar() {
 		mouse.actualizar(); 
 		personajeJugable.actualizar();
-		//mapa.actualizar();
+	//	mapa.actualizar();
 	}
 
 	
@@ -70,7 +70,7 @@ public class JuegoPanel extends JPanel implements Runnable{
 		Graphics2D g2d = (Graphics2D) g;
 		if(jugar){
 			mapa.dibujar(g2d);
-			mapa.dibujarObstaculo(g2d);
+			//mapa.dibujarObstaculo(g2d);
 			jugar = false;
 		}
 		mapa.mover(g2d);

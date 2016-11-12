@@ -65,6 +65,68 @@ public class MenuPrincipal extends JFrame {
 		btnSalir.setBounds(170, 228, 89, 23);
 		contentPane.add(btnSalir);
 		
+		JButton btnVerDetallesDel = new JButton("Ver Detalles del Personaje");
+		
+		btnVerDetallesDel.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				VerPersonaje ver=new VerPersonaje(cliente);
+				ver.setBounds(100, 100, 500, 400);
+				ver.setVisible(true);
+				ver.addWindowListener(new WindowListener(){
+
+					@Override
+					public void windowActivated(WindowEvent arg0) {
+					
+						
+					}
+
+					@Override
+					public void windowClosed(WindowEvent arg0) {
+				
+						marco.setEnabled(true);
+						
+					}
+
+					@Override
+					public void windowClosing(WindowEvent arg0) {
+					
+						marco.setEnabled(true);
+					}
+
+					@Override
+					public void windowDeactivated(WindowEvent arg0) {
+					
+						
+					}
+
+					@Override
+					public void windowDeiconified(WindowEvent arg0) {
+						
+						
+					}
+
+					@Override
+					public void windowIconified(WindowEvent arg0) {
+			
+						
+					}
+
+					@Override
+					public void windowOpened(WindowEvent arg0) {
+					
+						marco.setEnabled(false);
+					}
+					
+				});
+				
+			}
+			
+		});
+		btnVerDetallesDel.setBounds(134, 84, 185, 23);
+		contentPane.add(btnVerDetallesDel);
+		
 		
 		addWindowListener(new WindowListener(){
 
