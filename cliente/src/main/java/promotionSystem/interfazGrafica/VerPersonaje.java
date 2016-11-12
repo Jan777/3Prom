@@ -49,7 +49,7 @@ public class VerPersonaje extends JFrame {
 		contentPane.add(lblRaza);
 		
 		lblCasta = new JLabel("Casta: "+cliente.getCasta());
-		lblCasta.setBounds(39, 77, 80, 14);
+		lblCasta.setBounds(39, 77,200, 14);
 		contentPane.add(lblCasta);
 		
 		

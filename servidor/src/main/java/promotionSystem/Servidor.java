@@ -20,7 +20,7 @@ public class Servidor {
 	private int i = 0;
 	private int puerto;
 	private int cantidadMaximaDeClientes;
-	private String archivoDeConfiguracion="configuracion.config";
+	private String archivoDeConfiguracion="../configuracion.config";
 	private HashMap<Socket,Personaje> jugadores = new HashMap<Socket,Personaje>();
 	private HashMap<Personaje,Mapa> jugadoresPorMapa=new HashMap<Personaje,Mapa>();
 	private HashMap<String,Mapa>mapasDisponibles= new HashMap<String,Mapa>();
