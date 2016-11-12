@@ -227,6 +227,14 @@ public class Cliente {
 		this.personaje = personaje;
 	}
 
+	public String getRaza() {
+		return raza;
+	}
+
+	public String getCasta() {
+		return casta; 
+	}
+
 	
 
 }
