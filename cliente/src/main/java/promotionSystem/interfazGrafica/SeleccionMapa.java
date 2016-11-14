@@ -64,6 +64,7 @@ public class SeleccionMapa extends JFrame {
 				try {
 					enviarAccion();
 					enviarMapaElegido();
+					recibirPosicionInicial();
 					abrirMapa();
 					
 				} catch (IOException e1) {
@@ -79,22 +80,14 @@ public class SeleccionMapa extends JFrame {
 		btnJugar.setBounds(175, 194, 89, 23);
 		contentPane.add(btnJugar);
 		
-	/*	JButton btnPrueba = new JButton("Prueba");
-		btnPrueba.setBounds(175, 129, 89, 23);
-		btnPrueba.addActionListener(new ActionListener(){
 
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				
-				abrirMapa();
-				
-			}
-			
-		});
-		contentPane.add(btnPrueba);
-		*/
 	}
 	
+	protected void recibirPosicionInicial() throws IOException {
+			cliente.recibirPosicionInicial();
+		
+	}
+
 	private void enviarAccionDeCerrar() throws IOException {
 		 cliente.enviarAccion("cerrar");
 	 }

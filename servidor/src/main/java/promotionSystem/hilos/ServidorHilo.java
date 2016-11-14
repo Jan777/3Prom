@@ -54,7 +54,7 @@ public class ServidorHilo extends Thread {
 	}
 	
 	private void agregarPuntosIniciales() {
-		puntosIniciales.add(new Punto(0,0));
+		puntosIniciales.add(new Punto(1,1));
 		puntosIniciales.add(new Punto(10,10));
 		puntosIniciales.add(new Punto(20,20));
 		puntosIniciales.add(new Punto(30,30));
@@ -111,6 +111,7 @@ public class ServidorHilo extends Thread {
 	
 	public void  seleccionarMapa() throws IOException{
 		recibirMapaElegido();
+		enviarPosicionInicial();
 	}
 	
 	
