@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 
 public class TilePersonaje {
 	
@@ -17,18 +18,22 @@ public class TilePersonaje {
 	private int yInicio;
 	private int xDestino;
 	private int yDestino;
+	private Image imagenInicial;
 	
 	private boolean nuevoRecorrido;
 	
 
 
 	
-	public TilePersonaje(int x, int y, int sprite,String nombre,Mouse mouse) {
-		this.xCentro = 380;
-		this.yCentro = 500;
+	public TilePersonaje(int x, int y, int sprite,String nombre,Mouse mouse,Image imagen) {
+		this.xCentro =386;
+		this.yCentro = 280;
 		this.tipoDeSprite = sprite;
 		this.nombre = nombre;	
 		this.mouse = mouse;
+		this.imagenInicial=imagen;
+		xInicio=x+400;
+		yInicio=y+300;
 	}
 
 	public void setxInicio(int xInicio) {
@@ -41,39 +46,46 @@ public class TilePersonaje {
 
 	
 	public void dibujarCentro(Graphics g) {
-		g.drawImage( Mapa.getImage(tipoDeSprite), xCentro, yCentro, null);
+		
+		
+		g.drawImage( imagenInicial, xCentro, yCentro, null);
 		Font fuente=new Font("Arial", Font.BOLD, 16);
-		g.setColor(Color.RED);
+		g.setColor(Color.BLUE);
 		g.setFont(fuente);
-		g.drawString(nombre, xCentro+17, yCentro);
+		g.drawString(nombre, xInicio+12, yInicio-17);
 
 	}
 
 	public void actualizar() {
-		//int posMouse[] = mouse.getPos();
+		int posMouse[] = mouse.getPos();
 		
 
-		//if (mouse.getRecorrido()) {
+		if (mouse.getRecorrido()) {
 			
 			setNuevoRecorrido(true);
-			//xDestino = xInicio - posMouse[0] + JuegoPanel.xOffCamara;
-			//yDestino = yInicio - posMouse[1] + JuegoPanel.yOffCamara;
-			xDestino = xCentro + JuegoPanel.xOffCamara;
-			yDestino = yCentro + JuegoPanel.yOffCamara;
+			xDestino = xInicio - posMouse[0] + Mapa.DESPLAZAMIENTO_EN_X_PARA_PASAR_DE_2D_A_ISOMETRICO;
+			yDestino = yInicio - posMouse[1] + Mapa.DESPLAZAMIENTO_EN_Y_PARA_PASAR_DE_2D_A_ISOMETRICO;
 			
 			
-			/*
-			diagonalInfIzq = false;
-			diagonalInfDer = false;
-			diagonalSupIzq = false;
-			diagonalSupDer = false;
-			vertical = false;
-			horizontal = false;
-			enMovimiento = false;
+			
+			
+			boolean diagonalInfIzq = false;
+			boolean diagonalInfDer = false;
+			boolean diagonalSupIzq = false;
+			boolean diagonalSupDer = false;
+			boolean vertical = false;
+			boolean horizontal = false;
+			boolean enMovimiento = false;
+			int yFinal = 0;
+			int difX = 0;
+			int ancho = 0;
 			if (difX < ancho && yInicio != yFinal) {
 				vertical = true;
 				horizontal = true;
 			}
+			int xFinal = 0;
+			int difY = 0;
+			int alto = 0;
 			if (difY < alto && xInicio != xFinal) {
 				horizontal = true;
 				vertical = true;
@@ -90,10 +102,10 @@ public class TilePersonaje {
 					diagonalSupIzq = true;
 				}
 			}
-			 */
+			 
 			mouse.setRecorrido(false); 
-		//	enMovimiento = true;// Cuando llego a destino tengo que poner esto en false
-		//}
+			enMovimiento = true;// Cuando llego a destino tengo que poner esto en false
+		}
 
 	}
 
@@ -138,6 +150,12 @@ public class TilePersonaje {
 	public void setyCentro(int yCentro) {
 		this.yCentro = yCentro;
 	}
+
+	public Image getImagenInicial() {
+		return imagenInicial;
+	}
+
+	
 
 
 

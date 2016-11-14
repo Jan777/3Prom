@@ -33,8 +33,8 @@ public class Tile {
 		deltaY+=posicionY;		
 		posicionXConvertida = (deltaX - deltaY) * ( ANCHO / 2);
 		posicionYConvertida = (deltaX + deltaY) * ( ALTO / 2);
-		g2d.drawImage( Mapa.getImage(tipoDeSprite),0,0 , null);		
-			
+		g2d.drawImage( Mapa.getImage(tipoDeSprite),posicionXConvertida,posicionYConvertida , null);		
+		//g2d.drawImage( Mapa.getImage(tipoDeSprite),0,0 , null);	
 	}
 
 	public void mover(Graphics2D g2d, int posicionXDestino, int posicionYDestino) {

@@ -18,7 +18,7 @@ public class TileObstaculo extends Tile{
 		deltaY+=posicionY;		
 		posicionXConvertida = (deltaX - deltaY) * ( ANCHO / 2)- anchoImagen%64;
 		posicionYConvertida = (deltaX + deltaY) * ( ALTO / 2) - altoImagen%32;
-		g2d.drawImage( Mapa.getImage(2),posicionXConvertida, posicionYConvertida , null);			
+		g2d.drawImage( Mapa.getImage(2),posicionXConvertida, posicionYConvertida-32 , null);			
 	}
 
 	public void mover(Graphics2D g2d, int x2, int y2) {

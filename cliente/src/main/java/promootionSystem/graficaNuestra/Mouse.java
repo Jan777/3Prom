@@ -19,10 +19,11 @@ public class Mouse implements MouseListener{
 
 	@Override
 	public void mouseClicked(MouseEvent evento) {
-		
+		if(evento.getButton()==MouseEvent.BUTTON3){
 		x = evento.getX();
 		y = evento.getY();
-		recorrido = true;
+		}
+		//recorrido = true;
 
 	}
 

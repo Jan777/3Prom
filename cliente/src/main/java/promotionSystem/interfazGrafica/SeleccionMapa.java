@@ -119,7 +119,7 @@ public class SeleccionMapa extends JFrame {
 		juego.setBounds(100, 100, 800, 600);
 		JuegoPanel panel;
 		try {
-			panel = new JuegoPanel(juego);
+			panel = new JuegoPanel(juego,cliente);
 			juego.add(panel);
 		} catch (FileNotFoundException e) {
 			

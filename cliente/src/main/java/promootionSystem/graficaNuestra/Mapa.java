@@ -20,7 +20,8 @@ public class Mapa {
 	protected int alto;
 	protected int ancho;
 	protected String nombre;
-
+	public static final int DESPLAZAMIENTO_EN_X_PARA_PASAR_DE_2D_A_ISOMETRICO=16;
+	public static final int DESPLAZAMIENTO_EN_Y_PARA_PASAR_DE_2D_A_ISOMETRICO=4;
 
 
 	protected int x;
@@ -36,6 +37,9 @@ public class Mapa {
 	protected boolean[][] obstaculos; 
 	protected TilePersonaje personajeJugable; // cliente
 	protected Map<String,Personaje> personajes; // esto server
+	protected Camara camara;
+	protected int posicionX;
+	protected int posicionY;
 
 	protected int xDestino;
 	protected int yDestino;
@@ -52,10 +56,19 @@ public class Mapa {
 		File path = new File("recursos/"+nombre+".txt");
 		this.personajeJugable = pj;
 		enMovimiento = false;
-		xDestino = pj.getXDestino();
-		yDestino = pj.getYDestino();
-		 xCentro = pj.getxCentro();
-		 yCentro = pj.getyCentro();
+		Punto punto=new Punto(2,2);
+		Punto isometrico=new Punto(punto.getX()*32,punto.getY()*32);
+		
+		//xDestino = pj.getXDestino();
+		//yDestino = pj.getYDestino();
+		 //xCentro = pj.getxCentro()-posicionX;
+		 //yCentro = pj.getyCentro()-posicionY;
+		 
+		// xCentro = pj.getxCentro();
+		 //yCentro = pj.getyCentro();
+		
+		xDestino=-punto.getX();
+		yDestino=-punto.getY();
 		
 
 		xActual = -xDestino;
@@ -70,6 +83,7 @@ public class Mapa {
 		this.id = sc.nextInt();
 		this.ancho=sc.nextInt();
 		this.alto=sc.nextInt();
+		camara=new Camara(alto,ancho,382-0*32,281-0*32);
 		cantidadDeSprites=sc.nextInt();
 		spritesDelMapa=new Image[cantidadDeSprites];
 		cargarSprites(nombre);
@@ -95,7 +109,7 @@ public class Mapa {
 				obstaculo = sc.nextInt();
 				obstaculos[i][j] = obstaculo>=1?true:false;
 				if(obstaculos[i][j]){
-				tilesObstaculo[i][j]=new TileObstaculo(i,j,2,64,63);
+				tilesObstaculo[i][j]=new TileObstaculo(i,j,2,64,64);
 				}
 			}
 		}
@@ -204,40 +218,42 @@ private void cargarSprites(String nombre) {
 
 
 	
-	public void dibujar(Graphics2D g2d) {
+	public void dibujar(Graphics2D g2d,Punto puntoADibujar) {
 		g2d.setBackground(Color.BLACK);
-
 		g2d.clearRect(0, 0, 810, 610);		
+		
+	   int x=xDestino+camara.xOffCamara;
+	   int y=yDestino+camara.yOffCamara;
+		
 		for (int i = 0; i <  alto; i++) { // sin estos hace efecto de movimiento de piso 
 			for (int j = 0; j < ancho ; j++) { 
-				tiles[i][j].dibujar(g2d,xDestino+JuegoPanel.xOffCamara,yDestino+JuegoPanel.yOffCamara);			
+				tiles[i][j].dibujar(g2d,this.DESPLAZAMIENTO_EN_X_PARA_PASAR_DE_2D_A_ISOMETRICO-puntoADibujar.getX(),this.DESPLAZAMIENTO_EN_Y_PARA_PASAR_DE_2D_A_ISOMETRICO-puntoADibujar.getY());	
+				 
+				//tiles[i][j].dibujar(g2d,x,y);	
 			} 
 		}
 		
-		/*for (int i = 0; i <  alto; i++) { 
-			for (int j = 0; j < ancho ; j++) { 
-				
-				if(obstaculos[i][j])
-				tilesObstaculo[i][j].dibujar(g2d,xDestino+JuegoPanel.xOffCamara,yDestino+JuegoPanel.yOffCamara);			
-			} 
-		}*/
 		
 	}
 	
-	/*public void dibujarObstaculo(Graphics2D g2d) {
+	public void dibujarObstaculo(Graphics2D g2d,Punto puntoADibujar) {
 		
 
-		g2d.clearRect(0, 0, 810, 610);		
+				
 		for (int i = 0; i <  alto; i++) { 
 			for (int j = 0; j < ancho ; j++) { 
-				tiles[i][j].mover(g2d,xDestino+JuegoPanel.xOffCamara,yDestino+JuegoPanel.yOffCamara);			
-			}
+				
+				if(obstaculos[i][j])
+					tilesObstaculo[i][j].dibujar(g2d,this.DESPLAZAMIENTO_EN_X_PARA_PASAR_DE_2D_A_ISOMETRICO-puntoADibujar.getX(),this.DESPLAZAMIENTO_EN_Y_PARA_PASAR_DE_2D_A_ISOMETRICO-puntoADibujar.getY());	
+							
+			} 
 		}
-	}*/
+		
+	}
 
 
 
-	public void mover(Graphics2D g2d) {
+	/*public void mover(Graphics2D g2d) {
 		g2d.setBackground(Color.BLACK);
 		g2d.clearRect(0, 0, 810, 610);		
 		
@@ -258,7 +274,7 @@ private void cargarSprites(String nombre) {
 		}
 		//g2d.drawImage( getImage(tipoDeSprite), 0, 0 , null);	
 		termino();
-	}
+	}*/
 	
 	/*public void mover(Graphics2D g2d) {
 		g2d.setBackground(Color.BLACK);

@@ -5,11 +5,16 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.io.FileNotFoundException;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import promotionSystem.Cliente;
+import promotionSystem.Punto;
+
 public class JuegoPanel extends JPanel implements Runnable{
 	
+	private Cliente cliente;
 	private Thread thread;
 	private JFrame juego;
 	private Mouse mouse;
@@ -22,14 +27,18 @@ public class JuegoPanel extends JPanel implements Runnable{
 	public static double timePerTick = 1000000000/fps;
 	public static final int ANCHO=800;
 	public static final int ALTO=600;
-	public static final int xOffCamara = 16;
-	public static final int yOffCamara = 6;
+	//public static final int xOffCamara = 16;
+	//public static final int yOffCamara = 6;
 	
-	public JuegoPanel(JFrame juego) throws FileNotFoundException{
+	public JuegoPanel(JFrame juego,Cliente cliente) throws FileNotFoundException{
 		setPreferredSize(new Dimension(ALTO,ANCHO));
 		mouse=new Mouse();
+		this.cliente=cliente;
 		addMouseListener(mouse);
-		personajeJugable=new TilePersonaje(1,1,3,"pablo94",mouse);
+	cliente.getPersonaje().setPosicion(new Punto(25,25));
+		ImageIcon imagen=new ImageIcon("RecursosPersonaje/Razas/"+ cliente.getCasta()+"/"+cliente.getCasta()+".png");
+	
+		personajeJugable=new TilePersonaje(1,1,3,"pablo94",mouse,imagen.getImage());
 		mapa=new Mapa("Mapa Prueba",personajeJugable);
 //		
 		this.juego=juego;
@@ -58,9 +67,9 @@ public class JuegoPanel extends JPanel implements Runnable{
 	}
 
 	public void actualizar() {
-		mouse.actualizar(); 
-		personajeJugable.actualizar();
-	//	mapa.actualizar();
+		//mouse.actualizar(); 
+		//personajeJugable.actualizar();
+	 	//mapa.actualizar();
 	}
 
 	
@@ -68,13 +77,18 @@ public class JuegoPanel extends JPanel implements Runnable{
 
 		super.paint(g);
 		Graphics2D g2d = (Graphics2D) g;
-		if(jugar){
+		/*if(jugar){
 			mapa.dibujar(g2d);
-			//mapa.dibujarObstaculo(g2d);
+			
 			jugar = false;
-		}
-		mapa.mover(g2d);
-	    personajeJugable.dibujarCentro(g2d);
+		
+		}*/
+		 
+		mapa.dibujar(g2d,cliente.getPersonaje().getPosicion());
+		personajeJugable.dibujarCentro(g2d);
+		mapa.dibujarObstaculo(g2d,cliente.getPersonaje().getPosicion());
+		//mapa.mover(g2d);
+	    
 	}
 
 

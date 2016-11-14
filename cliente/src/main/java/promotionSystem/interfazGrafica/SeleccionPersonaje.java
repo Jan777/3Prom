@@ -104,7 +104,7 @@ class LaminaCentral extends JPanel{
 		setLayout(new FlowLayout(FlowLayout.CENTER));
 	} //no funciona bien
 
-	public void paintComponent(Graphics g){
+	/*public void paintComponent(Graphics g){
 		super.paintComponent(g);
 
 		File miImagen=new File("recursos/Razas/Guerrero.jpg");
@@ -115,7 +115,7 @@ class LaminaCentral extends JPanel{
 		}
 		g.drawImage(imagen, 5, 5, null);
 
-	}
+	}*/
 }
 /*
 cliente.enviarAccion("enviarRaza");
