@@ -185,6 +185,7 @@ public class Cliente {
 		int nivel = Integer.parseInt(personajeACrear.get("nivel").getAsString());
 		this.personaje=crearPersonaje();
 		this.personaje.subirStats(nivel-1);
+		this.personaje.setNombre(this.nombre);
 		
 	}
 

@@ -37,8 +37,8 @@ public class JuegoPanel extends JPanel implements Runnable{
 		addMouseListener(mouse);
 		ImageIcon imagen=new ImageIcon("RecursosPersonaje/Razas/"+ cliente.getCasta()+"/"+cliente.getCasta()+".png");
 	
-		
-		personajeJugable=new TilePersonaje(1,1,3,"pablo94",mouse,imagen.getImage());
+		String nombre=cliente.getNombre();
+		personajeJugable=new TilePersonaje(1,1,3,nombre,mouse,imagen.getImage());
 		mapa=new Mapa("Mapa Prueba",personajeJugable);
 //		
 		this.juego=juego;

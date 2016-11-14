@@ -139,7 +139,8 @@ public class Login extends JFrame{
 								registrarse.setEnabled(false);
 								enviarAccion();
 								iniciarSesion();
-								if(resultado()){	
+								if(resultado()){
+									cargarNombre();
 									cargarPersonaje();
 									menuPrincipal(frame);
 								}
@@ -155,6 +156,8 @@ public class Login extends JFrame{
 							e.printStackTrace();
 						}
 					}
+
+					
 
 					
 			
@@ -257,6 +260,11 @@ public class Login extends JFrame{
 		private void vaciarCampos() {
 			nick.setText("");
 			contraseña.setText("");
+		}
+		
+		private void cargarNombre() {
+			cliente.setNombre(nick.getText());
+			
 		}
 		
 		private boolean camposNoVacios() {
