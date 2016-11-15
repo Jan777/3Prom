@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Random;
 
 
@@ -22,6 +23,7 @@ import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
+import promotionSystem.Alianza;
 import promotionSystem.Conector;
 import promotionSystem.Personaje;
 import promotionSystem.Punto;
@@ -32,7 +34,7 @@ public class ServidorHilo extends Thread {
 	private boolean continuar=true;
 	private HashMap<Socket,Personaje> jugadores;
 	private ArrayList<Punto> puntosIniciales;
-	private HashMap<Mapa,ArrayList<Socket>> jugadoresPorMapa;//cambiar por una lista por mapa seria mas facil.
+	private HashMap<Mapa,ArrayList<Socket>> jugadoresPorMapa;
 	private HashMap<String,Mapa>mapasDisponibles;
 	private DataInputStream entrada;
 	private DataOutputStream salida;
@@ -94,7 +96,6 @@ public class ServidorHilo extends Thread {
 		puntoAMover.addProperty("nombre", nombreCliente);
 		puntoAMover.addProperty("x",jugadores.get(cliente).getPosicion().getX());
 		puntoAMover.addProperty("y",jugadores.get(cliente).getPosicion().getY());
-		
 		enviarMensajeAJugadores(puntoAMover,jugadoresPorMapa.get(mapa));
 		
 	}
@@ -152,7 +153,6 @@ public class ServidorHilo extends Thread {
 		Iterator<Socket> iterador = jugadoresAEnviar.iterator();
 		while(iterador.hasNext()){
 			Socket jugador = iterador.next();
-			
 			if(jugador!=cliente){
 				new DataOutputStream(jugador.getOutputStream()).writeUTF(json.toString());
 			}
@@ -350,11 +350,39 @@ public class ServidorHilo extends Thread {
 		return parser.parse(entrada.readUTF());
 	}
 	
+	private void enviarPosicionInicial() throws IOException{
+		Random random = new Random();
+		Punto puntoInicial=puntosIniciales.get(random.nextInt(puntosIniciales.size()));
+		JsonObject punto = new JsonObject();
+	    punto.addProperty("x", puntoInicial.getX());
+		punto.addProperty("y", puntoInicial.getX());
+		jugadores.get(cliente).setPosicion(puntoInicial);
+		salida.writeUTF(punto.toString());
+	}
 	
-	/**no implementados**/
+	
+	/**no implementados**/	
+	
 	public void comunicarInvitacionAAlianza() throws IOException{
 		Personaje personaje = recibirInvitacionAAlianza();
-		enviarInvitacionAAlianza(personaje);		
+		Socket invitado = enviarInvitacionAAlianza(personaje);
+		recibirRespuestaDeInvitacionAAlianza(invitado);
+		
+	}
+
+	private void recibirRespuestaDeInvitacionAAlianza(Socket invitado) throws IOException {
+			
+			JsonParser parser = new JsonParser();
+			JsonElement elemento = parser.parse(new DataInputStream(invitado.getInputStream()).readUTF());
+		if(elemento.getAsJsonObject().get("respuesta").getAsString().equals("true")){
+			jugadores.get(invitado).aceptarAlianza(jugadores.get(cliente));
+			comunicarAlianza();
+		}
+		else{
+			enviarBatalla();
+		}
+			
+		
 	}
 
 	private Personaje recibirInvitacionAAlianza() throws IOException {
@@ -363,35 +391,36 @@ public class ServidorHilo extends Thread {
 	}
 	
 
-	private void enviarInvitacionAAlianza(Personaje personaje) throws IOException {
-		Iterator<Socket> iterator= jugadores.keySet().iterator();
-		boolean encontro=false;
-		while(!encontro&&iterator.hasNext()){
+	private Socket enviarInvitacionAAlianza(Personaje personaje) throws IOException {
+		Iterator<Socket> iterator= jugadoresPorMapa.get(mapa).iterator();
+		while(iterator.hasNext()){
 			Socket jugador = iterator.next();
 			if(jugadores.get(jugador).equals(personaje)){
 				JsonObject personajeInvitador = new JsonObject();	
 				personajeInvitador.addProperty("nombre", jugadores.get(cliente).getNombre());
-				salida.writeUTF(personajeInvitador.toString());
-				encontro=true;
+				new DataOutputStream(jugador.getOutputStream()).writeUTF(personajeInvitador.toString());
+				return jugador;
+				
 			}
 		}
+		return null;
 	}
 	
-	//FIXME terminar esos metodos
-	public void recibirRespuestaDeInvitacionAAlianza() throws JsonSyntaxException, IOException{
-		JsonElement elemento = recibirObjetoJson(); 
-		if(elemento.getAsJsonObject().get("respuesta").getAsString().equals("true")){
-			comunicarAlianza();
-		}
-		else{
-			enviarBatalla();
-		}
-		
-	}
 
-	private void comunicarAlianza() {
-		//TODO hacer metodo para comunicar alianza
-		
+	
+	//FIXME terminar esos metodos
+	private void comunicarAlianza() throws IOException {
+		Iterator<Socket> iterador =jugadoresPorMapa.get(mapa).iterator();
+		List<Personaje>listaDeAliados=jugadores.get(cliente).getAlianza().getPersonajes();
+		JsonObject json = new JsonObject();
+		json.addProperty("nombreAliado",jugadores.get(cliente).getNombre());
+		while(iterador.hasNext()){
+			Socket jugador = iterador.next();
+			Personaje personaje=jugadores.get(jugador);
+			if(!personaje.equals(jugadores.get(cliente))&&listaDeAliados.contains(personaje)){
+				new DataOutputStream(jugador.getOutputStream()).writeUTF(json.toString());
+			}
+		}
 	}
 
 	private void enviarBatalla() {
@@ -399,22 +428,36 @@ public class ServidorHilo extends Thread {
 		
 	}
 	
-	private void enviarPosicionInicial() throws IOException{
-		Random random = new Random();
-		Punto puntoInicial=puntosIniciales.get(random.nextInt(puntosIniciales.size()));
-		JsonObject punto = new JsonObject();
-	    punto.addProperty("x", puntoInicial.getX());
-		punto.addProperty("y", puntoInicial.getX());
-		jugadores.get(cliente).setPosicion(puntoInicial);
-		 salida.writeUTF(punto.toString());
-	}
 	
-	public void recibirEnemigoYListaDeAliados() throws IOException{
+	
+	
+	
+	public void armarBatalla() throws IOException{
+		String enemigo = recibirEnemigo();
+		Personaje personajeEnemigo = enviarNotificacionDeComienzoDeBatallaAEnemigo(enemigo);
+		Alianza aliados = jugadores.get(cliente).invocarAliados();
+		Alianza enemigos = personajeEnemigo.invocarAliados();
+		new BatallaHilo(jugadores,aliados,enemigos).start();;
+	}
+
+	
+	private Personaje enviarNotificacionDeComienzoDeBatallaAEnemigo(String enemigo) throws IOException {
+		Iterator<Socket> iterador = jugadoresPorMapa.get(mapa).iterator();
+		while(iterador.hasNext()){
+			Socket jugador=iterador.next();
+			if(jugadores.get(jugador).getNombre().equals(enemigo)){
+				JsonObject json = new JsonObject();
+				json.addProperty("nombreEnemigo",jugadores.get(cliente).getNombre());
+				new DataOutputStream(jugador.getOutputStream()).writeUTF(json.toString());
+				return jugadores.get(jugador);
+			}
+		}
+		return null;
+	}
+
+	public String recibirEnemigo() throws IOException{
 		JsonElement elemento = recibirObjetoJson();
-		String atacado = elemento.getAsJsonObject().get("personajeEnemigo").getAsString();
-		JsonArray iterator = elemento.getAsJsonObject().get("aliados").getAsJsonArray();
-		Type tipoListaAliados = new TypeToken<ArrayList<Personaje>>(){}.getType();
-		ArrayList<Personaje> listaAliados = new Gson().fromJson(iterator, tipoListaAliados);
+		return elemento.getAsJsonObject().get("personajeEnemigo").getAsString();
 	}
 	
 	public void enviarNotificacionDeBatalla(Personaje atacado, String accion, Personaje atacante) throws IOException{
@@ -425,14 +468,7 @@ public class ServidorHilo extends Thread {
 		salida.writeUTF(personaje.toString());
 	}
 	
-	public void recibirListaDeAliadosDeAtacado() throws IOException{
-		JsonElement elemento = recibirObjetoJson();
-		String atacado = elemento.getAsJsonObject().get("personajePropio").getAsString();
-		JsonArray iterator = elemento.getAsJsonObject().get("aliados").getAsJsonArray();
-		Type tipoListaAliados = new TypeToken<ArrayList<Personaje>>(){}.getType();
-		ArrayList<Personaje> listaAliados = new Gson().fromJson(iterator, tipoListaAliados);
-	}
-	
+
 	public void enviarNotificacionDeBatallaATodosLosParticipantes(ArrayList<Personaje> participantes) throws IOException{
 		JsonArray personajeBatalla=new JsonArray();
 		Iterator<Personaje> iterator = participantes.iterator();
