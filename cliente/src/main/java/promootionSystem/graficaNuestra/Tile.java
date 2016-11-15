@@ -34,39 +34,8 @@ public class Tile {
 		posicionXConvertida = (deltaX - deltaY) * ( ANCHO / 2);
 		posicionYConvertida = (deltaX + deltaY) * ( ALTO / 2);
 		g2d.drawImage( Mapa.getImage(tipoDeSprite),posicionXConvertida,posicionYConvertida , null);		
-		//g2d.drawImage( Mapa.getImage(tipoDeSprite),0,0 , null);	
+			
 	}
 
-	public void mover(Graphics2D g2d, int posicionXDestino, int posicionYDestino) {
-
-
-		posicionXDestino+=posicionX;
-		posicionYDestino+=posicionY;	
-
-		int nx = (posicionXDestino - posicionYDestino) * ( ANCHO / 2);
-		int ny = (posicionXDestino + posicionYDestino) * ( ALTO / 2);
-
-		if(posicionXConvertida < nx){
-			posicionXConvertida+=2;
-		}
-		if(posicionXConvertida > nx){
-			posicionXConvertida-=2;
-		}
-
-		if(posicionYConvertida < ny){
-			posicionYConvertida++;
-		}
-		if(posicionYConvertida > ny){
-			posicionYConvertida--;
-		}
-		g2d.drawImage( Mapa.getImage(tipoDeSprite), posicionXConvertida, posicionYConvertida , null);	
-	}
-
-	public int getXIso() {
-		return posicionXConvertida;
-	}
-	public int getYIso() {
-		return posicionYConvertida;
-	}
-
+	
 }

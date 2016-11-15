@@ -14,7 +14,7 @@ public class Mouse implements MouseListener{
 		x=0;
 		y=0;
 		
-//		System.out.println(pos[0]+pos[1]);
+
 	}
 
 	@Override
@@ -22,8 +22,10 @@ public class Mouse implements MouseListener{
 		if(evento.getButton()==MouseEvent.BUTTON3){
 		x = evento.getX();
 		y = evento.getY();
+		
+		
 		}
-		//recorrido = true;
+		
 
 	}
 
@@ -31,6 +33,22 @@ public class Mouse implements MouseListener{
 	public void mouseEntered(MouseEvent e) {
 		
 		
+	}
+
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
 	}
 
 	@Override
@@ -51,14 +69,7 @@ public class Mouse implements MouseListener{
 		
 	}
 	
-	
-	public boolean getRecorrido(){
-		return recorrido;
-	}
-	public void setRecorrido(boolean b) {
-		recorrido = b;
-	}
-	public void actualizar() {
+public void actualizar() {
 		
 		int x0 = x - ( Tile.ANCHO / 2 ); 
 		int y0 = y;
@@ -79,14 +90,29 @@ public class Mouse implements MouseListener{
 		pos[1] = auxY;
 
 	}
-	
-	
-	public int[] getPos() {
-		return pos;
-	}
-	@Override
-	public String toString() {
-		return pos[0]+" : "+pos[1];
-	}
 
+public int[] getPos() {
+	return pos;
 }
+
+public void setPos(int[] pos) {
+	this.pos = pos;
+}
+
+public boolean isRecorrido() {
+	return recorrido;
+}
+
+public void setRecorrido(boolean recorrido) {
+	this.recorrido = recorrido;
+}
+
+public boolean getRecorrido(){
+	return recorrido;
+}
+	
+}
+
+	
+	
+	

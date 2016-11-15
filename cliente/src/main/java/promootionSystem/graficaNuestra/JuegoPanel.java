@@ -38,8 +38,9 @@ public class JuegoPanel extends JPanel implements Runnable{
 		ImageIcon imagen=new ImageIcon("RecursosPersonaje/Razas/"+ cliente.getCasta()+"/"+cliente.getCasta()+".png");
 	
 		String nombre=cliente.getNombre();
-		personajeJugable=new TilePersonaje(1,1,3,nombre,mouse,imagen.getImage());
-		mapa=new Mapa("Mapa Prueba",personajeJugable);
+		personajeJugable=new TilePersonaje(1,1,3,nombre,mouse,imagen.getImage(),null);
+		Camara camara = new Camara(ANCHO, ALTO);
+		mapa=new Mapa("Mapa Prueba",personajeJugable,camara);
 //		
 		this.juego=juego;
 		thread=new Thread(this);
@@ -62,14 +63,13 @@ public class JuegoPanel extends JPanel implements Runnable{
 				actualizar();
 				repaint();
 				delta--;
+				
 			}
 		}
 	}
 
 	public void actualizar() {
-		//mouse.actualizar(); 
-		//personajeJugable.actualizar();
-	 	//mapa.actualizar();
+		personajeJugable.actualizar();
 	}
 
 	
@@ -77,19 +77,17 @@ public class JuegoPanel extends JPanel implements Runnable{
 
 		super.paint(g);
 		Graphics2D g2d = (Graphics2D) g;
-		/*if(jugar){
-			mapa.dibujar(g2d);
-			
-			jugar = false;
 		
-		}*/
-		 
-		mapa.dibujar(g2d,cliente.getPersonaje().getPosicion());
+		
+		
+	    mouse.actualizar();
+		mapa.dibujar(g2d,cliente.getPersonaje().getPosicion(),mouse.getPos());
 		personajeJugable.dibujarCentro(g2d);
-		mapa.dibujarObstaculo(g2d,cliente.getPersonaje().getPosicion());
-		//mapa.mover(g2d);
-	    
+		mapa.dibujarObstaculo(g2d,cliente.getPersonaje().getPosicion(),mouse.getPos());
+		
+		personajeJugable.resetear();
+		
+	
 	}
-
 
 }

@@ -21,19 +21,31 @@ public class TilePersonaje {
 	private Image imagenInicial;
 	
 	private boolean nuevoRecorrido;
-	
+	private Camara camara;
 
 
 	
-	public TilePersonaje(int x, int y, int sprite,String nombre,Mouse mouse,Image imagen) {
-		this.xCentro =386;
-		this.yCentro = 280;
+	public TilePersonaje(int x, int y, int sprite,String nombre,Mouse mouse,Image imagen,Camara camara) {
+		this.xCentro =386; //320
+		this.yCentro = 280; //320
 		this.tipoDeSprite = sprite;
+		this.nuevoRecorrido = false; // revisar
+		this.camara=camara;
 		this.nombre = nombre;	
 		this.mouse = mouse;
 		this.imagenInicial=imagen;
-		xInicio=x+400;
-		yInicio=y+300;
+		xInicio=-x;
+		yInicio=-y;
+		xDestino=-x;
+		yDestino=-y;
+	}
+
+	public Mouse getMouse() {
+		return mouse;
+	}
+
+	public void setMouse(Mouse mouse) {
+		this.mouse = mouse;
 	}
 
 	public void setxInicio(int xInicio) {
@@ -56,103 +68,66 @@ public class TilePersonaje {
 
 	}
 
-	public void actualizar() {
-		int posMouse[] = mouse.getPos();
-		
-
-		if (mouse.getRecorrido()) {
-			
-			setNuevoRecorrido(true);
-			xDestino = xInicio - posMouse[0] + Mapa.DESPLAZAMIENTO_EN_X_PARA_PASAR_DE_2D_A_ISOMETRICO;
-			yDestino = yInicio - posMouse[1] + Mapa.DESPLAZAMIENTO_EN_Y_PARA_PASAR_DE_2D_A_ISOMETRICO;
-			
-			
-			
-			
-			boolean diagonalInfIzq = false;
-			boolean diagonalInfDer = false;
-			boolean diagonalSupIzq = false;
-			boolean diagonalSupDer = false;
-			boolean vertical = false;
-			boolean horizontal = false;
-			boolean enMovimiento = false;
-			int yFinal = 0;
-			int difX = 0;
-			int ancho = 0;
-			if (difX < ancho && yInicio != yFinal) {
-				vertical = true;
-				horizontal = true;
-			}
-			int xFinal = 0;
-			int difY = 0;
-			int alto = 0;
-			if (difY < alto && xInicio != xFinal) {
-				horizontal = true;
-				vertical = true;
-			}
-
-			if (!vertical && !horizontal) {
-				if (xFinal > xInicio && yFinal > yInicio) {
-					diagonalInfDer = true;
-				} else if (xFinal < xInicio && yFinal > yInicio) {
-					diagonalInfIzq = true;
-				} else if (xFinal > xInicio && yFinal < yInicio) {
-					diagonalSupDer = true;
-				} else if (xFinal < xInicio && yFinal < yInicio) {
-					diagonalSupIzq = true;
-				}
-			}
-			 
-			mouse.setRecorrido(false); 
-			enMovimiento = true;// Cuando llego a destino tengo que poner esto en false
-		}
-
-	}
-
-
 	
-	public int getXDestino() {
-		return xDestino;
-	}
-
-	public int getYDestino() {
-		return yDestino;
-	}
 	
-	public void mover() {
-		
-		xInicio = xDestino;  
-		yInicio = yDestino;	
-		setNuevoRecorrido(false); 
-	}
-		
-	public void setNuevoRecorrido(boolean bs){
-		this.nuevoRecorrido = bs;
-	}
-	
-	public boolean getNuevoRecorrido() {
-		return nuevoRecorrido;
-		
-	}
 
 	public int getxCentro() {
 		return xCentro;
 	}
 
-	public void setxCentro(int xCentro) {
-		this.xCentro = xCentro;
-	}
-
+	
 	public int getyCentro() {
 		return yCentro;
 	}
 
-	public void setyCentro(int yCentro) {
-		this.yCentro = yCentro;
-	}
-
+	
 	public Image getImagenInicial() {
 		return imagenInicial;
+	}
+
+	public void resetear() {
+		xDestino=0;
+		yDestino=0;
+		
+	}
+
+	public void actualizar() {
+		int posMouse[] = mouse.getPos();
+
+		
+
+		if (mouse.getRecorrido()) {
+			setNuevoRecorrido(true);
+
+			xDestino = xInicio - posMouse[0] + camara.getxOffCamara();
+			yDestino = yInicio - posMouse[1] + camara.getyOffCamara();
+			mouse.setRecorrido(false); 
+		}
+
+	}
+
+	public int getxDestino() {
+		return xDestino;
+	}
+
+	public void setxDestino(int xDestino) {
+		this.xDestino = xDestino;
+	}
+
+	public int getyDestino() {
+		return yDestino;
+	}
+
+	public void setyDestino(int yDestino) {
+		this.yDestino = yDestino;
+	}
+
+	public boolean isNuevoRecorrido() {
+		return nuevoRecorrido;
+	}
+
+	public void setNuevoRecorrido(boolean nuevoRecorrido) {
+		this.nuevoRecorrido = nuevoRecorrido;
 	}
 
 	
