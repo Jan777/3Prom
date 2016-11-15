@@ -32,7 +32,7 @@ public class ServidorHilo extends Thread {
 	private boolean continuar=true;
 	private HashMap<Socket,Personaje> jugadores;
 	private ArrayList<Punto> puntosIniciales;
-	private HashMap<Personaje,Mapa> jugadoresPorMapa;
+	private HashMap<Mapa,ArrayList<Socket>> jugadoresPorMapa;//cambiar por una lista por mapa seria mas facil.
 	private HashMap<String,Mapa>mapasDisponibles;
 	private DataInputStream entrada;
 	private DataOutputStream salida;
@@ -41,7 +41,8 @@ public class ServidorHilo extends Thread {
 	private Conector conector;
 	private String nombreCliente;
 	private int nivel;
-	public ServidorHilo(Socket cliente,HashMap<Socket,Personaje> jugadores,HashMap<Personaje,Mapa> jugadoresPorMapa,HashMap<String,Mapa> mapasDisponibles,Conector conector) throws IOException{
+	private Mapa mapa;
+	public ServidorHilo(Socket cliente,HashMap<Socket,Personaje> jugadores,HashMap<Mapa,ArrayList<Socket>> jugadoresPorMapa,HashMap<String,Mapa> mapasDisponibles,Conector conector) throws IOException{
 		this.cliente=cliente;
 		this.jugadoresPorMapa=jugadoresPorMapa;
 		this.jugadores=jugadores;
@@ -82,6 +83,27 @@ public class ServidorHilo extends Thread {
 		
 	}
 	
+	
+	public void mover() throws IOException{
+		jugadores.get(cliente).setPosicion(obtenerPuntoEnviado());
+		enviarAlRestoPunto();
+		
+	}
+	private void enviarAlRestoPunto() throws IOException {
+		JsonObject puntoAMover = new JsonObject();
+		puntoAMover.addProperty("nombre", nombreCliente);
+		puntoAMover.addProperty("x",jugadores.get(cliente).getPosicion().getX());
+		puntoAMover.addProperty("y",jugadores.get(cliente).getPosicion().getY());
+		
+		enviarMensajeAJugadores(puntoAMover,jugadoresPorMapa.get(mapa));
+		
+	}
+
+	private Punto obtenerPuntoEnviado() throws IOException {
+		JsonElement elemento = recibirObjetoJson(); 
+		return new Gson().fromJson(elemento, Punto.class);
+	}
+
 	private Personaje obtenerPersonaje() throws Exception {
 		raza=conector.obtenerRazaPersonaje(nombreCliente);
 		casta=conector.obtenerCastaPersonaje(nombreCliente);
@@ -111,10 +133,32 @@ public class ServidorHilo extends Thread {
 	
 	public void  seleccionarMapa() throws IOException{
 		recibirMapaElegido();
-		enviarPosicionInicial();
+		enviarPosicionInicial();	
+//		enviarPersonajeAlResto();
 	}
 	
 	
+	private void enviarPersonajeAlResto() throws IOException {
+		JsonObject json = new JsonObject();
+		json.addProperty("raza",raza);
+		json.addProperty("raza",casta);
+		json.addProperty("raza",nivel);
+		json.addProperty("x",jugadores.get(cliente).getPosicion().getX());
+		json.addProperty("y",jugadores.get(cliente).getPosicion().getY());
+		enviarMensajeAJugadores(json, jugadoresPorMapa.get(mapa));
+	}
+
+	private void enviarMensajeAJugadores(JsonObject json,ArrayList<Socket> jugadoresAEnviar) throws IOException {
+		Iterator<Socket> iterador = jugadoresAEnviar.iterator();
+		while(iterador.hasNext()){
+			Socket jugador = iterador.next();
+			
+			if(jugador!=cliente){
+				new DataOutputStream(jugador.getOutputStream()).writeUTF(json.toString());
+			}
+		}
+	}
+
 	public void registrar() throws Exception{
 		registrarJugador();
 	
@@ -131,7 +175,6 @@ public class ServidorHilo extends Thread {
 	
 	private void recibirRazaYCasta() throws IOException {
 			JsonElement elemento = recibirObjetoJson(); 
-			JsonObject respuesta=new JsonObject();
 			raza =elemento.getAsJsonObject().get("raza").getAsString();
 			casta =elemento.getAsJsonObject().get("casta").getAsString();
 	}
@@ -295,8 +338,9 @@ public class ServidorHilo extends Thread {
 	}
 	
 	public void recibirMapaElegido() throws IOException{
-		JsonElement elemento = recibirObjetoJson(); 
-		jugadoresPorMapa.put(jugadores.get(cliente), mapasDisponibles.get(elemento.getAsJsonObject().get("mapa").getAsString()));
+		JsonElement elemento = recibirObjetoJson();
+		mapa=mapasDisponibles.get(elemento.getAsJsonObject().get("mapa").getAsString());
+		jugadoresPorMapa.get(mapa).add(cliente);
 	}
 	
 	

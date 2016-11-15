@@ -2,6 +2,7 @@ package promotionSystem.hilos;
 
 import java.io.IOException;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import promotionSystem.Conector;
@@ -12,9 +13,9 @@ public class HiloCreadorServidor extends Thread {
 	private Conector conector;
 	private Socket cliente;
 	private HashMap<Socket,Personaje> jugadores;
-	private	HashMap<Personaje,Mapa> jugadoresPorMapa;
+	private	HashMap<Mapa,ArrayList<Socket>> jugadoresPorMapa;
 	private HashMap<String,Mapa>mapasDisponibles;
-	public HiloCreadorServidor(Socket cliente,HashMap<Socket,Personaje> jugadores,HashMap<Personaje,Mapa> jugadoresPorMapa,HashMap<String,Mapa>mapasDisponibles,Conector conector){
+	public HiloCreadorServidor(Socket cliente,HashMap<Socket,Personaje> jugadores,HashMap<Mapa,ArrayList<Socket>> jugadoresPorMapa,HashMap<String,Mapa>mapasDisponibles,Conector conector){
 		super();
 		this.jugadoresPorMapa=jugadoresPorMapa;
 		this.conector=conector;

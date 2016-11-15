@@ -31,6 +31,8 @@ public class Cliente {
 	private DataInputStream entrada;
 	private String raza;
 	private String casta;
+	private ArrayList<Personaje> jugadoresEnPartida;
+	
 	public Cliente() throws Exception {
 		try {
 			configurar(archivoDeConfiguracion);

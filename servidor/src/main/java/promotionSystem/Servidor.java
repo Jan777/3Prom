@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import java.util.Scanner;
@@ -22,7 +23,7 @@ public class Servidor {
 	private int cantidadMaximaDeClientes;
 	private String archivoDeConfiguracion="../configuracion.config";
 	private HashMap<Socket,Personaje> jugadores = new HashMap<Socket,Personaje>();
-	private HashMap<Personaje,Mapa> jugadoresPorMapa=new HashMap<Personaje,Mapa>();
+	private HashMap<Mapa,ArrayList<Socket>>jugadoresPorMapa=new HashMap<Mapa,ArrayList<Socket>>();
 	private HashMap<String,Mapa>mapasDisponibles= new HashMap<String,Mapa>();
 	
 	public Servidor(){
@@ -47,6 +48,10 @@ public class Servidor {
 		mapasDisponibles.put("Mundo Undertale",new Mapa(100,100));
 		mapasDisponibles.put("Mundo Kingdom Hearts",new Mapa(100,100));
 		
+		jugadoresPorMapa.put(mapasDisponibles.get("Mundo Star Wars"), new ArrayList<Socket>());
+		jugadoresPorMapa.put(mapasDisponibles.get("Mundo Pokemom"), new ArrayList<Socket>());
+		jugadoresPorMapa.put(mapasDisponibles.get("Mundo Undertale"), new ArrayList<Socket>());
+		jugadoresPorMapa.put(mapasDisponibles.get("Mundo Kingdom Hearts"), new ArrayList<Socket>());
 	}
 
 	private void aceptarClientes(ServerSocket servidor) throws IOException {
