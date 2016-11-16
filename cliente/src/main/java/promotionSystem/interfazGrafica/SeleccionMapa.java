@@ -7,9 +7,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import promootionSystem.graficaNuestra.JuegoPanel;
+
+
 import promotionSystem.Cliente;
 
+
+import promotionSystem.juego.JuegoPanel;
 
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
@@ -111,13 +114,8 @@ public class SeleccionMapa extends JFrame {
 		JFrame juego=new JFrame("King of Multiverse V1.0");
 		juego.setBounds(100, 100, 800, 600);
 		JuegoPanel panel;
-		try {
-			panel = new JuegoPanel(juego,cliente);
-			juego.add(panel);
-		} catch (FileNotFoundException e) {
-			
-			e.printStackTrace();
-		}
+		panel = new JuegoPanel(juego,"Mapa Prueba",cliente);
+		juego.add(panel);
 		
 		juego.setResizable(false);
 		juego.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

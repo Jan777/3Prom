@@ -3,6 +3,7 @@ package promotionSystem;
 import promotionSystem.mapa.Mapa;
 import promotionSystem.mapa.Rectangulo;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +20,9 @@ public class Grafo {
         }
     }
 
-    public Camino caminoMasCorto(){
+    
+
+	public Camino caminoMasCorto(){
         Dijkstra dijkstra = new Dijkstra(this);
         //TODO Hay que hacer la lógica del camino
         return new Camino(nodos.get(0), nodos.get(1));

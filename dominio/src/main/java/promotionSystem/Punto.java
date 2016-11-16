@@ -27,4 +27,8 @@ package promotionSystem;
 			if( x == otroPunto.x ) return 0;
 			return -1;
 		}
+
+		public boolean comparar(Punto punto) {
+			return this.x == punto.x && this.y == punto.y;
+		}
 }
