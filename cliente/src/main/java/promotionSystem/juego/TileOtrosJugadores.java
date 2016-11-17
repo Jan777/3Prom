@@ -29,7 +29,7 @@ public class TileOtrosJugadores {
 	private int yAnterior;
 	private Nodo paso;
 	private String nombre;
-	MetodoDijkstra moverGordo;
+	MetodoDijkstra moverPersonaje;
 
 	public TileOtrosJugadores(String nombre,String sprite, Punto point) {
 		xDestino = xActual = xAnterior = point.getX();
@@ -57,8 +57,9 @@ public class TileOtrosJugadores {
 		return yDestino;
 	}
 	public void calcularDijkstra(Grafo grafoDeMapa, Nodo actual, Nodo destino) {
-		moverGordo 	= 	new MetodoDijkstra();
-		camino 		=	moverGordo.obtenerCamino(destino);
+		moverPersonaje 	= 	new MetodoDijkstra();
+		camino 		=	moverPersonaje.obtenerCamino(destino);
+		
 	}
 
 	private void moverUnPaso() { 
@@ -101,6 +102,7 @@ public class TileOtrosJugadores {
 	public void actualizar() {
 		if(xActual==xDestino &&	yActual==yDestino ){
 			moverUnPaso();
+
 		}		
 	}
 

@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -13,6 +14,8 @@ import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
+import promotionSystem.Cliente;
+import promotionSystem.Punto;
 import promotionSystem.juego.Camara;
 import promotionSystem.juego.TileOtrosJugadores;
 import promotionSystem.mapagrafico.dijkstra.MatrizBoolean;
@@ -57,10 +60,11 @@ public class Mapa {
 	private Nodo actual;
 	private Nodo destino;
 	private boolean noEnvieQueTermine;
+	private Cliente cliente;
 	
 
 
-	public Mapa(String nombre,TilePersonaje pj,Camara camara, HashMap<String, TileOtrosJugadores> personajes) {
+	public Mapa(String nombre,TilePersonaje pj,Camara camara, HashMap<String, TileOtrosJugadores> personajes,Cliente cliente) {
 		File path = new File("recursos/"+nombre+".txt");
 		this.pj = pj;
 		this.enMovimiento = false;
@@ -72,6 +76,7 @@ public class Mapa {
 		this.nombre = nombre;
 		this.camara = camara;
 		this.personajes = personajes;
+		this.cliente=cliente;
 
 		Scanner sc = null;
 		try {
@@ -144,7 +149,7 @@ public class Mapa {
 		return x>=0 && y>=0 && x<alto && y<ancho;
 	}
 	
-	public void actualizar() {
+	public void actualizar() throws IOException {
 		if( pj.getNuevoRecorrido() && posicionValida(-pj.getXDestino(),-pj.getYDestino()) )	{
 			dijkstra	= 	new MetodoDijkstra();
 			actual 		= 	grafoDeMapa.getNodo(-xDestino, -yDestino);
@@ -163,6 +168,7 @@ public class Mapa {
 		}
 		if( noEnvieQueTermine && !pj.estaEnMovimiento() && ! hayCamino()){
 			
+			cliente.enviarPosicion(new Punto(xDestino*-1,yDestino*-1));
 			noEnvieQueTermine = false;
 		}
 		//actualizarRestoPersonajes();

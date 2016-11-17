@@ -259,6 +259,20 @@ public class Cliente {
 		
 	}
 
+	public void enviarPosicion(Punto punto) throws IOException {
+		personaje.setPosicion(punto);
+		enviarAccion("mover");
+		enviarPunto(punto);
+		
+	}
+
+	private void enviarPunto(Punto punto) throws IOException {
+		JsonObject puntoAEnviar = new JsonObject();
+		puntoAEnviar.addProperty("x",punto.getX());
+		puntoAEnviar.addProperty("y",punto.getY());
+		salida.writeUTF(puntoAEnviar.toString());
+	}
+
 	
 
 }

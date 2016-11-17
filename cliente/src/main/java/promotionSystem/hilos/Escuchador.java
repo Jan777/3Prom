@@ -92,6 +92,7 @@ public class Escuchador extends Thread{
 	public void asignarPuntoAPersonaje(String nombrePersonaje, Punto puntoNuevo) {
 		boolean encontro=false;
 		int i=0;
+		
 		while(!encontro){
 			if(jugadoresEnPartida.get(i).getNombre().equals(nombrePersonaje)){
 				jugadoresEnPartida.get(i).setPosicion(puntoNuevo);

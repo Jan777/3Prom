@@ -53,7 +53,7 @@ public class JuegoPanel extends Component implements Runnable{
 		camara = new Camara(ANCHO, ALTO);
 		addMouseListener(mouse);
 		personajeJugableDibujo = new TilePersonaje(cliente.getPersonaje().getPosicion(),cliente,mouse,camara);  
-		mapa 	 = new Mapa(nombreMapa,personajeJugableDibujo,camara, null);
+		mapa 	 = new Mapa(nombreMapa,personajeJugableDibujo,camara, null,cliente);
 		thread 	 = new Thread(this);
 		thread.start();
 	}
@@ -73,14 +73,20 @@ public class JuegoPanel extends Component implements Runnable{
 			lastTime = now;
 			if(delta >=1){  
 
-				actualizar();
-				repaint();
-				delta--;
+				try {
+					actualizar();
+					repaint();
+					delta--;
+				} catch (IOException e) {
+			
+					e.printStackTrace();
+				}
+				
 			}
 		}
 	}
 
-	public void actualizar() {
+	public void actualizar() throws IOException {
 		mouse.actualizar();  
 		personajeJugableDibujo.actualizar();
 		mapa.actualizar();

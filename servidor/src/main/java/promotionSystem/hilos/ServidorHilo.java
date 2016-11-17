@@ -89,7 +89,6 @@ public class ServidorHilo extends Thread {
 	
 	public void mover() throws IOException{
 		jugadores.get(cliente).setPosicion(obtenerPuntoEnviado());
-		enviarAccion("movimientoDePersonaje");
 		enviarAlRestoPunto();
 		
 	}
@@ -103,16 +102,18 @@ public class ServidorHilo extends Thread {
 
 	private void enviarAlRestoPunto() throws IOException {
 		JsonObject puntoAMover = new JsonObject();
-		puntoAMover.addProperty("nombre", nombreCliente);
+		puntoAMover.addProperty("nombre", jugadores.get(cliente).getNombre());
 		puntoAMover.addProperty("x",jugadores.get(cliente).getPosicion().getX());
 		puntoAMover.addProperty("y",jugadores.get(cliente).getPosicion().getY());
-		enviarMensajeAJugadores(puntoAMover,jugadoresPorMapa.get(mapa));
+		enviarMensajeAJugadores(puntoAMover,jugadoresPorMapa.get(mapa),"movimientoDePersonaje");
 		
 	}
 
 	private Punto obtenerPuntoEnviado() throws IOException {
 		JsonElement elemento = recibirObjetoJson(); 
-		return new Gson().fromJson(elemento, Punto.class);
+//		Punto punto = new Punto(elemento.getAsJsonObject().get("x").getAsInt(),elemento.getAsJsonObject().get("y").getAsInt());
+				return new Gson().fromJson(elemento.getAsJsonObject(), Punto.class);
+//	
 	}
 
 	private Personaje obtenerPersonaje() throws Exception {
@@ -187,10 +188,10 @@ public class ServidorHilo extends Thread {
 		json.addProperty("nivel",nivel);
 		json.addProperty("x",jugadores.get(cliente).getPosicion().getX());
 		json.addProperty("y",jugadores.get(cliente).getPosicion().getY());
-		enviarMensajeAJugadores(json, jugadoresPorMapa.get(mapa));
+		enviarMensajeAJugadores(json, jugadoresPorMapa.get(mapa),"agregarPersonaje");
 	}
 
-	private void enviarMensajeAJugadores(JsonObject json,ArrayList<Socket> jugadoresAEnviar) throws IOException {
+	private void enviarMensajeAJugadores(JsonObject json,ArrayList<Socket> jugadoresAEnviar,String accionAEnviar) throws IOException {
 		Iterator<Socket> iterador = jugadoresAEnviar.iterator();
 		while(iterador.hasNext()){
 			Socket jugador = iterador.next();
@@ -198,7 +199,7 @@ public class ServidorHilo extends Thread {
 
 				DataOutputStream salidaCliente=new DataOutputStream(jugador.getOutputStream());
 				JsonObject accion = new JsonObject();
-				accion.addProperty("Accion", "agregarPersonaje");
+				accion.addProperty("Accion", accionAEnviar);
 				salidaCliente.writeUTF(accion.toString());
 				salidaCliente.writeUTF(json.toString());
 			}
