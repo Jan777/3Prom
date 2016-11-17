@@ -78,14 +78,16 @@ public class SeleccionMapa extends JFrame {
 
 			
 			
+			
 		});
 	
 		btnJugar.setBounds(175, 194, 89, 23);
 		contentPane.add(btnJugar);
-		
 
 	}
 	
+
+
 	protected void recibirPosicionInicial() throws IOException {
 			cliente.recibirPosicionInicial();
 		
@@ -110,7 +112,7 @@ public class SeleccionMapa extends JFrame {
 		cliente.enviarMapaSeleccionado(mapa);
 	}
 
-	private void abrirMapa() {
+	private void abrirMapa() throws IOException {
 		JFrame juego=new JFrame("King of Multiverse V1.0");
 		juego.setBounds(100, 100, 800, 600);
 		JuegoPanel panel;

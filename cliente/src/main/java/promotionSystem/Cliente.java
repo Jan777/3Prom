@@ -9,6 +9,8 @@ import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
+import promotionSystem.hilos.Escuchador;
+
 import java.io.*;
 import java.lang.reflect.Type;
 import java.net.Socket;
@@ -39,6 +41,7 @@ public class Cliente {
 			cliente = new Socket(ip,puerto);
 			salida=new DataOutputStream(cliente.getOutputStream());
 			entrada=new DataInputStream(cliente.getInputStream());
+			jugadoresEnPartida = new ArrayList<Personaje>();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -91,6 +94,8 @@ public class Cliente {
 	private void crearPersonajeAPartirDeRazaYCasta() throws Exception {
 		personaje = crearPersonaje();
 		personaje.setNombre(nombre);
+		personaje.setCasta(casta);
+		personaje.setRaza(raza);
 	}
 	
 	public List<String> recibirMapas() throws IOException{
@@ -188,6 +193,8 @@ public class Cliente {
 		this.personaje=crearPersonaje();
 		this.personaje.subirStats(nivel-1);
 		this.personaje.setNombre(this.nombre);
+		personaje.setCasta(casta);
+		personaje.setRaza(raza);
 		
 	}
 
@@ -245,6 +252,11 @@ public class Cliente {
 
 	public String getCasta() {
 		return casta; 
+	}
+
+	public void crearHiloEscuchador() throws IOException {
+		new Escuchador(cliente,nombre,personaje,raza,casta,jugadoresEnPartida).start();
+		
 	}
 
 	

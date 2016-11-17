@@ -56,12 +56,12 @@ public class Conector {
 	      
 	}
 
-	public void agregarPersonaje(Personaje personaje,String raza, String casta) throws SQLException {
+	public void agregarPersonaje(Personaje personaje) throws SQLException {
 		  conector.setAutoCommit(false);
 		  sentencia = conector.prepareStatement("INSERT INTO Personajes (nombre,raza,casta,nivel) values (?,?,?,?);");
 	      sentencia.setString(1,personaje.getNombre());
-	      sentencia.setString(2,raza);
-	      sentencia.setString(3,casta);
+	      sentencia.setString(2,personaje.getRaza());
+	      sentencia.setString(3,personaje.getCasta());
 	      sentencia.setInt(4,personaje.getNivel());
 	      sentencia.executeUpdate();	     
 	      sentencia.close();

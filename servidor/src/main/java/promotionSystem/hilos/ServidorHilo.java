@@ -122,6 +122,8 @@ public class ServidorHilo extends Thread {
 		Personaje personaje = crearPersonajeAPartirDeRazaYCasta();
 		personaje.subirStats(nivel-1);
 		personaje.setNombre(nombreCliente);
+		personaje.setCasta(casta);
+		personaje.setRaza(raza);
 		return personaje;
 	}
 
@@ -145,12 +147,39 @@ public class ServidorHilo extends Thread {
 	public void  seleccionarMapa() throws IOException{
 		recibirMapaElegido();
 		enviarPosicionInicial();	
-		enviarAccion("agregarPersonaje");
+		if(jugadoresPorMapa.size()!=1){
+			enviarAccion("recibirListaDePersonajes");
+			enviarListaDePersonajesEnLaPartida();
+		}
      	enviarPersonajeAlResto();
 	}
 	
 	
+	private void enviarListaDePersonajesEnLaPartida() throws IOException {
+		
+			JsonArray personajes = new JsonArray();
+			for(Socket socketDelPersonaje :jugadoresPorMapa.get(mapa)){
+				JsonObject elemento = new JsonObject();
+				Personaje personajeAEnviar = jugadores.get(socketDelPersonaje);
+				if(!personajeAEnviar.equals(jugadores.get(cliente))){
+					
+					elemento.addProperty("nombre",personajeAEnviar.getNombre());
+					elemento.addProperty("raza", personajeAEnviar.getRaza());
+					elemento.addProperty("casta", personajeAEnviar.getCasta());
+					elemento.addProperty("nivel", personajeAEnviar.getNivel());
+					elemento.addProperty("x",personajeAEnviar.getPosicion().getX());
+					elemento.addProperty("y",personajeAEnviar.getPosicion().getY());
+					personajes.add(elemento);	
+				}
+			}
+			
+			salida.writeUTF(personajes.toString());
+		
+		
+	}
+
 	private void enviarPersonajeAlResto() throws IOException {
+		
 		JsonObject json = new JsonObject();
 		json.addProperty("nombre",nombreCliente);
 		json.addProperty("raza",raza);
@@ -165,8 +194,13 @@ public class ServidorHilo extends Thread {
 		Iterator<Socket> iterador = jugadoresAEnviar.iterator();
 		while(iterador.hasNext()){
 			Socket jugador = iterador.next();
-			if(jugador!=cliente){
-				new DataOutputStream(jugador.getOutputStream()).writeUTF(json.toString());
+			if(!jugador.equals(cliente)){
+
+				DataOutputStream salidaCliente=new DataOutputStream(jugador.getOutputStream());
+				JsonObject accion = new JsonObject();
+				accion.addProperty("Accion", "agregarPersonaje");
+				salidaCliente.writeUTF(accion.toString());
+				salidaCliente.writeUTF(json.toString());
 			}
 		}
 	}
@@ -242,8 +276,10 @@ public class ServidorHilo extends Thread {
 	private void crearPersonaje() throws Exception {
 		Personaje personaje=crearPersonajeAPartirDeRazaYCasta();
 		personaje.setNombre(nombreCliente);
+		personaje.setRaza(raza);
+		personaje.setCasta(casta);
 		jugadores.put(cliente, personaje);
-		conector.agregarPersonaje(personaje,raza,casta);
+		conector.agregarPersonaje(personaje);
 	}
 
 
@@ -283,7 +319,7 @@ public class ServidorHilo extends Thread {
 	public void recibirRazaElegido() throws Exception{
 		JsonElement elemento = recibirObjetoJson(); 
 		raza=elemento.getAsJsonObject().get("raza").getAsString();
-		System.out.println(raza);
+		
 		
 	}
 

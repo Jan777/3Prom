@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.io.IOException;
 import java.util.HashMap;
 
 import javax.swing.ImageIcon;
@@ -40,9 +41,10 @@ public class JuegoPanel extends Component implements Runnable{
 
 	private boolean jugar = true;
 
-	public JuegoPanel(JFrame padre,String nombreMapa, Cliente cliente) {
+	public JuegoPanel(JFrame padre,String nombreMapa, Cliente cliente) throws IOException {
 		this.padre = padre;
 		this.cliente = cliente;
+		cliente.crearHiloEscuchador();
 		this.personajes = new HashMap<String, TileOtrosJugadores>();
 		setPreferredSize(new Dimension(ANCHO, ALTO));
 		setFocusable(true);

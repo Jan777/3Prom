@@ -57,22 +57,28 @@ public class Escuchador extends Thread{
 		}
 	}
 
-	private String recibirAccion() throws IOException {
+	public String recibirAccion() throws IOException {
 		JsonElement elemento = recibirObjetoJson(); 
 		return elemento.getAsJsonObject().get("Accion").getAsString();
 	}
 
-	private JsonElement recibirObjetoJson() throws IOException {
+	public  JsonElement recibirObjetoJson() throws IOException {
 		JsonParser parser = new JsonParser();
 		return parser.parse(entrada.readUTF());
 	}
 	
 	
-	public void recibirListaDePersonajes() throws IOException{
+	public void recibirListaDePersonajes() throws Exception{
+		
 		JsonParser parser = new JsonParser();
 		JsonArray json = parser.parse(entrada.readUTF()).getAsJsonArray();
-		Type tipoListaRazas = new TypeToken<ArrayList<Personaje>>(){}.getType();
-		jugadoresEnPartida = new Gson().fromJson(json, tipoListaRazas);
+		Type tipoListaRazas = new TypeToken<ArrayList<JsonObject>>(){}.getType();
+		ArrayList<JsonObject> crearPersonajes=new Gson().fromJson(json, tipoListaRazas);
+		for(JsonObject personaje : crearPersonajes){
+			Personaje personajeAAgregar=crearPersonaje(personaje);
+			jugadoresEnPartida.add(personajeAAgregar);			
+		}
+		
 	}
 	
 	public void movimientoDePersonaje() throws IOException{
@@ -83,7 +89,7 @@ public class Escuchador extends Thread{
 	    asignarPuntoAPersonaje(nombrePersonaje,puntoNuevo);
 	}
 
-	private void asignarPuntoAPersonaje(String nombrePersonaje, Punto puntoNuevo) {
+	public void asignarPuntoAPersonaje(String nombrePersonaje, Punto puntoNuevo) {
 		boolean encontro=false;
 		int i=0;
 		while(!encontro){
@@ -94,17 +100,22 @@ public class Escuchador extends Thread{
 		}
 	}
 	
-	private void agregarPersonaje() throws Exception{
+	public void agregarPersonaje() throws Exception{
 		JsonParser parser = new JsonParser();
 		JsonObject objeto =parser.parse(entrada.readUTF()).getAsJsonObject();
-		Personaje personaje = crearPersonajeAPartirDeRazaCasta(objeto.get("raza").getAsString(),objeto.get("casta").getAsString());
-		personaje.subirStats(objeto.get("nivel").getAsInt());
-		personaje.setNombre(objeto.get("nombre").getAsString());
-	    personaje.setPosicion(new Punto(objeto.get("x").getAsInt(),objeto.get("y").getAsInt()));
+		Personaje personaje = crearPersonaje(objeto);
 		jugadoresEnPartida.add(personaje);
 	}
+
+	private Personaje crearPersonaje(JsonObject objeto)	throws Exception {
+		Personaje personaje = crearPersonajeAPartirDeRazaCasta(objeto.get("raza").getAsString(),objeto.get("casta").getAsString());
+		personaje.subirStats(objeto.get("nivel").getAsInt()-1);
+		personaje.setNombre(objeto.get("nombre").getAsString());
+		personaje.setPosicion(new Punto(objeto.get("x").getAsInt(),objeto.get("y").getAsInt()));
+		return personaje;
+	}
 	
-	private Personaje crearPersonajeAPartirDeRazaCasta(String asString, String asString2) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+	public Personaje crearPersonajeAPartirDeRazaCasta(String asString, String asString2) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
 		return (Personaje) Class.forName("promotionSystem.razas.castas." + raza + "." + casta).newInstance();
 	}
 

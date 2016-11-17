@@ -14,6 +14,8 @@ import static promotionSystem.Constantes.RADIO_DE_ACCION;
 
 public abstract class Personaje implements Comparable<Personaje>{
 	protected String nombre;
+	protected String raza;
+	protected String casta;
 	protected int salud;
 	protected int energia;
 	protected int ataque;
@@ -113,10 +115,30 @@ public abstract class Personaje implements Comparable<Personaje>{
 		return energia >= magia;
 	}
 	
+	
+	
+	public String getRaza() {
+		return raza;
+	}
+
+	public void setRaza(String raza) {
+		this.raza = raza;
+	}
+
+	public String getCasta() {
+		return casta;
+	}
+
+	public void setCasta(String casta) {
+		this.casta = casta;
+	}
+
 	public void setNombre(String nombre) {
 		this.nombre=nombre;
 		
 	}
+	
+	
 	public String getNombre() {
 		return nombre;
 	}
