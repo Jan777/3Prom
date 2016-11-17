@@ -13,18 +13,17 @@ import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
-
 import promotionSystem.juego.Camara;
-import promotionSystem.juego.TilePlayer;
-import promotionSystem.mapagrafico.dijkstra.AlgoritmoDelTacho;
+import promotionSystem.juego.TileOtrosJugadores;
 import promotionSystem.mapagrafico.dijkstra.MatrizBoolean;
+import promotionSystem.mapagrafico.dijkstra.MetodoDijkstra;
 import promotionSystem.mapagrafico.dijkstra.Nodo;
 import promotionSystem.mapagrafico.dijkstra.Grafo;
 import promotionSystem.sprites.Sprite;
 
 
 
-public class MapaGrafico {
+public class Mapa {
 
 	protected int id;
 	protected int alto;
@@ -32,7 +31,7 @@ public class MapaGrafico {
 	protected String nombre;
 
 
-	// BUGERO
+	
 	protected int x;
 	protected int y;
 
@@ -41,10 +40,10 @@ public class MapaGrafico {
 	private static Image iluminacion;
 	private static Image hud;
 	private Tile[][] tiles;
-	private TileObstaculo64x64[][]  tilesObstaculo; 
+	private TileObstaculo[][]  tilesObstaculo; 
 	private boolean[][] obstaculos; 
-	private TilePersonaje pj; // cliente
-	private HashMap<String, TilePlayer> personajes; // mensaje movimiento: 
+	private TilePersonaje pj; 
+	private HashMap<String, TileOtrosJugadores> personajes; 
 	private int xDestino;
 	private int yDestino;
 	private int xAnterior;
@@ -52,25 +51,24 @@ public class MapaGrafico {
 	public static int cantidadDeSprite;
 	private Camara camara;
 	private Grafo grafoDeMapa;
-	AlgoritmoDelTacho dijkstra;
+	MetodoDijkstra dijkstra;
 	private List<Nodo> camino;
 	private Nodo paso;
 	private Nodo actual;
 	private Nodo destino;
 	private boolean noEnvieQueTermine;
-	//private EnviadorPosicion env;
+	
 
 
-	public MapaGrafico(String nombre,TilePersonaje pj,Camara camara/*,EnviadorPosicion env*/, HashMap<String, TilePlayer> personajes) {
+	public Mapa(String nombre,TilePersonaje pj,Camara camara, HashMap<String, TileOtrosJugadores> personajes) {
 		File path = new File("recursos/"+nombre+".txt");
 		this.pj = pj;
-		//this.env = env;
 		this.enMovimiento = false;
 		this.xDestino = pj.getXDestino();
 		this.yDestino = pj.getYDestino();
 		this.xAnterior = -xDestino;
 		this.yAnterior = -yDestino;
-		this.dijkstra = new AlgoritmoDelTacho();
+		this.dijkstra = new MetodoDijkstra();
 		this.nombre = nombre;
 		this.camara = camara;
 		this.personajes = personajes;
@@ -90,11 +88,9 @@ public class MapaGrafico {
 		cargarSprite();
 
 		this.tiles = new Tile[ancho][alto];
-		this.tilesObstaculo  = new TileObstaculo64x64[ancho][alto];
+		this.tilesObstaculo  = new TileObstaculo[ancho][alto];
 		this.obstaculos = new boolean[ancho][alto];
-		/**
-		 * no hace falta pero para que se entienda
-		 */
+		
 		int sprite;
 		for (int i = 0; i < ancho ; i++) {
 			for (int j = 0; j < alto; j++) {
@@ -107,7 +103,7 @@ public class MapaGrafico {
 			for (int j = 0; j < alto; j++) {
 				obstaculo = sc.nextInt();
 				obstaculos[i][j] = obstaculo>=1?true:false;
-				tilesObstaculo[i][j] = new TileObstaculo64x64(i,j,obstaculo);
+				tilesObstaculo[i][j] = new TileObstaculo(i,j,obstaculo);
 			}
 		}
 
@@ -119,8 +115,8 @@ public class MapaGrafico {
 
 	private void cargarSprite() {
 		load(sprites);
-		iluminacion = Sprite.loadImage("src\\main\\resources\\mapas\\99.png").getScaledInstance(camara.getAncho() + 10,camara.getAlto() + 10,Image.SCALE_SMOOTH);
-		hud = 	Sprite.loadImage("src\\main\\resources\\vida.png");
+		iluminacion = Sprite.loadImage("recursos/iluminacion.png").getScaledInstance(camara.getAncho() + 10,camara.getAlto() + 10,Image.SCALE_SMOOTH);
+		hud = 	Sprite.loadImage("recursos/vida.png");
 
 	}
 
@@ -128,10 +124,7 @@ public class MapaGrafico {
 		return enMovimiento;
 	}
 
-	/**
-	 * cambiar por hoja:
-	 * @param nombre
-	 */
+	
 	private void load(String nombre) {
 		
 		String recursos = nombre;
@@ -150,32 +143,16 @@ public class MapaGrafico {
 	private boolean dentroDelMapa(int x, int y) {
 		return x>=0 && y>=0 && x<alto && y<ancho;
 	}
-	/*
-	public boolean recibirMensajeMovmiento(MensajeMovimiento men){
-		Personaje aMover = personajes.get(men.getEmisor());
-
-		if(aMover.isPuedoMoverme()){
-			aMover.setUbicacion(men.getPos());
-			return true;
-		}
-		return false;
-	}
-
-	public Personaje getPersonaje(String per) {
-		return personajes.get(per);
-	}
-	 */
+	
 	public void actualizar() {
 		if( pj.getNuevoRecorrido() && posicionValida(-pj.getXDestino(),-pj.getYDestino()) )	{
-			dijkstra	= 	new AlgoritmoDelTacho();
+			dijkstra	= 	new MetodoDijkstra();
 			actual 		= 	grafoDeMapa.getNodo(-xDestino, -yDestino);
 			destino 	=	grafoDeMapa.getNodo(-pj.getXDestino(), -pj.getYDestino());			
 			dijkstra.calcularDijkstra(grafoDeMapa, actual,destino);
 			camino 		=	dijkstra.obtenerCamino(destino);
 			pj.setNuevoRecorrido(false);
-			// ACA SE ENVIA POR EL CLIENTE LA POSICION NUEVA DEL PERSONAJE
-		//	env.enviarPosicion(destino.getPunto());
-			//
+		
 			noEnvieQueTermine = true;
 		}
 
@@ -185,16 +162,14 @@ public class MapaGrafico {
 			pj.mover(xDestino,yDestino);	
 		}
 		if( noEnvieQueTermine && !pj.estaEnMovimiento() && ! hayCamino()){
-			// ACA SE ENVIA POR EL CLIENTE LA POSICION FINAL DEL PERSONAJE
-			//env.enviarDetencion();
-			//
+			
 			noEnvieQueTermine = false;
 		}
 		//actualizarRestoPersonajes();
 	}
 
 	private void actualizarRestoPersonajes() {
-		for (TilePlayer pj : personajes.values()) {
+		for (TileOtrosJugadores pj : personajes.values()) {
 			pj.actualizar();
 		}		
 	}
@@ -205,7 +180,7 @@ public class MapaGrafico {
 	}
 
 
-	private void moverUnPaso() { // Esto tengo que ver, pero lo que hace es mover paso a paso por el camino del DI kjsoihyoas TRAMMMMMMMMMMM
+	private void moverUnPaso() { 
 		paso = camino.get(0);
 		xAnterior = -xDestino;
 		yAnterior = -yDestino;
@@ -215,13 +190,6 @@ public class MapaGrafico {
 	}
 
 
-	/**
-	 * tengo que buscar la forma de dibujar solo la pantalla.
-	 *
-	 * 			      (0,0)
-	 * 			 (0,1)(1,1)(1,0)
-	 *		(0,2)(1,2)(2,2)(2,1)(2,0)
-	 */
 	public void dibujar(Graphics2D g2d) {
 		g2d.setBackground(Color.BLACK);
 		for (int i = 0; i <  alto; i++) { 
@@ -243,9 +211,9 @@ public class MapaGrafico {
 	public void mover(Graphics2D g2d) {
 		g2d.setBackground(Color.BLACK);
 		g2d.clearRect(0, 0, camara.getAncho() + 10, camara.getAlto() + 10);		
-		//Tiene que ser uno por uno entonces si cancelo termino el movimiento (sino se descuajaina todo).
-		x = tiles[0][0].getXIso(); // puedo agarrar el centro. pero por ahora asi.
-		y = tiles[0][0].getYIso();
+		
+		x = tiles[0][0].getPosicionIsometricaX(); 
+		y = tiles[0][0].getPosicionIsometricaY();
 		for (int i = 0; i <  alto; i++) { 
 			for (int j = 0; j < ancho ; j++) { 
 				tiles[i][j].mover(g2d,xDestino + camara.getxOffCamara(),yDestino+camara.getyOffCamara());
@@ -276,7 +244,7 @@ public class MapaGrafico {
 
 
 	private boolean puedoDibujarObstaculo(int i, int j) {
-		return tilesObstaculo[i][j].sprite > 1; // Si es 0 no dibujo y si es 1 TAMPOCO, porque seria un obstaculo trasparente.
+		return tilesObstaculo[i][j].tipoDeSprite > 1; 
 	}
 
 	private boolean puedoDibujarPJ(int i, int j) {
@@ -285,11 +253,9 @@ public class MapaGrafico {
 				i == -xDestino && j == yAnterior ||
 				i == xAnterior && j == -yDestino ; 
 	}  
-	/**
-	 * Estrambolico, avisa cuando termino de moverse el personaje. deberia camiarlo ya que utiliza los tiles Graficos.
-	 */
+	
 	private void termino() {
-		if ( x == tiles[0][0].getXIso() && y == tiles[0][0].getYIso() ){
+		if ( x == tiles[0][0].getPosicionIsometricaX() && y == tiles[0][0].getPosicionIsometricaY() ){
 			pj.setEnMovimiento(false);
 			pj.parar();
 		}
@@ -299,14 +265,14 @@ public class MapaGrafico {
 	}
 
 
-	public void moverPlayer(TilePlayer player) {
+	public void moverPlayer(TileOtrosJugadores player) {
 		actual 		= 	grafoDeMapa.getNodo(player.getxAnterior(),player.getyAnterior());
 		destino 	=	grafoDeMapa.getNodo( player.getxDestino(), player.getyDestino());			
 		player.calcularDijkstra(grafoDeMapa,actual,destino);
 	}
 
 	private void dibujarRestoPersonajes(Graphics2D g2d) {
-		for (TilePlayer pj : personajes.values()) {
+		for (TileOtrosJugadores pj : personajes.values()) {
 			pj.mover(g2d);
 		}
 	}

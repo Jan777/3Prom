@@ -8,12 +8,8 @@ import java.util.Map;
 
 
 
-public class AlgoritmoDelTacho {
-	/**
-	 * Bienvenidos al algoritmo de Dijkstra, sin m
-	 * recuestese, sus asientos flotaran suavemente.
-	 * @param
-	 */
+public class MetodoDijkstra {
+	
 	protected Nodo actualW;
 	protected Nodo aux;
 	protected Map<Nodo,Nodo> predecesores; 
@@ -32,7 +28,7 @@ public class AlgoritmoDelTacho {
 
 		while (pendientes.size() > 0) {
 			actualW = obtenerMinimo(pendientes); 
-			if(actualW == destino) // Ultra optimizacion :) 
+			if(actualW == destino) 
 				break;
 			solucion.add(actualW); 
 			pendientes.remove(actualW);  
@@ -55,10 +51,10 @@ public class AlgoritmoDelTacho {
 		}
 	}
 
-	public Nodo obtenerMinimo(ArrayList<Nodo> nodosAdy) {
-		Nodo minimo = nodosAdy.get(0);
+	public Nodo obtenerMinimo(ArrayList<Nodo> nodosAdyacentes) {
+		Nodo minimo = nodosAdyacentes.get(0);
 
-		for (Nodo nodo : nodosAdy) {
+		for (Nodo nodo : nodosAdyacentes) {
 			if (obtenerDistancia(nodo) < obtenerDistancia(minimo)) 
 				minimo = nodo;
 		}
@@ -82,14 +78,14 @@ public class AlgoritmoDelTacho {
 
 	public LinkedList<Nodo> obtenerCamino(Nodo destino){
 		LinkedList<Nodo> camino = new LinkedList<Nodo>();
-		Nodo nodito = destino;
-		if(predecesores.get(nodito)==null)
+		Nodo nodo = destino;
+		if(predecesores.get(nodo)==null)
 			return null;
 
-		camino.add(nodito);
-		while(predecesores.get(nodito)!=null){
-			nodito = predecesores.get(nodito);
-			camino.add(nodito);
+		camino.add(nodo);
+		while(predecesores.get(nodo)!=null){
+			nodo = predecesores.get(nodo);
+			camino.add(nodo);
 
 		}
 

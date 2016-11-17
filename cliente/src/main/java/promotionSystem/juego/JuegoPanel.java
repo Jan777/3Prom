@@ -35,7 +35,7 @@ public class JuegoPanel extends Component implements Runnable{
 	private Camara camara;
 	JFrame padre;
 	Cliente cliente;
-	private HashMap<String, TileoOtrosJugadores> personajes;
+	private HashMap<String, TileOtrosJugadores> personajes;
 	
 
 	private boolean jugar = true;
@@ -43,7 +43,7 @@ public class JuegoPanel extends Component implements Runnable{
 	public JuegoPanel(JFrame padre,String nombreMapa, Cliente cliente) {
 		this.padre = padre;
 		this.cliente = cliente;
-		this.personajes = new HashMap<String, TileoOtrosJugadores>();
+		this.personajes = new HashMap<String, TileOtrosJugadores>();
 		setPreferredSize(new Dimension(ANCHO, ALTO));
 		setFocusable(true);
 		requestFocus();
@@ -95,9 +95,9 @@ public class JuegoPanel extends Component implements Runnable{
 	}
 
 	public void nuevoMovimientoPersonajes(String pj, String sprite, Punto point){
-		TileoOtrosJugadores player = personajes.get(pj);
+		TileOtrosJugadores player = personajes.get(pj);
 		if (player == null){
-			player= new TileoOtrosJugadores(pj,sprite,point);
+			player= new TileOtrosJugadores(pj,sprite,point);
 			personajes.put(pj, player );
 		}
 		mapa.moverPlayer(player);

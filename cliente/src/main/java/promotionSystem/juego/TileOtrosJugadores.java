@@ -6,15 +6,16 @@ import java.awt.Graphics2D;
 import java.util.List;
 
 import promotionSystem.Punto;
-import promotionSystem.mapagrafico.dijkstra.AlgoritmoDelTacho;
+
 import promotionSystem.mapagrafico.dijkstra.Grafo;
+import promotionSystem.mapagrafico.dijkstra.MetodoDijkstra;
 import promotionSystem.mapagrafico.dijkstra.Nodo;
 import promotionSystem.sprites.Animacion;
 import promotionSystem.sprites.Sprite;
 
 
 
-public class TilePlayer {
+public class TileOtrosJugadores {
 
 	private Animacion[] animacionCaminado;
 	private int xActual;
@@ -28,9 +29,9 @@ public class TilePlayer {
 	private int yAnterior;
 	private Nodo paso;
 	private String nombre;
-	AlgoritmoDelTacho moverGordo;
+	MetodoDijkstra moverGordo;
 
-	public TilePlayer(String nombre,String sprite, Punto point) {
+	public TileOtrosJugadores(String nombre,String sprite, Punto point) {
 		xDestino = xActual = xAnterior = point.getX();
 		yDestino = yActual = yAnterior = point.getY();
 		this.nombre = nombre;
@@ -56,11 +57,11 @@ public class TilePlayer {
 		return yDestino;
 	}
 	public void calcularDijkstra(Grafo grafoDeMapa, Nodo actual, Nodo destino) {
-		moverGordo 	= 	new AlgoritmoDelTacho();
+		moverGordo 	= 	new MetodoDijkstra();
 		camino 		=	moverGordo.obtenerCamino(destino);
 	}
 
-	private void moverUnPaso() { // Esto tengo que ver, pero lo que hace es mover paso a paso por el camino del DI kjsoihyoas TRAMMMMMMMMMMM
+	private void moverUnPaso() { 
 		if(camino == null || camino.isEmpty() )
 			return;
 		paso = camino.get(0);
