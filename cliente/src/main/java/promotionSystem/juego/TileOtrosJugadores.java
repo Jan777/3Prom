@@ -22,7 +22,7 @@ public class TileOtrosJugadores {
 	private int yActual;
 	private int xDestino;
 	private int yDestino;
-	protected int xIsometrica; 	// posicion real que se va dibujar
+	protected int xIsometrica; 
 	protected int yIsometrica;
 	private List<Nodo> camino;
 	private int xAnterior;

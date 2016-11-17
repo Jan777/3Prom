@@ -38,7 +38,7 @@ public class Mapa {
 	protected boolean enMovimiento;
 	protected String sprites;
 	private static Image iluminacion;
-	private static Image hud;
+	private static Image barraVida;
 	private Tile[][] tiles;
 	private TileObstaculo[][]  tilesObstaculo; 
 	private boolean[][] obstaculos; 
@@ -116,7 +116,7 @@ public class Mapa {
 	private void cargarSprite() {
 		load(sprites);
 		iluminacion = Sprite.loadImage("recursos/iluminacion.png").getScaledInstance(camara.getAncho() + 10,camara.getAlto() + 10,Image.SCALE_SMOOTH);
-		hud = 	Sprite.loadImage("recursos/vida.png");
+		barraVida = 	Sprite.loadImage("recursos/vida.png");
 
 	}
 
@@ -234,7 +234,7 @@ public class Mapa {
 
 
 	private void hud(Graphics2D g2d) {
-		g2d.drawImage( hud, 50, 62, null);
+		g2d.drawImage( barraVida, 50, 62, null);
 		g2d.setFont(new Font("Verdana", Font.BOLD, 18));
 		g2d.setColor(Color.black);
 		g2d.drawString(pj.getNombre(), 52, 62);

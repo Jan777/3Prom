@@ -18,11 +18,11 @@ public class Grafo {
 		this.nodos  = new ArrayList<Nodo>();
 		nodosVistados = new Nodo[obstaculos.getFilas()][obstaculos.getColumnas()];
 		Nodo actual;
-		for (int i = 0; i < obstaculos.getFilas(); i++) {    	// Recorro la matriz (filas)
-			for (int j = 0; j < obstaculos.getColumnas(); j++) {	// Recorro la matriz (columna)
+		for (int i = 0; i < obstaculos.getFilas(); i++) {    	
+			for (int j = 0; j < obstaculos.getColumnas(); j++) {	
 
 				if( obstaculos.get(i,j) )
-					continue; // es un goto :v 
+					continue; 
 
 				actual = this.getNodoVisitante(i, j);
 				if(actual == null)
@@ -34,13 +34,8 @@ public class Grafo {
 			}	
 		}
 	
-		/*for (int i = 0; i < obstaculos.getFilas(); i++) {
-			for (int j = 0; j < obstaculos.getColumnas(); j++) {
-				System.out.print("("+i+" " +j+")"+obstaculos.get(i, j)+"\t");
-			}
-			System.out.println("\n");
-		}*/
-		nodosVistados = null; // libero memoria :D 
+		
+		nodosVistados = null; 
 	}
 
 	public Nodo getNodoVisitante(int i, int j) {
@@ -65,41 +60,6 @@ public class Grafo {
 		}
 		return aux;
 	}
-
-
-
-	/**	
-	 * 	c = comienzo.
-	 *  x = destino.
-	 * 
-	 *		0 - 0 - 0 - 0 
-	 * 		| X | X | X |
-	 * 		0 - 0 - 0 - 0 
-	 * 		| X | X | X |
-	 *		0 - 0 - 0 - 0 
-	 * 		| X | X | X |
-	 * 		0 - 0 - 0 - 0 
-	 */
-
-	/*public static void main(String[] args) {
-		int n = 5;
-		boolean[][] m = new boolean[n][n];
-		m[2][2]= true; //hay ostaculo
-		m[1][1]= true;
-		m[1][2]= true;
-		m[1][3]= true;
-
-		m[3][1]= true;
-		m[3][2]= true;
-		m[3][3]= true;
-		m[3][4]= true;
-		MatrizBoolean obstaculos = new MatrizBoolean(m, n, n);
-
-		Grafo g = new Grafo(obstaculos);
-
-		System.out.println(g);
-	}*/
-
 
 
 	public List<Nodo> getListaNodos() {
