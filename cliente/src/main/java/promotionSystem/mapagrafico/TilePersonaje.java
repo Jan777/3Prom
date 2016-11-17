@@ -23,13 +23,13 @@ public class TilePersonaje {
 	private final int yCentro;
 	private String nombre;
 	private Mouse mouse;
-	// Posiciones
-	Personaje pj;
+	
+	Personaje personajeJugable;
 	private int xInicio;
 	private int yInicio;
 	private int xDestino;
 	private int yDestino;
-	// Movimiento Actual
+	
 	private boolean nuevoRecorrido;
 	private Camara camara;
 
@@ -43,38 +43,29 @@ public class TilePersonaje {
 
 
 
-	public TilePersonaje(Punto p,Cliente cliente,Mouse mouse,Camara camara) {
+	public TilePersonaje(Punto punto,Cliente cliente,Mouse mouse,Camara camara) {
 		this.xCentro = 320;
 		this.yCentro = 320;
-		//this.sprite = sprite;
 		this.camara = camara;
 		this.movimiento = 0;
-		this.pj = cliente.getPersonaje();
+		this.personajeJugable = cliente.getPersonaje();
 		this.nombre = cliente.getNombre();	
-		this.xInicio = this.xDestino = -p.getX();  //alta logica wachin.
-		this.yInicio = this.yDestino =  -p.getY(); 
+		this.xInicio = this.xDestino = -punto.getX();  
+		this.yInicio = this.yDestino =  -punto.getY(); 
 		this.mouse = mouse;
-		//Le paso el sprite del personaje :D ( hasta se puede cambiar 8| ) 
+		
 		inicializarAnimaciones("RecursosPersonaje/Razas/"+cliente.getCasta()+"/"+cliente.getCasta()+".png");
        
-		this.nuevoRecorrido = false; // NO BORRAR.
-		// baicamente como le sumo (16,6) para que coicida con el 0,0 del mapa.
-
+		this.nuevoRecorrido = false; 
+		
 	}
 
-
-	/**
-	 * Ver si le mando las coordenadas donde  esto al personaje.
-	 * @param g2d
-	 * @param deltaX
-	 * @param deltaY
-	 */
-	public void dibujarCentro(Graphics g) {  // Aca puedo dibujar el HUD.
+	public void dibujarCentro(Graphics g) {  
 		g.drawImage( obtenerFrameActual() ,xCentro-25, yCentro-50, null);
-		Font fuente=new Font("Arial", Font.BOLD, 16);
-		g.setColor(Color.GREEN);
-		g.setFont(fuente);
-		g.drawString(nombre, xCentro, yCentro - 25);
+		Font tipoDeLetra=new Font("Arial", Font.BOLD, 16);
+		g.setColor(Color.BLUE);
+		g.setFont(tipoDeLetra);
+		g.drawString(nombre, xCentro, yCentro-48 /*- 25*/);
 
 	}
 
@@ -94,10 +85,6 @@ public class TilePersonaje {
 	}
 
 
-	/**
-	 * Por un extra�o motivo dan negativas :c
-	 * @return
-	 */
 	public int getXDestino() {
 		return xDestino;
 	}
@@ -128,50 +115,44 @@ public class TilePersonaje {
 
 	}
 
-	// Esto lo podria resolver con un 1 byte en c++ ��
+	
 	public void paraDondeVoy(int xDestino2, int yDestino2) {
 		movimiento = 0;
 		parado = false;
 
-		//faltaria parado, estaba rancia
-		/*
-		 * Dani, me tiraste cualquier cosa en los nombres, nada se movia para los
-		 * lados que decia -.-
-		 * Se ya se me di cuenta, pero esta la estructura loco :v
-		 */
-		if (xInicio == xDestino2 && yInicio == yDestino2) { // parado
+		if (xInicio == xDestino2 && yInicio == yDestino2) { 
 			parado = true;
 			return; 
 		}
-		if (xInicio > xDestino2 && yInicio > yDestino2) {// sur
+		if (xInicio > xDestino2 && yInicio > yDestino2) {
 			movimiento = 6;
 			return;
 		}
-		if (xInicio > xDestino2 && yInicio == yDestino2) { // sureste 
+		if (xInicio > xDestino2 && yInicio == yDestino2) {  
 			movimiento = 5;
 			return;
 		}
-		if (xInicio > xDestino2 && yInicio < yDestino2) {// este
+		if (xInicio > xDestino2 && yInicio < yDestino2) {
 			movimiento = 4;
 			return;
 		}
-		if (xInicio == xDestino2 && yInicio < yDestino2) {// noreste
+		if (xInicio == xDestino2 && yInicio < yDestino2) {
 			movimiento = 3;
 			return;
 		}
-		if (xInicio < xDestino2 && yInicio == yDestino2) {// noroeste
+		if (xInicio < xDestino2 && yInicio == yDestino2) {
 			movimiento = 1;
 			return;
 		}
-		if (xInicio < xDestino2 && yInicio > yDestino2) {// oeste
+		if (xInicio < xDestino2 && yInicio > yDestino2) {
 			movimiento = 0;
 			return;
 		}
-		if (xInicio == xDestino2 && yInicio > yDestino2) {// suroeste
+		if (xInicio == xDestino2 && yInicio > yDestino2) {
 			movimiento = 7;
 			return;
 		}
-		if (xInicio < xDestino2 && yInicio < yDestino2) {// norte
+		if (xInicio < xDestino2 && yInicio < yDestino2) {
 			movimiento = 2;
 			return;
 		}
@@ -221,7 +202,7 @@ public class TilePersonaje {
 
 
 	public String getNombre() {
-		return pj.getNombre();
+		return personajeJugable.getNombre();
 	}
 
 

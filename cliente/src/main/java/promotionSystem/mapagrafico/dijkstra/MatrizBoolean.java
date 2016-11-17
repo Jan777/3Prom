@@ -6,40 +6,33 @@ import promotionSystem.Punto;
 
 public class MatrizBoolean {
 
-	private boolean[][]mat;
+	private boolean[][]matrizBooleana;
 	private int filas;
 	private int columnas;
 
 
-	public MatrizBoolean(boolean[][] mat, int filas, int columnas) {
-		this.mat = mat;
+	public MatrizBoolean(boolean[][] matrizBooleana, int filas, int columnas) {
+		this.matrizBooleana = matrizBooleana;
 		this.filas = filas;
 		this.columnas = columnas;
 
 	}
-	/**
-	 * Verigica que los vecinos de i j sean validos 
-	 * y no hay obstaculo, agrega como adyasente al nodo
-	 * 
-	 * @param xNodo
-	 * @param yNodo
-	 */
+	
 	public void obtenerVecinosNodo(int xNodo, int yNodo,Nodo actual, Grafo g) {
 		int i, j,xArista,yArista;
-		Nodo aux;// recorro matriz de vecinos
+		Nodo aux;
 
 		for (i = -1; i < 2; i++) {
 			xArista = xNodo +i;
 			for (j = -1; j < 2; j++) {
 				yArista = yNodo + j;
-				if ( esPosicionValida(xArista, yArista)) // descarto fuera de rango
+				if ( esPosicionValida(xArista, yArista)) 
 				{
-					if ((xArista != xNodo || yArista != yNodo)) // descarto la fila y columna dados
+					if ((xArista != xNodo || yArista != yNodo)) 
 
 					{	
-						//Si no hay obstaculo y si no hay alguno cerca (en diagonal) meto :*
 
-						if( !mat[xArista][yArista] && !hayObstaculoCerca(xNodo,yNodo,xArista,yArista) ){  //Si no hay obstaculo
+						if( !matrizBooleana[xArista][yArista] && !hayObstaculoCerca(xNodo,yNodo,xArista,yArista) ){ 
 
 							aux = g.getNodoVisitante(xArista,yArista);
 							if(aux==null){	
@@ -59,37 +52,28 @@ public class MatrizBoolean {
 		}
 	}
 
-	/**
-	 * 
-	 * Le paso el nodo que evaluo 
-	 * y les paso las coordenadas de la arista que quiero conectar
-	 * @param xNodo
-	 * @param yNodo
-	 * @param xArista
-	 * @param yArista
-	 * @return
-	 */
+	
 	private boolean hayObstaculoCerca(int xNodo,int yNodo, int xArista, int yArista) {
 
 		boolean aux = false;
 		if( xArista+1==xNodo && yArista+1==yNodo && xNodo>=0 && yNodo>=0)
-			aux = mat[xNodo-1][yNodo]	|| 	mat[xNodo][yNodo-1];
+			aux = matrizBooleana[xNodo-1][yNodo]	|| 	matrizBooleana[xNodo][yNodo-1];
 
 		if( xArista+1==xNodo && yArista-1==yNodo && xNodo>=0 && yNodo<columnas)
-			aux = mat[xNodo-1][yNodo] ||mat[xNodo][yNodo+1]	;
+			aux = matrizBooleana[xNodo-1][yNodo] ||matrizBooleana[xNodo][yNodo+1]	;
 
 		if( xArista-1==xNodo && yArista+1==yNodo && xNodo<filas && yNodo>=0)
-			aux =  mat[xNodo+1][yNodo] 	|| 	mat[xNodo][yNodo-1];
+			aux =  matrizBooleana[xNodo+1][yNodo] 	|| 	matrizBooleana[xNodo][yNodo-1];
 
 		if( xArista-1==xNodo && yArista-1==yNodo && xNodo<filas && yNodo<columnas)
-			aux =  mat[xNodo+1][yNodo] 	||	mat[xNodo][yNodo+1];
+			aux =  matrizBooleana[xNodo+1][yNodo] 	||	matrizBooleana[xNodo][yNodo+1];
 		return aux;
 	}
-	public boolean esPosicionValida(int pos_f, int pos_c) {
-		return (pos_f >= 0 && pos_f < filas && pos_c >= 0 && pos_c < columnas);
+	public boolean esPosicionValida(int posicionFila, int posicionColumna) {
+		return (posicionFila >= 0 && posicionFila < filas && posicionColumna >= 0 && posicionColumna < columnas);
 	}
 	public boolean get(int i,int j){
-		return mat[i][j];
+		return matrizBooleana[i][j];
 	}
 	public int getFilas() {
 		return filas;

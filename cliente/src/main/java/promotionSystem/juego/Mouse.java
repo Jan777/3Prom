@@ -22,7 +22,7 @@ public class Mouse implements MouseListener{
 		x = evento.getX();
 		y = evento.getY();
 		recorrido = true;
-	//	JuegoTest_SinServidor.cursor("click");
+	
 	}
 	
 	
@@ -34,7 +34,7 @@ public class Mouse implements MouseListener{
 	}
 	public void actualizar() {
 		
-		int x0 = x - ( Tile.ANCHO / 2 ); //ancho/2
+		int x0 = x - ( Tile.ANCHO / 2 );
 		int y0 = y;
 
 		int auxX = y0 + (x0 / 2);

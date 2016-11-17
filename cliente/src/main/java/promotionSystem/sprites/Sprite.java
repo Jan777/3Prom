@@ -5,22 +5,19 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
-import promotionSystem.mapagrafico.MapaGrafico;
+import promotionSystem.mapagrafico.Mapa;
 
 public class Sprite {
 	public static BufferedImage[] piso;
-	//public static Image[] piso;
-	public static BufferedImage pelado, cubo;
+	public static BufferedImage personaje, obstruccion;
 	private static final int ancho = 64, alto = 32;
-	private static final int altoObjeto = 64;
-	private static final int anchopj = 128, altopj = 128;
-	private static final int framesPJ = 9;
+	private static final int altoObstruccion = 64;
+	private static final int anchoPersonaje = 128, altoPersonaje = 128;
+	private static final int framesPersonaje = 9;
 	private static final int dirreciones = 8;
 	private static final int cantidadSprite = 6;
-	public static final BufferedImage click = CargaImagen.cargarImagen("src\\main\\resources\\click.png");
-	/**
-	 * Esto va a ser para las animaciones del pj, todavia no esta listo
-	 */
+	public static final BufferedImage click = CargaImagen.cargarImagen("recursos/click.png");
+	
 	private BufferedImage[][] sprite;
 	
 
@@ -29,10 +26,10 @@ public class Sprite {
 
 	public Sprite(String pathPJ) {
 		HojaSprite hojaPJ = new HojaSprite(CargaImagen.cargarImagen(pathPJ));
-		sprite = new BufferedImage[dirreciones][framesPJ];
+		sprite = new BufferedImage[dirreciones][framesPersonaje];
 
 		for (int i = 0; i < 8; i++) {
-			recortarSprite(hojaPJ,i+1,framesPJ,i,sprite[i]);
+			recortarSprite(hojaPJ,i+1,framesPersonaje,i,sprite[i]);
 		}	
 	}
 
@@ -49,35 +46,19 @@ public class Sprite {
 				if(j<2)
 					piso[k] =  hoja.cortar(ancho*i, alto*j, ancho, alto);
 				else
-					piso[k] =  hoja.cortar(ancho*i, alto*j, ancho, altoObjeto);
+					piso[k] =  hoja.cortar(ancho*i, alto*j, ancho, altoObstruccion);
 				k++;
 			}
 		}
-		/*piso = new Image[cantidadSprite];
-		
-		for(int i=0; i<cantidadSprite;i++){
-			piso[i]= (new ImageIcon(pathPiso+"sprite"+i+".png")).getImage();
-		}*/
 	}
 
 
-	/**
-	 * Funcion para cortar sprites y cargarlos en un vector de bufferedImage
-	 * previamente inicializado.
-	 * 
-	 * @param hoja la hoja de sprites
-	 * @param cantFila la cantidad de elementos en vertical
-	 * @param numElementosColumna cantidad de elementos en horizontal
-	 * @param cortaDesdeAca desde donde cortar
-	 * @param vector el vector de bufferedImage
-	 */
-	public static void recortarSprite(HojaSprite hoja, int cantFila,
-			int numElementosColumna,int cortaDesdeAca, BufferedImage[] vector){
+	public static void recortarSprite(HojaSprite hoja, int cantidadDeFilas,int cantidadDeElementosColumna,int inicionDeCorte, BufferedImage[] vectorDeImagenes){
 		int x = 0;
 
-		for (int i = cortaDesdeAca; i < cantFila; i++) {
-			for (int j = 0; j < numElementosColumna; j++) {
-				vector[x] = hoja.cortar(anchopj*j, altopj*i, anchopj, altopj);
+		for (int i = inicionDeCorte; i < cantidadDeFilas; i++) {
+			for (int j = 0; j < cantidadDeElementosColumna; j++) {
+				vectorDeImagenes[x] = hoja.cortar(anchoPersonaje*j, altoPersonaje*i, anchoPersonaje, altoPersonaje);
 				x++;
 			}
 		}

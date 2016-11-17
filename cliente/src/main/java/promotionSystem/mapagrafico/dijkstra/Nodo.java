@@ -7,65 +7,61 @@ import promotionSystem.Punto;
 
 ;
 
-/**
- * Para mi todos el paso de nodo a nodo es de 1 siempre.
- * 
- * @author Danie
- */
+
 public class Nodo {
-	private Punto pos;
+	private Punto punto;
 	List<Nodo> nodosAdyacentes;
 
-	// esto capaz vuele.
-	public Nodo(final Punto pos) {
-		this.pos = pos;
+	
+	public Nodo(final Punto punto) {
+		this.punto = punto;
 		nodosAdyacentes = new ArrayList<>();
 	}
 
 
 	public Punto getPunto() {
-		return pos;
+		return punto;
 	}
 
-	public void setPos(Punto pos) {
-		this.pos = pos;
+	public void setPos(Punto punto) {
+		this.punto = punto;
 	}
 
-	public void agregarConexion(Nodo pepe) {
-		nodosAdyacentes.add(pepe);
+	public void agregarConexion(Nodo nodo) {
+		nodosAdyacentes.add(nodo);
 	}
 
-	public void agregarConexionPunto(Punto pepe) {
-		nodosAdyacentes.add(new Nodo(pepe));
+	public void agregarConexionPunto(Punto nodo) {
+		nodosAdyacentes.add(new Nodo(nodo));
 	}
 
-	public double calcularDistanciaNodos(Nodo n2) {
-		return this.getPunto().distanciaCon(n2.getPunto());
+	public double calcularDistanciaNodos(Nodo nodo) {
+		return this.getPunto().distanciaCon(nodo.getPunto());
 	}
 
 	@Override
 	public String toString() {
-		String aux = pos+": ";
+		String aux = punto+": ";
 		for (Nodo nodo : nodosAdyacentes)
-			aux += nodo.pos.toString() + " ";
+			aux += nodo.punto.toString() + " ";
 		return aux;
 	}
 
 	public Nodo clone() {
-		Nodo n2 = new Nodo(this.getPunto());
-		n2.nodosAdyacentes = new ArrayList<>();
+		Nodo nodoAClonar = new Nodo(this.getPunto());
+		nodoAClonar.nodosAdyacentes = new ArrayList<>();
 
 		for (Nodo nodo : this.nodosAdyacentes) {
-			n2.agregarConexion(nodo);
+			nodoAClonar.agregarConexion(nodo);
 		}
-		return n2;
+		return nodoAClonar;
 	}
 
 
 
-	public boolean equals(Nodo n2) {
+	public boolean equals(Nodo nodo) {
 
-		if (this.getPunto().equals(n2.getPunto()))
+		if (this.getPunto().equals(nodo.getPunto()))
 			return true;
 
 		return false;
@@ -73,12 +69,12 @@ public class Nodo {
 
 
 	
-	public boolean esAdyacente(Nodo n2){
+	public boolean esAdyacente(Nodo nodo){
 		
-		if(this.nodosAdyacentes.contains(n2))
+		if(this.nodosAdyacentes.contains(nodo))
 			return true;
 		
-		if(n2.nodosAdyacentes.contains(this))
+		if(nodo.nodosAdyacentes.contains(this))
 			return true;
 		
 		return false;

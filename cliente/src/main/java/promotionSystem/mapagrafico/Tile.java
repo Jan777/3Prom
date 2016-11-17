@@ -10,34 +10,34 @@ public class Tile {
 	public final static int ANCHO = 64;
 	public final static int ALTO = 32;
 
-	protected int xLogica;		// posicion logica de la matriz.
-	protected int yLogica;
-	protected int xIsometrica; 	// posicion real que se va dibujar
+	protected int realX;		
+	protected int realY;
+	protected int xIsometrica; 	
 	protected int yIsometrica;	
-	protected int sprite;
+	protected int tipoDeSprite;
 
 
 
-	public Tile(int x, int y, int sprite) {
-		this.xLogica = x;
-		this.yLogica = y;
-		this.sprite = sprite;
+	public Tile(int posicionX, int posicionY, int sprite) {
+		this.realX = posicionX;
+		this.realY = posicionY;
+		this.tipoDeSprite = sprite;
 	}
 
 
 	public void dibujar(Graphics2D g2d, int deltaX, int deltaY) {
-		deltaX+=xLogica;
-		deltaY+=yLogica;		
+		deltaX+=realX;
+		deltaY+=realY;		
 		xIsometrica = (deltaX - deltaY) * ( ANCHO / 2);
 		yIsometrica = (deltaX + deltaY) * ( ALTO / 2) ;
-		g2d.drawImage( Sprite.getImagePiso(sprite), 0, 0 , null);			
+		g2d.drawImage( Sprite.getImagePiso(tipoDeSprite), 0, 0 , null);			
 	}
 
 	public void mover(Graphics2D g2d, int x2, int y2) {
 
 
-		x2+=xLogica;
-		y2+=yLogica;	
+		x2+=realX;
+		y2+=realY;	
 
 		int nx = (x2 - y2) * ( ANCHO / 2);
 		int ny = (x2 + y2) * ( ALTO / 2);
@@ -55,13 +55,13 @@ public class Tile {
 		if(yIsometrica > ny){
 			yIsometrica-=1;
 		}
-		g2d.drawImage( Sprite.getImagePiso(sprite), xIsometrica, yIsometrica , null);	
+		g2d.drawImage( Sprite.getImagePiso(tipoDeSprite), xIsometrica, yIsometrica , null);	
 	}
 
-	public int getXIso() {
+	public int getPosicionIsometricaX() {
 		return xIsometrica;
 	}
-	public int getYIso() {
+	public int getPosicionIsometricaY() {
 		return yIsometrica;
 	}
 }

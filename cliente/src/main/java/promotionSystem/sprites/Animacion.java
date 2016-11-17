@@ -6,7 +6,7 @@ public class Animacion {
 		private int velocidad;
 		private int i;
 		private long lastTime;
-		private long timer;
+		private long temporizador;
 		
 		private BufferedImage[] frames;
 		
@@ -14,17 +14,17 @@ public class Animacion {
 			this.velocidad = velocidad;
 			this.frames = frames;
 			i = 0;
-			//tiempo en milisegundos desde q arranco
+			
 			lastTime = System.currentTimeMillis();
 		}
 			
 		public void actualizar(){
-			timer+= System.currentTimeMillis() - lastTime;
+			temporizador+= System.currentTimeMillis() - lastTime;
 			lastTime = System.currentTimeMillis();
 			
-			if(timer >velocidad){
+			if(temporizador >velocidad){
 				i++;
-				timer = 0;
+				temporizador = 0;
 				
 				if(i >= frames.length-1)
 					i = 0;

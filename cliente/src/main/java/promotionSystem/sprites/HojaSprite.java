@@ -9,8 +9,7 @@ public class HojaSprite {
 		this.hoja = sheet;
 	}
 	
-	public BufferedImage cortar(int x, int y, 
-			int ancho, int alto){
+	public BufferedImage cortar(int x, int y, int ancho, int alto){
 		return hoja.getSubimage(x, y, ancho, alto);
 	}
 	

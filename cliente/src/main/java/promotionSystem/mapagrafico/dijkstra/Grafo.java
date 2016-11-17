@@ -12,15 +12,7 @@ public class Grafo {
 
 	private ArrayList<Nodo> nodos;
 	private Nodo[][] nodosVistados;
-	//	private AlgoritmoDelTacho d;
-
-	/*
-	 *  00 	01	02	03	04
-	 *  10 	x 	12	13	14  // EJ: 00 -> 01, 10
-	 *	20	21	22	23	24
-	 *	30	31	x	33	34
-	 *	40	41	42	43	44
-	 */
+	
 
 	public Grafo(MatrizBoolean obstaculos) {
 		this.nodos  = new ArrayList<Nodo>();

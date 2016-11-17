@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 import promotionSystem.Cliente;
 import promotionSystem.Personaje;
 import promotionSystem.Punto;
-import promotionSystem.mapagrafico.MapaGrafico;
+import promotionSystem.mapagrafico.Mapa;
 import promotionSystem.mapagrafico.TilePersonaje;
 
 
@@ -26,34 +26,32 @@ public class JuegoPanel extends Component implements Runnable{
 
 
 	public static double timePerTick = 1000000000/fps;
-	private MapaGrafico mapa;
+	private Mapa mapa;
 	private Thread thread;
 	private Mouse mouse;
 	private double delta = 0;
 	private boolean ejecutando = true;
-	private TilePersonaje pjDibujo;
+	private TilePersonaje personajeJugableDibujo;
 	private Camara camara;
 	JFrame padre;
 	Cliente cliente;
-	private HashMap<String, TilePlayer> personajes;
-	//EnviadorPosicion env;
+	private HashMap<String, TileoOtrosJugadores> personajes;
+	
 
 	private boolean jugar = true;
 
 	public JuegoPanel(JFrame padre,String nombreMapa, Cliente cliente) {
 		this.padre = padre;
 		this.cliente = cliente;
-		this.personajes = new HashMap<String, TilePlayer>();
-		//ImageIcon imagen=new ImageIcon("RecursosPersonaje/Razas/"+ cliente.getCasta()+"/"+cliente.getCasta()+".png");
-		//env = new EnviadorPosicion(cliente, pj.getNombre(),nombreMapa, pj.getSprite());
+		this.personajes = new HashMap<String, TileoOtrosJugadores>();
 		setPreferredSize(new Dimension(ANCHO, ALTO));
 		setFocusable(true);
 		requestFocus();
 		mouse 	 = new Mouse();
 		camara = new Camara(ANCHO, ALTO);
 		addMouseListener(mouse);
-		pjDibujo = new TilePersonaje(cliente.getPersonaje().getPosicion(),cliente,mouse,camara);  
-		mapa 	 = new MapaGrafico(nombreMapa,pjDibujo,camara, null/*env,personajes*/);
+		personajeJugableDibujo = new TilePersonaje(cliente.getPersonaje().getPosicion(),cliente,mouse,camara);  
+		mapa 	 = new Mapa(nombreMapa,personajeJugableDibujo,camara, null);
 		thread 	 = new Thread(this);
 		thread.start();
 	}
@@ -81,8 +79,8 @@ public class JuegoPanel extends Component implements Runnable{
 	}
 
 	public void actualizar() {
-		mouse.actualizar();  // Preguntar porque aveces no me lo agarra :c estupido mouse listener de java ?
-		pjDibujo.actualizar();
+		mouse.actualizar();  
+		personajeJugableDibujo.actualizar();
 		mapa.actualizar();
 	}
 
@@ -97,9 +95,9 @@ public class JuegoPanel extends Component implements Runnable{
 	}
 
 	public void nuevoMovimientoPersonajes(String pj, String sprite, Punto point){
-		TilePlayer player = personajes.get(pj);
+		TileoOtrosJugadores player = personajes.get(pj);
 		if (player == null){
-			player= new TilePlayer(pj,sprite,point);
+			player= new TileoOtrosJugadores(pj,sprite,point);
 			personajes.put(pj, player );
 		}
 		mapa.moverPlayer(player);
@@ -107,8 +105,7 @@ public class JuegoPanel extends Component implements Runnable{
 	}
 
 	public void nuevaDetencionPersonaje(String pj){
-		// aca te envio que el personaje llego a su destino, 
-		// si por las dudas no llego todavia moverlo magicamente.
+		
 	}
 
 }
