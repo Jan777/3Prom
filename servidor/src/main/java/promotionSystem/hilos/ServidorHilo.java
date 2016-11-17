@@ -44,6 +44,7 @@ public class ServidorHilo extends Thread {
 	private String nombreCliente;
 	private int nivel;
 	private Mapa mapa;
+	
 	public ServidorHilo(Socket cliente,HashMap<Socket,Personaje> jugadores,HashMap<Mapa,ArrayList<Socket>> jugadoresPorMapa,HashMap<String,Mapa> mapasDisponibles,Conector conector) throws IOException{
 		this.cliente=cliente;
 		this.jugadoresPorMapa=jugadoresPorMapa;
@@ -88,9 +89,18 @@ public class ServidorHilo extends Thread {
 	
 	public void mover() throws IOException{
 		jugadores.get(cliente).setPosicion(obtenerPuntoEnviado());
+		enviarAccion("movimientoDePersonaje");
 		enviarAlRestoPunto();
 		
 	}
+		public void enviarAccion(String accion) throws IOException {
+			JsonObject usuario=new JsonObject();
+			usuario.addProperty("Accion",accion);
+			salida.writeUTF(usuario.toString());
+			
+		}
+		
+
 	private void enviarAlRestoPunto() throws IOException {
 		JsonObject puntoAMover = new JsonObject();
 		puntoAMover.addProperty("nombre", nombreCliente);
@@ -135,15 +145,17 @@ public class ServidorHilo extends Thread {
 	public void  seleccionarMapa() throws IOException{
 		recibirMapaElegido();
 		enviarPosicionInicial();	
-//		enviarPersonajeAlResto();
+		enviarAccion("agregarPersonaje");
+     	enviarPersonajeAlResto();
 	}
 	
 	
 	private void enviarPersonajeAlResto() throws IOException {
 		JsonObject json = new JsonObject();
+		json.addProperty("nombre",nombreCliente);
 		json.addProperty("raza",raza);
-		json.addProperty("raza",casta);
-		json.addProperty("raza",nivel);
+		json.addProperty("casta",casta);
+		json.addProperty("nivel",nivel);
 		json.addProperty("x",jugadores.get(cliente).getPosicion().getX());
 		json.addProperty("y",jugadores.get(cliente).getPosicion().getY());
 		enviarMensajeAJugadores(json, jugadoresPorMapa.get(mapa));
@@ -366,15 +378,14 @@ public class ServidorHilo extends Thread {
 	public void comunicarInvitacionAAlianza() throws IOException{
 		Personaje personaje = recibirInvitacionAAlianza();
 		Socket invitado = enviarInvitacionAAlianza(personaje);
-		recibirRespuestaDeInvitacionAAlianza(invitado);
-		
+		recibirRespuestaDeInvitacionAAlianza(invitado);	
 	}
 
 	private void recibirRespuestaDeInvitacionAAlianza(Socket invitado) throws IOException {
 			
 			JsonParser parser = new JsonParser();
 			JsonElement elemento = parser.parse(new DataInputStream(invitado.getInputStream()).readUTF());
-		if(elemento.getAsJsonObject().get("respuesta").getAsString().equals("true")){
+			if(elemento.getAsJsonObject().get("respuesta").getAsString().equals("true")){
 			jugadores.get(invitado).aceptarAlianza(jugadores.get(cliente));
 			comunicarAlianza();
 		}
@@ -438,6 +449,7 @@ public class ServidorHilo extends Thread {
 		Alianza aliados = jugadores.get(cliente).invocarAliados();
 		Alianza enemigos = personajeEnemigo.invocarAliados();
 		new BatallaHilo(jugadores,aliados,enemigos).start();;
+		//subirStats()
 	}
 
 	
