@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 import promotionSystem.Cliente;
 import promotionSystem.Personaje;
@@ -39,11 +40,12 @@ public class TilePersonaje {
 	private int movimientoAnterior;
 	private Animacion[] animacionCaminado;
 	public Image imagen;
-
+	private Cliente cliente;
 
 
 
 	public TilePersonaje(Punto punto,Cliente cliente,Mouse mouse,Camara camara) {
+		this.cliente=cliente;
 		this.xCentro = 320;
 		this.yCentro = 320;
 		this.camara = camara;
@@ -69,7 +71,7 @@ public class TilePersonaje {
 
 	}
 
-	public void actualizar() {
+	public void actualizar() throws IOException {
 		int posMouse[] = mouse.getPos();
 
 		actualizarAnimaciones();
@@ -79,6 +81,7 @@ public class TilePersonaje {
 
 			xDestino = xInicio - posMouse[0] + camara.getxOffCamara();
 			yDestino = yInicio - posMouse[1] + camara.getyOffCamara();
+			cliente.enviarPosicion(new Punto(xDestino*-1,yDestino*-1));
 			mouse.setRecorrido(false); 
 		}
 

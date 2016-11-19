@@ -168,7 +168,7 @@ public class Mapa {
 		}
 		if( noEnvieQueTermine && !pj.estaEnMovimiento() && ! hayCamino()){
 			
-			cliente.enviarPosicion(new Punto(xDestino*-1,yDestino*-1));
+			
 			noEnvieQueTermine = false;
 		}
 		//actualizarRestoPersonajes();
