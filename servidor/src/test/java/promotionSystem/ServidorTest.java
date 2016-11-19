@@ -6,7 +6,7 @@ public class ServidorTest {
 
 	public static void main(String[] args) throws Exception {
 
-		Servidor server= new Servidor();
-		
+		Servidor server = new Servidor();
+
 	}
 }

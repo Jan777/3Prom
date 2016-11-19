@@ -26,69 +26,66 @@ public class Cliente {
 	private String ip;
 	private String sala;
 	private int puerto;
-	//private String archivoDeConfiguracion="../configuracion.config";
-	private String archivoDeConfiguracion="configuracion.config";
+	// private String archivoDeConfiguracion="../configuracion.config";
+	private String archivoDeConfiguracion = "configuracion.config";
 	private Personaje personaje;
 	private DataOutputStream salida;
 	private DataInputStream entrada;
 	private String raza;
 	private String casta;
 	private ArrayList<Personaje> jugadoresEnPartida;
-	
+
 	public Cliente() throws Exception {
 		try {
 			configurar(archivoDeConfiguracion);
-			cliente = new Socket(ip,puerto);
-			salida=new DataOutputStream(cliente.getOutputStream());
-			entrada=new DataInputStream(cliente.getInputStream());
+			cliente = new Socket(ip, puerto);
+			salida = new DataOutputStream(cliente.getOutputStream());
+			entrada = new DataInputStream(cliente.getInputStream());
 			jugadoresEnPartida = new ArrayList<Personaje>();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
-	private Personaje crearPersonaje() throws Exception{
+	private Personaje crearPersonaje() throws Exception {
 		return (Personaje) Class.forName("promotionSystem.razas.castas." + raza + "." + casta).newInstance();
 	}
 
 	private void configurar(String path) throws FileNotFoundException {
 		Scanner scanner = new Scanner(new File(path));
-		puerto=scanner.nextInt();
+		puerto = scanner.nextInt();
 		scanner.nextLine();
 		scanner.nextLine();
-		ip=scanner.nextLine();
+		ip = scanner.nextLine();
 		scanner.close();
 	}
 
-
-	
-	public List<String> recibirRazas() throws IOException{
+	public List<String> recibirRazas() throws IOException {
 		return recibirLista("razas");
 	}
-	
+
 	public ArrayList<String> recibirListaDeCastas() throws IOException {
 		return (ArrayList<String>) recibirLista("castas");
 	}
 
-	
-
 	private List<String> recibirLista(String propiedad) throws IOException {
 		JsonParser parser = new JsonParser();
 		JsonArray json = parser.parse(entrada.readUTF()).getAsJsonArray();
-		Type tipoListaRazas = new TypeToken<List<String>>(){}.getType();
+		Type tipoListaRazas = new TypeToken<List<String>>() {
+		}.getType();
 		List<String> listaRecibidas = new Gson().fromJson(json, tipoListaRazas);
 		return listaRecibidas;
 	}
 
 	public void enviarRazaYCastaSeleccionada(String raza, String casta) throws Exception {
-		this.raza=raza.replaceAll(" ", "").replace(raza.charAt(0),Character.toLowerCase(raza.charAt(0))); 
-		this.casta=casta.replaceAll(" ", ""); 
+		this.raza = raza.replaceAll(" ", "").replace(raza.charAt(0), Character.toLowerCase(raza.charAt(0)));
+		this.casta = casta.replaceAll(" ", "");
 		JsonObject razaYCastaElegidas = new JsonObject();
-		razaYCastaElegidas.addProperty("raza",this.raza);
-		razaYCastaElegidas.addProperty("casta",this.casta);
+		razaYCastaElegidas.addProperty("raza", this.raza);
+		razaYCastaElegidas.addProperty("casta", this.casta);
 		salida.writeUTF(razaYCastaElegidas.toString());
 		crearPersonajeAPartirDeRazaYCasta();
-		
+
 	}
 
 	private void crearPersonajeAPartirDeRazaYCasta() throws Exception {
@@ -97,25 +94,23 @@ public class Cliente {
 		personaje.setCasta(casta);
 		personaje.setRaza(raza);
 	}
-	
-	public List<String> recibirMapas() throws IOException{
+
+	public List<String> recibirMapas() throws IOException {
 		return recibirLista("mapas");
 	}
-	
-	public void enviarMapaSeleccionado(String mapa) throws IOException{
+
+	public void enviarMapaSeleccionado(String mapa) throws IOException {
 		JsonObject mapaElegido = new JsonObject();
-	    mapaElegido.addProperty("mapa",mapa);
-	    salida.writeUTF(mapaElegido.toString());
+		mapaElegido.addProperty("mapa", mapa);
+		salida.writeUTF(mapaElegido.toString());
 	}
-	
-	
-	
-	public void enviarUsuarioYContraseña(String nombre, String contraseña) throws IOException{
-			int hashContraseña=contraseña.hashCode();
-			JsonObject usuario=new JsonObject();
-			usuario.addProperty("nombre",nombre);
-			usuario.addProperty("contrasena", hashContraseña);
-			salida.writeUTF(usuario.toString());	
+
+	public void enviarUsuarioYContraseña(String nombre, String contraseña) throws IOException {
+		int hashContraseña = contraseña.hashCode();
+		JsonObject usuario = new JsonObject();
+		usuario.addProperty("nombre", nombre);
+		usuario.addProperty("contrasena", hashContraseña);
+		salida.writeUTF(usuario.toString());
 	}
 
 	public String resultado() throws IOException {
@@ -123,9 +118,9 @@ public class Cliente {
 	}
 
 	public void enviarUsuario(String nombre) throws IOException {
-		JsonObject usuario=new JsonObject();
-		usuario.addProperty("nombre",nombre);
-		salida.writeUTF(usuario.toString());	
+		JsonObject usuario = new JsonObject();
+		usuario.addProperty("nombre", nombre);
+		salida.writeUTF(usuario.toString());
 	}
 
 	public boolean recibirComprobacion() throws Exception {
@@ -135,44 +130,43 @@ public class Cliente {
 	}
 
 	public void enviarAccion(String accion) throws IOException {
-		JsonObject usuario=new JsonObject();
-		usuario.addProperty("Accion",accion);
+		JsonObject usuario = new JsonObject();
+		usuario.addProperty("Accion", accion);
 		salida.writeUTF(usuario.toString());
-		
+
 	}
 
-	
-	///No implementados.
-	public void enviarInvitacionAAlianza(Personaje invitado) throws IOException{
-		JsonObject personajeInvitado=new JsonObject();
+	/// No implementados.
+	public void enviarInvitacionAAlianza(Personaje invitado) throws IOException {
+		JsonObject personajeInvitado = new JsonObject();
 		personajeInvitado.addProperty("nombre", invitado.getNombre());
 		salida.writeUTF(personajeInvitado.toString());
 	}
-	
-	//FIXME Revisar este metodo, no me convence.
-	public void recibirInvitacionAAlianza() throws JsonSyntaxException, IOException{
+
+	// FIXME Revisar este metodo, no me convence.
+	public void recibirInvitacionAAlianza() throws JsonSyntaxException, IOException {
 		JsonParser parser = new JsonParser();
 		JsonElement elemento = parser.parse(entrada.readUTF());
 		Personaje invitador = new Gson().fromJson(elemento, Personaje.class);
 		personaje.tratarAlianza(invitador);
 
 	}
-	
-	public void enviarRespuestaAInvitacionDeAlianza(boolean respuesta) throws Exception{
+
+	public void enviarRespuestaAInvitacionDeAlianza(boolean respuesta) throws Exception {
 		JsonObject respuestaEnviada = new JsonObject();
 		respuestaEnviada.addProperty("respuesta", respuesta);
 		salida.writeUTF(respuestaEnviada.toString());
 	}
 
-	public void recibirPosicionInicial() throws IOException{
+	public void recibirPosicionInicial() throws IOException {
 		String punto = entrada.readUTF();
 		JsonParser parser = new JsonParser();
 		JsonObject json = parser.parse(punto).getAsJsonObject();
-		personaje.setPosicion(new Gson().fromJson(json,Punto.class));
+		personaje.setPosicion(new Gson().fromJson(json, Punto.class));
 	}
 
 	public boolean tienePersonaje() {
-		return this.personaje!=null;
+		return this.personaje != null;
 	}
 
 	public String getNombre() {
@@ -184,54 +178,54 @@ public class Cliente {
 	}
 
 	public void recibirPersonaje() throws Exception {
-		
+
 		JsonParser parser = new JsonParser();
-		JsonObject personajeACrear=parser.parse(entrada.readUTF()).getAsJsonObject();
+		JsonObject personajeACrear = parser.parse(entrada.readUTF()).getAsJsonObject();
 		raza = personajeACrear.get("raza").getAsString();
 		casta = personajeACrear.get("casta").getAsString();
 		int nivel = Integer.parseInt(personajeACrear.get("nivel").getAsString());
-		this.personaje=crearPersonaje();
-		this.personaje.subirStats(nivel-1);
+		this.personaje = crearPersonaje();
+		this.personaje.subirStats(nivel - 1);
 		this.personaje.setNombre(this.nombre);
 		personaje.setCasta(casta);
 		personaje.setRaza(raza);
-		
+
 	}
 
-	
-	public void enviarEnemigoYListaDePersonajesParaBatalla(Personaje enemigo, ArrayList<Personaje> amiga) throws IOException{
-		JsonObject personaje=new JsonObject();
-		JsonObject personajeEnemigo=new JsonObject();
-		JsonArray listaDeAmigos=new JsonArray();
+	public void enviarEnemigoYListaDePersonajesParaBatalla(Personaje enemigo, ArrayList<Personaje> amiga)
+			throws IOException {
+		JsonObject personaje = new JsonObject();
+		JsonObject personajeEnemigo = new JsonObject();
+		JsonArray listaDeAmigos = new JsonArray();
 		personajeEnemigo.addProperty("nombre", enemigo.getNombre());
 		personaje.addProperty("personajeEnemigo", personajeEnemigo.toString());
 		Iterator<Personaje> iterator = amiga.iterator();
-		while(iterator.hasNext()){
+		while (iterator.hasNext()) {
 			listaDeAmigos.add(new JsonPrimitive(iterator.next().getNombre()));
 		}
 		personaje.addProperty("aliados", listaDeAmigos.toString());
 		salida.writeUTF(personaje.toString());
 	}
-	
+
 	private JsonElement recibirObjetoJson() throws IOException {
 		JsonParser parser = new JsonParser();
 		return parser.parse(entrada.readUTF());
 	}
-	
-	public void recibirNotificacionDeBatalla() throws IOException{
+
+	public void recibirNotificacionDeBatalla() throws IOException {
 		JsonElement elemento = recibirObjetoJson();
 		String atacante = elemento.getAsJsonObject().get("personajeEnemigo").getAsString();
 		String accion = elemento.getAsJsonObject().get("accion").getAsString();
 	}
-	
-	public void enviarListaDeAliados(ArrayList<Personaje> aliados) throws IOException{
-		JsonObject personaje=new JsonObject();
-		JsonObject personajePropio=new JsonObject();
-		JsonArray listaDeAmigos=new JsonArray();
+
+	public void enviarListaDeAliados(ArrayList<Personaje> aliados) throws IOException {
+		JsonObject personaje = new JsonObject();
+		JsonObject personajePropio = new JsonObject();
+		JsonArray listaDeAmigos = new JsonArray();
 		personajePropio.addProperty("nombre", this.personaje.getNombre());
 		personaje.addProperty("personajePropio", personajePropio.toString());
 		Iterator<Personaje> iterator = aliados.iterator();
-		while(iterator.hasNext()){
+		while (iterator.hasNext()) {
 			listaDeAmigos.add(new JsonPrimitive(iterator.next().getNombre()));
 		}
 		personaje.addProperty("aliados", listaDeAmigos.toString());
@@ -251,28 +245,26 @@ public class Cliente {
 	}
 
 	public String getCasta() {
-		return casta; 
+		return casta;
 	}
 
 	public void crearHiloEscuchador() throws IOException {
-		new Escuchador(cliente,nombre,personaje,raza,casta,jugadoresEnPartida).start();
-		
+		new Escuchador(cliente, nombre, personaje, raza, casta, jugadoresEnPartida).start();
+
 	}
 
 	public void enviarPosicion(Punto punto) throws IOException {
 		personaje.setPosicion(punto);
 		enviarAccion("mover");
 		enviarPunto(punto);
-		
+
 	}
 
 	private void enviarPunto(Punto punto) throws IOException {
 		JsonObject puntoAEnviar = new JsonObject();
-		puntoAEnviar.addProperty("x",punto.getX());
-		puntoAEnviar.addProperty("y",punto.getY());
+		puntoAEnviar.addProperty("x", punto.getX());
+		puntoAEnviar.addProperty("y", punto.getY());
 		salida.writeUTF(puntoAEnviar.toString());
 	}
-
-	
 
 }
