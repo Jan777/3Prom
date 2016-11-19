@@ -13,7 +13,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
 import promotionSystem.Personaje;
@@ -121,6 +121,22 @@ public class Escuchador extends Thread {
 	public Personaje crearPersonajeAPartirDeRazaCasta(String asString, String asString2)
 			throws InstantiationException, IllegalAccessException, ClassNotFoundException {
 		return (Personaje) Class.forName("promotionSystem.razas.castas." + raza + "." + casta).newInstance();
+	}
+	
+	public void removerJugador() throws Exception{
+		JsonParser parser = new JsonParser();
+		JsonObject objeto = parser.parse(entrada.readUTF()).getAsJsonObject();
+		jugadoresEnPartida.remove(buscarPersonajeEnLaLista(objeto.get("nombre").getAsString()));
+	}
+
+	private Personaje buscarPersonajeEnLaLista(String nombre) {
+		for(Personaje personajeASacar:jugadoresEnPartida){
+			if(personajeASacar.getNombre().equals(nombre)){
+				return personajeASacar;
+			}
+		}
+		
+		return null;
 	}
 
 	public void cerrar() {

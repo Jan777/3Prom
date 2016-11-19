@@ -137,9 +137,21 @@ public class ServidorHilo extends Thread {
 	}
 
 	public void cerrar() throws IOException {
+		enviarAOtrosQueJugadorSalio();
+		
+		jugadoresPorMapa.get(mapa).remove(cliente);
+		jugadores.remove(cliente);
+		
 		enviarAccion("cerrar");
 		cliente.close();
 		continuar = false;
+	}
+
+	private void enviarAOtrosQueJugadorSalio() throws IOException {
+		JsonObject json = new JsonObject();
+		json.addProperty("nombre", nombreCliente);
+		enviarMensajeAJugadores(json, jugadoresPorMapa.get(mapa), "removerJugador");
+
 	}
 
 	public void recibirMapas() throws IOException {
