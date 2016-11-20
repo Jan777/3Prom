@@ -249,22 +249,6 @@ public class PersonajeTest {
 		assertEquals(personajeAtacante.getAlianza(), personajeAtacado.getAlianza());
 		assertEquals(2, alianzaAtacante.getPersonajes().size());
 	}
-
-	@Test
-	public void siNingunoDeLosDosPersonajesTieneAlianzaSeCreaUnaNueva(){
-		personajeAtacante.invitarAAlianza(personajeAtacado);
-		Assert.assertNotEquals(null, personajeAtacante.getAlianza());
-		Assert.assertNotEquals(null, personajeAtacado.getAlianza());
-		assertEquals(personajeAtacante.getAlianza(), personajeAtacado.getAlianza());
-	}
-	
-	@Test
-	public void siExisteUnaAlianzaDe3PersonajesYOtraDe2yEstasSeJuntanQuedaUnaDe5(){
-		alianzaAtacante = crearAlianza(3);
-		Alianza alianzaAtacada = crearAlianza(2);
-		alianzaAtacante.getPersonajes().get(0).invitarAAlianza(alianzaAtacada.getPersonajes().get(0));
-		assertEquals(5, alianzaAtacante.getPersonajes().size());
-	}
 	
 	@Test
 	public void siSeInvocaALosAliadosDentroDelRadioYUnoEstaFueraDeEseRadioNoDebeSerLlamado(){

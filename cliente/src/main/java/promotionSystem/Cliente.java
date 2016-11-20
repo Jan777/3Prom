@@ -146,21 +146,6 @@ public class Cliente {
 		salida.writeUTF(personajeInvitado.toString());
 	}
 
-	// FIXME Revisar este metodo, no me convence.
-	public void recibirInvitacionAAlianza() throws JsonSyntaxException, IOException {
-		JsonParser parser = new JsonParser();
-		JsonElement elemento = parser.parse(entrada.readUTF());
-		Personaje invitador = new Gson().fromJson(elemento, Personaje.class);
-		personaje.tratarAlianza(invitador);
-
-	}
-
-	public void enviarRespuestaAInvitacionDeAlianza(boolean respuesta) throws Exception {
-		JsonObject respuestaEnviada = new JsonObject();
-		respuestaEnviada.addProperty("respuesta", respuesta);
-		salida.writeUTF(respuestaEnviada.toString());
-	}
-
 	public void recibirPosicionInicial() throws IOException {
 		String punto = entrada.readUTF();
 		JsonParser parser = new JsonParser();
@@ -195,30 +180,9 @@ public class Cliente {
 
 	}
 
-	public void enviarEnemigoYListaDePersonajesParaBatalla(Personaje enemigo, ArrayList<Personaje> amiga)
-			throws IOException {
-		JsonObject personaje = new JsonObject();
-		JsonObject personajeEnemigo = new JsonObject();
-		JsonArray listaDeAmigos = new JsonArray();
-		personajeEnemigo.addProperty("nombre", enemigo.getNombre());
-		personaje.addProperty("personajeEnemigo", personajeEnemigo.toString());
-		Iterator<Personaje> iterator = amiga.iterator();
-		while (iterator.hasNext()) {
-			listaDeAmigos.add(new JsonPrimitive(iterator.next().getNombre()));
-		}
-		personaje.addProperty("aliados", listaDeAmigos.toString());
-		salida.writeUTF(personaje.toString());
-	}
-
 	private JsonElement recibirObjetoJson() throws IOException {
 		JsonParser parser = new JsonParser();
 		return parser.parse(entrada.readUTF());
-	}
-
-	public void recibirNotificacionDeBatalla() throws IOException {
-		JsonElement elemento = recibirObjetoJson();
-		String atacante = elemento.getAsJsonObject().get("personajeEnemigo").getAsString();
-		String accion = elemento.getAsJsonObject().get("accion").getAsString();
 	}
 
 	public void enviarListaDeAliados(ArrayList<Personaje> aliados) throws IOException {

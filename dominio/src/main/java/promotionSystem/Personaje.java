@@ -12,7 +12,7 @@ import java.util.Map;
 import static java.util.Collections.sort;
 import static promotionSystem.Constantes.RADIO_DE_ACCION;
 
-public abstract class Personaje implements Comparable<Personaje>{
+public abstract class Personaje implements Comparable<Personaje> {
 	protected String nombre;
 	protected String raza;
 	protected String casta;
@@ -42,9 +42,7 @@ public abstract class Personaje implements Comparable<Personaje>{
 	private Item escudo;
 	private Inventario inventario = new Inventario();
 
-  
-
-    public final void atacar(Personaje atacado) {
+	public final void atacar(Personaje atacado) {
 		if (puedeAtacar()) {
 			int puntosARestar = calcularPuntosDeAtaque() - atacado.calcularPuntosDeDefensa();
 			atacado.serAtacado(puntosARestar < 0 ? 0 : puntosARestar);
@@ -72,7 +70,7 @@ public abstract class Personaje implements Comparable<Personaje>{
 	}
 
 	public final void usarMagiaDeAlteracion(String conjuro) {
-		usarMagiaSupport(this,conjuro);
+		usarMagiaSupport(this, conjuro);
 	}
 
 	public abstract void despuesDeAtacar();
@@ -98,7 +96,7 @@ public abstract class Personaje implements Comparable<Personaje>{
 	public void serReducidoLaDefensa(int puntos) {
 		defensa -= puntos;
 		if (defensa < 0) {
-			defensa= 0;
+			defensa = 0;
 		}
 	}
 
@@ -114,9 +112,7 @@ public abstract class Personaje implements Comparable<Personaje>{
 	private boolean puedeAtacarConMagia() {
 		return energia >= magia;
 	}
-	
-	
-	
+
 	public String getRaza() {
 		return raza;
 	}
@@ -134,11 +130,10 @@ public abstract class Personaje implements Comparable<Personaje>{
 	}
 
 	public void setNombre(String nombre) {
-		this.nombre=nombre;
-		
+		this.nombre = nombre;
+
 	}
-	
-	
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -176,10 +171,9 @@ public abstract class Personaje implements Comparable<Personaje>{
 	}
 
 	public void serCuradoConMagia(int efecto) {
-		if (saludMaxima - salud > efecto){
+		if (saludMaxima - salud > efecto) {
 			salud += efecto;
-		}
-		else {
+		} else {
 			salud = saludMaxima;
 		}
 	}
@@ -247,12 +241,12 @@ public abstract class Personaje implements Comparable<Personaje>{
 		return puntosDeHabilidad;
 	}
 
-	public List<String> habilidades(){
+	public List<String> habilidades() {
 		return arbolDeHabilidades.listaDeHabilidades();
 	}
 
-	public final void  subirExperiencia(int experiencia) {
-		this.experiencia+=experiencia;
+	public final void subirExperiencia(int experiencia) {
+		this.experiencia += experiencia;
 		int nivelesSubidos = 0;
 		while (this.experiencia > experienciaPorNivel()) {
 			this.experiencia -= experienciaPorNivel();
@@ -267,14 +261,14 @@ public abstract class Personaje implements Comparable<Personaje>{
 		puntosDeHabilidad++;
 	}
 
-	public void subirHabilidad(String habilidad){
+	public void subirHabilidad(String habilidad) {
 		Habilidad habilidadASubir = arbolDeHabilidades.buscarHabilidad(habilidad);
-		if(arbolDeHabilidades.subirHabilidad(habilidadASubir)){
+		if (arbolDeHabilidades.subirHabilidad(habilidadASubir)) {
 			activarHabilidad(habilidadASubir);
 		}
 	}
 
-	public void activarHabilidad(Habilidad habilidad){
+	public void activarHabilidad(Habilidad habilidad) {
 		List<Integer> statsASubir = habilidad.statsASubir();
 		ataque += statsASubir.get(0);
 		magia += statsASubir.get(1);
@@ -303,34 +297,25 @@ public abstract class Personaje implements Comparable<Personaje>{
 		if (invitador.tieneAlianza() && this.tieneAlianza()) {
 			invitador.alianza.agregarPersonaje(this.alianza.getPersonajes());
 
-		} else if (invitador.tieneAlianza()) {
+		} 
+		else if (invitador.tieneAlianza()) {
 			invitador.alianza.agregarPersonaje(this);
-		} else if (tieneAlianza()) {
+		} 
+		else if (tieneAlianza()) {
 			alianza.agregarPersonaje(invitador);
-		}
-		else{
-			List<Personaje> personajes= new ArrayList<Personaje>();
+		} 
+		else {
+			List<Personaje> personajes = new ArrayList<Personaje>();
 			personajes.add(invitador);
 			personajes.add(this);
 			this.alianza = new Alianza(personajes);
 			invitador.alianza = alianza;
-
 		}
 
 	}
 
 	private boolean tieneAlianza() {
 		return alianza != null;
-	}
-
-	public void invitarAAlianza(Personaje invitado) {
-		invitado.tratarAlianza(this);
-	}
-
-	// FIXME arreglar segun decision del jugador
-	public void tratarAlianza(Personaje invitador) {
-		aceptarAlianza(invitador);
-		// rechazarAlianza(invitador);
 	}
 
 	private void rechazarAlianza(Personaje invitador) {
@@ -341,7 +326,7 @@ public abstract class Personaje implements Comparable<Personaje>{
 		alianza.atacar(desafiado.alianza);
 	}
 
-	public void aceptarDesafio(Personaje enemigo){
+	public void aceptarDesafio(Personaje enemigo) {
 		sort(this.alianza.personajes);
 		sort(enemigo.alianza.personajes);
 		Batalla batalla = new Batalla((this.invocarAliados()), enemigo.invocarAliados());
@@ -350,15 +335,15 @@ public abstract class Personaje implements Comparable<Personaje>{
 	public abstract void subirStats(int nivel);
 
 	public void mover(Punto posicionNueva) {
-		if(mapa.posicionValida(posicionNueva)){
+		if (mapa.posicionValida(posicionNueva)) {
 			posicion = posicionNueva;
 			radioDeAcccion.setCentro(posicion);
 		}
 	}
 
-	public Camino buscarCamino(Punto destino){
-	    return new Camino(posicion, destino);
-    }
+	public Camino buscarCamino(Punto destino) {
+		return new Camino(posicion, destino);
+	}
 
 	public Punto getPosicion() {
 		return posicion;
@@ -417,16 +402,17 @@ public abstract class Personaje implements Comparable<Personaje>{
 		return inventario.remove();
 	}
 
-	public List<Item> getItems(){
+	public List<Item> getItems() {
 		return inventario.getListaDeItems();
 	}
 
-	public void equiparItem(Item item) throws Exception{
-		Item itemEquipado = (Item)this.getClass().getSuperclass().getSuperclass().getDeclaredField(item.getTipoDeItem()).get(this);
-		if(itemEquipado == null){
+	public void equiparItem(Item item) throws Exception {
+		Item itemEquipado = (Item) this.getClass().getSuperclass().getSuperclass()
+				.getDeclaredField(item.getTipoDeItem()).get(this);
+		if (itemEquipado == null) {
 			Item itemEnInventario = inventario.buscarItem(item);
 			equipar(itemEnInventario);
-		}else{
+		} else {
 			desequiparItem(itemEquipado);
 			equiparItem(item);
 		}
@@ -458,7 +444,7 @@ public abstract class Personaje implements Comparable<Personaje>{
 		velocidad -= item.getSumadorDeVelocidad();
 	}
 
-	public void agregarAInventario(Item item){
+	public void agregarAInventario(Item item) {
 		inventario.add(item);
 	}
 
@@ -522,7 +508,7 @@ public abstract class Personaje implements Comparable<Personaje>{
 
 	public void setPosicion(Punto punto) {
 		posicion = punto;
-		radioDeAcccion= new Circulo(punto,RADIO_DE_ACCION);
+		radioDeAcccion = new Circulo(punto, RADIO_DE_ACCION);
 	}
 
 	@Override
@@ -535,12 +521,9 @@ public abstract class Personaje implements Comparable<Personaje>{
 		}
 		return 0;
 	}
-	
-	public boolean equals(Personaje personaje){
-		return this.nombre==personaje.nombre;
+
+	public boolean equals(Personaje personaje) {
+		return this.nombre == personaje.nombre;
 	}
 
-
 }
-
-
