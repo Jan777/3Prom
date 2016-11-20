@@ -100,7 +100,9 @@ public class JuegoPanel extends Component implements Runnable{
 			mapa.dibujar(g2d);
 			jugar = false;
 		}
-		mapa.mover(g2d);
+	
+			mapa.mover(g2d);
+	
 	}
 
 	/*public void nuevoMovimientoPersonajes(String pj, String sprite, Punto point){

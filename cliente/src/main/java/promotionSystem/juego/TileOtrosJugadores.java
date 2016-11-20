@@ -48,8 +48,15 @@ public class TileOtrosJugadores {
 		deltaY+=yActual;		
 		xIsometrica = (deltaX - deltaY) * ( ANCHO / 2) + anchoImagen%64;
 		yIsometrica = (deltaX + deltaY) * ( ALTO / 2) + altoImagen%32;
-		g2d.drawImage( animacionCaminado[0].getFrame(8), xIsometrica-32,  yIsometrica-48, null);			
+		g2d.drawImage( animacionCaminado[0].getFrame(8), xIsometrica-32,  yIsometrica-48, null);	
+		
+		g2d.drawImage( animacionCaminado[0].getFrame(8) ,xIsometrica-32,yIsometrica-48-5, null);
+		Font tipoDeLetra=new Font("Arial", Font.BOLD, 16);
+		g2d.setColor(Color.BLUE);
+		g2d.setFont(tipoDeLetra);
+		g2d.drawString(personaje.getNombre(), xIsometrica-32,yIsometrica-32-48-2 /*- 25*/);
 	}
+	
 	
 	public void inicializarAnimaciones(String pathPJ) {
 		Sprite spriteCaminando =  new Sprite(pathPJ);
@@ -82,6 +89,12 @@ public class TileOtrosJugadores {
 		}
 
 		g2d.drawImage( animacionCaminado[0].getFrameActual(), xIsometrica-32, yIsometrica-32-48 , null);	
+		
+		Font tipoDeLetra=new Font("Arial", Font.BOLD, 16);
+		g2d.setColor(Color.BLUE);
+		g2d.setFont(tipoDeLetra);
+		g2d.drawString(personaje.getNombre(), xIsometrica-32,yIsometrica-32-48-2 /*- 25*/);
+	
 	}
 
 
@@ -134,6 +147,7 @@ public class TileOtrosJugadores {
 		xDestino = paso.getPunto().getX();
 		yDestino = paso.getPunto().getY();
 		camino.remove(0);
+		
 	}
 
 	/*public void mover(Graphics2D g2d) {

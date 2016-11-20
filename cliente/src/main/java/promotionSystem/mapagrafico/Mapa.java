@@ -293,6 +293,7 @@ public class Mapa {
 				TileOtrosJugadores otrosPersonajes=new TileOtrosJugadores(personaje);
 				otrosJugadores.add(otrosPersonajes);
 				otrosPersonajes.dibujar(g2d,xDestino + camara.getxOffCamara(),yDestino + camara.getyOffCamara());
+//				otrosPersonajes.actualizarAnimaciones();
 			}
 		}
 	}
@@ -300,6 +301,8 @@ public class Mapa {
 	private void moverRestoPersonajes(Graphics2D g2d) {
 		for (TileOtrosJugadores jugador: otrosJugadores){
 			jugador.mover(g2d,xDestino + camara.getxOffCamara(),yDestino + camara.getyOffCamara());
+//			jugador.actualizarAnimaciones();
+			jugador.actualizar();
 		}
 	}
 
