@@ -48,7 +48,7 @@ public class TileOtrosJugadores {
 		deltaY+=yActual;		
 		xIsometrica = (deltaX - deltaY) * ( ANCHO / 2) + anchoImagen%64;
 		yIsometrica = (deltaX + deltaY) * ( ALTO / 2) + altoImagen%32;
-		g2d.drawImage( animacionCaminado[0].getFrame(8), xIsometrica,  yIsometrica, null);			
+		g2d.drawImage( animacionCaminado[0].getFrame(8), xIsometrica-32,  yIsometrica-48, null);			
 	}
 	
 	public void inicializarAnimaciones(String pathPJ) {
@@ -81,7 +81,7 @@ public class TileOtrosJugadores {
 			yIsometrica--;
 		}
 
-		g2d.drawImage( animacionCaminado[0].getFrameActual(), xIsometrica, yIsometrica-32 , null);	
+		g2d.drawImage( animacionCaminado[0].getFrameActual(), xIsometrica-32, yIsometrica-32-48 , null);	
 	}
 
 
@@ -165,7 +165,7 @@ public class TileOtrosJugadores {
 	public void actualizar() {
 		if(xActual==xDestino &&	yActual==yDestino ){
 			moverUnPaso();
-
+			
 		}		
 	}
 
@@ -184,6 +184,7 @@ public class TileOtrosJugadores {
 	public void setPuntoDestino(Punto puntoNuevo) {
 		xActual= puntoNuevo.getX();
         yActual=puntoNuevo.getY();
+        actualizarAnimaciones();
 	}
 	
 

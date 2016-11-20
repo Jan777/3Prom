@@ -134,17 +134,23 @@ public class Escuchador extends Thread {
 	public void removerJugador() throws Exception{
 		JsonParser parser = new JsonParser();
 		JsonObject objeto = parser.parse(entrada.readUTF()).getAsJsonObject();
-		jugadoresEnPartida.remove(buscarPersonajeEnLaLista(objeto.get("nombre").getAsString()));
+		jugadoresEnPartida.remove(buscarPersonajeAQuitarDeLaLista(objeto.get("nombre").getAsString()));
 	}
 
-	private Personaje buscarPersonajeEnLaLista(String nombre) {
-		for(Personaje personajeASacar:jugadoresEnPartida){
-			if(personajeASacar.getNombre().equals(nombre)){
-				return personajeASacar;
+	private Personaje buscarPersonajeAQuitarDeLaLista(String nombre) {
+		for(int i=0;i<jugadoresEnPartida.size();i++){
+			if(jugadoresEnPartida.get(i).getNombre().equals(nombre)){
+				removerTile(i);
+				return jugadoresEnPartida.get(i);
 			}
 		}
-		
 		return null;
+	
+	}
+
+	private void removerTile(int i) {
+		tilesOtrosJugadores.get(i).setPuntoDestino(new Punto(10000,10000));
+		tilesOtrosJugadores.remove(i);
 	}
 
 	public void cerrar() {
