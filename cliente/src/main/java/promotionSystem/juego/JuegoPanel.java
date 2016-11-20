@@ -88,7 +88,8 @@ public class JuegoPanel extends Component implements Runnable{
 	}
 
 	public void actualizar() throws IOException {
-		mouse.actualizar();  
+		mouse.actualizar();
+		mouse.actualizarClickIzquierdo();
 		personajeJugableDibujo.actualizar();
 		mapa.actualizar();
 	}
@@ -100,7 +101,9 @@ public class JuegoPanel extends Component implements Runnable{
 			mapa.dibujar(g2d);
 			jugar = false;
 		}
-		mapa.mover(g2d);
+	
+			mapa.mover(g2d);
+	
 	}
 
 	/*public void nuevoMovimientoPersonajes(String pj, String sprite, Punto point){

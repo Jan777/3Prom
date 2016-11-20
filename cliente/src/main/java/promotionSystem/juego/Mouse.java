@@ -11,9 +11,16 @@ public class Mouse implements MouseListener{
 	private int x;
 	private int y;
 	private int[] pos;
+	private int[] posicionClickIzquierdo;
+	private int xClickIzquierdo;
+	private int yClickIzquierdo;
 	private boolean recorrido;
+	private boolean clickIzquierdo;
 	public Mouse() {
 		pos = new int[2];
+		posicionClickIzquierdo= new int[2];
+		xClickIzquierdo=0;
+		yClickIzquierdo=0;
 		x=0;
 		y=0;
 	}
@@ -24,6 +31,12 @@ public class Mouse implements MouseListener{
 			y = evento.getY();
 			recorrido = true;			
 		}
+		else if(evento.getButton()==MouseEvent.BUTTON1){
+			xClickIzquierdo = evento.getX();
+			yClickIzquierdo = evento.getY();
+			clickIzquierdo=true;
+		}
+			
 	}
 	
 	
@@ -35,6 +48,15 @@ public class Mouse implements MouseListener{
 	}
 	public void actualizar() {
 		
+		actualizarSegunClick(x,y,pos);
+
+	}
+	public void actualizarClickIzquierdo() {
+		
+		actualizarSegunClick(xClickIzquierdo,yClickIzquierdo,posicionClickIzquierdo);
+
+	}
+	private void actualizarSegunClick(int x,int y,int[]posicion) {
 		int x0 = x - ( Tile.ANCHO / 2 );
 		int y0 = y;
 
@@ -50,9 +72,8 @@ public class Mouse implements MouseListener{
 		auxX /= 32;
 		auxY /= 32;
 
-		pos[0] = auxX;
-		pos[1] = auxY;
-
+		posicion[0] = auxX;
+		posicion[1] = auxY;
 	}
 	
 	
@@ -75,5 +96,16 @@ public class Mouse implements MouseListener{
 
 	@Override
 	public void mouseReleased(MouseEvent evento) {}
+	
+	public int[] getPosicionClickIzquierdo() {
+		return posicionClickIzquierdo;
+	}
+	public boolean getClickIzquierdo() {
+		return clickIzquierdo;
+	}
+	public void setClickIzquierdo(boolean valor) {
+		clickIzquierdo=valor;
+		
+	}
 
 }

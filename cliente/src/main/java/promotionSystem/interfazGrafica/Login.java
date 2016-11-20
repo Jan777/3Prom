@@ -211,8 +211,8 @@ class LaminaLoginCentral extends JPanel implements KeyListener {
 					cargarNombre();
 					cargarPersonaje();
 					menuPrincipal(frame);
-				} else {
-					error.setText("Usuario y/o Contraseña incorrecta");
+				} else{
+					error.setText("Usuario y/o Contraseña incorrecta o usuario ya logueado");
 					vaciarCampos();
 				}
 			} else {
