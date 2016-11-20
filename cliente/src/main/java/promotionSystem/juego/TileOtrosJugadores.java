@@ -179,7 +179,6 @@ public class TileOtrosJugadores {
 	public void actualizar() {
 		if(xActual==xDestino &&	yActual==yDestino ){
 			moverUnPaso();
-			
 		}		
 	}
 
@@ -198,6 +197,7 @@ public class TileOtrosJugadores {
 	public void setPuntoDestino(Punto puntoNuevo) {
 		xActual= puntoNuevo.getX();
         yActual=puntoNuevo.getY();
+        actualizar();
         actualizarAnimaciones();
 	}
 	

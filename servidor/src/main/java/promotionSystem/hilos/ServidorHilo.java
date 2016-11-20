@@ -137,9 +137,11 @@ public class ServidorHilo extends Thread {
 	}
 
 	public void cerrar() throws IOException {
-		enviarAOtrosQueJugadorSalio();
+		if(mapa!=null){
+			enviarAOtrosQueJugadorSalio();			
+			jugadoresPorMapa.get(mapa).remove(cliente);
+		}
 		
-		jugadoresPorMapa.get(mapa).remove(cliente);
 		jugadores.remove(cliente);
 		
 		enviarAccion("cerrar");
@@ -253,14 +255,29 @@ public class ServidorHilo extends Thread {
 
 	private void loguearJugador() {
 		try {
-			if (!validarContraseña()) {
-				salida.writeUTF("false");
-			} else {
+			if (validarContraseña()&&!estaLogueado()) {
 				salida.writeUTF("true");
+				
+			} else {
+				salida.writeUTF("false");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	
+
+	private boolean estaLogueado() {
+		Iterator<Socket> iterador = jugadores.keySet().iterator();
+		while(iterador.hasNext()){
+			Socket jugador = iterador.next();
+			if(jugadores.get(jugador).getNombre().equals(nombreCliente)){
+				return true;
+			}
+		}
+		
+		return false;
 	}
 
 	private boolean comprobarUsuario() throws Exception {
