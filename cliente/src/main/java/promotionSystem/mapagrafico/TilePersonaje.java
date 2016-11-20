@@ -76,7 +76,8 @@ public class TilePersonaje {
 		int posMouse[] = mouse.getPos();
 		
 		if(mouse.getClickIzquierdo()){
-			if(CoincideConOtroJugador()){
+			Personaje personajeClickeado=CoincideConOtroJugador();
+			if(personajeClickeado!=null){
 				//FIXME aca hay que levantar el cartel para seleccionar batalla o alianza;
 			}
 			mouse.setClickIzquierdo(false); 	
@@ -95,16 +96,16 @@ public class TilePersonaje {
 	}
 
 
-	private boolean CoincideConOtroJugador() {
+	private Personaje CoincideConOtroJugador() {
 		Punto puntoClickeado = new Punto((xInicio - mouse.getPosicionClickIzquierdo()[0] + camara.getxOffCamara())*-1,(yInicio -  mouse.getPosicionClickIzquierdo()[1] + camara.getyOffCamara())*-1);
 
 		for(TileOtrosJugadores otroJugador : cliente.getTiles()){
 			
 			if(otroJugador.getPersonaje().getPosicion().comparar(puntoClickeado)){
-				return true;
+				return otroJugador.getPersonaje();
 			}
 		}
-		return false;
+		return null;
 	}
 
 	
