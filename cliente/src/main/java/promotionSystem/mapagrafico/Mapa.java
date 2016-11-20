@@ -7,6 +7,7 @@ import java.awt.Image;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 import promotionSystem.Cliente;
+import promotionSystem.Personaje;
 import promotionSystem.Punto;
 import promotionSystem.juego.Camara;
 import promotionSystem.juego.TileOtrosJugadores;
@@ -46,7 +48,7 @@ public class Mapa {
 	private TileObstaculo[][]  tilesObstaculo; 
 	private boolean[][] obstaculos; 
 	private TilePersonaje pj; 
-	private HashMap<String, TileOtrosJugadores> personajes; 
+	private ArrayList<Personaje> personajes; 
 	private int xDestino;
 	private int yDestino;
 	private int xAnterior;
@@ -61,10 +63,11 @@ public class Mapa {
 	private Nodo destino;
 	private boolean noEnvieQueTermine;
 	private Cliente cliente;
+	ArrayList<TileOtrosJugadores> otrosJugadores = new ArrayList<>();
 	
 
 
-	public Mapa(String nombre,TilePersonaje pj,Camara camara, HashMap<String, TileOtrosJugadores> personajes,Cliente cliente) {
+	public Mapa(String nombre,TilePersonaje pj,Camara camara ,ArrayList<Personaje> personajes,Cliente cliente) {
 		File path = new File("recursos/"+nombre+".txt");
 		this.pj = pj;
 		this.enMovimiento = false;
@@ -77,7 +80,7 @@ public class Mapa {
 		this.camara = camara;
 		this.personajes = personajes;
 		this.cliente=cliente;
-
+		otrosJugadores = cliente.getTiles();
 		Scanner sc = null;
 		try {
 			sc = new Scanner(path);
@@ -174,11 +177,11 @@ public class Mapa {
 		//actualizarRestoPersonajes();
 	}
 
-	private void actualizarRestoPersonajes() {
+	/*private void actualizarRestoPersonajes() {
 		for (TileOtrosJugadores pj : personajes.values()) {
 			pj.actualizar();
 		}		
-	}
+	}*/
 
 
 	private boolean hayCamino() {
@@ -208,7 +211,7 @@ public class Mapa {
 					tilesObstaculo[i][j].dibujar(g2d,xDestino + camara.getxOffCamara(),yDestino + camara.getyOffCamara());	
 			}
 		}
-		//dibujarRestoPersonajes(g2d);
+		dibujarRestoPersonajes(g2d);
 
 		g2d.drawImage( iluminacion, 0, 0 , null);
 	}
@@ -233,6 +236,7 @@ public class Mapa {
 					tilesObstaculo[i][j].mover(g2d,xDestino + camara.getxOffCamara(),yDestino + camara.getyOffCamara());
 			}
 		}
+		moverRestoPersonajes(g2d);
 		g2d.drawImage( iluminacion, 0, 0 , null);
 		hud(g2d);
 		termino();
@@ -271,7 +275,7 @@ public class Mapa {
 	}
 
 
-	public void moverPlayer(TileOtrosJugadores player) {
+	/*public void moverPlayer(TileOtrosJugadores player) {
 		actual 		= 	grafoDeMapa.getNodo(player.getxAnterior(),player.getyAnterior());
 		destino 	=	grafoDeMapa.getNodo( player.getxDestino(), player.getyDestino());			
 		player.calcularDijkstra(grafoDeMapa,actual,destino);
@@ -281,7 +285,22 @@ public class Mapa {
 		for (TileOtrosJugadores pj : personajes.values()) {
 			pj.mover(g2d);
 		}
-	}
+	}*/
 
+	private void dibujarRestoPersonajes(Graphics2D g2d) {
+		if(!personajes.isEmpty()){
+			for (Personaje personaje: personajes) {
+				TileOtrosJugadores otrosPersonajes=new TileOtrosJugadores(personaje);
+				otrosJugadores.add(otrosPersonajes);
+				otrosPersonajes.dibujar(g2d,xDestino + camara.getxOffCamara(),yDestino + camara.getyOffCamara());
+			}
+		}
+	}
+	
+	private void moverRestoPersonajes(Graphics2D g2d) {
+		for (TileOtrosJugadores jugador: otrosJugadores){
+			jugador.mover(g2d,xDestino + camara.getxOffCamara(),yDestino + camara.getyOffCamara());
+		}
+	}
 
 }

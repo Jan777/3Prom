@@ -18,6 +18,7 @@ import com.google.gson.reflect.TypeToken;
 
 import promotionSystem.Personaje;
 import promotionSystem.Punto;
+import promotionSystem.juego.TileOtrosJugadores;
 
 public class Escuchador extends Thread {
 	private Socket cliente;
@@ -29,9 +30,10 @@ public class Escuchador extends Thread {
 	private String casta;
 	private ArrayList<Personaje> jugadoresEnPartida;
 	private boolean continuar = true;
+	private ArrayList<TileOtrosJugadores> tilesOtrosJugadores;
 
 	public Escuchador(Socket cliente, String nombre, Personaje personaje, String raza, String casta,
-			ArrayList<Personaje> jugadoresEnPartida) throws IOException {
+			ArrayList<Personaje> jugadoresEnPartida, ArrayList<TileOtrosJugadores> tilesOtrosJugadores) throws IOException {
 		this.cliente = cliente;
 		this.nombre = nombre;
 		this.personaje = personaje;
@@ -40,11 +42,12 @@ public class Escuchador extends Thread {
 		this.jugadoresEnPartida = jugadoresEnPartida;// creo que no va;
 		salida = new DataOutputStream(cliente.getOutputStream());
 		entrada = new DataInputStream(cliente.getInputStream());
+		this.tilesOtrosJugadores=tilesOtrosJugadores;
 
 	}
 
 	public void run() {
-		while (continuar) {
+		
 			try {
 
 				while (continuar) {
@@ -55,7 +58,7 @@ public class Escuchador extends Thread {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
+		
 	}
 
 	public String recibirAccion() throws IOException {
@@ -94,11 +97,13 @@ public class Escuchador extends Thread {
 		boolean encontro = false;
 		int i = 0;
 
-		while (!encontro) {
-			if (jugadoresEnPartida.get(i).getNombre().equals(nombrePersonaje)) {
+		while(i<jugadoresEnPartida.size() && !encontro ){
+			if(jugadoresEnPartida.get(i).getNombre().equals(nombrePersonaje)){
 				jugadoresEnPartida.get(i).setPosicion(puntoNuevo);
-				encontro = true;
+				encontro=true;
+				tilesOtrosJugadores.get(i).setPuntoDestino(puntoNuevo);
 			}
+			i++;
 		}
 	}
 
@@ -107,6 +112,7 @@ public class Escuchador extends Thread {
 		JsonObject objeto = parser.parse(entrada.readUTF()).getAsJsonObject();
 		Personaje personaje = crearPersonaje(objeto);
 		jugadoresEnPartida.add(personaje);
+		tilesOtrosJugadores.add(new TileOtrosJugadores(personaje));
 	}
 
 	private Personaje crearPersonaje(JsonObject objeto) throws Exception {
@@ -115,6 +121,8 @@ public class Escuchador extends Thread {
 		personaje.subirStats(objeto.get("nivel").getAsInt() - 1);
 		personaje.setNombre(objeto.get("nombre").getAsString());
 		personaje.setPosicion(new Punto(objeto.get("x").getAsInt(), objeto.get("y").getAsInt()));
+		personaje.setRaza(objeto.get("raza").getAsString());
+		personaje.setCasta(objeto.get("casta").getAsString());
 		return personaje;
 	}
 

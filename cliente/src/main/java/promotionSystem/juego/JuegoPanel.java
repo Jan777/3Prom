@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.ImageIcon;
@@ -36,7 +37,7 @@ public class JuegoPanel extends Component implements Runnable{
 	private Camara camara;
 	JFrame padre;
 	Cliente cliente;
-	private HashMap<String, TileOtrosJugadores> personajes;
+	private ArrayList<Personaje> personajes; 
 	
 
 	private boolean jugar = true;
@@ -45,7 +46,7 @@ public class JuegoPanel extends Component implements Runnable{
 		this.padre = padre;
 		this.cliente = cliente;
 		cliente.crearHiloEscuchador();
-		this.personajes = new HashMap<String, TileOtrosJugadores>();
+		this.personajes = cliente.getJugadoresEnPartida();
 		setPreferredSize(new Dimension(ANCHO, ALTO));
 		setFocusable(true);
 		requestFocus();
@@ -53,7 +54,7 @@ public class JuegoPanel extends Component implements Runnable{
 		camara = new Camara(ANCHO, ALTO);
 		addMouseListener(mouse);
 		personajeJugableDibujo = new TilePersonaje(cliente.getPersonaje().getPosicion(),cliente,mouse,camara);  
-		mapa 	 = new Mapa(nombreMapa,personajeJugableDibujo,camara, null,cliente);
+		mapa 	 = new Mapa(nombreMapa,personajeJugableDibujo,camara, personajes,cliente);
 		thread 	 = new Thread(this);
 		thread.start();
 	}
@@ -102,7 +103,7 @@ public class JuegoPanel extends Component implements Runnable{
 		mapa.mover(g2d);
 	}
 
-	public void nuevoMovimientoPersonajes(String pj, String sprite, Punto point){
+	/*public void nuevoMovimientoPersonajes(String pj, String sprite, Punto point){
 		TileOtrosJugadores player = personajes.get(pj);
 		if (player == null){
 			player= new TileOtrosJugadores(pj,sprite,point);
@@ -110,7 +111,7 @@ public class JuegoPanel extends Component implements Runnable{
 		}
 		mapa.moverPlayer(player);
 
-	}
+	}*/
 
 	public void nuevaDetencionPersonaje(String pj){
 		

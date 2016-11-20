@@ -10,6 +10,7 @@ import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
 import promotionSystem.hilos.Escuchador;
+import promotionSystem.juego.TileOtrosJugadores;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -34,6 +35,7 @@ public class Cliente {
 	private String raza;
 	private String casta;
 	private ArrayList<Personaje> jugadoresEnPartida;
+	private ArrayList<TileOtrosJugadores> tilesOtrosJugadores; 
 
 	public Cliente() throws Exception {
 		try {
@@ -42,6 +44,7 @@ public class Cliente {
 			salida = new DataOutputStream(cliente.getOutputStream());
 			entrada = new DataInputStream(cliente.getInputStream());
 			jugadoresEnPartida = new ArrayList<Personaje>();
+			tilesOtrosJugadores=new ArrayList<>();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -249,7 +252,7 @@ public class Cliente {
 	}
 
 	public void crearHiloEscuchador() throws IOException {
-		new Escuchador(cliente, nombre, personaje, raza, casta, jugadoresEnPartida).start();
+		new Escuchador(cliente,nombre,personaje,raza,casta,jugadoresEnPartida,tilesOtrosJugadores).start();
 
 	}
 
@@ -265,6 +268,14 @@ public class Cliente {
 		puntoAEnviar.addProperty("x", punto.getX());
 		puntoAEnviar.addProperty("y", punto.getY());
 		salida.writeUTF(puntoAEnviar.toString());
+	}
+	
+	public ArrayList<TileOtrosJugadores> getTiles() {
+
+		return tilesOtrosJugadores;
+	}
+	public ArrayList<Personaje> getJugadoresEnPartida() {
+		return jugadoresEnPartida;
 	}
 
 }

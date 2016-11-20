@@ -5,8 +5,8 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.util.List;
 
+import promotionSystem.Personaje;
 import promotionSystem.Punto;
-
 import promotionSystem.mapagrafico.dijkstra.Grafo;
 import promotionSystem.mapagrafico.dijkstra.MetodoDijkstra;
 import promotionSystem.mapagrafico.dijkstra.Nodo;
@@ -16,7 +16,10 @@ import promotionSystem.sprites.Sprite;
 
 
 public class TileOtrosJugadores {
-
+	protected int anchoImagen = 128;
+	protected int altoImagen = 128;
+	public final static int ANCHO = 64;
+	public final static int ALTO = 32;
 	private Animacion[] animacionCaminado;
 	private int xActual;
 	private int yActual;
@@ -30,13 +33,24 @@ public class TileOtrosJugadores {
 	private Nodo paso;
 	private String nombre;
 	MetodoDijkstra moverPersonaje;
-
-	public TileOtrosJugadores(String nombre,String sprite, Punto point) {
-		xDestino = xActual = xAnterior = point.getX();
-		yDestino = yActual = yAnterior = point.getY();
-		this.nombre = nombre;
-		inicializarAnimaciones("src\\main\\resources\\personajes\\"+sprite+".png");
+	private Personaje personaje;
+	
+	public TileOtrosJugadores (Personaje personaje){
+		
+		xActual= personaje.getPosicion().getX();
+		yActual= personaje.getPosicion().getY();
+		this.personaje=personaje;
+		inicializarAnimaciones("RecursosPersonaje/Razas/"+personaje.getCasta()+"/"+personaje.getCasta()+".png");
 	}
+	
+	public void dibujar(Graphics2D g2d, int deltaX, int deltaY) {
+		deltaX+=xActual;
+		deltaY+=yActual;		
+		xIsometrica = (deltaX - deltaY) * ( ANCHO / 2) + anchoImagen%64;
+		yIsometrica = (deltaX + deltaY) * ( ALTO / 2) + altoImagen%32;
+		g2d.drawImage( animacionCaminado[0].getFrame(8), xIsometrica,  yIsometrica, null);			
+	}
+	
 	public void inicializarAnimaciones(String pathPJ) {
 		Sprite spriteCaminando =  new Sprite(pathPJ);
 		animacionCaminado = new Animacion[8];
@@ -44,6 +58,55 @@ public class TileOtrosJugadores {
 			animacionCaminado[i] = new Animacion(100, spriteCaminando.getVectorSprite(i));
 		}
 	}
+	public void mover(Graphics2D g2d, int x2, int y2) {
+
+
+		x2+=xActual;
+		y2+=yActual;	
+
+		int nx = (x2 - y2) * ( ANCHO / 2);
+		int ny = (x2 + y2) * ( ALTO / 2);
+
+		if(xIsometrica < nx){
+			xIsometrica+=2;
+		}
+		if(xIsometrica > nx){
+			xIsometrica-=2;
+		}
+
+		if(yIsometrica < ny){
+			yIsometrica++;
+		}
+		if(yIsometrica > ny){
+			yIsometrica--;
+		}
+
+		g2d.drawImage( animacionCaminado[0].getFrameActual(), xIsometrica, yIsometrica-32 , null);	
+	}
+
+
+	/*public TileOtrosJugadores(String nombre,String sprite, Punto point) {
+		xDestino = xActual = xAnterior = point.getX();
+		yDestino = yActual = yAnterior = point.getY();
+		this.nombre = nombre;
+		inicializarAnimaciones("src\\main\\resources\\personajes\\"+sprite+".png");
+	}
+	public TileOtrosJugadores(Personaje personaje) {
+		
+		xDestino = xActual = xAnterior = personaje.getPosicion().getX();
+		yDestino = yActual = yAnterior = personaje.getPosicion().getY();
+		this.nombre =personaje.getNombre();
+		inicializarAnimaciones("RecursosPersonaje/Razas/"+personaje.getCasta()+"/"+personaje.getCasta()+".png");
+	}
+	
+	
+	public void inicializarAnimaciones(String pathPJ) {
+		Sprite spriteCaminando =  new Sprite(pathPJ);
+		animacionCaminado = new Animacion[8];
+		for (int i = 0; i < animacionCaminado.length; i++) {
+			animacionCaminado[i] = new Animacion(100, spriteCaminando.getVectorSprite(i));
+		}
+	}*/
 
 	public void actualizarAnimaciones() {
 		for (int i = 0; i < 8; i++) {
@@ -73,7 +136,7 @@ public class TileOtrosJugadores {
 		camino.remove(0);
 	}
 
-	public void mover(Graphics2D g2d) {
+	/*public void mover(Graphics2D g2d) {
 		
 		xActual+=xDestino;
 		yActual+=yDestino;	
@@ -95,10 +158,10 @@ public class TileOtrosJugadores {
 
 		g2d.drawImage( animacionCaminado[0].getFrameActual(), xIsometrica, yIsometrica-32 , null);	
 		Font fuente=new Font("Arial", Font.BOLD, 16);
-		g2d.setColor(Color.RED);
+		g2d.setColor(Color.BLUE);
 		g2d.setFont(fuente);
 		g2d.drawString(nombre, xIsometrica, yIsometrica - 5);
-	}
+	}*/
 	public void actualizar() {
 		if(xActual==xDestino &&	yActual==yDestino ){
 			moverUnPaso();
@@ -118,4 +181,11 @@ public class TileOtrosJugadores {
 		return this.nombre +" "+xDestino+" : "+yDestino;
 	}
 
+	public void setPuntoDestino(Punto puntoNuevo) {
+		xActual= puntoNuevo.getX();
+        yActual=puntoNuevo.getY();
+	}
+	
+
 }
+
