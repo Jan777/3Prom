@@ -81,7 +81,6 @@ public class TilePersonaje {
 
 			xDestino = xInicio - posMouse[0] + camara.getxOffCamara();
 			yDestino = yInicio - posMouse[1] + camara.getyOffCamara();
-			cliente.enviarPosicion(new Punto(xDestino*-1,yDestino*-1));
 			mouse.setRecorrido(false); 
 		}
 

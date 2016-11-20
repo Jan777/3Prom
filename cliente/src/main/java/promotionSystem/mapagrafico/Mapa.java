@@ -156,11 +156,12 @@ public class Mapa {
 		if( pj.getNuevoRecorrido() && posicionValida(-pj.getXDestino(),-pj.getYDestino()) )	{
 			dijkstra	= 	new MetodoDijkstra();
 			actual 		= 	grafoDeMapa.getNodo(-xDestino, -yDestino);
-			destino 	=	grafoDeMapa.getNodo(-pj.getXDestino(), -pj.getYDestino());			
+			destino 	=	grafoDeMapa.getNodo(-pj.getXDestino(), -pj.getYDestino());	
+			cliente.enviarPosicion(destino.getPunto());
 			dijkstra.calcularDijkstra(grafoDeMapa, actual,destino);
 			camino 		=	dijkstra.obtenerCamino(destino);
 			pj.setNuevoRecorrido(false);
-		
+			
 			noEnvieQueTermine = true;
 		}
 
@@ -302,7 +303,7 @@ public class Mapa {
 		for (TileOtrosJugadores jugador: otrosJugadores){
 			jugador.mover(g2d,xDestino + camara.getxOffCamara(),yDestino + camara.getyOffCamara());
 //			jugador.actualizarAnimaciones();
-			jugador.actualizar();
+//			jugador.actualizar();
 		}
 	}
 
