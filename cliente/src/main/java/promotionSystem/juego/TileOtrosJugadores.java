@@ -200,6 +200,10 @@ public class TileOtrosJugadores {
         actualizar();
         actualizarAnimaciones();
 	}
+
+	public Personaje getPersonaje() {
+		return personaje;
+	}
 	
 
 }

@@ -88,7 +88,8 @@ public class JuegoPanel extends Component implements Runnable{
 	}
 
 	public void actualizar() throws IOException {
-		mouse.actualizar();  
+		mouse.actualizar();
+		mouse.actualizarClickIzquierdo();
 		personajeJugableDibujo.actualizar();
 		mapa.actualizar();
 	}

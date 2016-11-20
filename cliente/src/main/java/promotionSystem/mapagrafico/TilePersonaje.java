@@ -12,6 +12,7 @@ import promotionSystem.Personaje;
 import promotionSystem.Punto;
 import promotionSystem.juego.Camara;
 import promotionSystem.juego.Mouse;
+import promotionSystem.juego.TileOtrosJugadores;
 import promotionSystem.sprites.Animacion;
 import promotionSystem.sprites.Sprite;
 
@@ -73,7 +74,14 @@ public class TilePersonaje {
 
 	public void actualizar() throws IOException {
 		int posMouse[] = mouse.getPos();
-
+		
+		if(mouse.getClickIzquierdo()){
+			if(CoincideConOtroJugador()){
+				//FIXME aca hay que levantar el cartel para seleccionar batalla o alianza;
+			}
+			mouse.setClickIzquierdo(false); 	
+		}
+		
 		actualizarAnimaciones();
 
 		if (mouse.getRecorrido()) {
@@ -86,6 +94,20 @@ public class TilePersonaje {
 
 	}
 
+
+	private boolean CoincideConOtroJugador() {
+		Punto puntoClickeado = new Punto((xInicio - mouse.getPosicionClickIzquierdo()[0] + camara.getxOffCamara())*-1,(yInicio -  mouse.getPosicionClickIzquierdo()[1] + camara.getyOffCamara())*-1);
+
+		for(TileOtrosJugadores otroJugador : cliente.getTiles()){
+			
+			if(otroJugador.getPersonaje().getPosicion().comparar(puntoClickeado)){
+				return true;
+			}
+		}
+		return false;
+	}
+
+	
 
 	public int getXDestino() {
 		return xDestino;
