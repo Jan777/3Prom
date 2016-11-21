@@ -41,7 +41,7 @@ public abstract class Personaje implements Comparable<Personaje>{
 	private Item chaleco;
 	private Item escudo;
 	private Inventario inventario = new Inventario();
-
+   
   
 
     public final void atacar(Personaje atacado) {
