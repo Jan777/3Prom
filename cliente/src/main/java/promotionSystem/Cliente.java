@@ -40,16 +40,14 @@ public class Cliente {
 	private String invitador;
 
 	public Cliente() throws Exception {
-		try {
+	
 			configurar(archivoDeConfiguracion);
 			cliente = new Socket(ip, puerto);
 			salida = new DataOutputStream(cliente.getOutputStream());
 			entrada = new DataInputStream(cliente.getInputStream());
 			jugadoresEnPartida = new ArrayList<Personaje>();
 			tilesOtrosJugadores=new ArrayList<>();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		
 	}
 
 	private Personaje crearPersonaje() throws Exception {

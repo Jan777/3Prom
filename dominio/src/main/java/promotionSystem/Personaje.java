@@ -41,8 +41,10 @@ public abstract class Personaje implements Comparable<Personaje> {
 	private Item chaleco;
 	private Item escudo;
 	private Inventario inventario = new Inventario();
+   
+  
 
-	public final void atacar(Personaje atacado) {
+    public final void atacar(Personaje atacado) {
 		if (puedeAtacar()) {
 			int puntosARestar = calcularPuntosDeAtaque() - atacado.calcularPuntosDeDefensa();
 			atacado.serAtacado(puntosARestar < 0 ? 0 : puntosARestar);

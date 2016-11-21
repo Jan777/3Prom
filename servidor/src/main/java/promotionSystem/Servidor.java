@@ -10,6 +10,8 @@ import java.util.HashMap;
 
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 import com.google.gson.JsonElement;
 import com.google.gson.JsonPrimitive;
 
@@ -17,7 +19,7 @@ import promotionSystem.hilos.HiloCreadorServidor;
 import promotionSystem.mapa.Mapa;
 
 public class Servidor {
-	private Conector conector = new Conector();
+	private Conector conector;
 	private int i = 0;
 	private int puerto;
 	private int cantidadMaximaDeClientes;
@@ -26,19 +28,17 @@ public class Servidor {
 	private HashMap<Mapa, ArrayList<Socket>> jugadoresPorMapa = new HashMap<Mapa, ArrayList<Socket>>();
 	private HashMap<String, Mapa> mapasDisponibles = new HashMap<String, Mapa>();
 
-	public Servidor() {
+	public Servidor() throws Exception {
+		conector = new Conector();
 		ServerSocket servidor;
-		try {
 			cargarMapas();
 			configurar();
 			servidor = new ServerSocket(puerto);
+			JOptionPane.showMessageDialog(null,"Servidor en linea","Server",JOptionPane.INFORMATION_MESSAGE);
 			aceptarClientes(servidor);
 
 			servidor.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-			// System.err.println("Ocurri� un problema con el Servidor");
-		}
+		
 	}
 
 	private void cargarMapas() {

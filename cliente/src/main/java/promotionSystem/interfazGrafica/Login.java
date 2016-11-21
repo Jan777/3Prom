@@ -9,8 +9,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.IOException;
@@ -18,6 +20,7 @@ import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -29,53 +32,28 @@ public class Login extends JFrame {
 
 	public Login() throws Exception {
 
-		cliente = new Cliente();
-		crearInterfaz();
 
-		addWindowListener(new WindowListener() {
+			cliente = new Cliente();
 
-			@Override
-			public void windowActivated(WindowEvent e) {
+			crearInterfaz();
 
-			}
+			addWindowListener(new WindowAdapter() {
 
-			@Override
-			public void windowClosed(WindowEvent e) {
+				@Override
+				public void windowClosing(WindowEvent e) {
 
-			}
+					try {
+						enviarAccionDeCerrar();
+					} catch (IOException e1) {
+						JOptionPane.showMessageDialog(null, "ERROR!");
+					}
 
-			@Override
-			public void windowClosing(WindowEvent e) {
-
-				try {
-					enviarAccionDeCerrar();
-				} catch (IOException e1) {
-
-					e1.printStackTrace();
 				}
-			}
 
-			@Override
-			public void windowDeactivated(WindowEvent e) {
+			});
+		
 
-			}
 
-			@Override
-			public void windowDeiconified(WindowEvent e) {
-
-			}
-
-			@Override
-			public void windowIconified(WindowEvent e) {
-
-			}
-
-			@Override
-			public void windowOpened(WindowEvent e) {
-
-			}
-
-		});
 	}
 
 	private void crearInterfaz() {
@@ -129,7 +107,7 @@ class LaminaLoginCentral extends JPanel implements KeyListener {
 		registrarse = new JButton("REGISTRATE");
 		JLabel contraseñalabel = new JLabel("contraseña: ");
 		contraseña = new JPasswordField(20);
-		contraseña.addKeyListener(new KeyListener() {
+		contraseña.addKeyListener(new KeyAdapter() {
 
 			@Override
 			public void keyPressed(KeyEvent arg0) {
@@ -137,17 +115,6 @@ class LaminaLoginCentral extends JPanel implements KeyListener {
 					aceptar();
 				}
 			}
-
-			@Override
-			public void keyReleased(KeyEvent arg0) {
-
-			}
-
-			@Override
-			public void keyTyped(KeyEvent arg0) {
-
-			}
-
 		});
 
 		JButton ingresar = new JButton("Ingresar");
@@ -219,7 +186,8 @@ class LaminaLoginCentral extends JPanel implements KeyListener {
 				error.setText("Los Campos no deben estar vacios");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null,"Error al iniciar sesion","Error",JOptionPane.ERROR_MESSAGE);
+			frame.dispose();
 		}
 	}
 
@@ -235,31 +203,12 @@ class LaminaLoginCentral extends JPanel implements KeyListener {
 		marco.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		marco.setVisible(true);
 
-		marco.addWindowListener(new WindowListener() {
+		marco.addWindowListener(new WindowAdapter() {
 
-			@Override
-			public void windowActivated(WindowEvent arg0) {
-			}
-
+			
 			@Override
 			public void windowClosed(WindowEvent arg0) {
 				frame.setEnabled(true);
-			}
-
-			@Override
-			public void windowClosing(WindowEvent arg0) {
-			}
-
-			@Override
-			public void windowDeactivated(WindowEvent arg0) {
-			}
-
-			@Override
-			public void windowDeiconified(WindowEvent arg0) {
-			}
-
-			@Override
-			public void windowIconified(WindowEvent arg0) {
 			}
 
 			@Override
@@ -302,37 +251,9 @@ class LaminaLoginCentral extends JPanel implements KeyListener {
 		MenuPrincipal ventana = new MenuPrincipal(cliente);
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventana.setVisible(true);
-		ventana.addWindowListener(new WindowListener() {
+		ventana.addWindowListener(new WindowAdapter() {
 
-			@Override
-			public void windowActivated(WindowEvent arg0) {
-
-			}
-
-			@Override
-			public void windowClosed(WindowEvent arg0) {
-
-			}
-
-			@Override
-			public void windowClosing(WindowEvent arg0) {
-
-			}
-
-			@Override
-			public void windowDeactivated(WindowEvent arg0) {
-
-			}
-
-			@Override
-			public void windowDeiconified(WindowEvent arg0) {
-
-			}
-
-			@Override
-			public void windowIconified(WindowEvent arg0) {
-
-			}
+		
 
 			@Override
 			public void windowOpened(WindowEvent arg0) {
@@ -392,8 +313,8 @@ class LaminaLoginSur extends JPanel {
 				try {
 					enviarAccionDeCerrar();
 				} catch (IOException e) {
-
-					e.printStackTrace();
+					
+					cerrarFrame();
 				}
 				cerrarFrame();
 			}

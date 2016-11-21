@@ -103,30 +103,6 @@ public class TileOtrosJugadores {
 	
 	}
 
-
-	/*public TileOtrosJugadores(String nombre,String sprite, Punto point) {
-		xDestino = xActual = xAnterior = point.getX();
-		yDestino = yActual = yAnterior = point.getY();
-		this.nombre = nombre;
-		inicializarAnimaciones("src\\main\\resources\\personajes\\"+sprite+".png");
-	}
-	public TileOtrosJugadores(Personaje personaje) {
-		
-		xDestino = xActual = xAnterior = personaje.getPosicion().getX();
-		yDestino = yActual = yAnterior = personaje.getPosicion().getY();
-		this.nombre =personaje.getNombre();
-		inicializarAnimaciones("RecursosPersonaje/Razas/"+personaje.getCasta()+"/"+personaje.getCasta()+".png");
-	}
-	
-	
-	public void inicializarAnimaciones(String pathPJ) {
-		Sprite spriteCaminando =  new Sprite(pathPJ);
-		animacionCaminado = new Animacion[8];
-		for (int i = 0; i < animacionCaminado.length; i++) {
-			animacionCaminado[i] = new Animacion(100, spriteCaminando.getVectorSprite(i));
-		}
-	}*/
-
 	public void actualizarAnimaciones() {
 		if(!parado){
 			for (int i = 0; i < 8; i++) {
@@ -158,32 +134,6 @@ public class TileOtrosJugadores {
 		
 	}
 
-	/*public void mover(Graphics2D g2d) {
-		
-		xActual+=xDestino;
-		yActual+=yDestino;	
-
-		int nx = (xActual - yActual) * ( 128 / 2);
-		int ny = (xActual + yActual) * ( 128 / 2);
-
-		if(xIsometrica < nx)
-			xIsometrica+=2;
-
-		if(xIsometrica > nx)
-			xIsometrica-=2;
-
-		if(yIsometrica < ny)
-			yIsometrica++;
-
-		if(yIsometrica > ny)
-			yIsometrica--;
-
-		g2d.drawImage( animacionCaminado[0].getFrameActual(), xIsometrica, yIsometrica-32 , null);	
-		Font fuente=new Font("Arial", Font.BOLD, 16);
-		g2d.setColor(Color.BLUE);
-		g2d.setFont(fuente);
-		g2d.drawString(nombre, xIsometrica, yIsometrica - 5);
-	}*/
 	public void actualizar() {
 		if(xActual==xDestino &&	yActual==yDestino ){
 			moverUnPaso();

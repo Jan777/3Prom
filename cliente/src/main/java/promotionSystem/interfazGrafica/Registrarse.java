@@ -14,6 +14,7 @@ import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -95,9 +96,12 @@ class LaminaCentralR extends JPanel {
 						informarErrorContraseña();
 					}
 				} catch (Exception e) {
-					e.printStackTrace();
+					JOptionPane.showMessageDialog(null,"Error en el proceso de registracion","Error",JOptionPane.ERROR_MESSAGE);
+					cerrarFrame();
 				}
 			}
+
+		
 
 		});
 		LaminaAuxiliarFlow nickname = new LaminaAuxiliarFlow(FlowLayout.LEFT);
@@ -148,6 +152,9 @@ class LaminaCentralR extends JPanel {
 		cliente.enviarAccion("registrar");
 	}
 
+	private void cerrarFrame() {
+		marco.dispose();
+	}
 	private void enviarAccionDeCerrar() throws IOException {
 		cliente.enviarAccion("cerrar");
 	}

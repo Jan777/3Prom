@@ -7,19 +7,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.JOptionPane;
+
 public class Conector {
 	private Connection conector;
 	PreparedStatement sentencia;
 
-	public Conector() {
-		try {
+	public Conector() throws Exception {
 			Class.forName("org.sqlite.JDBC");
-			conector = DriverManager.getConnection("jdbc:sqlite:kom.bd");
-		} catch (Exception e) {
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
-			System.exit(0);
-		}
-		System.out.println("Opened database successfully");
+			conector = DriverManager.getConnection("jdbc:sqlite:kom.bd");	
 	}
 
 	public void agregarUsuario(String nombre, int contrasena) throws SQLException {

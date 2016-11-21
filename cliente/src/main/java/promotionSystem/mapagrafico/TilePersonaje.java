@@ -14,7 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
-import javax.swing.JTextArea;
+import javax.swing.JPopupMenu.Separator;
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
 
@@ -54,10 +54,10 @@ public class TilePersonaje {
 	private Cliente cliente;
 	private JPopupMenu popup;
 	private Personaje personajeClickeado;
-	private JPopupMenu popup2;
 
-	public TilePersonaje(Punto punto, Cliente cliente, Mouse mouse, Camara camara) {
-		this.cliente = cliente;
+
+	public TilePersonaje(Cliente cliente,Mouse mouse,Camara camara) {
+		this.cliente=cliente;
 		this.xCentro = 320;
 		this.yCentro = 320;
 
@@ -65,9 +65,9 @@ public class TilePersonaje {
 		this.camara = camara;
 		this.movimiento = 0;
 		this.personajeJugable = cliente.getPersonaje();
-		this.nombre = cliente.getNombre();
-		this.xInicio = this.xDestino = -punto.getX();
-		this.yInicio = this.yDestino = -punto.getY();
+		this.nombre = cliente.getNombre();	
+		this.xInicio = this.xDestino = -cliente.getPersonaje().getPosicion().getX();  
+		this.yInicio = this.yDestino =  -cliente.getPersonaje().getPosicion().getY(); 
 		this.mouse = mouse;
 
 		inicializarAnimaciones("RecursosPersonaje/Razas/" + cliente.getCasta() + "/" + cliente.getCasta() + ".png");
@@ -79,17 +79,19 @@ public class TilePersonaje {
 	private void incializarPopup() {
 		popup = new JPopupMenu();
 		JMenuItem seleccionarBatalla = new JMenuItem("Seleccionar Batalla");
-		popup.add(seleccionarBatalla);
-
+		popup.add(seleccionarBatalla);	
+		
 		seleccionarBatalla.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// cliente.enviarEnemigoYListaDePersonajesParaBatalla(personajeClickeado);
+//				cliente.enviarEnemigoYListaDePersonajesParaBatalla(personajeClickeado);
+				popup.transferFocus();
 				popup.setVisible(false);
 			}
 		});
-
+	
+		
 		JMenuItem solicitarAlianza = new JMenuItem("Solicitar Alianza");
 		popup.add(solicitarAlianza);
 
@@ -102,8 +104,23 @@ public class TilePersonaje {
 					e1.printStackTrace();
 				}
 				popup.setVisible(false);
+
 			}
 		});
+		
+		JMenuItem cancelar = new JMenuItem("Cancelar");
+		popup.add(cancelar);
+		
+		cancelar.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {			
+				popup.transferFocus();
+				popup.setVisible(false);
+
+			}
+		});
+			
+	
 	}
 
 	public void dibujarCentro(Graphics g) {
@@ -156,7 +173,6 @@ public class TilePersonaje {
 	private void abrirPopup() {
 
 		popup.setLocation(xCentro, yCentro);
-
 		popup.setVisible(true);
 	}
 

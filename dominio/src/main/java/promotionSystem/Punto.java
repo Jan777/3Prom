@@ -10,6 +10,11 @@ package promotionSystem;
 			this.y = y;
 		}
 
+		public Punto() {
+			this.x=0;
+			this.y=0;
+		}
+
 		public double distanciaCon(Punto punto) {
 			return Math.sqrt( Math.pow(this.x - punto.x, 2)
 					+ Math.pow(this.y - punto.y, 2));
