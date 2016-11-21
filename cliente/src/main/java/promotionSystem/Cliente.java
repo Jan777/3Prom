@@ -35,7 +35,9 @@ public class Cliente {
 	private String raza;
 	private String casta;
 	private ArrayList<Personaje> jugadoresEnPartida;
-	private ArrayList<TileOtrosJugadores> tilesOtrosJugadores; 
+	private ArrayList<TileOtrosJugadores> tilesOtrosJugadores;
+	private boolean invitacionAAlianza;
+	private String invitador;
 
 	public Cliente() throws Exception {
 		try {
@@ -141,9 +143,18 @@ public class Cliente {
 
 	/// No implementados.
 	public void enviarInvitacionAAlianza(Personaje invitado) throws IOException {
+		enviarAccion("comunicarInvitacionAAlianza");
 		JsonObject personajeInvitado = new JsonObject();
 		personajeInvitado.addProperty("nombre", invitado.getNombre());
 		salida.writeUTF(personajeInvitado.toString());
+	}
+	
+	public void enviarRespuestaAInvitacionDeAlianza(boolean respuesta, String invitador) throws Exception {
+		enviarAccion("recibirRespuestaDeInvitacionAAlianza");
+		JsonObject respuestaEnviada = new JsonObject();
+		respuestaEnviada.addProperty("respuesta", respuesta);
+		respuestaEnviada.addProperty("invitador", invitador);
+		salida.writeUTF(respuestaEnviada.toString());
 	}
 
 	public void recibirPosicionInicial() throws IOException {
@@ -216,7 +227,7 @@ public class Cliente {
 	}
 
 	public void crearHiloEscuchador() throws IOException {
-		new Escuchador(cliente,nombre,personaje,raza,casta,jugadoresEnPartida,tilesOtrosJugadores).start();
+		new Escuchador(this).start();
 
 	}
 
@@ -240,6 +251,26 @@ public class Cliente {
 	}
 	public ArrayList<Personaje> getJugadoresEnPartida() {
 		return jugadoresEnPartida;
+	}
+
+	public Socket getSocket() {
+		return cliente;
+	}
+	
+	public void setInvitacionAAlianza(boolean valor){
+		invitacionAAlianza = valor;
+	}
+
+	public String getInvitador() {
+		return invitador;
+	}
+
+	public void setInvitador(String invitador) {
+		this.invitador = invitador;
+	}
+
+	public boolean getInvitacionAAlianza() {
+		return invitacionAAlianza;
 	}
 
 }

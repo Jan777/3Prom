@@ -18,12 +18,13 @@ import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
+import promotionSystem.Cliente;
 import promotionSystem.Personaje;
 import promotionSystem.Punto;
 import promotionSystem.juego.TileOtrosJugadores;
 
 public class Escuchador extends Thread {
-	private Socket cliente;
+	private Socket socketCliente;
 	private String nombre;
 	private Personaje personaje;
 	private DataOutputStream salida;
@@ -33,19 +34,20 @@ public class Escuchador extends Thread {
 	private ArrayList<Personaje> jugadoresEnPartida;
 	private boolean continuar = true;
 	private ArrayList<TileOtrosJugadores> tilesOtrosJugadores;
-
-	public Escuchador(Socket cliente, String nombre, Personaje personaje, String raza, String casta,
-			ArrayList<Personaje> jugadoresEnPartida, ArrayList<TileOtrosJugadores> tilesOtrosJugadores)
+	private Cliente cliente;
+	
+	public Escuchador(Cliente cliente)
 			throws IOException {
 		this.cliente = cliente;
-		this.nombre = nombre;
-		this.personaje = personaje;
-		this.raza = raza;
-		this.casta = casta;
-		this.jugadoresEnPartida = jugadoresEnPartida;// creo que no va;
-		salida = new DataOutputStream(cliente.getOutputStream());
-		entrada = new DataInputStream(cliente.getInputStream());
-		this.tilesOtrosJugadores = tilesOtrosJugadores;
+		this.socketCliente = cliente.getSocket();
+		this.nombre = cliente.getNombre();
+		this.personaje = cliente.getPersonaje();
+		this.raza = cliente.getRaza();
+		this.casta = cliente.getCasta();
+		this.jugadoresEnPartida = cliente.getJugadoresEnPartida();
+		salida = new DataOutputStream(this.socketCliente.getOutputStream());
+		entrada = new DataInputStream(this.socketCliente.getInputStream());
+		this.tilesOtrosJugadores = cliente.getTiles();
 
 	}
 
@@ -160,22 +162,35 @@ public class Escuchador extends Thread {
 	public void recibirInvitacionAAlianza() throws JsonSyntaxException, IOException {
 		JsonParser parser = new JsonParser();
 		JsonElement elemento = parser.parse(entrada.readUTF());
-		Personaje invitador = new Gson().fromJson(elemento, Personaje.class);
+		String invitador = elemento.getAsJsonObject().get("nombre").getAsString();
 		//cartel en pantalla con timer para dar la respuesta
-	}
-
-	public void enviarRespuestaAInvitacionDeAlianza(boolean respuesta) throws Exception {
-		JsonObject respuestaEnviada = new JsonObject();
-		respuestaEnviada.addProperty("respuesta", respuesta);
-		salida.writeUTF(respuestaEnviada.toString());
+		cliente.setInvitador(invitador);
+		mostrarInvitacion(invitador);
 	}
 	
-	//Podria no ser necesario depende de la interfaz grafica
+	public void mostrarInvitacion(String invitador){
+		cliente.setInvitacionAAlianza(true);
+	}
+
 	public void recibirComunicacionDeNuevaAlianza() throws JsonSyntaxException, IOException{
 		JsonElement elemento = recibirObjetoJson();
 		String nuevoAliado = elemento.getAsJsonObject().get("nombreAliado").getAsString();
+		Personaje nuevoAliadoPersonaje = buscarPersonajePorNombre(nuevoAliado);
+		this.cliente.getPersonaje().aceptarAlianza(nuevoAliadoPersonaje);
+		System.out.println(cliente.getPersonaje().getAlianza().getPersonajes());
 	}
 	
+	private Personaje buscarPersonajePorNombre(String nuevoAliado) {
+		Iterator<Personaje> iterator = jugadoresEnPartida.iterator();
+		while (iterator.hasNext()) {
+			Personaje actual = iterator.next();
+			if(actual.getNombre().equals(nuevoAliado)){
+				return actual;
+			}
+		}
+		return null;
+	}
+
 	public void recibirNotificacionDeComienzoDeBatalla() throws IOException {
 		JsonElement elemento = recibirObjetoJson();
 		String atacante = elemento.getAsJsonObject().get("personajeEnemigo").getAsString();

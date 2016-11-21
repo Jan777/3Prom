@@ -78,7 +78,7 @@ public class JuegoPanel extends Component implements Runnable{
 					actualizar();
 					repaint();
 					delta--;
-				} catch (IOException e) {
+				} catch (Exception e) {
 			
 					e.printStackTrace();
 				}
@@ -87,7 +87,7 @@ public class JuegoPanel extends Component implements Runnable{
 		}
 	}
 
-	public void actualizar() throws IOException {
+	public void actualizar() throws Exception {
 		mouse.actualizar();
 		mouse.actualizarClickIzquierdo();
 		personajeJugableDibujo.actualizar();

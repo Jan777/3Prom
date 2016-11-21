@@ -43,6 +43,8 @@ public class ServidorHilo extends Thread {
 	private String nombreCliente;
 	private int nivel;
 	private Mapa mapa;
+	private Socket invitado;
+	private Socket invitador;
 
 	public ServidorHilo(Socket cliente, HashMap<Socket, Personaje> jugadores,
 			HashMap<Mapa, ArrayList<Socket>> jugadoresPorMapa, HashMap<String, Mapa> mapasDisponibles,
@@ -96,9 +98,8 @@ public class ServidorHilo extends Thread {
 		JsonObject usuario = new JsonObject();
 		usuario.addProperty("Accion", accion);
 		salida.writeUTF(usuario.toString());
-
 	}
-
+	
 	private void enviarAlRestoPunto() throws IOException {
 		JsonObject puntoAMover = new JsonObject();
 		puntoAMover.addProperty("nombre", jugadores.get(cliente).getNombre());
@@ -433,36 +434,53 @@ public class ServidorHilo extends Thread {
 
 	public void comunicarInvitacionAAlianza() throws IOException {
 		JsonElement elemento = recibirObjetoJson();
-		String personaje = elemento.getAsJsonObject().get("nombre").getAsString();
-		Socket invitado = enviarInvitacionAAlianza(personaje);
+		String personajeInvitado = elemento.getAsJsonObject().get("nombre").getAsString();
+		Socket invitado = enviarInvitacionAAlianza(personajeInvitado);
 		//aca seria necesario sincronizar por si el cliente elige no responder indefinidamente la solicitud
 		//tal vez un timer?
-		recibirRespuestaDeInvitacionAAlianza(invitado);
 	}
 
 	private Socket enviarInvitacionAAlianza(String personaje) throws IOException {
 		Iterator<Socket> iterator = jugadoresPorMapa.get(mapa).iterator();
 		while (iterator.hasNext()) {
 			Socket jugador = iterator.next();
-			if (jugadores.get(jugador).equals(personaje)) {
+			if (jugadores.get(jugador).getNombre().equals(personaje)) {
+				invitado = jugador;
+				DataOutputStream salidaAOtroJugador = new DataOutputStream(jugador.getOutputStream());
+				JsonObject usuario = new JsonObject();
+				usuario.addProperty("Accion", "recibirInvitacionAAlianza");
+				salidaAOtroJugador.writeUTF(usuario.toString());
 				JsonObject personajeInvitador = new JsonObject();
 				personajeInvitador.addProperty("nombre", jugadores.get(cliente).getNombre());
-				new DataOutputStream(jugador.getOutputStream()).writeUTF(personajeInvitador.toString());
+				salidaAOtroJugador.writeUTF(personajeInvitador.toString());
 				return jugador;
 			}
 		}
 		return null;
 	}
 	
-	private void recibirRespuestaDeInvitacionAAlianza(Socket invitado) throws IOException {
+	public void recibirRespuestaDeInvitacionAAlianza() throws IOException {
 		JsonParser parser = new JsonParser();
-		JsonElement elemento = parser.parse(new DataInputStream(invitado.getInputStream()).readUTF());
+		JsonElement elemento = parser.parse(entrada.readUTF());
 		if (elemento.getAsJsonObject().get("respuesta").getAsString().equals("true")) {
-			jugadores.get(invitado).aceptarAlianza(jugadores.get(cliente));
+			String invitador = elemento.getAsJsonObject().get("invitador").getAsString();
+			buscarSocketDeInvitador(invitador);
+			jugadores.get(cliente).aceptarAlianza(jugadores.get(this.invitador));
 			comunicarAlianza();
-		} 
+		}
 		else {
 			armarBatalla();
+		}
+		
+	}
+	
+	private void buscarSocketDeInvitador(String invitador) {
+		Iterator<Socket> iterador = jugadoresPorMapa.get(mapa).iterator();
+		while(iterador.hasNext()){
+			Socket socketActual = iterador.next();
+			if(jugadores.get(socketActual).getNombre().equals(invitador)){
+				this.invitador = socketActual;
+			}
 		}
 	}
 
@@ -475,7 +493,11 @@ public class ServidorHilo extends Thread {
 			Socket jugador = iterador.next();
 			Personaje personaje = jugadores.get(jugador);
 			if (!personaje.equals(jugadores.get(cliente)) && listaDeAliados.contains(personaje)) {
-				new DataOutputStream(jugador.getOutputStream()).writeUTF(personajeUnidoAAlianza.toString());
+				DataOutputStream salidaAOtroJugador = new DataOutputStream(jugador.getOutputStream());
+				JsonObject usuario = new JsonObject();
+				usuario.addProperty("Accion", "recibirComunicacionDeNuevaAlianza");
+				salidaAOtroJugador.writeUTF(usuario.toString());
+				salidaAOtroJugador.writeUTF(personajeUnidoAAlianza.toString());
 			}
 		}
 	}
