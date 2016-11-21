@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 
 import promotionSystem.Cliente;
@@ -47,7 +48,8 @@ public class MenuPrincipal extends JFrame {
 				try {
 					abrirSeleccionDeMapa();
 				} catch (IOException e1) {
-					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null,"Error al abrir el menu","Error",JOptionPane.ERROR_MESSAGE);
+					dispose();
 				}
 				
 			}
@@ -63,7 +65,7 @@ public class MenuPrincipal extends JFrame {
 					enviarAccionDeCerrar();
 				} catch (IOException e) {
 					
-					e.printStackTrace();
+					JOptionPane.showMessageDialog(null,"Error al salir","Error",JOptionPane.ERROR_MESSAGE);
 				}
 				dispose();
 			}
@@ -106,8 +108,9 @@ public class MenuPrincipal extends JFrame {
 					enviarAccionDeCerrar();
 				} catch (IOException e1) {
 					
-					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null,"Error al cerrar","Error",JOptionPane.ERROR_MESSAGE);
 				}
+				dispose();
 			}
 
 			@Override

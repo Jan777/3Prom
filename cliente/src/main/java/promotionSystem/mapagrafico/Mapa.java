@@ -85,7 +85,7 @@ public class Mapa {
 		try {
 			sc = new Scanner(path);
 		} catch (FileNotFoundException e) {
-			JOptionPane.showMessageDialog(null, "No se encuentra el mapa "+nombre+".map\n Llamar al 0800-333-JUNIT\n"+e.toString());
+			JOptionPane.showMessageDialog(null,"Error al configurar el mapa","Error",JOptionPane.ERROR_MESSAGE);
 			System.exit(0);
 		}
 		this.id = sc.nextInt();

@@ -64,12 +64,12 @@ class LaminaSur extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					enviarRazaYCasta();
-					cerrarFrame();
-
+					
 				} catch (Exception e) {
-
-					e.printStackTrace();
+					JOptionPane.showMessageDialog(null,"Error al cerrar","Error",JOptionPane.ERROR_MESSAGE);
 				}
+				cerrarFrame();
+
 
 			}
 

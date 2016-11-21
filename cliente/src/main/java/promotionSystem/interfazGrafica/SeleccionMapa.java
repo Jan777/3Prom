@@ -12,10 +12,12 @@ import promotionSystem.Cliente;
 import promotionSystem.juego.JuegoPanel;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.FileNotFoundException;
@@ -70,7 +72,8 @@ public class SeleccionMapa extends JFrame {
 
 				} catch (IOException e1) {
 
-					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null,"Error al abrir la partida","Error",JOptionPane.ERROR_MESSAGE);
+					dispose();
 				}
 			}
 
@@ -118,18 +121,9 @@ public class SeleccionMapa extends JFrame {
 		juego.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		juego.setVisible(true);
 
-		juego.addWindowListener(new WindowListener() {
+		juego.addWindowListener(new WindowAdapter() {
 
-			@Override
-			public void windowActivated(WindowEvent e) {
-
-			}
-
-			@Override
-			public void windowClosed(WindowEvent e) {
-
-			}
-
+		
 			@Override
 			public void windowClosing(WindowEvent e) {
 
@@ -137,30 +131,11 @@ public class SeleccionMapa extends JFrame {
 					enviarAccionDeCerrar();
 				} catch (IOException e1) {
 
-					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null,"Error al cerrar","Error",JOptionPane.ERROR_MESSAGE);
 				}
 
 			}
 
-			@Override
-			public void windowDeactivated(WindowEvent e) {
-
-			}
-
-			@Override
-			public void windowDeiconified(WindowEvent e) {
-
-			}
-
-			@Override
-			public void windowIconified(WindowEvent e) {
-
-			}
-
-			@Override
-			public void windowOpened(WindowEvent e) {
-
-			}
 
 		});
 	}

@@ -15,7 +15,7 @@ public class CargaImagen {
 		try {
 			return ImageIO.read(new FileImageInputStream(new File(path)));
 		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, "No se encuentra la imagen " + path + " llamar al 0800-333-JUNIT");
+			JOptionPane.showMessageDialog(null, "No se encuentra la imagen","Error",JOptionPane.ERROR_MESSAGE);
 			System.exit(1);
 		}
 		return null;
