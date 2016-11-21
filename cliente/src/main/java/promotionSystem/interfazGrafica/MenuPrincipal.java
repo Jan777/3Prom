@@ -19,10 +19,10 @@ public class MenuPrincipal extends JFrame {
 
 	private JPanel contentPane;
 	private Cliente cliente;
-
+	private JFrame marco;
 	public MenuPrincipal(Cliente cliente) throws Exception {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		JFrame marco=this;
+		marco=this;
 		setTitle("Menu Principal");
 		this.cliente=cliente;
 		
@@ -45,7 +45,7 @@ public class MenuPrincipal extends JFrame {
 		btnSeleccionarMapa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					abrirSeleccionDeMapa(marco);
+					abrirSeleccionDeMapa();
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
@@ -77,55 +77,7 @@ public class MenuPrincipal extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				VerPersonaje ver=new VerPersonaje(cliente);
-				ver.setBounds(100, 100, 500, 400);
-				ver.setVisible(true);
-				ver.addWindowListener(new WindowListener(){
-
-					@Override
-					public void windowActivated(WindowEvent arg0) {
-					
-						
-					}
-
-					@Override
-					public void windowClosed(WindowEvent arg0) {
-				
-						marco.setEnabled(true);
-						
-					}
-
-					@Override
-					public void windowClosing(WindowEvent arg0) {
-					
-						marco.setEnabled(true);
-					}
-
-					@Override
-					public void windowDeactivated(WindowEvent arg0) {
-					
-						
-					}
-
-					@Override
-					public void windowDeiconified(WindowEvent arg0) {
-						
-						
-					}
-
-					@Override
-					public void windowIconified(WindowEvent arg0) {
-			
-						
-					}
-
-					@Override
-					public void windowOpened(WindowEvent arg0) {
-					
-						marco.setEnabled(false);
-					}
-					
-				});
+				abrirVerPersonaje();
 				
 			}
 			
@@ -191,7 +143,7 @@ public class MenuPrincipal extends JFrame {
 		 cliente.enviarAccion("cerrar");
 	 }
 
-	private void abrirSeleccionDeMapa(JFrame marco) throws IOException {
+	private void abrirSeleccionDeMapa() throws IOException {
 		SeleccionMapa mapa=new SeleccionMapa(cliente);
 		mapa.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		mapa.setVisible(true);
@@ -232,6 +184,60 @@ public class MenuPrincipal extends JFrame {
 			@Override
 			public void windowIconified(WindowEvent arg0) {
 	
+				
+			}
+
+			@Override
+			public void windowOpened(WindowEvent arg0) {
+			
+				marco.setEnabled(false);
+			}
+			
+		});
+	}
+
+
+
+	private void abrirVerPersonaje() {
+		VerPersonaje ver=new VerPersonaje(cliente);
+		ver.setBounds(100, 100, 500, 400);
+		ver.setVisible(true);
+		ver.addWindowListener(new WindowListener(){
+
+			@Override
+			public void windowActivated(WindowEvent arg0) {
+			
+				
+			}
+
+			@Override
+			public void windowClosed(WindowEvent arg0) {
+		
+				marco.setEnabled(true);
+				
+			}
+
+			@Override
+			public void windowClosing(WindowEvent arg0) {
+			
+				marco.setEnabled(true);
+			}
+
+			@Override
+			public void windowDeactivated(WindowEvent arg0) {
+			
+				
+			}
+
+			@Override
+			public void windowDeiconified(WindowEvent arg0) {
+				
+				
+			}
+
+			@Override
+			public void windowIconified(WindowEvent arg0) {
+
 				
 			}
 

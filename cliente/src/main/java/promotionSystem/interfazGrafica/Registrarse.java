@@ -56,8 +56,11 @@ class LaminaCentralR extends JPanel {
 	private JTextField nick;
 	private Cliente cliente;
 
+	private JFrame marco;
+
 	public LaminaCentralR(Cliente cliente, JFrame marco) {
 		this.cliente = cliente;
+		this.marco=marco;
 		setLayout(new GridLayout(4, 1));
 		JLabel nicklabel = new JLabel("NickName: ");
 		nick = new JTextField(10);
@@ -84,7 +87,7 @@ class LaminaCentralR extends JPanel {
 						enviarAccion();
 						if (comprobarUsuario()) {
 							enviarUsuarioYContraseña();
-							elegirPersonaje(marco);
+							elegirPersonaje();
 						} else {
 							informarErrorUsuario();
 						}
@@ -149,7 +152,7 @@ class LaminaCentralR extends JPanel {
 		cliente.enviarAccion("cerrar");
 	}
 
-	private void elegirPersonaje(JFrame marco) throws IOException {
+	private void elegirPersonaje() throws IOException {
 		SeleccionPersonaje ventana = new SeleccionPersonaje(cliente);
 		ventana.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		ventana.setVisible(true);
@@ -171,9 +174,11 @@ class LaminaNorteR extends JPanel {
 }
 
 class LaminaSurR extends JPanel {
+	
+	private JFrame marco;
 
 	public LaminaSurR(JFrame marco) {
-
+		this.marco=marco;
 		JButton cancelar = new JButton("Cancelar");
 
 		setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -183,13 +188,17 @@ class LaminaSurR extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
-				marco.dispose();
+				cerrarFrame();
 			}
 
 		});
 
 		add(cancelar);
 
+	}
+
+	private void cerrarFrame() {
+		marco.dispose();
 	}
 }
 

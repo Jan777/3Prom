@@ -34,6 +34,8 @@ public class TileOtrosJugadores {
 	private String nombre;
 	MetodoDijkstra moverPersonaje;
 	private Personaje personaje;
+	private int movimiento;
+	private boolean parado;
 	
 	public TileOtrosJugadores (Personaje personaje){
 		
@@ -48,9 +50,9 @@ public class TileOtrosJugadores {
 		deltaY+=yActual;		
 		xIsometrica = (deltaX - deltaY) * ( ANCHO / 2) + anchoImagen%64;
 		yIsometrica = (deltaX + deltaY) * ( ALTO / 2) + altoImagen%32;
-		g2d.drawImage( animacionCaminado[0].getFrame(8), xIsometrica-32,  yIsometrica-48, null);	
+//		g2d.drawImage( animacionCaminado[0].getFrame(8), xIsometrica-32,  yIsometrica-48, null);	
 		
-		g2d.drawImage( animacionCaminado[0].getFrame(8) ,xIsometrica-32,yIsometrica-48-5, null);
+		g2d.drawImage( animacionCaminado[movimiento].getFrame(8) ,xIsometrica-32,yIsometrica-48-5, null);
 		Font tipoDeLetra=new Font("Arial", Font.BOLD, 16);
 		g2d.setColor(Color.BLUE);
 		g2d.setFont(tipoDeLetra);
@@ -87,13 +89,17 @@ public class TileOtrosJugadores {
 		if(yIsometrica > ny){
 			yIsometrica--;
 		}
-
-		g2d.drawImage( animacionCaminado[0].getFrameActual(), xIsometrica-32, yIsometrica-32-48 , null);	
 		
-		Font tipoDeLetra=new Font("Arial", Font.BOLD, 16);
-		g2d.setColor(Color.BLUE);
-		g2d.setFont(tipoDeLetra);
-		g2d.drawString(personaje.getNombre(), xIsometrica-32,yIsometrica-32-48-2 /*- 25*/);
+
+		if(!parado){
+			g2d.drawImage( animacionCaminado[movimiento].getFrameActual(), xIsometrica-32, yIsometrica-32-48 , null);	
+			
+			Font tipoDeLetra=new Font("Arial", Font.BOLD, 16);
+			g2d.setColor(Color.BLUE);
+			g2d.setFont(tipoDeLetra);
+			g2d.drawString(personaje.getNombre(), xIsometrica-32,yIsometrica-32-48-2 /*- 25*/);
+		}
+		
 	
 	}
 
@@ -122,8 +128,10 @@ public class TileOtrosJugadores {
 	}*/
 
 	public void actualizarAnimaciones() {
-		for (int i = 0; i < 8; i++) {
-			animacionCaminado[i].actualizar();
+		if(!parado){
+			for (int i = 0; i < 8; i++) {
+				animacionCaminado[i].actualizar();
+			}		
 		}
 	}
 	public int getxDestino() {
@@ -195,14 +203,60 @@ public class TileOtrosJugadores {
 	}
 
 	public void setPuntoDestino(Punto puntoNuevo) {
+		paraDondeVoy(puntoNuevo.getX(), puntoNuevo.getY());
 		xActual= puntoNuevo.getX();
         yActual=puntoNuevo.getY();
-        actualizar();
+//        actualizar();
         actualizarAnimaciones();
 	}
 
 	public Personaje getPersonaje() {
 		return personaje;
+	}
+	
+	public void paraDondeVoy(int xDestino2, int yDestino2) {
+		movimiento = 0;
+		parado = false;
+
+		if (xActual == xDestino2 && yActual == yDestino2) { 
+			parado = true;
+			return; 
+		}
+		if (xActual > xDestino2 && yActual > yDestino2) {
+			movimiento = 2;
+			return;
+		}
+		if (xActual > xDestino2 && yActual == yDestino2) {  
+			movimiento = 1;
+			return;
+		}
+		if (xActual > xDestino2 && yActual < yDestino2) {
+			movimiento = 0;
+			return;
+		}
+		if (xActual == xDestino2 && yActual < yDestino2) {
+			movimiento = 7;
+			return;
+		}
+		if (xActual < xDestino2 && yActual == yDestino2) {
+			movimiento = 5;
+			return;
+		}
+		if (xActual < xDestino2 && yActual > yDestino2) {
+			movimiento = 4;
+			return;
+		}
+		if (xActual == xDestino2 && yActual > yDestino2) {
+			movimiento = 3;
+			return;
+		}
+		if (xActual < xDestino2 && yActual < yDestino2) {
+			movimiento = 6;
+			return;
+		}
+
+
+
 	}
 	
 

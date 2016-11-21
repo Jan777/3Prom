@@ -47,12 +47,12 @@ class LaminaPrincipal extends JPanel {
 class LaminaSur extends JPanel {
 	JComboBox<String> castas, razas;
 	private Cliente cliente;
-
+    private JFrame marco;
 	public LaminaSur(Cliente cliente, JComboBox<String> castas, JComboBox<String> razas, JFrame marco) {
 		this.cliente = cliente;
 		this.castas = castas;
 		this.razas = razas;
-
+		this.marco=marco;
 		setLayout(new GridLayout(2, 1));
 		LaminaAuxFlow lamina = new LaminaAuxFlow(FlowLayout.CENTER);
 		LaminaAuxFlow informe = new LaminaAuxFlow(FlowLayout.CENTER);
@@ -64,7 +64,7 @@ class LaminaSur extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					enviarRazaYCasta();
-					marco.dispose();
+					cerrarFrame();
 
 				} catch (Exception e) {
 
@@ -89,6 +89,10 @@ class LaminaSur extends JPanel {
 		String casta = (String) castas.getSelectedItem();
 		cliente.enviarRazaYCastaSeleccionada(raza, casta);
 
+	}
+
+	private void cerrarFrame() {
+		marco.dispose();
 	}
 }
 

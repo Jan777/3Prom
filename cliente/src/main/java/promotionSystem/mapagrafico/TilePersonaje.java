@@ -4,8 +4,17 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.MenuItem;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+
+import javax.swing.JFrame;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
+import javax.swing.event.PopupMenuEvent;
+import javax.swing.event.PopupMenuListener;
 
 import promotionSystem.Cliente;
 import promotionSystem.Personaje;
@@ -42,6 +51,7 @@ public class TilePersonaje {
 	private Animacion[] animacionCaminado;
 	public Image imagen;
 	private Cliente cliente;
+	private JPopupMenu popup;
 
 
 
@@ -49,6 +59,8 @@ public class TilePersonaje {
 		this.cliente=cliente;
 		this.xCentro = 320;
 		this.yCentro = 320;
+		
+		incializarPopup();
 		this.camara = camara;
 		this.movimiento = 0;
 		this.personajeJugable = cliente.getPersonaje();
@@ -60,6 +72,34 @@ public class TilePersonaje {
 		inicializarAnimaciones("RecursosPersonaje/Razas/"+cliente.getCasta()+"/"+cliente.getCasta()+".png");
        
 		this.nuevoRecorrido = false; 
+		
+	}
+
+	private void incializarPopup() {
+		popup=new JPopupMenu();
+		JMenuItem seleccionarBatalla = new JMenuItem("Seleccionar Batalla");
+		popup.add(seleccionarBatalla);
+		
+		seleccionarBatalla.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+//				cliente.enviarEnemigoYListaDePersonajesParaBatalla(personajeClickeado);
+				popup.setVisible(false);
+			}
+		});
+		
+		JMenuItem solicitarAlianza = new JMenuItem("Solicitar Alianza");
+		popup.add(solicitarAlianza);
+		
+		solicitarAlianza.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+//				cliente.enviarInvitacionAAlianza(personajeClickeado);
+				popup.setVisible(false);
+			}
+		});
 		
 	}
 
@@ -78,7 +118,7 @@ public class TilePersonaje {
 		if(mouse.getClickIzquierdo()){
 			Personaje personajeClickeado=CoincideConOtroJugador();
 			if(personajeClickeado!=null){
-				//FIXME aca hay que levantar el cartel para seleccionar batalla o alianza;
+				abrirPopup(personajeClickeado);
 			}
 			mouse.setClickIzquierdo(false); 	
 		}
@@ -93,6 +133,13 @@ public class TilePersonaje {
 			mouse.setRecorrido(false); 
 		}
 
+	}
+
+	private void abrirPopup(Personaje personajeClickeado) {
+		
+		popup.setLocation(xCentro, yCentro);
+		
+		popup.setVisible(true);
 	}
 
 

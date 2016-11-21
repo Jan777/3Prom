@@ -164,7 +164,7 @@ class LaminaLoginCentral extends JPanel implements KeyListener {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				abrirRegistrar(cliente, frame);
+				abrirRegistrar();
 			}
 
 		});
@@ -210,7 +210,7 @@ class LaminaLoginCentral extends JPanel implements KeyListener {
 				if (resultado()) {
 					cargarNombre();
 					cargarPersonaje();
-					menuPrincipal(frame);
+					menuPrincipal();
 				} else{
 					error.setText("Usuario y/o Contraseña incorrecta o usuario ya logueado");
 					vaciarCampos();
@@ -230,7 +230,7 @@ class LaminaLoginCentral extends JPanel implements KeyListener {
 		}
 	}
 
-	private void abrirRegistrar(Cliente cliente, JFrame frame) {
+	private void abrirRegistrar() {
 		Registrarse marco = new Registrarse(cliente);
 		marco.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		marco.setVisible(true);
@@ -297,7 +297,7 @@ class LaminaLoginCentral extends JPanel implements KeyListener {
 		return cliente.resultado().equals("true");
 	}
 
-	private void menuPrincipal(JFrame marco) throws Exception {
+	private void menuPrincipal() throws Exception {
 
 		MenuPrincipal ventana = new MenuPrincipal(cliente);
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -337,7 +337,7 @@ class LaminaLoginCentral extends JPanel implements KeyListener {
 			@Override
 			public void windowOpened(WindowEvent arg0) {
 
-				marco.dispose();
+				frame.dispose();
 			}
 
 		});
@@ -346,19 +346,19 @@ class LaminaLoginCentral extends JPanel implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent arg0) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
@@ -378,9 +378,11 @@ class LaminaLoginNorte extends JPanel {
 }
 
 class LaminaLoginSur extends JPanel {
-
+	private Cliente cliente;
+	private JFrame marco;
 	public LaminaLoginSur(Cliente cliente, JFrame marco) {
-
+		this.cliente=cliente;
+		this.marco=marco;
 		JButton salir = new JButton("SALIR");
 
 		salir.addActionListener(new ActionListener() {
@@ -388,12 +390,12 @@ class LaminaLoginSur extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					enviarAccionDeCerrar(cliente);
+					enviarAccionDeCerrar();
 				} catch (IOException e) {
 
 					e.printStackTrace();
 				}
-				marco.dispose();
+				cerrarFrame();
 			}
 
 		});
@@ -405,8 +407,12 @@ class LaminaLoginSur extends JPanel {
 
 	}
 
-	private void enviarAccionDeCerrar(Cliente cliente) throws IOException {
+	private void enviarAccionDeCerrar() throws IOException {
 		cliente.enviarAccion("cerrar");
+	}
+
+	private void cerrarFrame() {
+		marco.dispose();
 	}
 }
 
