@@ -230,7 +230,7 @@ public class Mapa {
 
 				if( puedoDibujarPJ(i, j) ){
 					pj.dibujarCentro(g2d);
-					//dibujarRestoPersonajes(g2d);
+
 				}
 				
 				if( puedoDibujarObstaculo(i, j) )
@@ -294,15 +294,16 @@ public class Mapa {
 				TileOtrosJugadores otrosPersonajes=new TileOtrosJugadores(personaje);
 				otrosJugadores.add(otrosPersonajes);
 				otrosPersonajes.dibujar(g2d,xDestino + camara.getxOffCamara(),yDestino + camara.getyOffCamara());
-//				otrosPersonajes.actualizarAnimaciones();
+     			otrosPersonajes.actualizarAnimaciones();
 			}
 		}
 	}
 	
 	private void moverRestoPersonajes(Graphics2D g2d) {
 		for (TileOtrosJugadores jugador: otrosJugadores){
+			
 			jugador.mover(g2d,xDestino + camara.getxOffCamara(),yDestino + camara.getyOffCamara());
-//			jugador.actualizarAnimaciones();
+			jugador.actualizarAnimaciones();
 //			jugador.actualizar();
 		}
 	}
