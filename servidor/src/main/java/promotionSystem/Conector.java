@@ -147,4 +147,23 @@ public class Conector {
 
 		return mapas;
 	}
+
+	public void registrarAlianza(Alianza alianza) throws SQLException {
+	    conector.setAutoCommit(false);
+        sentencia = conector.prepareStatement("INSERT INTO Alianza(id) VALUES(?)");
+        sentencia.setInt(1, alianza.getId());
+        sentencia.executeUpdate();
+        for(Personaje personaje : alianza.getPersonajes()){
+            sentencia = conector.prepareStatement("UPDATE Personaje SET idAlianza = ? WHERE nombre = ?");
+            sentencia.setInt(1, alianza.getId());
+            sentencia.setString(2, personaje.getNombre());
+            sentencia.executeUpdate();
+        }
+        sentencia.close();
+        conector.commit();
+	}
+
+    public void actualizarAlianza(){
+
+    }
 }

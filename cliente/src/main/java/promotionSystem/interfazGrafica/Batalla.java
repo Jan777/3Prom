@@ -1,15 +1,15 @@
 package promotionSystem.interfazGrafica;
 
-import promotionSystem.Alianza;
 import promotionSystem.Cliente;
 import promotionSystem.Personaje;
 import promotionSystem.Punto;
-import promotionSystem.razas.castas.kingdomHearts.Riku;
 import promotionSystem.sprites.CargaImagen;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.util.List;
 

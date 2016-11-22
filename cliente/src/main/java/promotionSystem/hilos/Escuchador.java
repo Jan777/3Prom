@@ -2,6 +2,7 @@ package promotionSystem.hilos;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
+import promotionSystem.Alianza;
 import promotionSystem.Cliente;
 import promotionSystem.Personaje;
 import promotionSystem.Punto;
