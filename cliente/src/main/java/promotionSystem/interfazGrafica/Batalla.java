@@ -1,10 +1,8 @@
 package promotionSystem.interfazGrafica;
 
-import promotionSystem.Alianza;
 import promotionSystem.Cliente;
 import promotionSystem.Personaje;
 import promotionSystem.Punto;
-import promotionSystem.razas.castas.kingdomHearts.Riku;
 import promotionSystem.sprites.CargaImagen;
 
 import javax.swing.*;
@@ -12,7 +10,10 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.List;
 
 public class Batalla extends JFrame {
@@ -26,8 +27,9 @@ public class Batalla extends JFrame {
 	private Cliente cliente;
 	private JLabel lblSeleccionarMagia;
 	private JLabel lblSeleccionarEnemigo;
-	private JComboBox seleccionarObjetivo;
-	private JComboBox seleccionarMagia;
+	private JComboBox<String> seleccionarEnemigo;
+	private JComboBox<String> seleccionarAliado;
+	private JComboBox<String> seleccionarMagia;
 	private JButton btnEjecutar;
 	private JRadioButton rdbtnAtacar;
 	private JRadioButton rdbtnMagia;
@@ -47,8 +49,7 @@ public class Batalla extends JFrame {
 		contentPane.setLayout(null);
 		buttonGroup = new ButtonGroup();
 		
-		
-		seleccionarMagia = new JComboBox();
+		seleccionarMagia = new JComboBox<>();
 		seleccionarMagia.setBounds(176, 469, 251, 48);
 		contentPane.add(seleccionarMagia);
 		
@@ -56,10 +57,16 @@ public class Batalla extends JFrame {
 		btnEjecutar.setBounds(549, 488, 235, 48);
 		contentPane.add(btnEjecutar);
 		
-		seleccionarObjetivo = new JComboBox();
-		seleccionarObjetivo.setBounds(549, 444, 235, 41);
-		contentPane.add(seleccionarObjetivo);
+		seleccionarEnemigo = new JComboBox<>();
+		seleccionarEnemigo.setBounds(549, 444, 235, 41);
+		contentPane.add(seleccionarEnemigo);
+		cargarEnemigos();
 		
+		seleccionarAliado = new JComboBox<>();
+		seleccionarAliado.setBounds(549, 444, 235, 41);
+		contentPane.add(seleccionarAliado);
+		cargarAliados();
+		seleccionarAliado.setVisible(false);
 		lblSeleccionarEnemigo = new JLabel("Seleccionar Enemigo");
 		lblSeleccionarEnemigo.setBounds(615, 420, 200, 14);
 		contentPane.add(lblSeleccionarEnemigo);
@@ -75,7 +82,7 @@ public class Batalla extends JFrame {
 		
 		rdbtnMagia = new JRadioButton("Hechizar");
 		rdbtnMagia.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		rdbtnMagia.setBounds(37, 480, 225, 23);
+		rdbtnMagia.setBounds(37, 480, 200, 23);
 		contentPane.add(rdbtnMagia);
 		
 		rdbtnHuir = new JRadioButton("Huir");
@@ -86,14 +93,14 @@ public class Batalla extends JFrame {
 		buttonGroup.add(rdbtnAtacar);
 		buttonGroup.add(rdbtnMagia);
 		buttonGroup.add(rdbtnHuir);
-		
-		//cargarHechizos();
+		seleccionarMagia.setEnabled(false);
+		cargarHechizos();
 		
 		rdbtnAtacar.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(rdbtnMagia.isSelected()){
+				if(rdbtnAtacar.isSelected()){
 					seleccionarMagia.setEnabled(false);
 				}
 			}
@@ -114,14 +121,51 @@ public class Batalla extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if(rdbtnMagia.isSelected()){
+				if(rdbtnHuir.isSelected()){
 					seleccionarMagia.setEnabled(false);
 				}
 			}
 		});
 		
+		
+		addWindowListener(new WindowAdapter() {
+
+			@Override
+			public void windowClosing(WindowEvent e) {
+
+				try {
+					enviarAccionDeCerrar();
+				} catch (IOException e1) {
+					JOptionPane.showMessageDialog(null, "ERROR!");
+				}
+
+			}
+
+		
+
+		});
+		
 	}
 	
+	private void enviarAccionDeCerrar() throws IOException {
+		cliente.enviarAccion("cerrar");
+		
+	}
+	
+	private void cargarAliados() {
+		for(Personaje personajeAliado:alianzaDesafiante){
+			seleccionarAliado.addItem(personajeAliado.getNombre());
+		}
+		
+	}
+
+	private void cargarEnemigos() {
+		for(Personaje personajeEnemigo:alianzaDesafiada){
+			seleccionarEnemigo.addItem(personajeEnemigo.getNombre());
+		}
+		
+	}
+
 	private void cargarHechizos() {
 		for(String key : cliente.getPersonaje().getHechizos()) {
 			seleccionarMagia.addItem(key);
@@ -141,7 +185,7 @@ public class Batalla extends JFrame {
 			Font tipoDeLetra=new Font("Arial", Font.BOLD, 16);
 			g.setColor(Color.WHITE);
 			g.setFont(tipoDeLetra);
-			g2d.drawString(personaje.getNombre(), punto.getX()+10,punto.getY()-5);
+			g2d.drawString(personaje.getNombre(), punto.getX()+10,punto.getY()-7);
 			g2d.drawString(personaje.getSalud()+ " / " +personaje.getSaludMaxima(),  punto.getX()+10,punto.getY()+5);
 			
 		}
@@ -154,7 +198,7 @@ public class Batalla extends JFrame {
 			Font tipoDeLetra=new Font("Arial", Font.BOLD, 16);
 			g.setColor(Color.CYAN);
 			g.setFont(tipoDeLetra);
-			g2d.drawString(personaje.getNombre(), punto.getX()+70,punto.getY()-5);
+			g2d.drawString(personaje.getNombre(), punto.getX()+70,punto.getY()-7);
 			g2d.drawString(personaje.getSalud()+ " / " +personaje.getSaludMaxima(),  punto.getX()+70,punto.getY()+5);
 		}
 		

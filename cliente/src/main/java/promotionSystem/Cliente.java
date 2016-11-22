@@ -33,6 +33,7 @@ public class Cliente {
 	private String invitador;
 	private Alianza amiga;
 	private Alianza enemiga;
+	private boolean turno;
 
 	public Cliente() throws Exception {
 	
@@ -279,6 +280,10 @@ public class Cliente {
 
 	public void setAlianzaEnemiga(Alianza enemiga) {
 		this.enemiga = enemiga;
+	}
+
+	public void setTurno(boolean valor) {
+		turno=valor;
 	}
 
 }

@@ -203,10 +203,12 @@ public class Escuchador extends Thread {
 	public void recibirNotificacionDeBatalla() throws IOException {
 		Alianza listaAliados = recibirElementoDeJsonArrayYTransformarloEnAlianza();
 		Alianza listaEnemigos = recibirElementoDeJsonArrayYTransformarloEnAlianza();
-		Alianza lista = new Alianza();
+		/*Alianza lista = new Alianza();
 		lista.agregarPersonaje(listaAliados.getPersonajes());
-		lista.agregarPersonaje(listaEnemigos.getPersonajes());
-		for (Personaje personaje : lista.getPersonajes()) {
+		lista.agregarPersonaje(listaEnemigos.getPersonajes());*/
+		
+		
+		for (Personaje personaje : listaAliados.getPersonajes()) {
 			if(personaje.getNombre().equals(cliente.getNombre())){
 				System.out.println(cliente.getNombre());
 				cliente.getPersonaje().ponerEnModoBatalla();
@@ -218,6 +220,20 @@ public class Escuchador extends Thread {
 				personaje.ponerEnModoBatalla();
 			}
 		}
+		
+		for (Personaje personaje : listaEnemigos.getPersonajes()) {
+			if(personaje.getNombre().equals(cliente.getNombre())){
+				System.out.println(cliente.getNombre());
+				cliente.getPersonaje().ponerEnModoBatalla();
+				cliente.setAlianzaAmiga(listaEnemigos);
+				cliente.setAlianzaEnemiga(listaAliados);
+				mostrarBatalla();
+			}
+			else{
+				personaje.ponerEnModoBatalla();
+			}
+		}
+		
 	}
 
 	private Alianza recibirElementoDeJsonArrayYTransformarloEnAlianza() throws IOException {
@@ -256,6 +272,13 @@ public class Escuchador extends Thread {
 		}
 		personaje.addProperty("aliados", listaDeAmigos.toString());
 		salida.writeUTF(personaje.toString());
+	}
+	
+	public void turnoOtorgado() throws IOException{
+		JsonElement turno = recibirObjetoJson();
+		if(turno.getAsJsonObject().get("turno").equals("true")){
+			cliente.setTurno(true);
+		}
 	}
 
 }
