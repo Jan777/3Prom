@@ -8,6 +8,7 @@ import promotionSystem.mapa.Rectangulo;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import static java.util.Collections.sort;
 import static promotionSystem.Constantes.RADIO_DE_ACCION;
@@ -526,6 +527,14 @@ public abstract class Personaje implements Comparable<Personaje> {
 
 	public boolean equals(Personaje personaje) {
 		return this.nombre == personaje.nombre;
+	}
+
+	public void ponerEnModoBatalla() {
+		enBatalla = true;
+	}
+
+	public Set<String> getHechizos() {
+		return hechizos.keySet();
 	}
 
 }

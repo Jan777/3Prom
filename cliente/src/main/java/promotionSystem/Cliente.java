@@ -37,7 +37,10 @@ public class Cliente {
 	private ArrayList<Personaje> jugadoresEnPartida;
 	private ArrayList<TileOtrosJugadores> tilesOtrosJugadores;
 	private boolean invitacionAAlianza;
+	private boolean desafioABatalla;
 	private String invitador;
+	private Alianza amiga;
+	private Alianza enemiga;
 
 	public Cliente() throws Exception {
 	
@@ -139,7 +142,6 @@ public class Cliente {
 
 	}
 
-	/// No implementados.
 	public void enviarInvitacionAAlianza(Personaje invitado) throws IOException {
 		enviarAccion("comunicarInvitacionAAlianza");
 		JsonObject personajeInvitado = new JsonObject();
@@ -153,6 +155,14 @@ public class Cliente {
 		respuestaEnviada.addProperty("respuesta", respuesta);
 		respuestaEnviada.addProperty("invitador", invitador);
 		salida.writeUTF(respuestaEnviada.toString());
+	}
+	
+	public void enviarNotificacionDeBatalla(Personaje atacado) throws IOException{
+		enviarAccion("armarBatalla");
+		JsonObject personajes = new JsonObject();
+		personajes.addProperty("nombreAtacante", atacado.getNombre());
+		personajes.addProperty("nombreAtacado", atacado.getNombre());
+		salida.writeUTF(personajes.toString());
 	}
 
 	public void recibirPosicionInicial() throws IOException {
@@ -192,20 +202,6 @@ public class Cliente {
 	private JsonElement recibirObjetoJson() throws IOException {
 		JsonParser parser = new JsonParser();
 		return parser.parse(entrada.readUTF());
-	}
-
-	public void enviarListaDeAliados(ArrayList<Personaje> aliados) throws IOException {
-		JsonObject personaje = new JsonObject();
-		JsonObject personajePropio = new JsonObject();
-		JsonArray listaDeAmigos = new JsonArray();
-		personajePropio.addProperty("nombre", this.personaje.getNombre());
-		personaje.addProperty("personajePropio", personajePropio.toString());
-		Iterator<Personaje> iterator = aliados.iterator();
-		while (iterator.hasNext()) {
-			listaDeAmigos.add(new JsonPrimitive(iterator.next().getNombre()));
-		}
-		personaje.addProperty("aliados", listaDeAmigos.toString());
-		salida.writeUTF(personaje.toString());
 	}
 
 	public Personaje getPersonaje() {
@@ -269,6 +265,30 @@ public class Cliente {
 
 	public boolean getInvitacionAAlianza() {
 		return invitacionAAlianza;
+	}
+
+	public boolean getDesafioABatalla() {
+		return desafioABatalla;
+	}
+	
+	public void setDesafioABatalla(boolean valor) {
+		desafioABatalla = valor;
+	}
+
+	public Alianza getAlianzaAmiga() {
+		return amiga;
+	}
+
+	public void setAlianzaAmiga(Alianza amiga) {
+		this.amiga = amiga;
+	}
+
+	public Alianza getAlianzaEnemiga() {
+		return enemiga;
+	}
+
+	public void setAlianzaEnemiga(Alianza enemiga) {
+		this.enemiga = enemiga;
 	}
 
 }

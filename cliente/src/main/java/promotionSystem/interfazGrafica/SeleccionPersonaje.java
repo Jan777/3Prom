@@ -101,22 +101,8 @@ class LaminaCentral extends JPanel {
 
 	public LaminaCentral() {
 		setLayout(new FlowLayout(FlowLayout.CENTER));
-	} // no funciona bien
-
-	/*
-	 * public void paintComponent(Graphics g){ super.paintComponent(g);
-	 * 
-	 * File miImagen=new File("recursos/Razas/Guerrero.jpg"); try {
-	 * imagen=ImageIO.read(miImagen); } catch (IOException e) {
-	 * e.printStackTrace(); } g.drawImage(imagen, 5, 5, null);
-	 * 
-	 * }
-	 */
+	}
 }
-/*
- * cliente.enviarAccion("enviarRaza"); cliente.enviarRazaSeleccionada(eleccion);
- * cargarCastas();
- */
 
 class LaminaNorte extends JPanel {
 

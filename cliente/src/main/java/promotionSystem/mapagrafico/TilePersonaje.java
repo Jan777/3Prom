@@ -21,6 +21,7 @@ import javax.swing.event.PopupMenuListener;
 import promotionSystem.Cliente;
 import promotionSystem.Personaje;
 import promotionSystem.Punto;
+import promotionSystem.interfazGrafica.Batalla;
 import promotionSystem.juego.Camara;
 import promotionSystem.juego.Mouse;
 import promotionSystem.juego.TileOtrosJugadores;
@@ -36,7 +37,7 @@ public class TilePersonaje {
 	private String nombre;
 	private Mouse mouse;
 
-	Personaje personajeJugable;
+	private Personaje personajeJugable;
 	private int xInicio;
 	private int yInicio;
 	private int xDestino;
@@ -85,7 +86,11 @@ public class TilePersonaje {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				cliente.enviarEnemigoYListaDePersonajesParaBatalla(personajeClickeado);
+				try {
+					cliente.enviarNotificacionDeBatalla(personajeClickeado);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
 				popup.transferFocus();
 				popup.setVisible(false);
 			}
@@ -137,7 +142,7 @@ public class TilePersonaje {
 
 		if (mouse.getClickIzquierdo()) {
 			personajeClickeado = CoincideConOtroJugador();
-			if (personajeClickeado != null) {
+			if (personajeClickeado != null && alianzaEsValida()) {
 				abrirPopup();
 			}
 			mouse.setClickIzquierdo(false);
@@ -145,6 +150,10 @@ public class TilePersonaje {
 		if (cliente.getInvitacionAAlianza()) {
 			abrirPanelDeRespuesta();
 			cliente.setInvitacionAAlianza(false);
+		}
+		if(cliente.getDesafioABatalla()){
+			abrirPanelDeBatalla();
+			cliente.setDesafioABatalla(false);
 		}
 
 		actualizarAnimaciones();
@@ -157,6 +166,16 @@ public class TilePersonaje {
 			mouse.setRecorrido(false);
 		}
 
+	}
+
+	private void abrirPanelDeBatalla() {
+		new Batalla(cliente);
+	}
+
+	private boolean alianzaEsValida() {
+		return ((personajeJugable.getAlianza()!=null && personajeClickeado.getAlianza()!=null) && (personajeJugable.getAlianza()!=personajeClickeado.getAlianza())
+			|| (personajeJugable.getAlianza()==null && personajeClickeado.getAlianza()!=null) || (personajeJugable.getAlianza()!=null && personajeClickeado.getAlianza()==null)
+			|| (personajeJugable.getAlianza()==null && personajeClickeado.getAlianza()==null));
 	}
 
 	private void abrirPanelDeRespuesta() throws Exception {

@@ -16,7 +16,5 @@ public class LoginTest {
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null,"Error servidor no conectado!","Error al ejecutar el juego", JOptionPane.ERROR_MESSAGE);
 		}
-
 	}
-
 }

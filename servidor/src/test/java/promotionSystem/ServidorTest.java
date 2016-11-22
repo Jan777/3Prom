@@ -13,6 +13,5 @@ public class ServidorTest {
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Error al Inicial el Servidor", "Error",JOptionPane.ERROR_MESSAGE);
 		}
-
 	}
 }

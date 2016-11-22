@@ -18,6 +18,7 @@ import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
+import promotionSystem.Alianza;
 import promotionSystem.Cliente;
 import promotionSystem.Personaje;
 import promotionSystem.Punto;
@@ -165,19 +166,33 @@ public class Escuchador extends Thread {
 		String invitador = elemento.getAsJsonObject().get("nombre").getAsString();
 		//cartel en pantalla con timer para dar la respuesta
 		cliente.setInvitador(invitador);
-		mostrarInvitacion(invitador);
+		mostrarInvitacion();
 	}
 	
-	public void mostrarInvitacion(String invitador){
+	public void mostrarInvitacion(){
 		cliente.setInvitacionAAlianza(true);
 	}
 
 	public void recibirComunicacionDeNuevaAlianza() throws JsonSyntaxException, IOException{
 		JsonElement elemento = recibirObjetoJson();
-		String nuevoAliado = elemento.getAsJsonObject().get("nombreAliado").getAsString();
-		Personaje nuevoAliadoPersonaje = buscarPersonajePorNombre(nuevoAliado);
-		this.cliente.getPersonaje().aceptarAlianza(nuevoAliadoPersonaje);
-		System.out.println(cliente.getPersonaje().getAlianza().getPersonajes());
+		String nombreInvitado = elemento.getAsJsonObject().get("nombreInvitado").getAsString();
+		String nombreInvitador = elemento.getAsJsonObject().get("nombreInvitador").getAsString();
+		if(cliente.getNombre().equals(nombreInvitador)){
+			Personaje personajeInvitado = buscarPersonajePorNombre(nombreInvitado);
+			this.cliente.getPersonaje().aceptarAlianza(personajeInvitado);
+			System.out.println(cliente.getPersonaje().getAlianza().getPersonajes());
+		}
+		else if(cliente.getNombre().equals(nombreInvitado)){
+			Personaje personajeInvitador = buscarPersonajePorNombre(nombreInvitador);
+			this.cliente.getPersonaje().aceptarAlianza(personajeInvitador);
+			System.out.println(cliente.getPersonaje().getAlianza().getPersonajes());
+		}
+		else{
+			Personaje personajeInvitado = buscarPersonajePorNombre(nombreInvitado);
+			Personaje personajeInvitador = buscarPersonajePorNombre(nombreInvitador);
+			personajeInvitador.aceptarAlianza(personajeInvitado);
+			System.out.println(personajeInvitado.getAlianza().getPersonajes());
+		}
 	}
 	
 	private Personaje buscarPersonajePorNombre(String nuevoAliado) {
@@ -191,12 +206,50 @@ public class Escuchador extends Thread {
 		return null;
 	}
 
-	public void recibirNotificacionDeComienzoDeBatalla() throws IOException {
+	public void recibirNotificacionDeBatalla() throws IOException {
+		Alianza listaAliados = recibirElementoDeJsonArrayYTransformarloEnAlianza();
+		Alianza listaEnemigos = recibirElementoDeJsonArrayYTransformarloEnAlianza();
+		Alianza lista = new Alianza();
+		lista.agregarPersonaje(listaAliados.getPersonajes());
+		lista.agregarPersonaje(listaEnemigos.getPersonajes());
+		for (Personaje personaje : lista.getPersonajes()) {
+			if(personaje.getNombre().equals(cliente.getNombre())){
+				System.out.println(cliente.getNombre());
+				cliente.getPersonaje().ponerEnModoBatalla();
+				cliente.setAlianzaAmiga(listaAliados);
+				cliente.setAlianzaEnemiga(listaEnemigos);
+				mostrarBatalla();
+			}
+			else{
+				personaje.ponerEnModoBatalla();
+			}
+		}
+	}
+
+	private Alianza recibirElementoDeJsonArrayYTransformarloEnAlianza() throws IOException {
 		JsonElement elemento = recibirObjetoJson();
-		String atacante = elemento.getAsJsonObject().get("personajeEnemigo").getAsString();
-		String accion = elemento.getAsJsonObject().get("accion").getAsString();
+		Type tipoLista = new TypeToken<ArrayList<String>>() {}.getType();
+		ArrayList<String> lista = new Gson().fromJson(elemento, tipoLista);
+		return crearAlianzaAPartirDeArrayDeString(lista);
+	}
+
+	private Alianza crearAlianzaAPartirDeArrayDeString(ArrayList<String> lista) {
+		Alianza alianza = new Alianza();
+		for (String personaje : lista) {
+			if(personaje.equals(cliente.getPersonaje().getNombre())){
+				alianza.agregarPersonaje(cliente.getPersonaje());
+			}
+			else{
+				alianza.agregarPersonaje(buscarPersonajePorNombre(personaje));
+			}
+		}
+		return alianza;
 	}
 	
+	private void mostrarBatalla() {
+		cliente.setDesafioABatalla(true);
+	}
+
 	public void enviarEnemigoYListaDePersonajesParaBatalla(Personaje enemigo, ArrayList<Personaje> amiga) throws IOException {
 		JsonObject personaje = new JsonObject();
 		JsonObject personajeEnemigo = new JsonObject();

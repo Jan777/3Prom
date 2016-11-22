@@ -20,7 +20,7 @@ public class Conector {
 
 	public void agregarUsuario(String nombre, int contrasena) throws SQLException {
 		conector.setAutoCommit(false);
-		sentencia = conector.prepareStatement("INSERT INTO Usuarios (nombre,contrasena) values (?,?);");
+		sentencia = conector.prepareStatement("INSERT INTO Usuario (nombre,contrasena) values (?,?);");
 		sentencia.setString(1, nombre);
 		sentencia.setInt(2, contrasena);
 		sentencia.executeUpdate();
@@ -30,7 +30,7 @@ public class Conector {
 
 	public boolean validarUsuario(String nombre, int contrasena) throws SQLException {
 		conector.setAutoCommit(false);
-		sentencia = conector.prepareStatement("Select Count(*) from Usuarios where nombre like ? AND contrasena=?");
+		sentencia = conector.prepareStatement("Select Count(*) from Usuario where nombre like ? AND contrasena=?");
 		sentencia.setString(1, nombre);
 		sentencia.setInt(2, contrasena);
 		ResultSet resultado = sentencia.executeQuery();
@@ -43,7 +43,7 @@ public class Conector {
 
 	public boolean validarNombreUsuario(String nombre) throws Exception {
 		conector.setAutoCommit(false);
-		sentencia = conector.prepareStatement("Select Count(*) from Usuarios where nombre like ?");
+		sentencia = conector.prepareStatement("Select Count(*) from Usuario where nombre like ?");
 		sentencia.setString(1, nombre);
 		ResultSet resultado = sentencia.executeQuery();
 		boolean devolver = resultado.next() ? resultado.getInt(1) == 1 : false;
@@ -55,7 +55,7 @@ public class Conector {
 
 	public void agregarPersonaje(Personaje personaje) throws SQLException {
 		conector.setAutoCommit(false);
-		sentencia = conector.prepareStatement("INSERT INTO Personajes (nombre,raza,casta,nivel) values (?,?,?,?);");
+		sentencia = conector.prepareStatement("INSERT INTO Personaje (nombre,raza,casta,nivel) values (?,?,?,?);");
 		sentencia.setString(1, personaje.getNombre());
 		sentencia.setString(2, personaje.getRaza());
 		sentencia.setString(3, personaje.getCasta());
@@ -67,7 +67,7 @@ public class Conector {
 
 	public String obtenerRazaPersonaje(String nombreCliente) throws SQLException {
 		conector.setAutoCommit(false);
-		sentencia = conector.prepareStatement("Select * from Personajes where nombre like ?");
+		sentencia = conector.prepareStatement("Select * from Personaje where nombre like ?");
 		sentencia.setString(1, nombreCliente);
 		ResultSet resultado = sentencia.executeQuery();
 		String raza = null;
@@ -83,7 +83,7 @@ public class Conector {
 
 	public String obtenerCastaPersonaje(String nombreCliente) throws SQLException {
 		conector.setAutoCommit(false);
-		sentencia = conector.prepareStatement("Select * from Personajes where nombre like ?");
+		sentencia = conector.prepareStatement("Select * from Personaje where nombre like ?");
 		sentencia.setString(1, nombreCliente);
 		ResultSet resultado = sentencia.executeQuery();
 		String casta = null;
@@ -98,7 +98,7 @@ public class Conector {
 
 	public int obtenerNivelPersonaje(String nombreCliente) throws SQLException {
 		conector.setAutoCommit(false);
-		sentencia = conector.prepareStatement("Select * from Personajes where nombre like ?");
+		sentencia = conector.prepareStatement("Select * from Personaje where nombre like ?");
 		sentencia.setString(1, nombreCliente);
 		ResultSet resultado = sentencia.executeQuery();
 		int nivel = 1;
