@@ -153,17 +153,24 @@ public class Conector {
         sentencia = conector.prepareStatement("INSERT INTO Alianza(id) VALUES(?)");
         sentencia.setInt(1, alianza.getId());
         sentencia.executeUpdate();
+        asignarPersonajesA(alianza);
+        sentencia.close();
+        conector.commit();
+	}
+
+    public void actualizarAlianza(Alianza alianza) throws SQLException {
+        conector.setAutoCommit(false);
+        asignarPersonajesA(alianza);
+        sentencia.close();
+        conector.commit();
+    }
+
+    private void asignarPersonajesA(Alianza alianza) throws SQLException {
         for(Personaje personaje : alianza.getPersonajes()){
             sentencia = conector.prepareStatement("UPDATE Personaje SET idAlianza = ? WHERE nombre = ?");
             sentencia.setInt(1, alianza.getId());
             sentencia.setString(2, personaje.getNombre());
             sentencia.executeUpdate();
         }
-        sentencia.close();
-        conector.commit();
-	}
-
-    public void actualizarAlianza(){
-
     }
 }
