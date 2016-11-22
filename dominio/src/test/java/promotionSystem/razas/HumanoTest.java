@@ -6,8 +6,6 @@ import promotionSystem.Constantes;
 import promotionSystem.razas.castas.humano.GuerreroHumano;
 import promotionSystem.razas.castas.humano.MagoHumano;
 
-import static promotionSystem.Constantes.INICIO_MAPA;
-
 public class HumanoTest {
 	
 	@Test

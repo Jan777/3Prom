@@ -1,14 +1,11 @@
 package promotionSystem.interfazGrafica;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
-
 import promotionSystem.Cliente;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -28,8 +25,8 @@ class LaminaPrincipal extends JPanel {
 	JComboBox<String> castas, razas;
 
 	public LaminaPrincipal(Cliente cliente, JFrame marco) throws IOException {
-		castas = new JComboBox<String>();
-		razas = new JComboBox<String>();
+		castas = new JComboBox<>();
+		razas = new JComboBox<>();
 		setLayout(new BorderLayout());
 		LaminaNorte laminaN = new LaminaNorte();
 		LaminaOeste laminaE = new LaminaOeste(cliente, castas, razas);
@@ -88,7 +85,6 @@ class LaminaSur extends JPanel {
 		String raza = (String) razas.getSelectedItem();
 		String casta = (String) castas.getSelectedItem();
 		cliente.enviarRazaYCastaSeleccionada(raza, casta);
-
 	}
 
 	private void cerrarFrame() {
@@ -97,7 +93,6 @@ class LaminaSur extends JPanel {
 }
 
 class LaminaCentral extends JPanel {
-	private Image imagen;
 
 	public LaminaCentral() {
 		setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -185,7 +180,7 @@ class LaminaOeste extends JPanel {
 	}
 
 	private ArrayList<String> recibirListaDeCastas() throws IOException {
-		return (ArrayList<String>) cliente.recibirListaDeCastas();
+		return cliente.recibirListaDeCastas();
 	}
 
 	private void cargarRazas() throws IOException {

@@ -8,7 +8,6 @@ import promotionSystem.Personaje;
 import promotionSystem.razas.castas.kingdomHearts.Riku;
 import promotionSystem.razas.castas.kingdomHearts.Roxas;
 import promotionSystem.razas.castas.kingdomHearts.Sora;
-import promotionSystem.razas.castas.orco.GuerreroOrco;
 import promotionSystem.razas.castas.pokemon.PokemonTipoAgua;
 import promotionSystem.razas.castas.pokemon.PokemonTipoFuego;
 import promotionSystem.razas.castas.pokemon.PokemonTipoPlanta;

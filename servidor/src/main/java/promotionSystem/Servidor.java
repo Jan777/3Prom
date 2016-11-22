@@ -1,5 +1,9 @@
 package promotionSystem;
 
+import promotionSystem.hilos.HiloCreadorServidor;
+import promotionSystem.mapa.Mapa;
+
+import javax.swing.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -7,23 +11,14 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import java.util.Scanner;
-
-import javax.swing.JOptionPane;
-
-import com.google.gson.JsonElement;
-import com.google.gson.JsonPrimitive;
-
-import promotionSystem.hilos.HiloCreadorServidor;
-import promotionSystem.mapa.Mapa;
 
 public class Servidor {
 	private Conector conector;
 	private int i = 0;
 	private int puerto;
 	private int cantidadMaximaDeClientes;
-	private String archivoDeConfiguracion = "../configuracion.config";
+	private String archivoDeConfiguracion = "configuracion.config";
 	private HashMap<Socket, Personaje> jugadores = new HashMap<Socket, Personaje>();
 	private HashMap<Mapa, ArrayList<Socket>> jugadoresPorMapa = new HashMap<Mapa, ArrayList<Socket>>();
 	private HashMap<String, Mapa> mapasDisponibles = new HashMap<String, Mapa>();

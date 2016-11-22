@@ -5,8 +5,6 @@ import org.junit.Test;
 import promotionSystem.Constantes;
 import promotionSystem.razas.Humano;
 
-import static promotionSystem.Constantes.INICIO_MAPA;
-
 public class TanqueHumanoTest {
 	@Test
 	public void siAumentaDeNivelAumentaLosStats(){

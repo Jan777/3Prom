@@ -1,13 +1,8 @@
 package promotionSystem;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import com.google.gson.JsonArray;
 
-import javax.swing.JOptionPane;
+import java.sql.*;
 
 public class Conector {
 	private Connection conector;
@@ -15,7 +10,7 @@ public class Conector {
 
 	public Conector() throws Exception {
 			Class.forName("org.sqlite.JDBC");
-			conector = DriverManager.getConnection("jdbc:sqlite:kom.bd");	
+			conector = DriverManager.getConnection("jdbc:sqlite:kom.bd");
 	}
 
 	public void agregarUsuario(String nombre, int contrasena) throws SQLException {
@@ -111,4 +106,31 @@ public class Conector {
 		return nivel;
 	}
 
+	public JsonArray obtenerRazas() throws SQLException {
+		conector.setAutoCommit(false);
+		sentencia = conector.prepareStatement("Select * from Raza");
+		ResultSet resultado = sentencia.executeQuery();
+        JsonArray razas = new JsonArray();
+        while(resultado.next()){
+            razas.add(resultado.getString("nombre"));
+        }
+        sentencia.close();
+		conector.commit();
+
+		return razas;
+	}
+
+    public JsonArray obtenerCastas() throws SQLException {
+        conector.setAutoCommit(false);
+        sentencia = conector.prepareStatement("Select * from Casta");
+        ResultSet resultado = sentencia.executeQuery();
+        JsonArray castas = new JsonArray();
+        while(resultado.next()){
+            castas.add(resultado.getString("nombre"));
+        }
+        sentencia.close();
+        conector.commit();
+
+        return castas;
+    }
 }

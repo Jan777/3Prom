@@ -7,8 +7,6 @@ import promotionSystem.razas.PersonajeDeKingdomHearts;
 import promotionSystem.razas.PersonajeDeStarWars;
 import promotionSystem.razas.castas.starWars.Droide;
 
-import static promotionSystem.Constantes.INICIO_MAPA;
-
 
 public class SoraTest {
 	

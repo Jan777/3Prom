@@ -5,8 +5,6 @@ import org.junit.Test;
 import promotionSystem.Constantes;
 import promotionSystem.razas.Orco;
 
-import static promotionSystem.Constantes.INICIO_MAPA;
-
 public class GuerreroOrcoTest {
 	@Test
 	public void siAumentaDeNivelAumentaLosStats(){

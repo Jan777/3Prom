@@ -1,8 +1,6 @@
 package promotionSystem;
 
-import javax.swing.JOptionPane;
-
-import org.junit.Test;
+import javax.swing.*;
 
 public class ServidorTest {
 

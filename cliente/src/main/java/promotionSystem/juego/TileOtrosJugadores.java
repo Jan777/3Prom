@@ -1,10 +1,5 @@
 package promotionSystem.juego;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics2D;
-import java.util.List;
-
 import promotionSystem.Personaje;
 import promotionSystem.Punto;
 import promotionSystem.mapagrafico.dijkstra.Grafo;
@@ -12,6 +7,9 @@ import promotionSystem.mapagrafico.dijkstra.MetodoDijkstra;
 import promotionSystem.mapagrafico.dijkstra.Nodo;
 import promotionSystem.sprites.Animacion;
 import promotionSystem.sprites.Sprite;
+
+import java.awt.*;
+import java.util.List;
 
 
 
