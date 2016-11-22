@@ -133,4 +133,18 @@ public class Conector {
 
         return castas;
     }
+
+	public JsonArray obtenerMapas() throws SQLException {
+		conector.setAutoCommit(false);
+		sentencia = conector.prepareStatement("Select * from Mapa");
+		ResultSet resultado = sentencia.executeQuery();
+		JsonArray mapas = new JsonArray();
+		while(resultado.next()){
+			mapas.add(resultado.getString("nombre"));
+		}
+		sentencia.close();
+		conector.commit();
+
+		return mapas;
+	}
 }

@@ -144,7 +144,7 @@ public class ServidorHilo extends Thread {
 
 	}
 
-	public void recibirMapas() throws IOException {
+	public void recibirMapas() throws IOException, SQLException {
 		enviarMapas();
 	}
 
@@ -300,8 +300,7 @@ public class ServidorHilo extends Thread {
 	}
 
 	public void enviarRazas() throws IOException, SQLException {
-		JsonArray razas = conector.obtenerRazas();
-		enviarLista(razas);
+		enviarLista(conector.obtenerRazas());
 	}
 
 	private void enviarLista(JsonArray lista) throws IOException {
@@ -314,9 +313,7 @@ public class ServidorHilo extends Thread {
 	}
 
 	private void enviarListaDeCastas() throws Exception {
-		JsonArray castas = conector.obtenerCastas();
-		enviarLista(castas);
-
+		enviarLista(conector.obtenerCastas());
 	}
 
 	public void recibirCastaElegida() throws IOException {
@@ -328,21 +325,8 @@ public class ServidorHilo extends Thread {
 		return (Personaje) Class.forName("promotionSystem.razas.castas." + raza + "." + casta).newInstance();
 	}
 
-	public void enviarMapas() throws IOException {
-		JsonArray mapas = new JsonArray();
-		cargarMapas(mapas);
-		enviarLista(mapas);
-	}
-
-	private void cargarMapas(JsonArray mapas) {
-		JsonElement mapaStarWars = new JsonPrimitive("Mundo Star Wars");
-		JsonElement mapaPokemon = new JsonPrimitive("Mundo Pokemon");
-		JsonElement mapaUndertale = new JsonPrimitive("Mundo Undertale");
-		JsonElement mapaKingdomHearts = new JsonPrimitive("Mundo Kingdom Hearts");
-		mapas.add(mapaStarWars);
-		mapas.add(mapaPokemon);
-		mapas.add(mapaUndertale);
-		mapas.add(mapaKingdomHearts);
+	public void enviarMapas() throws IOException, SQLException {
+		enviarLista(conector.obtenerMapas());
 	}
 
 	public void recibirMapaElegido() throws IOException {
