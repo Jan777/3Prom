@@ -175,7 +175,18 @@ public class TilePersonaje {
 		} 
 		else {
 			cliente.enviarRespuestaAInvitacionDeAlianza(false, cliente.getInvitador());
+			
+			cliente.enviarNotificacionDeBatalla(obtenerPersonajeDesdeNombre(cliente.getInvitador()));
 		}
+	}
+
+	private Personaje obtenerPersonajeDesdeNombre(String nombre) {
+		for (TileOtrosJugadores otroJugador : cliente.getTiles()) {
+			if(otroJugador.getPersonaje().getNombre().equals(nombre)){
+				return otroJugador.getPersonaje();
+			}
+		}
+		return null;
 	}
 
 	private void abrirPopup() {

@@ -33,6 +33,7 @@ public class Cliente {
 	private String invitador;
 	private Alianza amiga;
 	private Alianza enemiga;
+	private boolean turno;
 
 	public Cliente() throws Exception {
 	
@@ -150,7 +151,7 @@ public class Cliente {
 	public void enviarNotificacionDeBatalla(Personaje atacado) throws IOException{
 		enviarAccion("armarBatalla");
 		JsonObject personajes = new JsonObject();
-		personajes.addProperty("nombreAtacante", atacado.getNombre());
+		personajes.addProperty("nombreAtacante", personaje.getNombre());
 		personajes.addProperty("nombreAtacado", atacado.getNombre());
 		salida.writeUTF(personajes.toString());
 	}
@@ -279,6 +280,10 @@ public class Cliente {
 
 	public void setAlianzaEnemiga(Alianza enemiga) {
 		this.enemiga = enemiga;
+	}
+
+	public void setTurno(boolean valor) {
+		turno=valor;
 	}
 
 }
