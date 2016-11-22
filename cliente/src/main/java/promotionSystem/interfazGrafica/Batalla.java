@@ -3,10 +3,12 @@ package promotionSystem.interfazGrafica;
 import promotionSystem.Cliente;
 import promotionSystem.Personaje;
 import promotionSystem.Punto;
+import promotionSystem.juego.Sonido;
 import promotionSystem.sprites.CargaImagen;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -36,6 +38,7 @@ public class Batalla extends JFrame {
 	private JRadioButton rdbtnHuir;
 	
 	public Batalla(Cliente cliente) {
+		Sonido.BATALLAPOKEMON.loop();
 		this.alianzaDesafiada=cliente.getAlianzaEnemiga().getPersonajes();
 		this.alianzaDesafiante=cliente.getAlianzaAmiga().getPersonajes();
 		this.cliente = cliente;

@@ -6,11 +6,13 @@ import promotionSystem.Punto;
 import promotionSystem.interfazGrafica.Batalla;
 import promotionSystem.juego.Camara;
 import promotionSystem.juego.Mouse;
+import promotionSystem.juego.Sonido;
 import promotionSystem.juego.TileOtrosJugadores;
 import promotionSystem.sprites.Animacion;
 import promotionSystem.sprites.Sprite;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -70,6 +72,7 @@ public class TilePersonaje {
 		popup = new JPopupMenu();
 		JMenuItem seleccionarBatalla = new JMenuItem("Seleccionar Batalla");
 		popup.add(seleccionarBatalla);	
+		
 		
 		seleccionarBatalla.addActionListener(new ActionListener() {
 
@@ -159,6 +162,7 @@ public class TilePersonaje {
 
 	private void abrirPanelDeBatalla() {
 		new Batalla(cliente);
+		Sonido.MAPAKH.stop();
 	}
 
 	private boolean alianzaEsValida() {

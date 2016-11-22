@@ -49,6 +49,7 @@ public class JuegoPanel extends Component implements Runnable{
 		personajeJugableDibujo = new TilePersonaje(cliente,mouse,camara);  
 		mapa 	 = new Mapa(nombreMapa,personajeJugableDibujo,camara, personajes,cliente);
 		thread 	 = new Thread(this);
+		Sonido.MAPAKH.loop();
 		thread.start();
 	}
 
