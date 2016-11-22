@@ -1,30 +1,24 @@
 package promotionSystem.mapagrafico;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics2D;
-import java.awt.Image;
+import promotionSystem.Cliente;
+import promotionSystem.Personaje;
+import promotionSystem.juego.Camara;
+import promotionSystem.juego.TileOtrosJugadores;
+import promotionSystem.mapagrafico.dijkstra.Grafo;
+import promotionSystem.mapagrafico.dijkstra.MatrizBoolean;
+import promotionSystem.mapagrafico.dijkstra.MetodoDijkstra;
+import promotionSystem.mapagrafico.dijkstra.Nodo;
+import promotionSystem.sprites.Sprite;
+
+import javax.swing.*;
+import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
-
-import javax.swing.JOptionPane;
-
-import promotionSystem.Cliente;
-import promotionSystem.Personaje;
-import promotionSystem.Punto;
-import promotionSystem.juego.Camara;
-import promotionSystem.juego.TileOtrosJugadores;
-import promotionSystem.mapagrafico.dijkstra.MatrizBoolean;
-import promotionSystem.mapagrafico.dijkstra.MetodoDijkstra;
-import promotionSystem.mapagrafico.dijkstra.Nodo;
-import promotionSystem.mapagrafico.dijkstra.Grafo;
-import promotionSystem.sprites.Sprite;
 
 
 

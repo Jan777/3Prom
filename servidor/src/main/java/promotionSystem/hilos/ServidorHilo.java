@@ -1,32 +1,19 @@
 package promotionSystem.hilos;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.lang.reflect.Method;
-import java.lang.reflect.Type;
-import java.net.Socket;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Random;
-
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.JsonPrimitive;
-import com.google.gson.JsonSyntaxException;
-import com.google.gson.reflect.TypeToken;
-
+import com.google.gson.*;
 import promotionSystem.Alianza;
 import promotionSystem.Conector;
 import promotionSystem.Personaje;
 import promotionSystem.Punto;
 import promotionSystem.mapa.Mapa;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.lang.reflect.Method;
+import java.net.Socket;
+import java.sql.SQLException;
+import java.util.*;
 
 public class ServidorHilo extends Thread {
 	private Socket cliente;
@@ -314,72 +301,23 @@ public class ServidorHilo extends Thread {
 		conector.agregarPersonaje(personaje);
 	}
 
-	public void enviarRazas() throws IOException {
-		JsonArray razas = new JsonArray();
-		cargarRazas(razas);
-		enviarLista(razas, "razas");
-
+	public void enviarRazas() throws IOException, SQLException {
+		JsonArray razas = conector.obtenerRazas();
+		enviarLista(razas);
 	}
 
-	private void enviarLista(JsonArray lista, String nombre) throws IOException {
+	private void enviarLista(JsonArray lista) throws IOException {
 		salida.writeUTF(lista.toString());
-	}
-
-	private void cargarRazas(JsonArray razas) {
-
-		JsonElement razaStarWars = new JsonPrimitive("Star Wars");
-		JsonElement razaPokemon = new JsonPrimitive("Pokemon");
-		JsonElement razaUndertale = new JsonPrimitive("Undertale");
-		JsonElement razaKingdomHearts = new JsonPrimitive("Kingdom Hearts");
-		JsonElement razaHumano = new JsonPrimitive("Humano");
-		JsonElement razaOrco = new JsonPrimitive("Orco");
-
-		razas.add(razaStarWars);
-		razas.add(razaPokemon);
-		razas.add(razaUndertale);
-		razas.add(razaKingdomHearts);
-		razas.add(razaHumano);
-		razas.add(razaOrco);
-
 	}
 
 	public void recibirRazaElegido() throws Exception {
 		JsonElement elemento = recibirObjetoJson();
 		raza = elemento.getAsJsonObject().get("raza").getAsString();
-
 	}
 
 	private void enviarListaDeCastas() throws Exception {
-		JsonArray castas = new JsonArray();
-		cargarCastas(castas);
-		enviarLista(castas, "castas");
-
-	}
-
-	// FIXME esto hay que cambiarlo urgente.
-	private void cargarCastas(JsonArray castas) {
-
-		castas.add(new JsonPrimitive("Guerrero Humano"));
-		castas.add(new JsonPrimitive("Mago Humano"));
-		castas.add(new JsonPrimitive("Tanque Humano"));
-
-		castas.add(new JsonPrimitive("Riku"));
-		castas.add(new JsonPrimitive("Sora"));
-		castas.add(new JsonPrimitive("Roxas"));
-
-		castas.add(new JsonPrimitive("Pokemon Tipo Fuego"));
-		castas.add(new JsonPrimitive("Pokemon Tipo Agua"));
-		castas.add(new JsonPrimitive("Pokemon Tipo Planta"));
-
-		castas.add(new JsonPrimitive("Jedi"));
-		castas.add(new JsonPrimitive("Droide"));
-		castas.add(new JsonPrimitive("Wookie"));
-
-		castas.add(new JsonPrimitive("Chara"));
-
-		castas.add(new JsonPrimitive("Tanque Orco"));
-		castas.add(new JsonPrimitive("Mago Orco"));
-		castas.add(new JsonPrimitive("Guerrero Orco"));
+		JsonArray castas = conector.obtenerCastas();
+		enviarLista(castas);
 
 	}
 
@@ -395,7 +333,7 @@ public class ServidorHilo extends Thread {
 	public void enviarMapas() throws IOException {
 		JsonArray mapas = new JsonArray();
 		cargarMapas(mapas);
-		enviarLista(mapas, "mapas");
+		enviarLista(mapas);
 	}
 
 	private void cargarMapas(JsonArray mapas) {

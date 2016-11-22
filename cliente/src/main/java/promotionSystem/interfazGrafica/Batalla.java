@@ -1,31 +1,16 @@
 package promotionSystem.interfazGrafica;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-
-import promotionSystem.razas.castas.kingdomHearts.Riku;
-import promotionSystem.sprites.CargaImagen;
-import promotionSystem.sprites.Sprite;
 import promotionSystem.Alianza;
 import promotionSystem.Personaje;
 import promotionSystem.Punto;
+import promotionSystem.razas.castas.kingdomHearts.Riku;
+import promotionSystem.sprites.CargaImagen;
 
-import javax.swing.JLabel;
-import javax.swing.JRadioButton;
-
-import java.awt.Font;
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.util.List;
 
 public class Batalla extends JFrame {
 

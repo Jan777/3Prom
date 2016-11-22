@@ -1,9 +1,6 @@
 package promotionSystem.interfazGrafica;
 
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-
-import promotionSystem.interfazGrafica.Login;
+import javax.swing.*;
 
 public class LoginTest {
 

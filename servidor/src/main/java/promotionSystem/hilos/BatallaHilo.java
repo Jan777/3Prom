@@ -1,29 +1,20 @@
 package promotionSystem.hilos;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
+import promotionSystem.Alianza;
+import promotionSystem.Item;
+import promotionSystem.Personaje;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
-
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.JsonPrimitive;
-import com.google.gson.JsonSyntaxException;
-
-import promotionSystem.Alianza;
-import promotionSystem.Item;
-import promotionSystem.Personaje;
+import java.util.*;
 
 public class BatallaHilo extends Thread {
 	private Alianza alianza1;

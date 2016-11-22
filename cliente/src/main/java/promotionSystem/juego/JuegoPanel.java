@@ -1,21 +1,14 @@
 package promotionSystem.juego;
 
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-
 import promotionSystem.Cliente;
 import promotionSystem.Personaje;
-import promotionSystem.Punto;
 import promotionSystem.mapagrafico.Mapa;
 import promotionSystem.mapagrafico.TilePersonaje;
+
+import javax.swing.*;
+import java.awt.*;
+import java.io.IOException;
+import java.util.ArrayList;
 
 
 

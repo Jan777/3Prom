@@ -1,11 +1,8 @@
 package promotionSystem.sprites;
 
-import java.awt.Image;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.image.BufferedImage;
-
-import javax.swing.ImageIcon;
-
-import promotionSystem.mapagrafico.Mapa;
 
 public class Sprite {
 	public static BufferedImage[] piso;

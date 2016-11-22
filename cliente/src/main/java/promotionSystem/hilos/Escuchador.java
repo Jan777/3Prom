@@ -1,5 +1,12 @@
 package promotionSystem.hilos;
 
+import com.google.gson.*;
+import com.google.gson.reflect.TypeToken;
+import promotionSystem.Cliente;
+import promotionSystem.Personaje;
+import promotionSystem.Punto;
+import promotionSystem.juego.TileOtrosJugadores;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -8,20 +15,6 @@ import java.lang.reflect.Type;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Iterator;
-
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.JsonPrimitive;
-import com.google.gson.JsonSyntaxException;
-import com.google.gson.reflect.TypeToken;
-
-import promotionSystem.Cliente;
-import promotionSystem.Personaje;
-import promotionSystem.Punto;
-import promotionSystem.juego.TileOtrosJugadores;
 
 public class Escuchador extends Thread {
 	private Socket socketCliente;

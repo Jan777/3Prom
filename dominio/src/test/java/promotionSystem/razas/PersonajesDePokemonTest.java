@@ -6,8 +6,6 @@ import promotionSystem.Constantes;
 import promotionSystem.razas.castas.pokemon.PokemonTipoAgua;
 import promotionSystem.razas.castas.pokemon.PokemonTipoFuego;
 
-import static promotionSystem.Constantes.INICIO_MAPA;
-
 public class PersonajesDePokemonTest {
 	
 	@Test

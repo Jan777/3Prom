@@ -1,14 +1,7 @@
 package promotionSystem;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.JsonPrimitive;
-import com.google.gson.JsonSyntaxException;
+import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
-
 import promotionSystem.hilos.Escuchador;
 import promotionSystem.juego.TileOtrosJugadores;
 
@@ -16,7 +9,6 @@ import java.io.*;
 import java.lang.reflect.Type;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
@@ -64,20 +56,19 @@ public class Cliente {
 	}
 
 	public List<String> recibirRazas() throws IOException {
-		return recibirLista("razas");
+		return recibirLista();
 	}
 
 	public ArrayList<String> recibirListaDeCastas() throws IOException {
-		return (ArrayList<String>) recibirLista("castas");
+		return (ArrayList<String>) recibirLista();
 	}
 
-	private List<String> recibirLista(String propiedad) throws IOException {
+	private List<String> recibirLista() throws IOException {
 		JsonParser parser = new JsonParser();
 		JsonArray json = parser.parse(entrada.readUTF()).getAsJsonArray();
 		Type tipoListaRazas = new TypeToken<List<String>>() {
 		}.getType();
-		List<String> listaRecibidas = new Gson().fromJson(json, tipoListaRazas);
-		return listaRecibidas;
+		return new Gson().fromJson(json, tipoListaRazas);
 	}
 
 	public void enviarRazaYCastaSeleccionada(String raza, String casta) throws Exception {
@@ -88,7 +79,6 @@ public class Cliente {
 		razaYCastaElegidas.addProperty("casta", this.casta);
 		salida.writeUTF(razaYCastaElegidas.toString());
 		crearPersonajeAPartirDeRazaYCasta();
-
 	}
 
 	private void crearPersonajeAPartirDeRazaYCasta() throws Exception {
@@ -99,7 +89,7 @@ public class Cliente {
 	}
 
 	public List<String> recibirMapas() throws IOException {
-		return recibirLista("mapas");
+		return recibirLista();
 	}
 
 	public void enviarMapaSeleccionado(String mapa) throws IOException {

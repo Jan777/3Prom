@@ -5,8 +5,6 @@ import org.junit.Test;
 import promotionSystem.Constantes;
 import promotionSystem.razas.castas.orco.MagoOrco;
 
-import static promotionSystem.Constantes.INICIO_MAPA;
-
 public class OrcoTest {
 
 	@Test

@@ -1,7 +1,8 @@
 package promotionSystem.mapagrafico;
-import java.awt.Graphics2D;
 
 import promotionSystem.sprites.Sprite;
+
+import java.awt.*;
 
 
 

@@ -1,9 +1,9 @@
 package promotionSystem.juego;
 
+import promotionSystem.mapagrafico.Tile;
+
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
-import promotionSystem.mapagrafico.Tile;
 
 
 public class Mouse implements MouseListener{

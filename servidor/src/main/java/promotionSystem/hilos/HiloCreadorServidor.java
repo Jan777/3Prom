@@ -1,13 +1,13 @@
 package promotionSystem.hilos;
 
+import promotionSystem.Conector;
+import promotionSystem.Personaje;
+import promotionSystem.mapa.Mapa;
+
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import promotionSystem.Conector;
-import promotionSystem.Personaje;
-import promotionSystem.mapa.Mapa;
 
 public class HiloCreadorServidor extends Thread {
 	private Conector conector;

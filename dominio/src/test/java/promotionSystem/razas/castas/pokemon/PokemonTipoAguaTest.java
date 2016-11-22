@@ -5,8 +5,6 @@ import org.junit.Test;
 import promotionSystem.Constantes;
 import promotionSystem.razas.PersonajeDePokemon;
 
-import static promotionSystem.Constantes.INICIO_MAPA;
-
 public class PokemonTipoAguaTest {
 	@Test
 	public void siAumentaDeNivelAumentaLosStats(){

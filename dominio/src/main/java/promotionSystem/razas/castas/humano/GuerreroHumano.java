@@ -1,7 +1,6 @@
 package promotionSystem.razas.castas.humano;
 
 import promotionSystem.Constantes;
-import promotionSystem.Punto;
 import promotionSystem.razas.Humano;
 
 public class GuerreroHumano extends Humano{

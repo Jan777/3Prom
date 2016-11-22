@@ -1,10 +1,9 @@
 package promotionSystem.mapagrafico.dijkstra;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
 import promotionSystem.Punto;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 
