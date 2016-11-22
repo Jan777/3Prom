@@ -10,6 +10,8 @@ import promotionSystem.sprites.CargaImagen;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.util.List;
 
@@ -108,9 +110,10 @@ public class Batalla extends JFrame {
 		});
 		
 		rdbtnHuir.addActionListener(new ActionListener() {
-			
+		
+
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent arg0) {
 				if(rdbtnMagia.isSelected()){
 					seleccionarMagia.setEnabled(false);
 				}

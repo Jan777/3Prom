@@ -400,11 +400,10 @@ public class ServidorHilo extends Thread {
 		if (elemento.getAsJsonObject().get("respuesta").getAsString().equals("true")) {
 			String invitador = elemento.getAsJsonObject().get("invitador").getAsString();
 			buscarSocketDeInvitador(invitador);
-			// jugadores.get(cliente).aceptarAlianza(jugadores.get(this.invitador));
+			jugadores.get(cliente).aceptarAlianza(jugadores.get(this.invitador));
 			comunicarAlianza();
-		} else {
-			armarBatalla();
 		}
+	
 
 	}
 

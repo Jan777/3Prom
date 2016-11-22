@@ -150,7 +150,7 @@ public class Cliente {
 	public void enviarNotificacionDeBatalla(Personaje atacado) throws IOException{
 		enviarAccion("armarBatalla");
 		JsonObject personajes = new JsonObject();
-		personajes.addProperty("nombreAtacante", atacado.getNombre());
+		personajes.addProperty("nombreAtacante", personaje.getNombre());
 		personajes.addProperty("nombreAtacado", atacado.getNombre());
 		salida.writeUTF(personajes.toString());
 	}
