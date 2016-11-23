@@ -25,7 +25,7 @@ public class PokemonTipoAgua extends PersonajeDePokemon{
 		posicion=new Punto(0,0);
 		radioDeAcccion=new Circulo(posicion,20);
 		hechizos = new HashMap<String, Hechizo>();
-        agregarHechizo("Hidrobomba",new Hidrobomba());
+//        agregarHechizo("Hidrobomba",new Hidrobomba());
 	}
 
 	@Override

@@ -27,8 +27,8 @@ public class Droide extends PersonajeDeStarWars{
 		posicion=new Punto(0,0);
 		radioDeAcccion=new Circulo(posicion,20);
 		hechizos = new HashMap<String, Hechizo>();
-        agregarHechizo("Cura",new Cura());
-        agregarHechizo("CampoDeFuerza",new CampoDeFuerza());
+//        agregarHechizo("Cura",new Cura());
+//        agregarHechizo("CampoDeFuerza",new CampoDeFuerza());
 	}
 
 	@Override

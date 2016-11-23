@@ -63,7 +63,15 @@ public class EscuchadorBatalla extends Thread {
 			cliente.setAtacado(ataque.getAsJsonObject().get("atacado").getAsString());
 			
 			cliente.setAtaque(true);
-			System.out.println(cliente.getNombre()+cliente.getAtaque());
+		
 
+		}
+		
+		public void ataqueConMagiaRealizado() throws IOException{
+			JsonElement ataque = recibirObjetoJson();
+			cliente.setAtacante(ataque.getAsJsonObject().get("atacante").getAsString());
+			cliente.setAtacado(ataque.getAsJsonObject().get("atacado").getAsString());
+			cliente.setHechizo(ataque.getAsJsonObject().get("hechizo").getAsString());
+			cliente.setAtaqueConMagia(true);
 		}
 }

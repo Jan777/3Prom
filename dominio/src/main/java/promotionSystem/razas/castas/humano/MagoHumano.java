@@ -23,7 +23,7 @@ public class MagoHumano extends Humano {
 		nivel=1;
 		hechizos = new HashMap<String, Hechizo>();
         agregarHechizo("Trueno",new Trueno());
-        agregarHechizo("Cura",new Cura());
+//        agregarHechizo("Cura",new Cura());
 	}
 
 	@Override

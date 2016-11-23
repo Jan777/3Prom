@@ -40,6 +40,8 @@ public class Cliente {
 	private boolean ataque=false;
 	private String atacante;
 	private String atacado;
+	private String hechizo;
+	private boolean ataqueConMagia;
 
 	public Cliente() throws Exception {
 	
@@ -352,6 +354,31 @@ public class Cliente {
 	}
 	public String getAtacado(){
 		return atacado;
+	}
+
+	public void enviarPersonajeHechizado(String nombreObjetivo, String hechizo) throws IOException {
+		JsonObject personajeAEnviar = new JsonObject();
+		personajeAEnviar.addProperty("enemigo", nombreObjetivo);
+		personajeAEnviar.addProperty("hechizo", hechizo);
+		salidaBatalla.writeUTF(personajeAEnviar.toString());
+	}
+
+	public void setHechizo(String hechizo) {
+		this.hechizo=hechizo;
+		
+	}
+
+	public void setAtaqueConMagia(boolean valor) {
+		this.ataqueConMagia=valor;	
+	}
+	
+	public boolean getAtaqueConMagia() {
+		return ataqueConMagia;
+		
+	}
+
+	public String getHechizo() {
+		return hechizo;
 	}
 
 }

@@ -25,7 +25,7 @@ public class Wookie extends PersonajeDeStarWars{
 		posicion=new Punto(0,0);
 		radioDeAcccion=new Circulo(posicion,20);
 		hechizos = new HashMap<String, Hechizo>();
-        agregarHechizo("IraWookeana",new IraWookeana());
+//        agregarHechizo("IraWookeana",new IraWookeana());
 	}
 
 	@Override

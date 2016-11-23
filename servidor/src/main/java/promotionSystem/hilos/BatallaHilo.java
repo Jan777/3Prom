@@ -32,8 +32,9 @@ public class BatallaHilo extends Thread {
 	private DataOutputStream salidaJugadorActual;
 	private DataInputStream entradaJugadorActual;
 	private Personaje personajeEnemigo;
-	int cantidadMuertesAlianza1;
-	int cantidadMuertesAlianza2;
+	private int cantidadMuertesAlianza1;
+	private int cantidadMuertesAlianza2;
+	private String hechizo;
 	public BatallaHilo(HashMap<Personaje, Socket> jugadoresBatalla, Alianza alianza1, Alianza alianza2) {
 		this.alianza1 = alianza1;
 		this.alianza2 = alianza2;
@@ -157,6 +158,49 @@ public class BatallaHilo extends Thread {
 	}
 	
 	
+	public void hechizar() throws JsonSyntaxException, IOException{
+		JsonParser parser = new JsonParser();
+		JsonElement elemento;
+		
+		elemento = parser.parse(entradaJugadorActual.readUTF());
+		String enemigo = elemento.getAsJsonObject().get("enemigo").getAsString();
+		if (estaEnLaAlianzaUno(personajeActual)) {	
+			personajeEnemigo = obtenerPersonaje(enemigo, alianza2);
+		} else {
+			personajeEnemigo = obtenerPersonaje(enemigo, alianza1);
+		}
+		
+		hechizo = elemento.getAsJsonObject().get("hechizo").getAsString();
+		personajeActual.atacarConMagia(personajeEnemigo, hechizo);
+		
+		
+		informarAtacarConMagiaAlResto();
+	}
+
+
+	private void informarAtacarConMagiaAlResto() throws IOException {
+		JsonObject mensaje = new JsonObject();
+		mensaje.addProperty("Accion", "ataqueConMagiaRealizado");
+		
+		JsonObject ataque = new JsonObject();
+		ataque.addProperty("atacante", personajeActual.getNombre());
+		ataque.addProperty("atacado",personajeEnemigo.getNombre());
+		ataque.addProperty("hechizo", hechizo);
+		
+		
+		Iterator<Personaje> iteratorSocket1 = listaDePersonajes.iterator();
+			
+		while (iteratorSocket1.hasNext()) {
+			Personaje jugador = iteratorSocket1.next();
+			if(!jugador.getNombre().equals(personajeActual.getNombre())){
+				System.out.println("jugador avisado " + jugador.getNombre());
+				DataOutputStream salidaJugador = new DataOutputStream(jugadoresBatalla.get(jugador).getOutputStream());				
+				salidaJugador.writeUTF(mensaje.toString());
+				salidaJugador.writeUTF(ataque.toString());
+			}
+		}
+		
+	}
 
 
 

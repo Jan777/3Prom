@@ -253,6 +253,12 @@ public class Batalla extends JFrame implements Runnable{
 					repaint();		
 					cliente.setAtaque(false);
 				}					
+				 
+				 if(cliente.getAtaqueConMagia()){
+					 realizarAtaqueConMagia();
+					 repaint();
+					 cliente.setAtaqueConMagia(false);
+				 }
 			}
 			if(cantidadMuertesAlianzaAmiga == cliente.getAlianzaAmiga().getPersonajes().size()){
 				JOptionPane.showMessageDialog(null,"Has perdido!","Fin de batalla",JOptionPane.INFORMATION_MESSAGE);
@@ -269,6 +275,14 @@ public class Batalla extends JFrame implements Runnable{
 	}
 	
 	
+	private void realizarAtaqueConMagia() {
+		Personaje atacante = obtenerPersonajeAPartirDelNombreEnAlgunaAlianza(cliente.getAtacante());
+		Personaje atacado = obtenerPersonajeAPartirDelNombreEnAlgunaAlianza(cliente.getAtacado());
+		atacante.atacarConMagia(atacado,cliente.getHechizo());
+		determinarMuerte(atacado);
+		
+	}
+
 	private void deshabilitarRadioButtons() {
 			rdbtnAtacar.setEnabled(false);
 			rdbtnHuir.setEnabled(false);
@@ -341,16 +355,18 @@ public class Batalla extends JFrame implements Runnable{
 		if(movimiento.equals("Atacar")){
 			enviarAtacar();
 		}
-		else if(movimiento.equals("Hechizo")){
+		else if(movimiento.equals("Hechizar")){
 			enviarHechizo();
 		}
 
 	}
 
-	private void enviarHechizo() {
-	
-		
-		
+	private void enviarHechizo() throws IOException {
+		Personaje personajeAtacado = obtenerPersonajeAPartirDelNombre(nombreObjetivo);
+		cliente.getPersonaje().atacarConMagia(personajeAtacado,hechizo);
+		enviarAccionDeBatalla(movimiento.toLowerCase());
+		enviarObjetivo();
+		determinarMuerte(personajeAtacado);
 	}
 
 	private void enviarAtacar() throws IOException {
@@ -364,7 +380,7 @@ public class Batalla extends JFrame implements Runnable{
 	}
 
 	private void enviarObjetivo() throws IOException {
-		cliente.enviarPersonajeAtacado(nombreObjetivo);
+		cliente.enviarPersonajeHechizado(nombreObjetivo,hechizo);
 	}
 
 	private Personaje obtenerPersonajeAPartirDelNombre(String nombreObjetivo) {
@@ -387,6 +403,7 @@ public class Batalla extends JFrame implements Runnable{
 			public void actionPerformed(ActionEvent arg0) {
 				elegirAccion=true;
 				btnEjecutar.setEnabled(false);	
+				seleccionarEnemigo.setEnabled(false);
 			}
 		});
 
