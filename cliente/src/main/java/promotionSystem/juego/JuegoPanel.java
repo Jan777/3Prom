@@ -39,6 +39,7 @@ public class JuegoPanel extends Component implements Runnable{
 		this.padre = padre;
 		this.cliente = cliente;
 		cliente.crearHiloEscuchador();
+		cliente.crearHiloEscuchadorBatalla();
 		this.personajes = cliente.getJugadoresEnPartida();
 		setPreferredSize(new Dimension(ANCHO, ALTO));
 		setFocusable(true);
@@ -49,7 +50,7 @@ public class JuegoPanel extends Component implements Runnable{
 		personajeJugableDibujo = new TilePersonaje(cliente,mouse,camara);  
 		mapa 	 = new Mapa(nombreMapa,personajeJugableDibujo,camara, personajes,cliente);
 		thread 	 = new Thread(this);
-		Sonido.MAPAKH.loop();
+		Sonido.MAPAPOKEMON.loop();
 		thread.start();
 	}
 

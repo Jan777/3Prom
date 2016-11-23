@@ -3,13 +3,14 @@ package promotionSystem;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import promotionSystem.hilos.Escuchador;
+import promotionSystem.hilos.EscuchadorBatalla;
 import promotionSystem.juego.TileOtrosJugadores;
 
 import java.io.*;
 import java.lang.reflect.Type;
 import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -17,7 +18,6 @@ public class Cliente {
 	private Socket cliente;
 	private String nombre;
 	private String ip;
-	private String sala;
 	private int puerto;
 	// private String archivoDeConfiguracion="../configuracion.config";
 	private String archivoDeConfiguracion = "configuracion.config";
@@ -34,6 +34,12 @@ public class Cliente {
 	private Alianza amiga;
 	private Alianza enemiga;
 	private boolean turno;
+	private Socket socketBatalla;
+	private DataInputStream entradaBatalla;
+	private DataOutputStream salidaBatalla;
+	private boolean ataque=false;
+	private String atacante;
+	private String atacado;
 
 	public Cliente() throws Exception {
 	
@@ -284,6 +290,68 @@ public class Cliente {
 
 	public void setTurno(boolean valor) {
 		turno=valor;
+	}
+
+	public void conectarASocketBatalla() throws UnknownHostException, IOException {
+		socketBatalla=new Socket(ip, puerto+1);
+		entradaBatalla=new DataInputStream(socketBatalla.getInputStream());
+		salidaBatalla=new DataOutputStream(socketBatalla.getOutputStream());
+		
+	}
+
+	public void enviarNombreASocketBatalla() throws IOException {
+		JsonObject nombre = new JsonObject();
+		nombre.addProperty("nombre", this.nombre);
+		salidaBatalla.writeUTF(nombre.toString());
+		
+	}
+
+	public void crearHiloEscuchadorBatalla() throws IOException {
+		new EscuchadorBatalla(this).start();
+	}
+
+	public Socket getSocketBatalla() {
+		return socketBatalla;
+	}
+
+	public boolean getTurno() {
+		return turno;
+	}
+
+	public void enviarAccionDeBatalla(String accion) throws IOException {
+		JsonObject usuario = new JsonObject();
+		usuario.addProperty("Accion", accion);
+		salidaBatalla.writeUTF(usuario.toString());
+		
+	}
+
+	public void enviarPersonajeAtacado(String nombreObjetivo) throws IOException {
+		JsonObject personajeAEnviar = new JsonObject();
+		personajeAEnviar.addProperty("enemigo", nombreObjetivo);
+		salidaBatalla.writeUTF(personajeAEnviar.toString());
+		
+	}
+
+	public void setAtaque(boolean valor) {
+		this.ataque=valor;
+	}
+	
+	public boolean getAtaque(){
+		return ataque;
+	}
+
+	public void setAtacante(String atacante) {
+		this.atacante=atacante;
+	}
+	public String getAtacante(){
+		return atacante;
+	}
+
+	public void setAtacado(String atacado) {
+		this.atacado=atacado;		
+	}
+	public String getAtacado(){
+		return atacado;
 	}
 
 }

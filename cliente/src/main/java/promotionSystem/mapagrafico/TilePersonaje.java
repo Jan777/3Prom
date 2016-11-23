@@ -143,6 +143,7 @@ public class TilePersonaje {
 			abrirPanelDeRespuesta();
 			cliente.setInvitacionAAlianza(false);
 		}
+		
 		if(cliente.getDesafioABatalla()){
 			abrirPanelDeBatalla();
 			cliente.setDesafioABatalla(false);
@@ -161,8 +162,9 @@ public class TilePersonaje {
 	}
 
 	private void abrirPanelDeBatalla() {
-		new Batalla(cliente);
-		Sonido.MAPAKH.stop();
+		Batalla batalla = new Batalla(cliente);
+		new Thread(batalla).start();
+		Sonido.MAPAPOKEMON.stop();
 	}
 
 	private boolean alianzaEsValida() {

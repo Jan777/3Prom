@@ -15,21 +15,23 @@ public class HiloCreadorServidor extends Thread {
 	private HashMap<Socket, Personaje> jugadores;
 	private HashMap<Mapa, ArrayList<Socket>> jugadoresPorMapa;
 	private HashMap<String, Mapa> mapasDisponibles;
+	private HashMap<Personaje, Socket> jugadoresBatalla;
 
 	public HiloCreadorServidor(Socket cliente, HashMap<Socket, Personaje> jugadores,
 			HashMap<Mapa, ArrayList<Socket>> jugadoresPorMapa, HashMap<String, Mapa> mapasDisponibles,
-			Conector conector) {
+			Conector conector,HashMap<Personaje, Socket> jugadoresBatalla) {
 		super();
 		this.jugadoresPorMapa = jugadoresPorMapa;
 		this.conector = conector;
 		this.cliente = cliente;
 		this.jugadores = jugadores;
 		this.mapasDisponibles = mapasDisponibles;
+		this.jugadoresBatalla=jugadoresBatalla;
 	}
 
 	public void run() {
 		try {
-			new ServidorHilo(cliente, jugadores, jugadoresPorMapa, mapasDisponibles, conector).start();
+			new ServidorHilo(cliente, jugadores, jugadoresPorMapa, mapasDisponibles, conector,jugadoresBatalla).start();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

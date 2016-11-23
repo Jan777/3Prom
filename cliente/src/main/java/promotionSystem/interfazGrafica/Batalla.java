@@ -16,15 +16,16 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Enumeration;
 import java.util.List;
 
-public class Batalla extends JFrame {
+public class Batalla extends JFrame implements Runnable{
 
 	private JPanel contentPane;
 	private BufferedImage fondo;
 	private BufferedImage spriteUnitario;
-	private List<Personaje> alianzaDesafiante;
-	private List<Personaje> alianzaDesafiada;
+	private List<Personaje> alianzaAmiga;
+	private List<Personaje> alianzaEnemiga;
 	private ButtonGroup buttonGroup;
 	private Cliente cliente;
 	private JLabel lblSeleccionarMagia;
@@ -36,11 +37,17 @@ public class Batalla extends JFrame {
 	private JRadioButton rdbtnAtacar;
 	private JRadioButton rdbtnMagia;
 	private JRadioButton rdbtnHuir;
+	private boolean elegirAccion=false;
+	private String movimiento;
+	private String nombreObjetivo;
+	private String hechizo;
+	private int cantidadMuertesAlianzaAmiga;
+	private int cantidadMuertesAlianzaEnemiga;
 	
 	public Batalla(Cliente cliente) {
 		Sonido.BATALLAPOKEMON.loop();
-		this.alianzaDesafiada=cliente.getAlianzaEnemiga().getPersonajes();
-		this.alianzaDesafiante=cliente.getAlianzaAmiga().getPersonajes();
+		this.alianzaEnemiga=cliente.getAlianzaEnemiga().getPersonajes();
+		this.alianzaAmiga=cliente.getAlianzaAmiga().getPersonajes();
 		this.cliente = cliente;
 		setVisible(true);
 		setTitle("Batalla");
@@ -98,37 +105,7 @@ public class Batalla extends JFrame {
 		buttonGroup.add(rdbtnHuir);
 		seleccionarMagia.setEnabled(false);
 		cargarHechizos();
-		
-		rdbtnAtacar.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if(rdbtnAtacar.isSelected()){
-					seleccionarMagia.setEnabled(false);
-				}
-			}
-		});
-
-		rdbtnMagia.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if(rdbtnMagia.isSelected()){
-					seleccionarMagia.setEnabled(true);
-				}
-			}
-		});
-		
-		rdbtnHuir.addActionListener(new ActionListener() {
-
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				if(rdbtnHuir.isSelected()){
-					seleccionarMagia.setEnabled(false);
-				}
-			}
-		});
+		deshabilitarRadioButtons();
 		
 
 		addWindowListener(new WindowAdapter() {
@@ -156,14 +133,14 @@ public class Batalla extends JFrame {
 	}
 
 	private void cargarAliados() {
-		for(Personaje personajeAliado:alianzaDesafiante){
+		for(Personaje personajeAliado:alianzaAmiga){
 			seleccionarAliado.addItem(personajeAliado.getNombre());
 		}
 
 	}
 
 	private void cargarEnemigos() {
-		for(Personaje personajeEnemigo:alianzaDesafiada){
+		for(Personaje personajeEnemigo:alianzaEnemiga){
 			seleccionarEnemigo.addItem(personajeEnemigo.getNombre());
 		}
 
@@ -180,9 +157,9 @@ public class Batalla extends JFrame {
 		Graphics2D g2d = (Graphics2D) g;
 		fondo= CargaImagen.cargarImagen("recursos/Batalla/BatallaFondo.gif");
 		g2d.drawImage(fondo, 0, 0, null);
-		for(Personaje personaje: alianzaDesafiante){
+		for(Personaje personaje: alianzaAmiga){
 			spriteUnitario= CargaImagen.cargarImagen("recursos/Batalla/"+ personaje.getCasta() +"Batalla.png");
-			Punto punto=obtenerPosicionEnFrameBatallaDesafiantes(alianzaDesafiante.indexOf(personaje));
+			Punto punto=obtenerPosicionEnFrameBatallaDesafiantes(alianzaAmiga.indexOf(personaje));
 			g2d.drawImage(spriteUnitario, punto.getX(),punto.getY(), null);
 			
 			Font tipoDeLetra=new Font("Arial", Font.BOLD, 16);
@@ -193,9 +170,9 @@ public class Batalla extends JFrame {
 			
 		}
 		
-		for(Personaje personaje: alianzaDesafiada){
+		for(Personaje personaje: alianzaEnemiga){
 			spriteUnitario= CargaImagen.cargarImagen("recursos/Batalla/"+ personaje.getCasta() +"BatallaInvertida.png");
-			Punto punto=obtenerPosicionEnFrameBatallaDesafiados(alianzaDesafiada.indexOf(personaje));
+			Punto punto=obtenerPosicionEnFrameBatallaDesafiados(alianzaEnemiga.indexOf(personaje));
 			g2d.drawImage(spriteUnitario, punto.getX(),punto.getY(), null);
 			
 			Font tipoDeLetra=new Font("Arial", Font.BOLD, 16);
@@ -249,4 +226,210 @@ public class Batalla extends JFrame {
 			
 			return new Punto(x,y);
 		}
+
+	@Override
+	public void run() {
+		setearListeners();
+
+		
+		try {
+		
+			while (cantidadMuertesAlianzaAmiga < cliente.getAlianzaAmiga().getPersonajes().size() && cantidadMuertesAlianzaEnemiga <  cliente.getAlianzaEnemiga().getPersonajes().size() ) {
+				Thread.sleep(10);
+				if(cliente.getTurno()){	
+					otorgarTurno();
+					repaint();
+					cliente.setTurno(false);
+					elegirAccion=false;
+					deshabilitarRadioButtons();
+				}
+				Thread.sleep(10);
+				 if(cliente.getAtaque()){
+					realizarAtaque();
+					repaint();		
+					cliente.setAtaque(false);
+				}					
+			}
+			if(cantidadMuertesAlianzaAmiga == cliente.getAlianzaAmiga().getPersonajes().size()){
+				JOptionPane.showMessageDialog(null,"Has perdido!","Fin de batalla",JOptionPane.INFORMATION_MESSAGE);
+			}else{
+				JOptionPane.showMessageDialog(null,"Has Ganado!","Fin de batalla",JOptionPane.INFORMATION_MESSAGE);
+			}
+			Sonido.BATALLAPOKEMON.stop();
+			Sonido.MAPAPOKEMON.loop();
+			dispose();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+	
+	private void deshabilitarRadioButtons() {
+			rdbtnAtacar.setEnabled(false);
+			rdbtnHuir.setEnabled(false);
+			rdbtnMagia.setEnabled(false);
+			rdbtnAtacar.setSelected(false);
+			rdbtnHuir.setSelected(false);
+			rdbtnMagia.setSelected(false);
+	}
+
+	private void realizarAtaque() {
+	
+		Personaje atacante = obtenerPersonajeAPartirDelNombreEnAlgunaAlianza(cliente.getAtacante());
+		Personaje atacado = obtenerPersonajeAPartirDelNombreEnAlgunaAlianza(cliente.getAtacado());
+		atacante.atacar(atacado);
+		determinarMuerte(atacado);
+	}
+	
+
+
+	private void determinarMuerte(Personaje atacado) {
+		if(!atacado.estaVivo()){
+			if(alianzaAmiga.contains(atacado)){
+				cantidadMuertesAlianzaAmiga++;
+			}
+			else{
+				 cantidadMuertesAlianzaEnemiga++;
+			}
+		}
+		
+	}
+
+	private Personaje obtenerPersonajeAPartirDelNombreEnAlgunaAlianza(String atacado) {
+		
+			for(Personaje personajeAtacado : alianzaEnemiga){
+				if(personajeAtacado.getNombre().equals(atacado)){
+					return personajeAtacado;
+				}
+			}
+			
+			for(Personaje personajeAtacado : alianzaAmiga){
+				if(personajeAtacado.getNombre().equals(atacado)){
+					return personajeAtacado;
+				}
+			}
+			return null;
+	}
+
+	private void otorgarTurno() throws IOException {	
+		habilitarRadioButtons();
+		
+		while(!elegirAccion)
+		{
+			System.out.println(elegirAccion);
+		}
+		
+		enviarMovimiento();				
+		
+	}
+
+	private void habilitarRadioButtons() {
+		rdbtnAtacar.setEnabled(true);
+		rdbtnHuir.setEnabled(true);
+		rdbtnMagia.setEnabled(true);
+	}
+	
+	
+
+	private void enviarMovimiento() throws IOException {
+		if(movimiento.equals("Atacar")){
+			enviarAtacar();
+		}
+
+	}
+
+	private void enviarAtacar() throws IOException {
+		Personaje personajeAtacado = obtenerPersonajeAPartirDelNombre(nombreObjetivo);
+		cliente.getPersonaje().atacar(personajeAtacado);
+		enviarAccionDeBatalla(movimiento.toLowerCase());
+		enviarObjetivo();
+		
+		determinarMuerte(personajeAtacado);
+			
+	}
+
+	private void enviarObjetivo() throws IOException {
+		cliente.enviarPersonajeAtacado(nombreObjetivo);
+	}
+
+	private Personaje obtenerPersonajeAPartirDelNombre(String nombreObjetivo) {
+		for(Personaje personajeAtacado : alianzaEnemiga){
+			if(personajeAtacado.getNombre().equals(nombreObjetivo)){
+				return personajeAtacado;
+			}
+		}
+		return null;
+	}
+
+	private void enviarAccionDeBatalla(String accion) throws IOException {
+		cliente.enviarAccionDeBatalla(accion);
+
+	}
+
+	private void setearListeners() {
+		btnEjecutar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				elegirAccion=true;
+				btnEjecutar.setEnabled(false);	
+			}
+		});
+
+		seleccionarEnemigo.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				movimiento=obtenerRadioButtonSeleccionado();
+				nombreObjetivo=(String)seleccionarEnemigo.getSelectedItem();
+				btnEjecutar.setEnabled(true);
+
+			}	
+		});
+
+		rdbtnAtacar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(rdbtnAtacar.isSelected()){
+					seleccionarMagia.setEnabled(false);
+				}
+			}
+		});
+
+		rdbtnMagia.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(rdbtnMagia.isSelected()){
+					seleccionarMagia.setEnabled(true);
+				}
+			}
+		});
+
+		rdbtnHuir.addActionListener(new ActionListener() {
+
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if(rdbtnHuir.isSelected()){
+					seleccionarMagia.setEnabled(false);
+				}
+			}
+		});
+
+	}
+	
+	private String obtenerRadioButtonSeleccionado() {
+
+		for (Enumeration<AbstractButton> enumeracion=buttonGroup.getElements(); enumeracion.hasMoreElements(); ) 
+		{
+			JRadioButton boton = (JRadioButton)enumeracion.nextElement();
+			if (boton.getModel() == buttonGroup.getSelection()) 
+			{
+				return boton.getText();
+			}
+		}
+
+		return null;
+	}
 }

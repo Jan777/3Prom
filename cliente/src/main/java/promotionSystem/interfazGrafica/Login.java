@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
+import java.net.UnknownHostException;
 
 public class Login extends JFrame {
 	Cliente cliente;
@@ -157,6 +158,7 @@ class LaminaLoginCentral extends JPanel implements KeyListener {
 				if (resultado()) {
 					cargarNombre();
 					cargarPersonaje();
+					conectarASocketBatalla();
 					menuPrincipal();
 				} else{
 					error.setText("Usuario y/o Contraseña incorrecta o usuario ya logueado");
@@ -169,6 +171,12 @@ class LaminaLoginCentral extends JPanel implements KeyListener {
 			JOptionPane.showMessageDialog(null,"Error al iniciar sesion","Error",JOptionPane.ERROR_MESSAGE);
 			frame.dispose();
 		}
+	}
+
+	private void conectarASocketBatalla() throws UnknownHostException, IOException {
+		cliente.conectarASocketBatalla();
+		cliente.enviarNombreASocketBatalla();
+		
 	}
 
 	private void cargarPersonaje() throws Exception {

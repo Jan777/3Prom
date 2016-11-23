@@ -32,15 +32,17 @@ public class ServidorHilo extends Thread {
 	private Mapa mapa;
 	private Socket invitado;
 	private Socket invitador;
+	private HashMap<Personaje, Socket> jugadoresBatalla;
 
 	public ServidorHilo(Socket cliente, HashMap<Socket, Personaje> jugadores,
 			HashMap<Mapa, ArrayList<Socket>> jugadoresPorMapa, HashMap<String, Mapa> mapasDisponibles,
-			Conector conector) throws IOException {
+			Conector conector,HashMap<Personaje, Socket> jugadoresBatalla) throws IOException {
 		this.cliente = cliente;
 		this.jugadoresPorMapa = jugadoresPorMapa;
 		this.jugadores = jugadores;
 		this.mapasDisponibles = mapasDisponibles;
 		this.conector = conector;
+		this.jugadoresBatalla=jugadoresBatalla;
 		entrada = new DataInputStream(cliente.getInputStream());
 		salida = new DataOutputStream(cliente.getOutputStream());
 		puntosIniciales = new ArrayList<>();
@@ -425,9 +427,10 @@ public class ServidorHilo extends Thread {
 		Personaje personajeAtacado = obtenerPersonajePorNombre(nombreAtacado);
 		Alianza aliados = jugadores.get(cliente).invocarAliados();
 		Alianza enemigos = personajeAtacado.invocarAliados();
+//
 		enviarNotificacionDeBatallaATodos(aliados, enemigos);
-		System.out.println("antesDeBatallaHilo");
-		//new BatallaHilo(jugadores, aliados, enemigos).start();
+	
+		new BatallaHilo(jugadoresBatalla, aliados, enemigos).start();
 		// subirStats();
 	}
 
