@@ -44,7 +44,7 @@ public class Servidor {
 			servidor = new ServerSocket(puerto);
 			servidorBatalla = new ServerSocket(puerto+1);
 			JOptionPane.showMessageDialog(null,"Servidor en linea","Server",JOptionPane.INFORMATION_MESSAGE);
-			new HiloJuego(servidor,jugadores,jugadoresPorMapa,mapasDisponibles,conector,cantidadMaximaDeClientes,jugadoresBatalla).start();
+			new HiloJuego(servidor,jugadores,jugadoresPorMapa,mapasDisponibles,conector,cantidadMaximaDeClientes,jugadoresBatalla, indiceDeAlianzas, alianzas).start();
 			new HiloBatalla(servidorBatalla,jugadores,jugadoresBatalla,cantidadMaximaDeClientes).start();
 			
 		

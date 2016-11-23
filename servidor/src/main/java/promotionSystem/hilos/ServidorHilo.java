@@ -39,7 +39,7 @@ public class ServidorHilo extends Thread {
 	
 	public ServidorHilo(Socket cliente, HashMap<Socket, Personaje> jugadores,
 			HashMap<Mapa, ArrayList<Socket>> jugadoresPorMapa, HashMap<String, Mapa> mapasDisponibles,
-			Conector conector,HashMap<Personaje, Socket> jugadoresBatalla) throws IOException {
+			Conector conector,HashMap<Personaje, Socket> jugadoresBatalla, int indiceDeAlianzas, Set<Alianza> alianzas) throws IOException {
 		this.cliente = cliente;
 		this.indiceDeAlianzas = indiceDeAlianzas;
 		this.alianzas = alianzas;
