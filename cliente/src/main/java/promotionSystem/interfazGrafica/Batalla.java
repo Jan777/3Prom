@@ -9,6 +9,8 @@ import promotionSystem.sprites.CargaImagen;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import org.junit.internal.builders.SuiteMethodBuilder;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -43,6 +45,7 @@ public class Batalla extends JFrame implements Runnable{
 	private String hechizo;
 	private int cantidadMuertesAlianzaAmiga;
 	private int cantidadMuertesAlianzaEnemiga;
+	private int experienciaSumada;
 	
 	public Batalla(Cliente cliente) {
 		Sonido.BATALLAPOKEMON.loop();
@@ -263,6 +266,7 @@ public class Batalla extends JFrame implements Runnable{
 			if(cantidadMuertesAlianzaAmiga == cliente.getAlianzaAmiga().getPersonajes().size()){
 				JOptionPane.showMessageDialog(null,"Has perdido!","Fin de batalla",JOptionPane.INFORMATION_MESSAGE);
 			}else{
+				cliente.getPersonaje().subirExperiencia(experienciaSumada);
 				JOptionPane.showMessageDialog(null,"Has Ganado!","Fin de batalla",JOptionPane.INFORMATION_MESSAGE);
 			}
 			Sonido.BATALLAPOKEMON.stop();
@@ -310,6 +314,7 @@ public class Batalla extends JFrame implements Runnable{
 			else{
 				 cantidadMuertesAlianzaEnemiga++;
 				 seleccionarEnemigo.removeItem(atacado.getNombre());
+				 experienciaSumada+=atacado.getSaludMaxima();
 			}
 		}
 		
@@ -404,6 +409,7 @@ public class Batalla extends JFrame implements Runnable{
 				elegirAccion=true;
 				btnEjecutar.setEnabled(false);	
 				seleccionarEnemigo.setEnabled(false);
+				seleccionarMagia.setEnabled(false);
 			}
 		});
 
@@ -457,6 +463,7 @@ public class Batalla extends JFrame implements Runnable{
 				if(rdbtnHuir.isSelected()){
 					seleccionarMagia.setEnabled(false);
 					seleccionarEnemigo.setEnabled(false);
+					JOptionPane.showMessageDialog(null, "¿A donde queres ir? No seas cagon","No puedes huir",JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 		});

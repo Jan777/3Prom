@@ -35,6 +35,8 @@ public class BatallaHilo extends Thread {
 	private int cantidadMuertesAlianza1;
 	private int cantidadMuertesAlianza2;
 	private String hechizo;
+	private int subirExperienciaConMuertesDeAlianza1;
+	private int subirExperienciaConMuertesDeAlianza2;
 	public BatallaHilo(HashMap<Personaje, Socket> jugadoresBatalla, Alianza alianza1, Alianza alianza2) {
 		this.alianza1 = alianza1;
 		this.alianza2 = alianza2;
@@ -63,6 +65,8 @@ public class BatallaHilo extends Thread {
 				realizarAccion();
 				despuesDelTurno();
 			} 
+			
+			aumentarExperienciaDeLosGanadores();
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -74,13 +78,31 @@ public class BatallaHilo extends Thread {
 
 
 
+	private void aumentarExperienciaDeLosGanadores() {
+		if(cantidadMuertesAlianza1 < alianza1.cantidadDePersonajes()){
+			for(Personaje personaje:alianza1.getPersonajes()){
+				personaje.subirExperiencia(subirExperienciaConMuertesDeAlianza2);
+			}
+		}else{
+			for(Personaje personaje:alianza2.getPersonajes()){
+				personaje.subirExperiencia(subirExperienciaConMuertesDeAlianza1);
+			}
+			
+		}
+		
+	}
+
+
+
 	private void despuesDelTurno() {
 		if(!personajeEnemigo.estaVivo()){
 			if(alianza1.getPersonajes().contains(personajeEnemigo)){
 				cantidadMuertesAlianza1++;
+				subirExperienciaConMuertesDeAlianza1+=personajeEnemigo.getSaludMaxima();
 			}
 			else{
 				cantidadMuertesAlianza2++;
+				subirExperienciaConMuertesDeAlianza2+=personajeEnemigo.getSaludMaxima();
 			}
 			muertos.add(personajeEnemigo);
 		
@@ -201,8 +223,6 @@ public class BatallaHilo extends Thread {
 		}
 		
 	}
-
-
 
 	private Personaje obtenerPersonaje(String enemigo, Alianza alianza) {
 		for (Personaje personaje : alianza.getPersonajes()) {
