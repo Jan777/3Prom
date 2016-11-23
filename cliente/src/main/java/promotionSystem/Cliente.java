@@ -27,6 +27,7 @@ public class Cliente {
 	private String raza;
 	private String casta;
 	private ArrayList<Personaje> jugadoresEnPartida;
+	private ArrayList<Alianza> alianzas;
 	private ArrayList<TileOtrosJugadores> tilesOtrosJugadores;
 	private boolean invitacionAAlianza;
 	private boolean desafioABatalla;

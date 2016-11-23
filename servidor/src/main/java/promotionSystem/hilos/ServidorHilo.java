@@ -32,11 +32,15 @@ public class ServidorHilo extends Thread {
 	private Mapa mapa;
 	private Socket invitado;
 	private Socket invitador;
-
+	private int indiceDeAlianzas;
+	private Set<Alianza> alianzas;
+	
 	public ServidorHilo(Socket cliente, HashMap<Socket, Personaje> jugadores,
 			HashMap<Mapa, ArrayList<Socket>> jugadoresPorMapa, HashMap<String, Mapa> mapasDisponibles,
-			Conector conector) throws IOException {
+			Conector conector, int indiceDeAlianzas, Set<Alianza> alianzas) throws IOException {
 		this.cliente = cliente;
+		this.indiceDeAlianzas = indiceDeAlianzas;
+		this.alianzas = alianzas;
 		this.jugadoresPorMapa = jugadoresPorMapa;
 		this.jugadores = jugadores;
 		this.mapasDisponibles = mapasDisponibles;
@@ -127,6 +131,10 @@ public class ServidorHilo extends Thread {
 	public void cerrar() throws IOException {
 		if (mapa != null) {
 			enviarAOtrosQueJugadorSalio();
+			jugadores.get(cliente).getAlianza().sacarPersonaje(jugadores.get(cliente));
+			if(alianzas.contains(jugadores.get(cliente).getAlianza().cantidadDePersonajes() == 1)){
+				alianzas.remove(jugadores.get(cliente).getAlianza());
+			}
 			jugadoresPorMapa.get(mapa).remove(cliente);
 		}
 
@@ -154,6 +162,8 @@ public class ServidorHilo extends Thread {
 		if (jugadoresPorMapa.size() != 1) {
 			enviarAccion("recibirListaDePersonajes");
 			enviarListaDePersonajesEnLaPartida();
+			enviarAccion("recibirListaDeAlianzas");
+			enviarListaDeAlianzas();
 		}
 		enviarPersonajeAlResto();
 	}
@@ -178,6 +188,18 @@ public class ServidorHilo extends Thread {
 
 		salida.writeUTF(personajes.toString());
 
+	}
+	
+	private void enviarListaDeAlianzas() throws IOException{
+		JsonArray lista = new JsonArray();
+		for(Alianza alianza : alianzas){
+			JsonArray personajes = new JsonArray();
+			for(Personaje personaje : alianza.getPersonajes()){
+				personajes.add(new JsonPrimitive(personaje.getNombre()));
+			}
+			lista.add(personajes);
+		}
+		salida.writeUTF(lista.toString());
 	}
 
 	private void enviarPersonajeAlResto() throws IOException {
@@ -381,10 +403,12 @@ public class ServidorHilo extends Thread {
 	public void recibirRespuestaDeInvitacionAAlianza() throws IOException {
 		JsonParser parser = new JsonParser();
 		JsonElement elemento = parser.parse(entrada.readUTF());
+		
 		if (elemento.getAsJsonObject().get("respuesta").getAsString().equals("true")) {
 			String invitador = elemento.getAsJsonObject().get("invitador").getAsString();
 			buscarSocketDeInvitador(invitador);
 			jugadores.get(cliente).aceptarAlianza(jugadores.get(this.invitador));
+			alianzas.add(jugadores.get(cliente).getAlianza());
 			comunicarAlianza();
 		}
 	
@@ -426,7 +450,7 @@ public class ServidorHilo extends Thread {
 		Alianza aliados = jugadores.get(cliente).invocarAliados();
 		Alianza enemigos = personajeAtacado.invocarAliados();
 		enviarNotificacionDeBatallaATodos(aliados, enemigos);
-		System.out.println("antesDeBatallaHilo");
+		
 		//new BatallaHilo(jugadores, aliados, enemigos).start();
 		// subirStats();
 	}

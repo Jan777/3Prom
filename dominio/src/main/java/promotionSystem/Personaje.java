@@ -296,7 +296,6 @@ public abstract class Personaje implements Comparable<Personaje> {
 	}
 
 	public void aceptarAlianza(Personaje invitador) {
-
 		if (invitador.tieneAlianza() && this.tieneAlianza()) {
 			invitador.alianza.agregarPersonaje(this.alianza.getPersonajes());
 
@@ -535,6 +534,10 @@ public abstract class Personaje implements Comparable<Personaje> {
 
 	public Set<String> getHechizos() {
 		return hechizos.keySet();
+	}
+
+	public void setNivel(int nivel) {
+		this.nivel = nivel;
 	}
 
 }

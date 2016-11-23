@@ -17,6 +17,7 @@ import java.lang.reflect.Type;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 public class Escuchador extends Thread {
 	private Socket socketCliente;
@@ -30,6 +31,7 @@ public class Escuchador extends Thread {
 	private boolean continuar = true;
 	private ArrayList<TileOtrosJugadores> tilesOtrosJugadores;
 	private Cliente cliente;
+	private ArrayList<Alianza> alianzas;
 	
 	public Escuchador(Cliente cliente)
 			throws IOException {
@@ -43,7 +45,7 @@ public class Escuchador extends Thread {
 		salida = new DataOutputStream(this.socketCliente.getOutputStream());
 		entrada = new DataInputStream(this.socketCliente.getInputStream());
 		this.tilesOtrosJugadores = cliente.getTiles();
-
+		alianzas = new ArrayList<>();
 	}
 
 	public void run() {
@@ -81,6 +83,26 @@ public class Escuchador extends Thread {
 		for (JsonObject personaje : crearPersonajes) {
 			Personaje personajeAAgregar = crearPersonaje(personaje);
 			jugadoresEnPartida.add(personajeAAgregar);
+		}
+	}
+	
+	public void recibirListaDeAlianzas() throws JsonSyntaxException, IOException{
+		JsonParser parser = new JsonParser();
+		JsonArray personajeASetear = parser.parse(entrada.readUTF()).getAsJsonArray();
+		Type tipoListaAlianzas = new TypeToken<ArrayList<JsonArray>>() {}.getType();
+		ArrayList<JsonArray> elemento = new Gson().fromJson(personajeASetear, tipoListaAlianzas);
+		Iterator<JsonArray> iterador = elemento.iterator();
+		while(iterador.hasNext()){
+			Type tipoListaPersonajes = new TypeToken<List<String>>() {}.getType();
+			JsonArray alianza = iterador.next();
+			ArrayList<String> elemento2 = new Gson().fromJson(alianza, tipoListaPersonajes);
+			ArrayList<Personaje> listaDePersonajes = new ArrayList<>();
+			for(String personajeActual : elemento2){
+				Personaje personaje = buscarPersonajePorNombre(personajeActual);
+				System.out.println(personaje.getNombre()+"  personaje");
+				listaDePersonajes.add(personaje);
+			}
+			alianzas.add(new Alianza(listaDePersonajes));
 		}
 	}
 
@@ -132,6 +154,14 @@ public class Escuchador extends Thread {
 	public void removerJugador() throws Exception {
 		JsonParser parser = new JsonParser();
 		JsonObject objeto = parser.parse(entrada.readUTF()).getAsJsonObject();
+		String nombreCliente = objeto.get("nombre").getAsString();
+		Personaje personajeQueSeVa = buscarPersonajePorNombre(nombreCliente);
+		if(personajeQueSeVa.getAlianza().cantidadDePersonajes()==1){
+			alianzas.remove(personajeQueSeVa.getAlianza());
+		}
+		if(personajeQueSeVa.getAlianza()!=null){
+			personajeQueSeVa.getAlianza().sacarPersonaje(personajeQueSeVa);
+		}
 		jugadoresEnPartida.remove(buscarPersonajeAQuitarDeLaLista(objeto.get("nombre").getAsString()));
 	}
 

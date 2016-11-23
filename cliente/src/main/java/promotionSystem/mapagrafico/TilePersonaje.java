@@ -140,7 +140,7 @@ public class TilePersonaje {
 			mouse.setClickIzquierdo(false);
 		}
 		if (cliente.getInvitacionAAlianza()) {
-			abrirPanelDeRespuesta();
+			abrirPanelDeRespuesta(cliente.getInvitador());
 			cliente.setInvitacionAAlianza(false);
 		}
 		if(cliente.getDesafioABatalla()){
@@ -162,7 +162,7 @@ public class TilePersonaje {
 
 	private void abrirPanelDeBatalla() {
 		new Batalla(cliente);
-		Sonido.MAPAKH.stop();
+		Sonido.MAPAPOKEMON.stop();
 	}
 
 	private boolean alianzaEsValida() {
@@ -171,8 +171,8 @@ public class TilePersonaje {
 			|| (personajeJugable.getAlianza()==null && personajeClickeado.getAlianza()==null));
 	}
 
-	private void abrirPanelDeRespuesta() throws Exception {
-		int respuesta = JOptionPane.showConfirmDialog(null, "Aceptar o Rechazar invitacion a Alianza", "Invitacion",
+	private void abrirPanelDeRespuesta(String nombre) throws Exception {
+		int respuesta = JOptionPane.showConfirmDialog(null, "Aceptar o Rechazar invitacion a Alianza de parte de "+nombre, "Invitacion",
 				JOptionPane.YES_NO_OPTION);
 		if (respuesta == JOptionPane.YES_OPTION) {
 			cliente.enviarRespuestaAInvitacionDeAlianza(true, cliente.getInvitador());

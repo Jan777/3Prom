@@ -173,4 +173,20 @@ public class Conector {
             sentencia.executeUpdate();
         }
     }
+    /*
+    public Personaje obtenerPersonaje(String nombreCliente){
+    	conector.setAutoCommit(false);
+		sentencia = conector.prepareStatement("Select * from Personaje where nombre like ?");
+		sentencia.setString(1, nombreCliente);
+		ResultSet resultado = sentencia.executeQuery();
+		Personaje personaje = crearPersonajeAPartirDeRazaYCasta(resultado);
+    }*/
+    
+    private Personaje crearPersonajeAPartirDeRazaYCasta(ResultSet resultado) throws Exception {
+		Personaje personaje = (Personaje) Class.forName("promotionSystem.razas.castas." + resultado.getString(2) + "." + resultado.getString(3)).newInstance();
+		personaje.setNombre(resultado.getString(1));
+		personaje.setNivel(resultado.getInt(4));
+		//FALTAN ITEMS
+		return personaje;
+	}
 }

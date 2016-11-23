@@ -11,7 +11,10 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Servidor {
 	private Conector conector;
@@ -22,18 +25,21 @@ public class Servidor {
 	private HashMap<Socket, Personaje> jugadores = new HashMap<Socket, Personaje>();
 	private HashMap<Mapa, ArrayList<Socket>> jugadoresPorMapa = new HashMap<Mapa, ArrayList<Socket>>();
 	private HashMap<String, Mapa> mapasDisponibles = new HashMap<String, Mapa>();
+	private int indiceDeAlianzas;
+	private Set<Alianza> alianzas;
 
 	public Servidor() throws Exception {
 		conector = new Conector();
 		ServerSocket servidor;
+			indiceDeAlianzas = 0;
+			alianzas = new LinkedHashSet<>();
 			cargarMapas();
 			configurar();
 			servidor = new ServerSocket(puerto);
+			ServerSocket batalla = new ServerSocket(puerto+1);
 			JOptionPane.showMessageDialog(null,"Servidor en linea","Server",JOptionPane.INFORMATION_MESSAGE);
 			aceptarClientes(servidor);
-
 			servidor.close();
-		
 	}
 
 	private void cargarMapas() {
@@ -51,10 +57,8 @@ public class Servidor {
 	private void aceptarClientes(ServerSocket servidor) throws IOException {
 		while (i < cantidadMaximaDeClientes) {
 			Socket cliente = servidor.accept();
-			new HiloCreadorServidor(cliente, jugadores, jugadoresPorMapa, mapasDisponibles, conector).start();
-			;
+			new HiloCreadorServidor(cliente, jugadores, jugadoresPorMapa, mapasDisponibles, conector, alianzas, indiceDeAlianzas).start();
 			i++;
-
 		}
 	}
 
