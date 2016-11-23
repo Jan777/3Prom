@@ -28,7 +28,7 @@ public class Sora extends PersonajeDeKingdomHearts {
 		radioDeAcccion=new Circulo(posicion,20);
 		hechizos = new HashMap<String, Hechizo>();
 	    agregarHechizo("Piro",new Piro());
-	    agregarHechizo("Cura",new Cura());
+//	    agregarHechizo("Cura",new Cura());
 	}
 
 	@Override

@@ -1,6 +1,8 @@
 package promotionSystem;
 
+import promotionSystem.hilos.HiloBatalla;
 import promotionSystem.hilos.HiloCreadorServidor;
+import promotionSystem.hilos.HiloJuego;
 import promotionSystem.mapa.Mapa;
 
 import javax.swing.*;
@@ -18,7 +20,7 @@ import java.util.Set;
 
 public class Servidor {
 	private Conector conector;
-	private int i = 0;
+
 	private int puerto;
 	private int cantidadMaximaDeClientes;
 	private String archivoDeConfiguracion = "configuracion.config";
@@ -28,6 +30,10 @@ public class Servidor {
 	private int indiceDeAlianzas;
 	private Set<Alianza> alianzas;
 
+	private ServerSocket servidorBatalla;
+	private ServerSocket servidor;
+	private HashMap<Personaje, Socket> jugadoresBatalla = new HashMap<Personaje,Socket>(); 
+	
 	public Servidor() throws Exception {
 		conector = new Conector();
 		ServerSocket servidor;
@@ -36,10 +42,12 @@ public class Servidor {
 			cargarMapas();
 			configurar();
 			servidor = new ServerSocket(puerto);
-			ServerSocket batalla = new ServerSocket(puerto+1);
+			servidorBatalla = new ServerSocket(puerto+1);
 			JOptionPane.showMessageDialog(null,"Servidor en linea","Server",JOptionPane.INFORMATION_MESSAGE);
-			aceptarClientes(servidor);
-			servidor.close();
+			new HiloJuego(servidor,jugadores,jugadoresPorMapa,mapasDisponibles,conector,cantidadMaximaDeClientes,jugadoresBatalla).start();
+			new HiloBatalla(servidorBatalla,jugadores,jugadoresBatalla,cantidadMaximaDeClientes).start();
+			
+		
 	}
 
 	private void cargarMapas() {
@@ -52,14 +60,6 @@ public class Servidor {
 		jugadoresPorMapa.put(mapasDisponibles.get("Mundo Pokemon"), new ArrayList<Socket>());
 		jugadoresPorMapa.put(mapasDisponibles.get("Mundo Undertale"), new ArrayList<Socket>());
 		jugadoresPorMapa.put(mapasDisponibles.get("Mundo Kingdom Hearts"), new ArrayList<Socket>());
-	}
-
-	private void aceptarClientes(ServerSocket servidor) throws IOException {
-		while (i < cantidadMaximaDeClientes) {
-			Socket cliente = servidor.accept();
-			new HiloCreadorServidor(cliente, jugadores, jugadoresPorMapa, mapasDisponibles, conector, alianzas, indiceDeAlianzas).start();
-			i++;
-		}
 	}
 
 	private void configurar() throws FileNotFoundException {

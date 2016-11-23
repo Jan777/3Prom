@@ -26,9 +26,9 @@ public class Jedi extends PersonajeDeStarWars{
 		radioDeAcccion=new Circulo(posicion,20);
 		hechizos = new HashMap<String, Hechizo>();
         agregarHechizo("EmpujonDeFuerza",new EmpujonDeFuerza());
-        agregarHechizo("Telekinesis",new Telekinesis());
+//        agregarHechizo("Telekinesis",new Telekinesis());
         agregarHechizo("Electrificar",new Electrificar());
-        agregarHechizo("ControlMental",new ControlMental());
+//        agregarHechizo("ControlMental",new ControlMental());
 	}
 
 	@Override

@@ -233,10 +233,6 @@ public class Escuchador extends Thread {
 	public void recibirNotificacionDeBatalla() throws IOException {
 		Alianza listaAliados = recibirElementoDeJsonArrayYTransformarloEnAlianza();
 		Alianza listaEnemigos = recibirElementoDeJsonArrayYTransformarloEnAlianza();
-		/*Alianza lista = new Alianza();
-		lista.agregarPersonaje(listaAliados.getPersonajes());
-		lista.agregarPersonaje(listaEnemigos.getPersonajes());*/
-
 
 		for (Personaje personaje : listaAliados.getPersonajes()) {
 			if(personaje.getNombre().equals(cliente.getNombre())){

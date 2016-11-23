@@ -24,7 +24,7 @@ public class Roxas extends PersonajeDeKingdomHearts {
 		nivel=1;
 		hechizos = new HashMap<String, Hechizo>();
         agregarHechizo("Trueno",new Hielo());
-        agregarHechizo("Cura",new Cura());
+//        agregarHechizo("Cura",new Cura());
 	}
 
 	@Override

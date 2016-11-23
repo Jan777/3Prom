@@ -17,12 +17,13 @@ public class HiloCreadorServidor extends Thread {
 	private HashMap<Socket, Personaje> jugadores;
 	private HashMap<Mapa, ArrayList<Socket>> jugadoresPorMapa;
 	private HashMap<String, Mapa> mapasDisponibles;
+	private HashMap<Personaje, Socket> jugadoresBatalla;
 	private int indiceDeAlianzas;
 	private Set<Alianza> alianzas;
 
 	public HiloCreadorServidor(Socket cliente, HashMap<Socket, Personaje> jugadores,
 			HashMap<Mapa, ArrayList<Socket>> jugadoresPorMapa, HashMap<String, Mapa> mapasDisponibles,
-			Conector conector, Set<Alianza> alianzas, int indiceDeAlianzas) {
+			Conector conector,HashMap<Personaje, Socket> jugadoresBatalla) {
 		super();
 		this.indiceDeAlianzas = indiceDeAlianzas;
 		this.alianzas = alianzas;
@@ -31,11 +32,12 @@ public class HiloCreadorServidor extends Thread {
 		this.cliente = cliente;
 		this.jugadores = jugadores;
 		this.mapasDisponibles = mapasDisponibles;
+		this.jugadoresBatalla=jugadoresBatalla;
 	}
 
 	public void run() {
 		try {
-			new ServidorHilo(cliente, jugadores, jugadoresPorMapa, mapasDisponibles, conector, indiceDeAlianzas, alianzas).start();
+			new ServidorHilo(cliente, jugadores, jugadoresPorMapa, mapasDisponibles, conector,jugadoresBatalla).start();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

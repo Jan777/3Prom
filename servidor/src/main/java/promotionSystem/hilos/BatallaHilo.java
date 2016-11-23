@@ -27,102 +27,68 @@ public class BatallaHilo extends Thread {
 	private ArrayList<Item> pozoDeItems;
 	private ArrayList<Personaje> muertos;
 	private Personaje personajeActual;
-
-	public BatallaHilo(HashMap<Socket, Personaje> jugadores, Alianza alianza1, Alianza alianza2) {
+	private HashMap<Personaje, Socket> jugadoresBatalla;
+	private Socket socketActual;
+	private DataOutputStream salidaJugadorActual;
+	private DataInputStream entradaJugadorActual;
+	private Personaje personajeEnemigo;
+	private int cantidadMuertesAlianza1;
+	private int cantidadMuertesAlianza2;
+	private String hechizo;
+	public BatallaHilo(HashMap<Personaje, Socket> jugadoresBatalla, Alianza alianza1, Alianza alianza2) {
 		this.alianza1 = alianza1;
 		this.alianza2 = alianza2;
-		socketAlianza1 = invocarSocket(jugadores, alianza1);
-		socketAlianza2 = invocarSocket(jugadores, alianza2);
+		this.jugadoresBatalla=jugadoresBatalla;
+		 cantidadMuertesAlianza1 = 0;
+		 cantidadMuertesAlianza2 = 0;
+		 muertos=new ArrayList<>();
 	}
 
-	private HashMap<Personaje, Socket> invocarSocket(HashMap<Socket, Personaje> jugadores, Alianza alianza) {
-		HashMap<Personaje, Socket> lista = new HashMap<Personaje, Socket>();
-		for (Personaje personaje : alianza.getPersonajes()) {
-			boolean encontro = false;
-			Iterator<Socket> iterador = jugadores.keySet().iterator();
-			while (!encontro && iterador.hasNext()) {
-				Socket jugador = iterador.next();
-				if (jugadores.get(jugador).equals(personaje)) {
-					lista.put(personaje, jugador);
-					encontro = true;
-				}
-			}
-		}
-		return lista;
-	}
+
 
 	public void run() {
-		int cantidadMuertesAlianza1 = 0;
-		int cantidadMuertesAlianza2 = 0;
-		listaDePersonajes = alianza1.getPersonajes();
+		
+		listaDePersonajes=new ArrayList<>();
+		listaDePersonajes.addAll(alianza1.getPersonajes());
 		listaDePersonajes.addAll(alianza2.getPersonajes());
 		Collections.sort(listaDePersonajes, Collections.reverseOrder());
-		/*
-		 * Collections.sort(alianza1.getPersonajes(),Collections.reverseOrder())
-		 * ;
-		 * Collections.sort(alianza2.getPersonajes(),Collections.reverseOrder())
-		 * ;
-		 */
+	
+		try {
+			while (cantidadMuertesAlianza1 < alianza1.cantidadDePersonajes()
+					&& cantidadMuertesAlianza2 < alianza2.cantidadDePersonajes()) {
 
-		while (cantidadMuertesAlianza1 < alianza1.cantidadDePersonajes()
-				&& cantidadMuertesAlianza2 < alianza2.cantidadDePersonajes()) {
-			try {
 				darTurno();
+				System.out.println("turno para: "+ personajeActual.getNombre());
 				recibirAccionPersonaje();
 				realizarAccion();
-				informarAccion();
-				// despuesDelTurno(); por ahora esta vacio
-			} catch (IOException e) {
-				e.printStackTrace();
-			} catch (NoSuchMethodException e) {
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				e.printStackTrace();
-			} catch (IllegalArgumentException e) {
-				e.printStackTrace();
-			} catch (InvocationTargetException e) {
-				e.printStackTrace();
-			}
+				despuesDelTurno();
+			} 
 		}
-		revisarSiAlgunPersonajeMurioYEnEseCasoSacarleLosItems();
+		catch (Exception e) {
+			e.printStackTrace();
+		} 
+	/*	revisarSiAlgunPersonajeMurioYEnEseCasoSacarleLosItems();
 		tratarEntregaDeItems();
-		reasignarPersonajesAlMapa();
+		reasignarPersonajesAlMapa();*/
 	}
 
-	// FIXME no se como saber quien me manda la solicitud de item
-	private void tratarEntregaDeItems() {
-		JsonParser parser = new JsonParser();
-		JsonElement elemento;
-		String recibirItem, item;
-		// if(estaEnLaAlianzaUno()){//personajeQueSeComunicoQueNoSeQuienEs)){
-		// elemento = parser.parse(new
-		// DataInputStream(socketAlianza1.get(personajeActual).getInputStream()).readUTF());
-		// }
-		// else{
-		// elemento = parser.parse(new
-		// DataInputStream(socketAlianza1.get(personajeActual).getInputStream()).readUTF());
-		// }
-		// recibirItem = elemento.getAsJsonObject().get("accion").getAsString();
-		// item = elemento.getAsJsonObject().get("item").getAsString();
 
-		confirmarItemSeleccionado();
-		enviarNotificacionDeItemSeleccionadoATodosLosPersonajes();
+
+	private void despuesDelTurno() {
+		if(!personajeEnemigo.estaVivo()){
+			if(alianza1.getPersonajes().contains(personajeEnemigo)){
+				cantidadMuertesAlianza1++;
+			}
+			else{
+				cantidadMuertesAlianza2++;
+			}
+			muertos.add(personajeEnemigo);
+		
+		}
+		
 	}
 
-	private void enviarNotificacionDeItemSeleccionadoATodosLosPersonajes() {
-		// TODO Auto-generated method stub
 
-	}
-
-	private void confirmarItemSeleccionado() {
-		// TODO Auto-generated method stub
-
-	}
-
-	// FIXME falta hacer el metodo
-	private void reasignarPersonajesAlMapa() {
-
-	}
 
 	private void revisarSiAlgunPersonajeMurioYEnEseCasoSacarleLosItems() {
 		Iterator<Personaje> iteratorPersonajes = listaDePersonajes.iterator();
@@ -130,20 +96,15 @@ public class BatallaHilo extends Thread {
 			Personaje personajeActual = iteratorPersonajes.next();
 			if (!personajeActual.estaVivo()) {
 				muertos.add(personajeActual);
-				pozoDeItems.addAll(personajeActual.getItems());
+				pozoDeItems.addAll(personajeActual.getItems());//FIXME se le saca uno solo.
 			}
 		}
 	}
 
-	private void informarAccion() throws IOException {
-		boolean alianza = true;
-		enviarNotificacionDeAccionATodosLosParticipantesDeUnaAlianza(alianza);
-		alianza = false;
-		enviarNotificacionDeAccionATodosLosParticipantesDeUnaAlianza(alianza);
-	}
+
 
 	private void realizarAccion()
-			throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+			throws Exception {
 		Method miMetodo = BatallaHilo.class.getMethod(accion);
 		miMetodo.invoke(this);
 	}
@@ -151,78 +112,97 @@ public class BatallaHilo extends Thread {
 	public void atacar() throws JsonSyntaxException, IOException {
 		JsonParser parser = new JsonParser();
 		JsonElement elemento;
-		Personaje personajeEnemigo;
-		if (estaEnLaAlianzaUno(personajeActual)) {
-			elemento = parser
-					.parse(new DataInputStream(socketAlianza1.get(personajeActual).getInputStream()).readUTF());
-			String enemigo = elemento.getAsJsonObject().get("enemigo").getAsString();
+		
+		elemento = parser.parse(entradaJugadorActual.readUTF());
+		String enemigo = elemento.getAsJsonObject().get("enemigo").getAsString();
+		if (estaEnLaAlianzaUno(personajeActual)) {	
 			personajeEnemigo = obtenerPersonaje(enemigo, alianza2);
 		} else {
-			elemento = parser
-					.parse(new DataInputStream(socketAlianza2.get(personajeActual).getInputStream()).readUTF());
-			String enemigo = elemento.getAsJsonObject().get("enemigo").getAsString();
 			personajeEnemigo = obtenerPersonaje(enemigo, alianza1);
 		}
+
 		personajeActual.atacar(personajeEnemigo);
+		
+		informarAtacarAlResto();
+		
 	}
-
-	public void atacarConMagia() throws JsonSyntaxException, IOException {
+	
+	private void informarAtacarAlResto() throws IOException {
+		enviarNotificacionDeAtacarATodosLosParticipantesDeUnaAlianza();		
+	}
+	
+	
+	private void enviarNotificacionDeAtacarATodosLosParticipantesDeUnaAlianza() throws IOException {
+		JsonObject mensaje = new JsonObject();
+		mensaje.addProperty("Accion", "ataqueRealizado");
+		
+		JsonObject ataque = new JsonObject();
+		ataque.addProperty("atacante", personajeActual.getNombre());
+		ataque.addProperty("atacado",personajeEnemigo.getNombre());
+		
+		
+		Iterator<Personaje> iteratorSocket1 = listaDePersonajes.iterator();
+			
+		while (iteratorSocket1.hasNext()) {
+			Personaje jugador = iteratorSocket1.next();
+			if(!jugador.getNombre().equals(personajeActual.getNombre())){
+				System.out.println("jugador avisado " + jugador.getNombre());
+				DataOutputStream salidaJugador = new DataOutputStream(jugadoresBatalla.get(jugador).getOutputStream());				
+				salidaJugador.writeUTF(mensaje.toString());
+				salidaJugador.writeUTF(ataque.toString());
+			}
+		}
+		
+	
+		
+	}
+	
+	
+	public void hechizar() throws JsonSyntaxException, IOException{
 		JsonParser parser = new JsonParser();
 		JsonElement elemento;
-		Personaje personajeEnemigo;
-		String conjuro;
-		if (estaEnLaAlianzaUno(personajeActual)) {
-			elemento = parser
-					.parse(new DataInputStream(socketAlianza1.get(personajeActual).getInputStream()).readUTF());
-			String enemigo = elemento.getAsJsonObject().get("enemigo").getAsString();
-			conjuro = elemento.getAsJsonObject().get("conjuro").getAsString();
+		
+		elemento = parser.parse(entradaJugadorActual.readUTF());
+		String enemigo = elemento.getAsJsonObject().get("enemigo").getAsString();
+		if (estaEnLaAlianzaUno(personajeActual)) {	
 			personajeEnemigo = obtenerPersonaje(enemigo, alianza2);
 		} else {
-			elemento = parser
-					.parse(new DataInputStream(socketAlianza2.get(personajeActual).getInputStream()).readUTF());
-			String enemigo = elemento.getAsJsonObject().get("enemigo").getAsString();
-			conjuro = elemento.getAsJsonObject().get("conjuro").getAsString();
 			personajeEnemigo = obtenerPersonaje(enemigo, alianza1);
 		}
-		personajeActual.atacarConMagia(personajeEnemigo, conjuro);
+		
+		hechizo = elemento.getAsJsonObject().get("hechizo").getAsString();
+		personajeActual.atacarConMagia(personajeEnemigo, hechizo);
+		
+		
+		informarAtacarConMagiaAlResto();
 	}
 
-	public void usarMagiaSupport() throws JsonSyntaxException, IOException {
-		JsonParser parser = new JsonParser();
-		JsonElement elemento;
-		Personaje personajeEnemigo;
-		String conjuro;
-		if (estaEnLaAlianzaUno(personajeActual)) {
-			elemento = parser
-					.parse(new DataInputStream(socketAlianza1.get(personajeActual).getInputStream()).readUTF());
-			String enemigo = elemento.getAsJsonObject().get("enemigo").getAsString();
-			conjuro = elemento.getAsJsonObject().get("conjuro").getAsString();
-			personajeEnemigo = obtenerPersonaje(enemigo, alianza2);
-		} else {
-			elemento = parser
-					.parse(new DataInputStream(socketAlianza2.get(personajeActual).getInputStream()).readUTF());
-			String enemigo = elemento.getAsJsonObject().get("enemigo").getAsString();
-			conjuro = elemento.getAsJsonObject().get("conjuro").getAsString();
-			personajeEnemigo = obtenerPersonaje(enemigo, alianza1);
+
+	private void informarAtacarConMagiaAlResto() throws IOException {
+		JsonObject mensaje = new JsonObject();
+		mensaje.addProperty("Accion", "ataqueConMagiaRealizado");
+		
+		JsonObject ataque = new JsonObject();
+		ataque.addProperty("atacante", personajeActual.getNombre());
+		ataque.addProperty("atacado",personajeEnemigo.getNombre());
+		ataque.addProperty("hechizo", hechizo);
+		
+		
+		Iterator<Personaje> iteratorSocket1 = listaDePersonajes.iterator();
+			
+		while (iteratorSocket1.hasNext()) {
+			Personaje jugador = iteratorSocket1.next();
+			if(!jugador.getNombre().equals(personajeActual.getNombre())){
+				System.out.println("jugador avisado " + jugador.getNombre());
+				DataOutputStream salidaJugador = new DataOutputStream(jugadoresBatalla.get(jugador).getOutputStream());				
+				salidaJugador.writeUTF(mensaje.toString());
+				salidaJugador.writeUTF(ataque.toString());
+			}
 		}
-		personajeActual.usarMagiaSupport(personajeEnemigo, conjuro);
+		
 	}
 
-	public void usarMagiaDeAlteracion() throws JsonSyntaxException, IOException {
-		JsonParser parser = new JsonParser();
-		JsonElement elemento;
-		String conjuro;
-		if (estaEnLaAlianzaUno(personajeActual)) {
-			elemento = parser
-					.parse(new DataInputStream(socketAlianza1.get(personajeActual).getInputStream()).readUTF());
-			conjuro = elemento.getAsJsonObject().get("conjuro").getAsString();
-		} else {
-			elemento = parser
-					.parse(new DataInputStream(socketAlianza2.get(personajeActual).getInputStream()).readUTF());
-			conjuro = elemento.getAsJsonObject().get("conjuro").getAsString();
-		}
-		personajeActual.usarMagiaDeAlteracion(conjuro);
-	}
+
 
 	private Personaje obtenerPersonaje(String enemigo, Alianza alianza) {
 		for (Personaje personaje : alianza.getPersonajes()) {
@@ -235,9 +215,8 @@ public class BatallaHilo extends Thread {
 
 	private void recibirAccionPersonaje() throws IOException {
 		JsonParser parser = new JsonParser();
-		JsonElement elemento = parser
-				.parse(new DataInputStream(socketAlianza1.get(personajeActual).getInputStream()).readUTF());
-		accion = elemento.getAsJsonObject().get("accion").getAsString();
+		JsonElement elemento = parser.parse(entradaJugadorActual.readUTF());
+		accion = elemento.getAsJsonObject().get("Accion").getAsString();
 	}
 
 	private void darTurno() throws IOException {
@@ -247,34 +226,32 @@ public class BatallaHilo extends Thread {
 		}
 		JsonObject personajeConTurno = new JsonObject();
 		personajeConTurno.addProperty("turno", true);
-		if (estaEnLaAlianzaUno(personajeActual)) {
-			new DataOutputStream(socketAlianza1.get(personajeActual).getOutputStream())
-					.writeUTF(personajeConTurno.toString());
-		} else {
-			new DataOutputStream(socketAlianza2.get(personajeActual).getOutputStream())
-					.writeUTF(personajeConTurno.toString());
+		
+		socketActual=jugadoresBatalla.get(personajeActual);
+		salidaJugadorActual = new DataOutputStream(socketActual.getOutputStream());
+		entradaJugadorActual=new DataInputStream(socketActual.getInputStream());
+		
+		enviarAccion("turnoOtorgado",salidaJugadorActual);
+		salidaJugadorActual.writeUTF(personajeConTurno.toString());
+		
+		
+		numeroDePersonajeAlQueLeCorrespondeElTurno++;
+		if(numeroDePersonajeAlQueLeCorrespondeElTurno==listaDePersonajes.size()){
+			numeroDePersonajeAlQueLeCorrespondeElTurno=0;
 		}
 	}
+
+	private void enviarAccion(String accion, DataOutputStream salida) throws IOException {
+		JsonObject usuario = new JsonObject();
+		usuario.addProperty("Accion", accion);
+		salida.writeUTF(usuario.toString());		
+	}
+
+
 
 	private boolean estaEnLaAlianzaUno(Personaje personaje) {
 		return alianza1.getPersonajes().contains(personaje);
 	}
 
-	public void enviarNotificacionDeAccionATodosLosParticipantesDeUnaAlianza(boolean alianza) throws IOException {
-		JsonObject mensaje = new JsonObject();
-		mensaje.addProperty("accion", accion);
-		Iterator<Socket> iteratorSocket;
-		if (alianza) {
-			iteratorSocket = socketAlianza1.values().iterator();
-		} else {
-			iteratorSocket = socketAlianza2.values().iterator();
-		}
-		boolean encontro = false;
-		while (!encontro && iteratorSocket.hasNext()) {
-			Socket jugador = iteratorSocket.next();
-			new DataOutputStream(jugador.getOutputStream()).writeUTF(mensaje.toString());
-			;
-			encontro = true;
-		}
-	}
+	
 }

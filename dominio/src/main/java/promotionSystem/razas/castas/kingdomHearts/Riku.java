@@ -24,7 +24,7 @@ public class Riku extends PersonajeDeKingdomHearts {
 		nivel=1;
 		hechizos = new HashMap<String, Hechizo>();
         agregarHechizo("Hielo",new Hielo());
-        agregarHechizo("Cura",new Cura());
+//        agregarHechizo("Cura",new Cura());
 
 	}
 
