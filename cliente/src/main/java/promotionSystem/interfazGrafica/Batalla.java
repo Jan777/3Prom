@@ -66,12 +66,15 @@ public class Batalla extends JFrame implements Runnable{
 		btnEjecutar = new JButton("Ejecutar");
 		btnEjecutar.setBounds(549, 488, 235, 48);
 		contentPane.add(btnEjecutar);
+		btnEjecutar.setEnabled(false);
 		
 		seleccionarEnemigo = new JComboBox<>();
 		seleccionarEnemigo.setBounds(549, 444, 235, 41);
 		contentPane.add(seleccionarEnemigo);
 		cargarEnemigos();
+		seleccionarEnemigo.setEnabled(false);
 		
+	
 		seleccionarAliado = new JComboBox<>();
 		seleccionarAliado.setBounds(549, 444, 235, 41);
 		contentPane.add(seleccionarAliado);
@@ -129,6 +132,7 @@ public class Batalla extends JFrame implements Runnable{
 
 	private void enviarAccionDeCerrar() throws IOException {
 		cliente.enviarAccion("cerrar");
+		
 
 	}
 
@@ -291,6 +295,7 @@ public class Batalla extends JFrame implements Runnable{
 			}
 			else{
 				 cantidadMuertesAlianzaEnemiga++;
+				 seleccionarEnemigo.removeItem(atacado.getNombre());
 			}
 		}
 		
@@ -336,7 +341,16 @@ public class Batalla extends JFrame implements Runnable{
 		if(movimiento.equals("Atacar")){
 			enviarAtacar();
 		}
+		else if(movimiento.equals("Hechizo")){
+			enviarHechizo();
+		}
 
+	}
+
+	private void enviarHechizo() {
+	
+		
+		
 	}
 
 	private void enviarAtacar() throws IOException {
@@ -392,6 +406,7 @@ public class Batalla extends JFrame implements Runnable{
 			public void actionPerformed(ActionEvent e) {
 				if(rdbtnAtacar.isSelected()){
 					seleccionarMagia.setEnabled(false);
+					seleccionarEnemigo.setEnabled(true);
 				}
 			}
 		});
@@ -402,7 +417,18 @@ public class Batalla extends JFrame implements Runnable{
 			public void actionPerformed(ActionEvent e) {
 				if(rdbtnMagia.isSelected()){
 					seleccionarMagia.setEnabled(true);
+					seleccionarEnemigo.setEnabled(false);
 				}
+			}
+		});
+		
+		seleccionarMagia.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				hechizo=(String)seleccionarMagia.getSelectedItem();
+				seleccionarEnemigo.setEnabled(true);
+				
 			}
 		});
 
@@ -413,6 +439,7 @@ public class Batalla extends JFrame implements Runnable{
 			public void actionPerformed(ActionEvent arg0) {
 				if(rdbtnHuir.isSelected()){
 					seleccionarMagia.setEnabled(false);
+					seleccionarEnemigo.setEnabled(false);
 				}
 			}
 		});

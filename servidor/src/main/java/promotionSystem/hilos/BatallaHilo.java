@@ -82,6 +82,7 @@ public class BatallaHilo extends Thread {
 				cantidadMuertesAlianza2++;
 			}
 			muertos.add(personajeEnemigo);
+		
 		}
 		
 	}
