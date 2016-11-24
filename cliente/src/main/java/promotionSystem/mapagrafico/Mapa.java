@@ -88,7 +88,7 @@ public class Mapa {
 		this.alto=sc.nextInt();
 		cantidadDeSprite=sc.nextInt();
 		this.sprites="/recursos/"+nombre;
-		cargarSprite();
+		cargarSprite(nombre);
 
 		this.tiles = new Tile[ancho][alto];
 		this.tilesObstaculo  = new TileObstaculo[ancho][alto];
@@ -116,8 +116,8 @@ public class Mapa {
 	}
 
 
-	private void cargarSprite() {
-		load(sprites);
+	private void cargarSprite(String nombre) {
+		load(nombre);
 		iluminacion = Sprite.loadImage("recursos/iluminacion.png").getScaledInstance(camara.getAncho() + 10,camara.getAlto() + 10,Image.SCALE_SMOOTH);
 		barraVida = 	Sprite.loadImage("recursos/vida.png");
 
@@ -130,8 +130,7 @@ public class Mapa {
 	
 	private void load(String nombre) {
 		
-		String recursos = nombre;
-		Sprite.inicializar("recursos/Mapa Prueba/piso.png");
+		Sprite.inicializar("recursos/"+nombre+"/piso.png");
 		
 	}
 

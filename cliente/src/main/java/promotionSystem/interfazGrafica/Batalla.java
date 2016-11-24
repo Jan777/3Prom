@@ -9,8 +9,6 @@ import promotionSystem.sprites.CargaImagen;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-import org.junit.internal.builders.SuiteMethodBuilder;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

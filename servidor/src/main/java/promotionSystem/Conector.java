@@ -29,7 +29,7 @@ public class Conector {
 		sentencia.setString(1, nombre);
 		sentencia.setInt(2, contrasena);
 		ResultSet resultado = sentencia.executeQuery();
-		boolean devolver = resultado.next() ? resultado.getInt(1) == 1 : false;
+		boolean devolver = resultado.next() && resultado.getInt(1) == 1;
 		sentencia.close();
 		conector.commit();
 
@@ -41,7 +41,7 @@ public class Conector {
 		sentencia = conector.prepareStatement("Select Count(*) from Usuario where nombre like ?");
 		sentencia.setString(1, nombre);
 		ResultSet resultado = sentencia.executeQuery();
-		boolean devolver = resultado.next() ? resultado.getInt(1) == 1 : false;
+		boolean devolver = resultado.next() && resultado.getInt(1) == 1;
 		sentencia.close();
 		conector.commit();
 		return devolver;

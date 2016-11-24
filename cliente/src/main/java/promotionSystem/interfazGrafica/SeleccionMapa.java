@@ -17,6 +17,7 @@ public class SeleccionMapa extends JFrame {
 	private JPanel contentPane;
 	private Cliente cliente;
 	private JComboBox comboBox;
+	private String mapa;
 
 	public SeleccionMapa(Cliente cliente) throws IOException {
 		this.cliente = cliente;
@@ -93,7 +94,7 @@ public class SeleccionMapa extends JFrame {
 	}
 
 	private void enviarMapaElegido() throws IOException {
-		String mapa = (String) comboBox.getSelectedItem();
+		mapa = (String) comboBox.getSelectedItem();
 		cliente.enviarMapaSeleccionado(mapa);
 	}
 
@@ -101,7 +102,8 @@ public class SeleccionMapa extends JFrame {
 		JFrame juego = new JFrame("Kings of the Multiverse V1.0");
 		juego.setBounds(100, 100, 800, 600);
 		JuegoPanel panel;
-		panel = new JuegoPanel(juego, "Mapa Prueba", cliente);
+//		panel = new JuegoPanel(juego, "Mapa Prueba", cliente);
+		panel = new JuegoPanel(juego, mapa, cliente);
 		juego.add(panel);
 
 		juego.setResizable(false);
