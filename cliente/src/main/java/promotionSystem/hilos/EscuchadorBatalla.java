@@ -49,7 +49,9 @@ public class EscuchadorBatalla extends Thread {
 		}
 	}
 
-
+		public void cerrar(){
+			continuar=false;
+		}
 	
 		public String recibirAccion() throws IOException {
 			JsonElement elemento = recibirObjetoJson();

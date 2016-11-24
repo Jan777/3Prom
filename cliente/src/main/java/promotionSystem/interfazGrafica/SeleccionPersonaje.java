@@ -228,29 +228,28 @@ class LaminaOeste extends JPanel {
 				castas.addItem(listaDeCastas.get(0));
 				castas.addItem(listaDeCastas.get(1));
 				castas.addItem(listaDeCastas.get(2));
-
 			} else {
 				if (raza.equals("Kingdom Hearts")) {
-					castas.addItem(listaDeCastas.get(3));
-					castas.addItem(listaDeCastas.get(4));
-					castas.addItem(listaDeCastas.get(5));
+					castas.addItem(listaDeCastas.get(6));
+					castas.addItem(listaDeCastas.get(7));
+					castas.addItem(listaDeCastas.get(8));
 				} else {
 					if (raza.equals("Pokemon")) {
-						castas.addItem(listaDeCastas.get(6));
-						castas.addItem(listaDeCastas.get(7));
-						castas.addItem(listaDeCastas.get(8));
+						castas.addItem(listaDeCastas.get(9));
+						castas.addItem(listaDeCastas.get(10));
+						castas.addItem(listaDeCastas.get(11));						
 					} else {
 						if (raza.equals("Star Wars")) {
-							castas.addItem(listaDeCastas.get(9));
-							castas.addItem(listaDeCastas.get(10));
-							castas.addItem(listaDeCastas.get(11));
+							castas.addItem(listaDeCastas.get(12));
+							castas.addItem(listaDeCastas.get(13));
+							castas.addItem(listaDeCastas.get(14));
 						} else {
 							if (raza.equals("Undertale")) {
-								castas.addItem(listaDeCastas.get(12));
-							} else if (raza.equals("Orco")) {
-								castas.addItem(listaDeCastas.get(13));
-								castas.addItem(listaDeCastas.get(14));
 								castas.addItem(listaDeCastas.get(15));
+							} else if (raza.equals("Orco")) {							
+								castas.addItem(listaDeCastas.get(3));
+								castas.addItem(listaDeCastas.get(4));
+								castas.addItem(listaDeCastas.get(5));
 							}
 						}
 					}
@@ -258,7 +257,6 @@ class LaminaOeste extends JPanel {
 			}
 
 		}
-
 	}
 }
 

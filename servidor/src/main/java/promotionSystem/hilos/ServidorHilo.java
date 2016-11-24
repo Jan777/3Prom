@@ -133,18 +133,36 @@ public class ServidorHilo extends Thread {
 	public void cerrar() throws IOException {
 		if (mapa != null) {
 			enviarAOtrosQueJugadorSalio();
-			jugadores.get(cliente).getAlianza().sacarPersonaje(jugadores.get(cliente));
-			if(alianzas.contains(jugadores.get(cliente).getAlianza().cantidadDePersonajes() == 1)){
-				alianzas.remove(jugadores.get(cliente).getAlianza());
+			
+			if(jugadores.get(cliente).getAlianza()!=null){
+				jugadores.get(cliente).getAlianza().sacarPersonaje(jugadores.get(cliente));
+				if(alianzas.contains(jugadores.get(cliente).getAlianza().cantidadDePersonajes() == 1)){
+					alianzas.remove(jugadores.get(cliente).getAlianza());
+				}				
 			}
 			jugadoresPorMapa.get(mapa).remove(cliente);
 		}
-
-		jugadores.remove(cliente);
-
-		enviarAccion("cerrar");
+		
+	
+		if(jugadoresBatalla.containsKey(jugadores.get(cliente))){
+			enviarAccionBatalla("cerrar");
+			jugadoresBatalla.get(jugadores.get(cliente)).close();
+			jugadoresBatalla.remove(jugadores.get(cliente));
+		}
+		if(jugadores.containsKey(cliente)){
+			enviarAccion("cerrar");
+			jugadores.remove(cliente);			
+		}
 		cliente.close();
 		continuar = false;
+	}
+
+	private void enviarAccionBatalla(String accion) throws IOException {
+		
+		JsonObject usuario = new JsonObject();
+		usuario.addProperty("Accion", accion);
+		
+		new DataOutputStream(jugadoresBatalla.get(jugadores.get(cliente)).getOutputStream()).writeUTF(usuario.toString());
 	}
 
 	private void enviarAOtrosQueJugadorSalio() throws IOException {

@@ -118,6 +118,7 @@ public class SeleccionMapa extends JFrame {
 
 				try {
 					enviarAccionDeCerrar();
+						
 				} catch (IOException e1) {
 
 					JOptionPane.showMessageDialog(null,"Error al cerrar","Error",JOptionPane.ERROR_MESSAGE);
@@ -125,6 +126,7 @@ public class SeleccionMapa extends JFrame {
 
 			}
 
+		
 
 		});
 	}

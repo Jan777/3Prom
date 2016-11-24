@@ -25,7 +25,7 @@ public class Conector {
 
 	public boolean validarUsuario(String nombre, int contrasena) throws SQLException {
 		conector.setAutoCommit(false);
-		sentencia = conector.prepareStatement("Select Count(*) from Usuario where nombre like ? AND contrasena=?");
+		sentencia = conector.prepareStatement("Select Count(*) from Usuario join Personaje on Usuario.nombre = Personaje.nombre where Usuario.nombre like ? AND contrasena=?");
 		sentencia.setString(1, nombre);
 		sentencia.setInt(2, contrasena);
 		ResultSet resultado = sentencia.executeQuery();
@@ -41,6 +41,7 @@ public class Conector {
 		sentencia = conector.prepareStatement("Select Count(*) from Usuario where nombre like ?");
 		sentencia.setString(1, nombre);
 		ResultSet resultado = sentencia.executeQuery();
+		
 		boolean devolver = resultado.next() && resultado.getInt(1) == 1;
 		sentencia.close();
 		conector.commit();

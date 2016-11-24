@@ -29,7 +29,6 @@ public class HiloAsignadorDeSocketBatalla implements Runnable{
 		try {
 			
 			buscarPersonaje();
-		
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
