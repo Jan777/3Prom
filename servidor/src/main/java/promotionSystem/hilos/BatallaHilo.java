@@ -11,7 +11,6 @@ import promotionSystem.Personaje;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.Socket;
 import java.util.*;
@@ -76,8 +75,6 @@ public class BatallaHilo extends Thread {
 		reasignarPersonajesAlMapa();*/
 	}
 
-
-
 	private void aumentarExperienciaDeLosGanadores() {
 		if(cantidadMuertesAlianza1 < alianza1.cantidadDePersonajes()){
 			for(Personaje personaje:alianza1.getPersonajes()){
@@ -87,12 +84,8 @@ public class BatallaHilo extends Thread {
 			for(Personaje personaje:alianza2.getPersonajes()){
 				personaje.subirExperiencia(subirExperienciaConMuertesDeAlianza1);
 			}
-			
 		}
-		
 	}
-
-
 
 	private void despuesDelTurno() {
 		if(!personajeEnemigo.estaVivo()){

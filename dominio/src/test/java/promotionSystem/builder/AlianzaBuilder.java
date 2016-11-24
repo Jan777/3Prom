@@ -20,7 +20,6 @@ public class AlianzaBuilder {
         	Personaje personaje=new GuerreroHumano();
         	personaje.setPosicion(INICIO_MAPA);
             personajes.add(personaje);
-            
         }
         return new Alianza(personajes);
     }
