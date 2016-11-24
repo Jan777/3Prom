@@ -85,12 +85,15 @@ public class Escuchador extends Thread {
 				personaje.subirExperiencia(experiencia);
 				//asignarPuntoAPersonaje(nombrePersonaje, punto);
 				personaje.sacarDeModoBatalla();
+				personaje.setSalud(salud);
+				personaje.setEnergia(personaje.getEnergiaMaxima());
 			}
 			else{
 				this.personaje.subirExperiencia(experiencia);
 				//this.personaje.setPosicion(punto);
 				this.personaje.setSalud(salud);
 				this.personaje.sacarDeModoBatalla();
+				this.personaje.setEnergia(this.personaje.getEnergiaMaxima());
 			}
 		}
 	}

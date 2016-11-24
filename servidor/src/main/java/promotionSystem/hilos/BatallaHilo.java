@@ -75,6 +75,7 @@ public class BatallaHilo extends Thread {
 			} 
 			
 			recuperarVidaABatallantes();
+			recuperarEnergiaABatallantes();
 			aumentarExperienciaDeLosGanadores();
 			reasignarPersonajesAlMapa();
 			Thread.sleep(1000);
@@ -88,6 +89,15 @@ public class BatallaHilo extends Thread {
 		tratarEntregaDeItems();
 		*/
 	}
+
+	private void recuperarEnergiaABatallantes() {
+		for(Personaje personaje: listaDePersonajes){
+			personaje.setEnergia(personaje.getEnergiaMaxima());
+		}
+		
+	}
+
+
 
 	private void reasignarPersonajesAlMapa() {
 		agregarPuntosIniciales();

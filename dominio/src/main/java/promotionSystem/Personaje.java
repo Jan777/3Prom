@@ -548,4 +548,8 @@ public abstract class Personaje implements Comparable<Personaje> {
 		this.nivel = nivel;
 	}
 
+	public int getEnergiaMaxima() {
+		return energiaMaxima;
+	}
+
 }
