@@ -51,6 +51,7 @@ public class JuegoPanel extends Component implements Runnable{
 		mapa 	 = new Mapa(nombreMapa,personajeJugableDibujo,camara, personajes,cliente);
 		thread 	 = new Thread(this);
 		Sonido.MAPAPOKEMON.loop();
+		
 		thread.start();
 	}
 
