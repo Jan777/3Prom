@@ -93,8 +93,6 @@ public class TilePersonaje {
 		if (mouse.getClickIzquierdo()) {
 			personajeClickeado = CoincideConOtroJugador();
 			if (personajeClickeado != null && !personajeClickeado.isEnBatalla() && alianzaEsValida()) {
-				abrirPopup();
-			if (personajeClickeado != null && alianzaEsValida()) {
 				abrirOpciones();
 			}
 			mouse.setClickIzquierdo(false);
