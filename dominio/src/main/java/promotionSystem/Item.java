@@ -8,6 +8,10 @@ public abstract class Item {
     protected int sumadorDeMagia = 0;
     protected int sumadorDeVelocidad = 0;
 
+    public Item(String nombreItem){
+        this.nombreItem = nombreItem;
+    }
+
     public Item(String nombreItem, String tipoDeItem){
         this.nombreItem = nombreItem;
         this.tipoDeItem = tipoDeItem;

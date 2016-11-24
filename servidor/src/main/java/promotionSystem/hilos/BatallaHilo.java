@@ -1,5 +1,7 @@
 package promotionSystem.hilos;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -7,6 +9,9 @@ import com.google.gson.JsonSyntaxException;
 import promotionSystem.Alianza;
 import promotionSystem.Item;
 import promotionSystem.Personaje;
+import promotionSystem.Punto;
+import promotionSystem.items.BotasFlober;
+import promotionSystem.mapa.Mapa;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -24,7 +29,7 @@ public class BatallaHilo extends Thread {
 	private HashMap<Personaje, Socket> socketAlianza2;
 	private int numeroDePersonajeAlQueLeCorrespondeElTurno;
 	private String accion;
-	private ArrayList<Item> pozoDeItems;
+	//private ArrayList<Item> pozoDeItems;
 	private ArrayList<Personaje> muertos;
 	private Personaje personajeActual;
 	private HashMap<Personaje, Socket> jugadoresBatalla;
@@ -37,13 +42,17 @@ public class BatallaHilo extends Thread {
 	private String hechizo;
 	private int subirExperienciaConMuertesDeAlianza1;
 	private int subirExperienciaConMuertesDeAlianza2;
-	public BatallaHilo(HashMap<Personaje, Socket> jugadoresBatalla, Alianza alianza1, Alianza alianza2) {
+	private ArrayList<Punto> puntosIniciales;
+	private ArrayList<Socket> jugadoresPorMapa;
+	
+	public BatallaHilo(HashMap<Personaje, Socket> jugadoresBatalla, Alianza alianza1, Alianza alianza2, ArrayList<Socket> arrayList) {
 		this.alianza1 = alianza1;
 		this.alianza2 = alianza2;
 		this.jugadoresBatalla=jugadoresBatalla;
 		 cantidadMuertesAlianza1 = 0;
 		 cantidadMuertesAlianza2 = 0;
 		 muertos=new ArrayList<>();
+		 this.jugadoresPorMapa = arrayList;
 	}
 
 
@@ -66,14 +75,94 @@ public class BatallaHilo extends Thread {
 				despuesDelTurno();
 			} 
 			
+			recuperarVidaABatallantes();
 			aumentarExperienciaDeLosGanadores();
+			reasignarPersonajesAlMapa();
+			Thread.sleep(1000);
+			informarDatosAlResto();
+			//entregarItemsAGanadores();
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 		} 
 	/*	revisarSiAlgunPersonajeMurioYEnEseCasoSacarleLosItems();
 		tratarEntregaDeItems();
-		reasignarPersonajesAlMapa();*/
+		*/
+	}
+
+	private void reasignarPersonajesAlMapa() {
+		agregarPuntosIniciales();
+		Random random = new Random();
+		for(Personaje batallante : muertos){
+			int randomNumero = random.nextInt(puntosIniciales.size());
+			Punto puntoInicial = puntosIniciales.get(randomNumero);
+			batallante.setPosicion(puntoInicial);
+		}
+	}
+
+	private void agregarPuntosIniciales() {
+		puntosIniciales = new ArrayList<>();
+		puntosIniciales.add(new Punto(1, 1));
+		puntosIniciales.add(new Punto(10, 10));
+		puntosIniciales.add(new Punto(20, 20));
+		puntosIniciales.add(new Punto(30, 30));
+		puntosIniciales.add(new Punto(40, 40));
+	}
+
+	//FIXME arreglar esto que esta feo
+	private void entregarItemsAGanadores() {
+		//ArrayList<String> items = {"BotasFlober", "CascoAdamantium"}
+		if(cantidadMuertesAlianza1 < alianza1.cantidadDePersonajes()){
+			Iterator<Personaje> iterador = alianza1.getPersonajes().iterator();
+			while(iterador.hasNext()){
+				Personaje personaje = iterador.next();
+				//personaje.agregarAInventario();
+			}
+		}
+	}
+
+	private void informarDatosAlResto() throws IOException {
+		JsonObject mensaje = new JsonObject();
+		mensaje.addProperty("Accion", "recibirResultadoDeBatalla");
+		JsonArray personajes = new JsonArray();
+		
+		for(Personaje participante : listaDePersonajes){
+			JsonObject personaje = new JsonObject();
+			personaje.addProperty("nombre", participante.getNombre());
+			if(cantidadMuertesAlianza1 < alianza1.cantidadDePersonajes()){
+				if(alianza1.getPersonajes().contains(participante)){
+					personaje.addProperty("experienciaGanada", subirExperienciaConMuertesDeAlianza2);
+				}
+				else{
+					personaje.addProperty("experienciaGanada", 0);
+				}	
+			}
+			else{
+				if(alianza2.getPersonajes().contains(participante)){
+					personaje.addProperty("experienciaGanada", subirExperienciaConMuertesDeAlianza1);
+				}
+				else{
+					personaje.addProperty("experienciaGanada", 0);
+				}
+			}
+			personaje.addProperty("x", participante.getPosicion().getX());
+			personaje.addProperty("y", participante.getPosicion().getY());
+			personaje.addProperty("salud", participante.getSalud());
+			personajes.add(personaje);
+		}
+		for(Socket cliente : jugadoresPorMapa){
+			DataOutputStream salidaJugador = new DataOutputStream(cliente.getOutputStream());
+			salidaJugador.writeUTF(mensaje.toString());
+			salidaJugador.writeUTF(personajes.toString());
+		}
+	}
+
+
+
+	private void recuperarVidaABatallantes() {
+		for(Personaje muerto : muertos){
+			muerto.setSalud(muerto.getSaludMaxima());
+		}
 	}
 
 
@@ -118,7 +207,7 @@ public class BatallaHilo extends Thread {
 			Personaje personajeActual = iteratorPersonajes.next();
 			if (!personajeActual.estaVivo()) {
 				muertos.add(personajeActual);
-				pozoDeItems.addAll(personajeActual.getItems());//FIXME se le saca uno solo.
+				//pozoDeItems.addAll(personajeActual.getItems());//FIXME se le saca uno solo.
 			}
 		}
 	}

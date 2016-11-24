@@ -74,6 +74,7 @@ public class Mapa {
 		this.camara = camara;
 		this.personajes = personajes;
 		this.cliente=cliente;
+		this.pj.setMapa(this);
 		otrosJugadores = cliente.getTiles();
 		Scanner sc = null;
 		try {
@@ -301,5 +302,7 @@ public class Mapa {
 //			jugador.actualizar();
 		}
 	}
+	
+	
 
 }

@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import promotionSystem.hilos.Escuchador;
 import promotionSystem.hilos.EscuchadorBatalla;
 import promotionSystem.juego.TileOtrosJugadores;
+import promotionSystem.mapagrafico.TilePersonaje;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -43,6 +44,7 @@ public class Cliente {
 	private String atacado;
 	private String hechizo;
 	private boolean ataqueConMagia;
+	private TilePersonaje tile;
 
 	public Cliente() throws Exception {
 	
@@ -52,7 +54,6 @@ public class Cliente {
 			entrada = new DataInputStream(cliente.getInputStream());
 			jugadoresEnPartida = new ArrayList<Personaje>();
 			tilesOtrosJugadores=new ArrayList<>();
-		
 	}
 
 	private Personaje crearPersonaje() throws Exception {
@@ -310,7 +311,7 @@ public class Cliente {
 	}
 
 	public void crearHiloEscuchadorBatalla() throws IOException {
-		new EscuchadorBatalla(this).start();
+		new EscuchadorBatalla(this, jugadoresEnPartida).start();
 	}
 
 	public Socket getSocketBatalla() {
@@ -380,6 +381,14 @@ public class Cliente {
 
 	public String getHechizo() {
 		return hechizo;
+	}
+
+	public TilePersonaje getTile() {
+		return tile;
+	}
+
+	public void setTile(TilePersonaje tile) {
+		this.tile = tile;
 	}
 
 }

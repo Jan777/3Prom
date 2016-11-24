@@ -48,7 +48,7 @@ public class Batalla extends JFrame implements Runnable{
 	private int experienciaSumada;
 	
 	public Batalla(Cliente cliente) {
-		Sonido.BATALLAPOKEMON.loop();
+		//Sonido.BATALLAPOKEMON.loop();
 		this.alianzaEnemiga=cliente.getAlianzaEnemiga().getPersonajes();
 		this.alianzaAmiga=cliente.getAlianzaAmiga().getPersonajes();
 		this.cliente = cliente;
@@ -263,22 +263,22 @@ public class Batalla extends JFrame implements Runnable{
 					 cliente.setAtaqueConMagia(false);
 				 }
 			}
+
 			if(cantidadMuertesAlianzaAmiga == cliente.getAlianzaAmiga().getPersonajes().size()){
 				JOptionPane.showMessageDialog(null,"Has perdido!","Fin de batalla",JOptionPane.INFORMATION_MESSAGE);
-			}else{
-				cliente.getPersonaje().subirExperiencia(experienciaSumada);
+			}
+			else{
 				JOptionPane.showMessageDialog(null,"Has Ganado!","Fin de batalla",JOptionPane.INFORMATION_MESSAGE);
 			}
 			Sonido.BATALLAPOKEMON.stop();
-			Sonido.MAPAPOKEMON.loop();
+			//Sonido.MAPAPOKEMON.loop();
 			dispose();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 	}
-	
-	
+
 	private void realizarAtaqueConMagia() {
 		Personaje atacante = obtenerPersonajeAPartirDelNombreEnAlgunaAlianza(cliente.getAtacante());
 		Personaje atacado = obtenerPersonajeAPartirDelNombreEnAlgunaAlianza(cliente.getAtacado());

@@ -8,7 +8,10 @@ import promotionSystem.Cliente;
 import promotionSystem.Personaje;
 import promotionSystem.Punto;
 import promotionSystem.juego.TileOtrosJugadores;
+import promotionSystem.mapagrafico.TilePersonaje;
 
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -61,6 +64,35 @@ public class Escuchador extends Thread {
 			e.printStackTrace();
 		}
 
+	}
+	
+	public void recibirResultadoDeBatalla() throws Exception{
+		JsonParser parser = new JsonParser();
+		JsonArray listaDePersonajesActualizados = parser.parse(entrada.readUTF()).getAsJsonArray();
+		Type tipoPersonajeActualizado = new TypeToken<ArrayList<JsonObject>>() {}.getType();
+		ArrayList<JsonObject> elemento = new Gson().fromJson(listaDePersonajesActualizados, tipoPersonajeActualizado);
+		//parsear
+		Iterator<JsonObject> iterador = elemento.iterator();
+		while(iterador.hasNext()){
+			JsonObject objeto = iterador.next();
+			//System.out.println("nombre:"+" "+objeto.get("nombre").getAsString()+" "+"experiencia:"+" "+objeto.get("experienciaGanada").getAsInt()+" "+objeto.get("x").getAsInt()+" "+objeto.get("y").getAsInt()+" "+"salud:"+" "+objeto.get("salud").getAsInt());
+			String nombrePersonaje = objeto.get("nombre").getAsString();
+			Personaje personaje = buscarPersonajePorNombre(nombrePersonaje);
+			int experiencia = objeto.get("experienciaGanada").getAsInt();
+			Punto punto = new Punto(objeto.get("x").getAsInt(), objeto.get("y").getAsInt());
+			int salud = objeto.get("salud").getAsInt();
+			if(personaje!=null){
+				personaje.subirExperiencia(experiencia);
+				//asignarPuntoAPersonaje(nombrePersonaje, punto);
+				personaje.sacarDeModoBatalla();
+			}
+			else{
+				this.personaje.subirExperiencia(experiencia);
+				//this.personaje.setPosicion(punto);
+				this.personaje.setSalud(salud);
+				this.personaje.sacarDeModoBatalla();
+			}
+		}
 	}
 
 	public String recibirAccion() throws IOException {

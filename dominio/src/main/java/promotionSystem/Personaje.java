@@ -531,6 +531,14 @@ public abstract class Personaje implements Comparable<Personaje> {
 	public void ponerEnModoBatalla() {
 		enBatalla = true;
 	}
+	
+	public void sacarDeModoBatalla() {
+		enBatalla = false;
+	}
+	
+	public boolean isEnBatalla() {
+		return enBatalla;
+	}
 
 	public Set<String> getHechizos() {
 		return hechizos.keySet();

@@ -33,7 +33,6 @@ public class ServidorHilo extends Thread {
 	private Socket invitado;
 	private Socket invitador;
 	private HashMap<Personaje, Socket> jugadoresBatalla;
-
 	private int indiceDeAlianzas;
 	private Set<Alianza> alianzas;
 	
@@ -455,7 +454,7 @@ public class ServidorHilo extends Thread {
 //
 		enviarNotificacionDeBatallaATodos(aliados, enemigos);
 	
-		new BatallaHilo(jugadoresBatalla, aliados, enemigos).start();
+		new BatallaHilo(jugadoresBatalla, aliados, enemigos, jugadoresPorMapa.get(mapa)).start();
 		// subirStats();
 	}
 

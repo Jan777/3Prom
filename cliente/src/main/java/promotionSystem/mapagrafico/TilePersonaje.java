@@ -5,6 +5,7 @@ import promotionSystem.Personaje;
 import promotionSystem.Punto;
 import promotionSystem.interfazGrafica.Batalla;
 import promotionSystem.juego.Camara;
+import promotionSystem.juego.JuegoPanel;
 import promotionSystem.juego.Mouse;
 import promotionSystem.juego.Sonido;
 import promotionSystem.juego.TileOtrosJugadores;
@@ -46,8 +47,8 @@ public class TilePersonaje {
 	private Cliente cliente;
 	private JPopupMenu popup;
 	private Personaje personajeClickeado;
-
-
+	private Mapa mapa;
+	
 	public TilePersonaje(Cliente cliente,Mouse mouse,Camara camara) {
 		this.cliente=cliente;
 		this.xCentro = 320;
@@ -61,7 +62,6 @@ public class TilePersonaje {
 		this.xInicio = this.xDestino = -cliente.getPersonaje().getPosicion().getX();  
 		this.yInicio = this.yDestino =  -cliente.getPersonaje().getPosicion().getY(); 
 		this.mouse = mouse;
-
 		inicializarAnimaciones("RecursosPersonaje/Razas/" + cliente.getCasta() + "/" + cliente.getCasta() + ".png");
 
 		this.nuevoRecorrido = false;
@@ -134,7 +134,7 @@ public class TilePersonaje {
 
 		if (mouse.getClickIzquierdo()) {
 			personajeClickeado = CoincideConOtroJugador();
-			if (personajeClickeado != null && alianzaEsValida()) {
+			if (personajeClickeado != null && !personajeClickeado.isEnBatalla() && alianzaEsValida()) {
 				abrirPopup();
 			}
 			mouse.setClickIzquierdo(false);
@@ -314,16 +314,16 @@ public class TilePersonaje {
 		parado = true;
 	}
 
-	public int getXCentro() {
-		return xCentro;
-	}
-
-	public int getYCentro() {
-		return yCentro;
-	}
-
 	public String getNombre() {
 		return personajeJugable.getNombre();
+	}
+
+	public void setMapa(Mapa mapa) {
+		this.mapa = mapa;
+	}
+
+	public Mapa getMapa() {
+		return mapa;
 	}
 
 }

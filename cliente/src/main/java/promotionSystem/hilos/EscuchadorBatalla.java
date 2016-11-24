@@ -6,11 +6,20 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.reflect.Method;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.Iterator;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
 
 import promotionSystem.Cliente;
+import promotionSystem.Personaje;
+import promotionSystem.Punto;
 
 public class EscuchadorBatalla extends Thread {
 	private boolean continuar=true;
@@ -18,8 +27,9 @@ public class EscuchadorBatalla extends Thread {
 	private  DataOutputStream salidaBatalla;
 	private  DataInputStream entradaBatalla;
 	
-	public EscuchadorBatalla(Cliente cliente) throws IOException {
+	public EscuchadorBatalla(Cliente cliente, ArrayList<Personaje> jugadoresEnPartida) throws IOException {
 		this.cliente=cliente;
+		this.cliente.getPersonaje().ponerEnModoBatalla();
 		this.entradaBatalla=new DataInputStream(cliente.getSocketBatalla().getInputStream());
 		this.salidaBatalla=new DataOutputStream(cliente.getSocketBatalla().getOutputStream());
 	}
@@ -61,7 +71,6 @@ public class EscuchadorBatalla extends Thread {
 			JsonElement ataque = recibirObjetoJson();
 			cliente.setAtacante(ataque.getAsJsonObject().get("atacante").getAsString());
 			cliente.setAtacado(ataque.getAsJsonObject().get("atacado").getAsString());
-			
 			cliente.setAtaque(true);
 		
 
