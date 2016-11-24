@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
+import javax.swing.JOptionPane;
+
 public class HiloCreadorServidor extends Thread {
 	private Conector conector;
 	private Socket cliente;
@@ -39,7 +41,8 @@ public class HiloCreadorServidor extends Thread {
 		try {
 			new ServidorHilo(cliente, jugadores, jugadoresPorMapa, mapasDisponibles, conector,jugadoresBatalla, indiceDeAlianzas, alianzas).start();
 		} catch (IOException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null,"Error al crear conexion con personaje","Error",JOptionPane.ERROR_MESSAGE);
+			System.exit(0);
 		}
 	}
 

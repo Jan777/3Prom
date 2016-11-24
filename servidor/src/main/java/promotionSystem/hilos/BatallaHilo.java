@@ -20,6 +20,8 @@ import java.lang.reflect.Method;
 import java.net.Socket;
 import java.util.*;
 
+import javax.swing.JOptionPane;
+
 public class BatallaHilo extends Thread {
 	private Alianza alianza1;
 	private Alianza alianza2;
@@ -66,9 +68,7 @@ public class BatallaHilo extends Thread {
 		try {
 			while (cantidadMuertesAlianza1 < alianza1.cantidadDePersonajes()
 					&& cantidadMuertesAlianza2 < alianza2.cantidadDePersonajes()) {
-
 				darTurno();
-				System.out.println("turno para: "+ personajeActual.getNombre());
 				recibirAccionPersonaje();
 				realizarAccion();
 				despuesDelTurno();
@@ -83,11 +83,10 @@ public class BatallaHilo extends Thread {
 			//entregarItemsAGanadores();
 		}
 		catch (Exception e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null,"Error en la batalla","Error",JOptionPane.ERROR_MESSAGE);
+			System.exit(0);
 		} 
-	/*	revisarSiAlgunPersonajeMurioYEnEseCasoSacarleLosItems();
-		tratarEntregaDeItems();
-		*/
+
 	}
 
 	private void recuperarEnergiaABatallantes() {

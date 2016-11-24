@@ -120,7 +120,7 @@ public class Batalla extends JFrame implements Runnable{
 				try {
 					enviarAccionDeCerrar();
 				} catch (IOException e1) {
-					JOptionPane.showMessageDialog(null, "ERROR!");
+					JOptionPane.showMessageDialog(null,"Error al cerrar la batalla" ,"ERROR!",JOptionPane.ERROR_MESSAGE);
 				}
 
 			}
@@ -272,7 +272,8 @@ public class Batalla extends JFrame implements Runnable{
 			//Sonido.MAPAPOKEMON.loop();
 			dispose();
 		} catch (Exception e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null,"Error en la batalla" ,"ERROR!",JOptionPane.ERROR_MESSAGE);
+			System.exit(0);
 		}
 
 	}

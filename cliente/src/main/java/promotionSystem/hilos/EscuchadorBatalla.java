@@ -10,6 +10,8 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import javax.swing.JOptionPane;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -45,7 +47,8 @@ public class EscuchadorBatalla extends Thread {
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null,"Hubo un problema en la comunicacion con el Servidor","Error",JOptionPane.ERROR_MESSAGE);			
+			System.exit(MAX_PRIORITY);
 		}
 	}
 

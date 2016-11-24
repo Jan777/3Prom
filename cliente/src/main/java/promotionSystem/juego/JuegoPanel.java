@@ -74,8 +74,8 @@ public class JuegoPanel extends Component implements Runnable{
 					repaint();
 					delta--;
 				} catch (Exception e) {
-			
-					e.printStackTrace();
+					JOptionPane.showMessageDialog(null,"Error al actualizar Mapa","Error",JOptionPane.ERROR_MESSAGE);
+					System.exit(0);
 				}
 				
 			}

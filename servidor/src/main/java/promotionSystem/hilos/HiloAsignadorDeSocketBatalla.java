@@ -6,6 +6,8 @@ import java.net.Socket;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import javax.swing.JOptionPane;
+
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
@@ -30,7 +32,8 @@ public class HiloAsignadorDeSocketBatalla implements Runnable{
 			
 			buscarPersonaje();
 		} catch (IOException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null,"Error al buscar personaje","Error",JOptionPane.ERROR_MESSAGE);
+			System.exit(0);
 		}
 		
 	}

@@ -5,6 +5,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
 
+import javax.swing.JOptionPane;
+
 import promotionSystem.Personaje;
 
 public class HiloBatalla extends Thread {
@@ -25,7 +27,8 @@ public class HiloBatalla extends Thread {
 		try {
 			aceptarClientes();
 		} catch (IOException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null,"Error al aceptar clientes","Error",JOptionPane.ERROR_MESSAGE);
+			System.exit(0);
 		}
 	}
 

@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 public class Escuchador extends Thread {
 	private Socket socketCliente;
 	private String nombre;
@@ -61,7 +63,8 @@ public class Escuchador extends Thread {
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null,"Hubo un problema en la comunicacion con el Servidor","Error",JOptionPane.ERROR_MESSAGE);
+			System.exit(MAX_PRIORITY);
 		}
 
 	}

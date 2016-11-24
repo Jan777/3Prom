@@ -61,7 +61,7 @@ public class SeleccionMapa extends JFrame {
 				} catch (IOException e1) {
 
 					JOptionPane.showMessageDialog(null,"Error al abrir la partida","Error",JOptionPane.ERROR_MESSAGE);
-					dispose();
+					System.exit(0);
 				}
 			}
 
@@ -122,6 +122,7 @@ public class SeleccionMapa extends JFrame {
 				} catch (IOException e1) {
 
 					JOptionPane.showMessageDialog(null,"Error al cerrar","Error",JOptionPane.ERROR_MESSAGE);
+					System.exit(0);
 				}
 
 			}

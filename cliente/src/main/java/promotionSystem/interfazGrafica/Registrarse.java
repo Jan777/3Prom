@@ -84,7 +84,7 @@ class LaminaCentralR extends JPanel {
 					}
 				} catch (Exception e) {
 					JOptionPane.showMessageDialog(null,"Error en el proceso de registracion","Error",JOptionPane.ERROR_MESSAGE);
-					cerrarFrame();
+					System.exit(0);
 				}
 			}
 

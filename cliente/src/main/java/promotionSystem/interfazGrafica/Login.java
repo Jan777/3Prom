@@ -26,7 +26,7 @@ public class Login extends JFrame {
 					try {
 						enviarAccionDeCerrar();
 					} catch (IOException e1) {
-						JOptionPane.showMessageDialog(null, "ERROR!");
+						JOptionPane.showMessageDialog(null,"Error al cerrar el login" ,"ERROR!",JOptionPane.ERROR_MESSAGE);
 					}
 
 				}
@@ -169,7 +169,7 @@ class LaminaLoginCentral extends JPanel implements KeyListener {
 			}
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null,"Error al iniciar sesion","Error",JOptionPane.ERROR_MESSAGE);
-			frame.dispose();
+			System.exit(0);
 		}
 	}
 
@@ -301,8 +301,8 @@ class LaminaLoginSur extends JPanel {
 				try {
 					enviarAccionDeCerrar();
 				} catch (IOException e) {
-					
-					cerrarFrame();
+					JOptionPane.showMessageDialog(null,"Error al iniciar sesion","Error",JOptionPane.ERROR_MESSAGE);
+					System.exit(0);
 				}
 				cerrarFrame();
 			}

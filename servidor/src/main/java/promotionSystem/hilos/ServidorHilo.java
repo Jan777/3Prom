@@ -15,6 +15,8 @@ import java.net.Socket;
 import java.sql.SQLException;
 import java.util.*;
 
+import javax.swing.JOptionPane;
+
 public class ServidorHilo extends Thread {
 	private Socket cliente;
 	private boolean continuar = true;
@@ -70,7 +72,8 @@ public class ServidorHilo extends Thread {
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null,"Error en la comunicacion con el cliente","Error",JOptionPane.ERROR_MESSAGE);
+			System.exit(0);
 		}
 
 	}
@@ -255,7 +258,7 @@ public class ServidorHilo extends Thread {
 
 	}
 
-	public void login() {
+	public void login() throws IOException, Exception {
 		loguearJugador();
 	}
 
@@ -283,17 +286,15 @@ public class ServidorHilo extends Thread {
 		return elemento.getAsJsonObject().get("Accion").getAsString();
 	}
 
-	private void loguearJugador() {
-		try {
+	private void loguearJugador() throws IOException, Exception {
+	
 			if (validarContraseña() && !estaLogueado()) {
 				salida.writeUTF("true");
 
 			} else {
 				salida.writeUTF("false");
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		
 	}
 
 	private boolean estaLogueado() {

@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
+import javax.swing.JOptionPane;
+
 import promotionSystem.Alianza;
 import promotionSystem.Conector;
 import promotionSystem.Personaje;
@@ -41,8 +43,8 @@ public class HiloJuego extends Thread {
 			try {
 				aceptarClientes();
 			} catch (IOException e) {
-				
-				e.printStackTrace();
+				JOptionPane.showMessageDialog(null,"Error al aceptar clientes","Error",JOptionPane.ERROR_MESSAGE);
+				System.exit(0);
 			}
 		}
 		

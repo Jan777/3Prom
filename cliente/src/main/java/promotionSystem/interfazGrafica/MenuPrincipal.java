@@ -43,7 +43,7 @@ public class MenuPrincipal extends JFrame {
 					abrirSeleccionDeMapa();
 				} catch (IOException e1) {
 					JOptionPane.showMessageDialog(null,"Error al abrir el menu","Error",JOptionPane.ERROR_MESSAGE);
-					dispose();
+					System.exit(0);
 				}
 				
 			}
@@ -58,7 +58,6 @@ public class MenuPrincipal extends JFrame {
 				try {
 					enviarAccionDeCerrar();
 				} catch (IOException e) {
-					
 					JOptionPane.showMessageDialog(null,"Error al salir","Error",JOptionPane.ERROR_MESSAGE);
 				}
 				dispose();
@@ -101,7 +100,6 @@ public class MenuPrincipal extends JFrame {
 				try {
 					enviarAccionDeCerrar();
 				} catch (IOException e1) {
-					
 					JOptionPane.showMessageDialog(null,"Error al cerrar","Error",JOptionPane.ERROR_MESSAGE);
 				}
 				dispose();

@@ -10,6 +10,7 @@ import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -44,7 +45,8 @@ public class Opciones extends JFrame{
 					dispose();
 				} catch (IOException e1) {
 					
-					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null,"Error al enviar Alianza","Error",JOptionPane.ERROR_MESSAGE);
+					System.exit(0);
 				}
 				
 			}
@@ -65,7 +67,8 @@ public class Opciones extends JFrame{
 					
 				} catch (IOException e1) {
 					
-					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null,"Error al enviar Batalla","Error",JOptionPane.ERROR_MESSAGE);
+					System.exit(0);
 				}
 				
 			}
