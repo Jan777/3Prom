@@ -3,6 +3,7 @@ package promotionSystem.juego;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.IOException;
@@ -18,27 +19,10 @@ import promotionSystem.Personaje;
 public class Opciones extends JFrame{
 	private JPanel contentPane;
 	private Personaje personajeClickeado;
+	private Cliente cliente;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-				//	Opciones frame = new Opciones();
-					
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public Opciones(Cliente cliente) {
+		this.cliente=cliente;
 		
 		setResizable(false);
 		setVisible(false);
@@ -56,7 +40,8 @@ public class Opciones extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					cliente.enviarInvitacionAAlianza(personajeClickeado);
+					enviarAlianza();
+					dispose();
 				} catch (IOException e1) {
 					
 					e1.printStackTrace();
@@ -75,7 +60,8 @@ public class Opciones extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					cliente.enviarNotificacionDeBatalla(personajeClickeado);
+					enviarBatalla();
+					dispose();
 					
 				} catch (IOException e1) {
 					
@@ -94,33 +80,13 @@ public class Opciones extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 			
-				dispose();
-			
-				
+				dispose();	
 			}
 			
 		});
 		contentPane.add(cancelar);
 		
-		addWindowListener(new WindowListener(){
-
-			@Override
-			public void windowActivated(WindowEvent arg0) {
-				
-				
-			}
-
-			@Override
-			public void windowClosed(WindowEvent arg0) {
-			
-				
-			}
-
-			@Override
-			public void windowClosing(WindowEvent arg0) {
-				
-				
-			}
+		addWindowListener(new WindowAdapter(){
 
 			@Override
 			public void windowDeactivated(WindowEvent arg0) {
@@ -128,24 +94,6 @@ public class Opciones extends JFrame{
 				dispose();
 			}
 
-			@Override
-			public void windowDeiconified(WindowEvent arg0) {
-				
-				
-			}
-
-			@Override
-			public void windowIconified(WindowEvent arg0) {
-				
-				
-			}
-
-			@Override
-			public void windowOpened(WindowEvent arg0) {
-				
-				
-			}
-			
 		});
 	}
 
@@ -155,6 +103,14 @@ public class Opciones extends JFrame{
 
 	public void setPersonajeClickeado(Personaje personajeClickeado) {
 		this.personajeClickeado = personajeClickeado;
+	}
+
+	private void enviarAlianza() throws IOException {
+		cliente.enviarInvitacionAAlianza(personajeClickeado);
+	}
+
+	private void enviarBatalla() throws IOException {
+		cliente.enviarNotificacionDeBatalla(personajeClickeado);
 	}
 
 
