@@ -6,6 +6,7 @@ import promotionSystem.Punto;
 import promotionSystem.interfazGrafica.Batalla;
 import promotionSystem.juego.Camara;
 import promotionSystem.juego.Mouse;
+import promotionSystem.juego.Opciones;
 import promotionSystem.juego.Sonido;
 import promotionSystem.juego.TileOtrosJugadores;
 import promotionSystem.sprites.Animacion;
@@ -46,6 +47,7 @@ public class TilePersonaje {
 	private Cliente cliente;
 	private JPopupMenu popup;
 	private Personaje personajeClickeado;
+	private Opciones opciones;
 
 
 	public TilePersonaje(Cliente cliente,Mouse mouse,Camara camara) {
@@ -53,7 +55,7 @@ public class TilePersonaje {
 		this.xCentro = 320;
 		this.yCentro = 320;
 
-		incializarPopup();
+		incializarOpciones();
 		this.camara = camara;
 		this.movimiento = 0;
 		this.personajeJugable = cliente.getPersonaje();
@@ -68,55 +70,9 @@ public class TilePersonaje {
 
 	}
 
-	private void incializarPopup() {
-		popup = new JPopupMenu();
-		JMenuItem seleccionarBatalla = new JMenuItem("Seleccionar Batalla");
-		popup.add(seleccionarBatalla);	
+	private void incializarOpciones() {
+		opciones =new Opciones (cliente);
 		
-		
-		seleccionarBatalla.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				try {
-					cliente.enviarNotificacionDeBatalla(personajeClickeado);
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-				popup.transferFocus();
-				popup.setVisible(false);
-			}
-		});
-	
-		
-		JMenuItem solicitarAlianza = new JMenuItem("Solicitar Alianza");
-		popup.add(solicitarAlianza);
-
-		solicitarAlianza.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				try {
-					cliente.enviarInvitacionAAlianza(personajeClickeado);
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-				popup.setVisible(false);
-
-			}
-		});
-		
-		JMenuItem cancelar = new JMenuItem("Cancelar");
-		popup.add(cancelar);
-		
-		cancelar.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {			
-				popup.transferFocus();
-				popup.setVisible(false);
-
-			}
-		});
-			
 	
 	}
 
@@ -135,7 +91,7 @@ public class TilePersonaje {
 		if (mouse.getClickIzquierdo()) {
 			personajeClickeado = CoincideConOtroJugador();
 			if (personajeClickeado != null && alianzaEsValida()) {
-				abrirPopup();
+				abrirOpciones();
 			}
 			mouse.setClickIzquierdo(false);
 		}
@@ -195,10 +151,11 @@ public class TilePersonaje {
 		return null;
 	}
 
-	private void abrirPopup() {
-
-		popup.setLocation(xCentro, yCentro);
-		popup.setVisible(true);
+	private void abrirOpciones() {
+		opciones.setPersonajeClickeado(personajeClickeado); 
+        opciones.setLocation(xCentro, yDestino);
+        opciones.setVisible(true);
+		
 	}
 
 	private Personaje CoincideConOtroJugador() {
