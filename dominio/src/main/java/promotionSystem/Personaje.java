@@ -47,7 +47,7 @@ public abstract class Personaje implements Comparable<Personaje> {
 
     public final void atacar(Personaje atacado) {
 		if (puedeAtacar()) {
-			int puntosARestar = calcularPuntosDeAtaque() - atacado.calcularPuntosDeDefensa();
+			int puntosARestar = calcularPuntosDeAtaque() - atacado.calcularPuntosDeDefensa()<0?0:calcularPuntosDeAtaque() - atacado.calcularPuntosDeDefensa();
 			atacado.serAtacado(puntosARestar < 0 ? 0 : puntosARestar);
 			energia -= calcularPuntosDeAtaque();
 			despuesDeAtacar();
@@ -56,7 +56,7 @@ public abstract class Personaje implements Comparable<Personaje> {
 
 	public void atacarConMagia(Personaje atacado, String conjuro) {
 		if (puedeAtacarConMagia()) {
-			int puntosARestar = calcularPuntosDeMagia() - atacado.calcularPuntosDeDefensa();
+			int puntosARestar = calcularPuntosDeMagia() - atacado.calcularPuntosDeDefensa()<0?0:calcularPuntosDeMagia() - atacado.calcularPuntosDeDefensa();
 			hechizar(conjuro, atacado, puntosARestar);
 			energia -= calcularPuntosDeMagia();
 			despuesDeAtacar();

@@ -178,7 +178,7 @@ public class Escuchador extends Thread {
 		return personaje;
 	}
 
-	public Personaje crearPersonajeAPartirDeRazaCasta(String asString, String asString2)
+	public Personaje crearPersonajeAPartirDeRazaCasta(String raza, String casta)
 			throws InstantiationException, IllegalAccessException, ClassNotFoundException {
 		return (Personaje) Class.forName("promotionSystem.razas.castas." + raza + "." + casta).newInstance();
 	}

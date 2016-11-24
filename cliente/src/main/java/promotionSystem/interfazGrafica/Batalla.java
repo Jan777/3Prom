@@ -5,7 +5,7 @@ import promotionSystem.Personaje;
 import promotionSystem.Punto;
 import promotionSystem.juego.Sonido;
 import promotionSystem.sprites.CargaImagen;
-
+import promotionSystem.razas.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
@@ -254,7 +254,7 @@ public class Batalla extends JFrame implements Runnable{
 					repaint();		
 					cliente.setAtaque(false);
 				}					
-				 
+				 Thread.sleep(10);
 				 if(cliente.getAtaqueConMagia()){
 					 realizarAtaqueConMagia();
 					 repaint();
@@ -280,6 +280,7 @@ public class Batalla extends JFrame implements Runnable{
 	private void realizarAtaqueConMagia() {
 		Personaje atacante = obtenerPersonajeAPartirDelNombreEnAlgunaAlianza(cliente.getAtacante());
 		Personaje atacado = obtenerPersonajeAPartirDelNombreEnAlgunaAlianza(cliente.getAtacado());
+	
 		atacante.atacarConMagia(atacado,cliente.getHechizo());
 		determinarMuerte(atacado);
 		
@@ -368,8 +369,13 @@ public class Batalla extends JFrame implements Runnable{
 		Personaje personajeAtacado = obtenerPersonajeAPartirDelNombre(nombreObjetivo);
 		cliente.getPersonaje().atacarConMagia(personajeAtacado,hechizo);
 		enviarAccionDeBatalla(movimiento.toLowerCase());
-		enviarObjetivo();
+		enviarObjetivoHechizo();
 		determinarMuerte(personajeAtacado);
+	}
+
+	private void enviarObjetivoHechizo() throws IOException {
+		cliente.enviarPersonajeHechizado(nombreObjetivo,hechizo);
+		
 	}
 
 	private void enviarAtacar() throws IOException {
@@ -383,7 +389,7 @@ public class Batalla extends JFrame implements Runnable{
 	}
 
 	private void enviarObjetivo() throws IOException {
-		cliente.enviarPersonajeHechizado(nombreObjetivo,hechizo);
+		cliente.enviarPersonajeAtacado(nombreObjetivo);
 	}
 
 	private Personaje obtenerPersonajeAPartirDelNombre(String nombreObjetivo) {

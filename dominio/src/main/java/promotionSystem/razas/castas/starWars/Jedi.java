@@ -11,7 +11,7 @@ import java.util.HashMap;
 public class Jedi extends PersonajeDeStarWars{
 	
 	public Jedi(){
-
+		casta="Jedi";
 		energia=Constantes.ENERGIA_JEDI;
 		energiaMaxima=Constantes.ENERGIA_MAXIMA_JEDI;
 		salud=Constantes.SALUD_JEDI;
