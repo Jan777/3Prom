@@ -3,6 +3,10 @@ package promotionSystem;
 import com.google.gson.JsonArray;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import static promotionSystem.sprites.Sprite.personaje;
 
 public class Conector {
 	private Connection conector;
@@ -193,12 +197,26 @@ public class Conector {
 	}
 
 	public void actualizarPersonaje(Personaje personaje) throws SQLException {
-		  conector.setAutoCommit(false);
-		 sentencia = conector.prepareStatement("Update Personaje set nivel=? where nombre like ?");
-	     sentencia.setInt(1,personaje.getNivel());
-	     sentencia.setString(2,personaje.getNombre()); 
-	     sentencia.executeUpdate();
-	     sentencia.close();
-	     conector.commit();
+		conector.setAutoCommit(false);
+		sentencia = conector.prepareStatement("Update Personaje set nivel=? where nombre like ?");
+		sentencia.setInt(1,personaje.getNivel());
+		sentencia.setString(2,personaje.getNombre());
+		sentencia.executeUpdate();
+		sentencia.close();
+		conector.commit();
+	}
+
+	public List<String> obtenerItem() throws SQLException {
+		conector.setAutoCommit(false);
+		sentencia = conector.prepareStatement("SELECT nombre FROM Item");
+		ResultSet resultado = sentencia.executeQuery();
+		List<String> items = new ArrayList<>();
+		while(resultado.next()){
+			items.add(resultado.getString("nombre"));
+		}
+		sentencia.close();
+		conector.commit();
+
+		return items;
 	}
 }

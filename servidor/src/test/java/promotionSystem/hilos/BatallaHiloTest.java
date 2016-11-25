@@ -56,6 +56,10 @@ public class BatallaHiloTest {
         assertEquals(5, alianza2.getPersonajes().get(1).getNivel());
     }
     
+    @Test
+    public void losMuertosDebenRevivirConTodaLaVida(){
+
+    }
 
     private void set(String campo, Object valor) throws NoSuchFieldException, IllegalAccessException {
         Field cantidadMuertesAlianza1 = batallaReflection.getDeclaredField(campo);
