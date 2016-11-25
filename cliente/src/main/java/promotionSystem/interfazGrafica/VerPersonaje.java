@@ -31,11 +31,11 @@ public class VerPersonaje extends JFrame {
 		contentPane.setLayout(null);
 
 		JLabel lblDetallesDelPersonaje = new JLabel("Detalles del Personaje");
-		lblDetallesDelPersonaje.setBounds(171, 22, 106, 14);
+		lblDetallesDelPersonaje.setBounds(171, 22, 250, 14);
 		contentPane.add(lblDetallesDelPersonaje);
 
 		lblRaza = new JLabel("Raza: " + cliente.getRaza());
-		lblRaza.setBounds(39, 52, 80, 14);
+		lblRaza.setBounds(39, 52, 200, 14);
 		contentPane.add(lblRaza);
 
 		lblCasta = new JLabel("Casta: " + cliente.getCasta());

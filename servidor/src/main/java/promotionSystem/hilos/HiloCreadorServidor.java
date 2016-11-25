@@ -42,7 +42,6 @@ public class HiloCreadorServidor extends Thread {
 			new ServidorHilo(cliente, jugadores, jugadoresPorMapa, mapasDisponibles, conector,jugadoresBatalla, indiceDeAlianzas, alianzas).start();
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null,"Error al crear conexion con personaje","Error",JOptionPane.ERROR_MESSAGE);
-			System.exit(0);
 		}
 	}
 

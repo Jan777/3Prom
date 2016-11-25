@@ -90,7 +90,6 @@ public class BatallaHilo extends Thread {
 		}
 		catch (Exception e) {
 			JOptionPane.showMessageDialog(null,"Error en la batalla","Error",JOptionPane.ERROR_MESSAGE);
-			System.exit(0);
 		} 
 
 	}

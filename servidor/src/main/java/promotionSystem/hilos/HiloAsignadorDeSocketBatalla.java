@@ -33,7 +33,6 @@ public class HiloAsignadorDeSocketBatalla implements Runnable{
 			buscarPersonaje();
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null,"Error al buscar personaje","Error",JOptionPane.ERROR_MESSAGE);
-			System.exit(0);
 		}
 		
 	}
