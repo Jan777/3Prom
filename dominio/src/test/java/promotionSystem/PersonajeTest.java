@@ -33,7 +33,7 @@ public class PersonajeTest {
 	public void siAtacaDisminuyeEnergiaPropiaYSaludDelRival(){
 		personajeAtacante.atacar(personajeAtacado);
 		assertEquals(Constantes.SALUD_GUERRERO_HUMANO - ATAQUE_GUERRERO_HUMANO +Constantes.DEFENSA_GUERRERO_HUMANO,personajeAtacado.getSalud());
-		assertEquals(100- ATAQUE_GUERRERO_HUMANO,personajeAtacante.getEnergia());
+		assertEquals(Constantes.ENERGIA_MAXIMA_GUERRERO_HUMANO- ATAQUE_GUERRERO_HUMANO,personajeAtacante.getEnergia());
 	}
 	
 	@Test
@@ -71,14 +71,14 @@ public class PersonajeTest {
 	public void siTieneMenosEnergiaQueLaInicialYEsEnergizadoLaVuelveAlMaximo(){
 		personajeAtacante.setEnergia(10);
 		personajeAtacante.serEnergizado();
-		assertEquals(100,personajeAtacante.getEnergia());
+		assertEquals(Constantes.ENERGIA_MAXIMA_GUERRERO_HUMANO,personajeAtacante.getEnergia());
 	}
 	
 	@Test
-	public void siSeQuedoSinEnergiaNoPuedeAtacar(){
+	public void siSeQuedoSinEnergiaSacaUnPuntoDeSalud(){
 		personajeAtacante.setEnergia(0);
 		personajeAtacante.atacar(personajeAtacado);
-		assertEquals(Constantes.SALUD_GUERRERO_HUMANO,personajeAtacado.getSalud());
+		assertEquals(Constantes.SALUD_GUERRERO_HUMANO-1,personajeAtacado.getSalud());
 	}
 	
 	@Test
@@ -92,9 +92,9 @@ public class PersonajeTest {
 	@Test
 	public void siTieneEnergiaAlMaximoNoPuedeAumentarSuEnergiaAlSerEnergizado(){
 
-		assertEquals(100,personajeAtacante.getEnergia());
+		assertEquals(Constantes.ENERGIA_MAXIMA_GUERRERO_HUMANO,personajeAtacante.getEnergia());
 		personajeAtacante.serEnergizado();
-		assertEquals(100,personajeAtacante.getEnergia());
+		assertEquals(Constantes.ENERGIA_MAXIMA_GUERRERO_HUMANO,personajeAtacante.getEnergia());
 	}
 	
 	@Test
@@ -275,27 +275,6 @@ public class PersonajeTest {
 		Alianza aliadosEnCombate= alianza.getPersonajes().get(1).invocarAliados();
 		assertEquals(5, aliadosEnCombate.getPersonajes().size());
 	}
-
-	@Test
-	public void debeDevolverLaDistanciaEnUnCaminoHorizontal(){
-	    Punto destino = new Punto(0, 3);
-		Camino camino = personajeAtacante.buscarCamino(destino);
-		assertEquals(Double.valueOf(3), camino.getDistancia());
-	}
-
-    @Test
-    public void debeDevolverLaDistanciaEnUnCaminoVertical(){
-        Punto destino = new Punto(3, 0);
-        Camino camino = personajeAtacante.buscarCamino(destino);
-        assertEquals(Double.valueOf(3), camino.getDistancia());
-    }
-
-    @Test
-    public void debeDevolverLaDistanciaEnUnCaminoEnDiagonal(){
-        Punto destino = new Punto(3, 3);
-        Camino camino = personajeAtacante.buscarCamino(destino);
-        assertEquals(3d * sqrt(2),camino.getDistancia(), 12);
-    }
 
 	@Test
 	public void siChocaConObstaculoNoSeMueve(){

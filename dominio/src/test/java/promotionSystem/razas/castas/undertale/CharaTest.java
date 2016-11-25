@@ -17,7 +17,7 @@ public class CharaTest {
 			Assert.assertEquals(3, personaje.getNivel());
 
 			Assert.assertEquals(Constantes.SALUD_CHARA +Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL *2, personaje.getSalud());
-			Assert.assertEquals(100+Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL *2, personaje.getEnergia());
+			Assert.assertEquals(Constantes.ENERGIA_MAXIMA_CHARA+Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL *2, personaje.getEnergia());
 			Assert.assertEquals(Constantes.ATAQUE_CHARA +Constantes.MULTIPLICADOR_DE_NIVEL_ESPECIAL *2, personaje.obtenerPuntosDeAtaque());
 			Assert.assertEquals(Constantes.DEFENSA_CHARA +Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL *2, personaje.obtenerPuntosDeDefensa());
 			Assert.assertEquals(Constantes.MAGIA_CHARA +Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL *2, personaje.obtenerPuntosDeMagia());
@@ -30,10 +30,10 @@ public class CharaTest {
 			PersonajeDeStarWars personajeAtacado=new Droide();
 			
 			Assert.assertEquals(Constantes.ATAQUE_CHARA,personajeAtacante.obtenerPuntosDeAtaque());
-			Assert.assertEquals(100,personajeAtacante.getEnergia());
+			Assert.assertEquals(Constantes.ENERGIA_MAXIMA_CHARA,personajeAtacante.getEnergia());
 			personajeAtacante.atacar(personajeAtacado);
 			Assert.assertEquals(Constantes.ATAQUE_CHARA +1,personajeAtacante.obtenerPuntosDeAtaque());
-			Assert.assertEquals(100-Constantes.ATAQUE_CHARA +1,personajeAtacante.getEnergia());
+			Assert.assertEquals(Constantes.ENERGIA_MAXIMA_CHARA-Constantes.ATAQUE_CHARA +1,personajeAtacante.getEnergia());
 			
 		}
 

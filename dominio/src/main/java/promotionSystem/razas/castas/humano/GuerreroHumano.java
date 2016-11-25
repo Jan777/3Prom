@@ -6,6 +6,7 @@ import promotionSystem.razas.Humano;
 public class GuerreroHumano extends Humano{
 	
 	public GuerreroHumano(){
+		casta="GuerreroHumano";
 		energia=Constantes.ENERGIA_GUERRERO_HUMANO;
 		energiaMaxima=Constantes.ENERGIA_MAXIMA_GUERRERO_HUMANO;
 		salud=Constantes.SALUD_GUERRERO_HUMANO;
@@ -14,8 +15,6 @@ public class GuerreroHumano extends Humano{
 		defensa=Constantes.DEFENSA_GUERRERO_HUMANO;
 		magia=Constantes.MAGIA_GUERRERO_HUMANO;
 		velocidad=Constantes.VELOCIDAD_GUERRERO_HUMANO;
-		experiencia=0;
-		nivel=1;
 	}
 
 	@Override

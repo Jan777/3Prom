@@ -15,7 +15,7 @@ public class RoxasTest {
 		personaje.subirExperiencia(10);
 		Assert.assertEquals(3, personaje.getNivel());
 
-		Assert.assertEquals(100+Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL *2, personaje.getEnergia());
+		Assert.assertEquals(Constantes.ENERGIA_MAXIMA_ROXAS+Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL *2, personaje.getEnergia());
 		Assert.assertEquals(Constantes.SALUD_ROXAS +Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL *2, personaje.getSalud());
 		Assert.assertEquals(Constantes.ATAQUE_ROXAS +Constantes.MULTIPLICADOR_DE_NIVEL_ESPECIAL *2, personaje.obtenerPuntosDeAtaque());
 		Assert.assertEquals(Constantes.DEFENSA_ROXAS +Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL *2, personaje.obtenerPuntosDeDefensa());

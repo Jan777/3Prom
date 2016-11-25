@@ -1,19 +1,16 @@
 package promotionSystem.razas.castas.orco;
 
-import promotionSystem.Circulo;
 import promotionSystem.Constantes;
-import promotionSystem.Punto;
 import promotionSystem.hechizo.Hechizo;
 import promotionSystem.hechizo.Hielo;
 import promotionSystem.hechizo.Piro;
 import promotionSystem.razas.Orco;
-
 import java.util.HashMap;
 
 public class MagoOrco extends Orco{
 	
 	public MagoOrco(){
-	
+		casta="MagoOrco";
 		energia=Constantes.ENERGIA_MAGO_ORCO;
 		energiaMaxima=Constantes.ENERGIA_MAXIMA_MAGO_ORCO;
 		salud=Constantes.SALUD_MAGO_ORCO;
@@ -22,10 +19,6 @@ public class MagoOrco extends Orco{
 		defensa=Constantes.DEFENSA_MAGO_ORCO;
 		magia=Constantes.MAGIA_MAGO_ORCO;
 		velocidad=Constantes.VELOCIDAD_MAGO_ORCO;
-		experiencia=0;
-		nivel=1;
-		posicion=new Punto(0,0);
-		radioDeAcccion=new Circulo(posicion,20);
 		hechizos = new HashMap<String, Hechizo>();
         agregarHechizo("Piro",new Piro());
         agregarHechizo("Hielo",new Hielo());

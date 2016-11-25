@@ -14,7 +14,7 @@ public class GuerreroOrcoTest {
 
 		Assert.assertEquals(3, personaje.getNivel());
 
-		Assert.assertEquals(100+2*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL, personaje.getEnergia());
+		Assert.assertEquals(Constantes.ENERGIA_MAXIMA_GUERRERO_ORCO+2*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL, personaje.getEnergia());
 		Assert.assertEquals(Constantes.SALUD_GUERRERO_ORCO +2*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL, personaje.getSalud());
 		Assert.assertEquals(Constantes.ATAQUE_GUERRERO_ORCO +2*Constantes.MULTIPLICADOR_DE_NIVEL_ESPECIAL, personaje.obtenerPuntosDeAtaque());
 		Assert.assertEquals(Constantes.DEFENSA_GUERRERO_ORCO +2*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL, personaje.obtenerPuntosDeDefensa());

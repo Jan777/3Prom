@@ -104,9 +104,9 @@ public class HechizosTest {
 		crearPersonajes();
 		Personaje pokemon=new PokemonTipoPlanta();
 		pokemon.setPosicion(INICIO_MAPA);
-		Assert.assertEquals(100, jedi.getEnergia());
+		Assert.assertEquals(Constantes.ENERGIA_MAXIMA_JEDI, jedi.getEnergia());
 		jedi.atacarConMagia(pokemon, "EmpujonDeFuerza");
-		Assert.assertEquals(100-Constantes.MAGIA_JEDI, jedi.getEnergia());
+		Assert.assertEquals(Constantes.ENERGIA_MAXIMA_JEDI-Constantes.MAGIA_JEDI, jedi.getEnergia());
 		
 	}
 	

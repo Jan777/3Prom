@@ -1,10 +1,7 @@
 package promotionSystem.razas.castas.starWars;
 
-import promotionSystem.Circulo;
 import promotionSystem.Constantes;
-import promotionSystem.Punto;
 import promotionSystem.hechizo.Hechizo;
-import promotionSystem.hechizo.IraWookeana;
 import promotionSystem.razas.PersonajeDeStarWars;
 
 import java.util.HashMap;
@@ -12,6 +9,7 @@ import java.util.HashMap;
 public class Wookie extends PersonajeDeStarWars{
 	
 	public Wookie(){
+		casta="Wookie";
 		energia=Constantes.ENERGIA_WOOKIE;
 		energiaMaxima=Constantes.ENERGIA_MAXIMA_WOOKIE;
 		salud=Constantes.SALUD_WOOKIE;
@@ -19,13 +17,9 @@ public class Wookie extends PersonajeDeStarWars{
 		ataque=Constantes.ATAQUE_WOOKIE;
 		defensa=Constantes.DEFENSA_WOOKIE;
 		magia=Constantes.MAGIA_WOOKIE;
-		velocidad=Constantes.VELOCIDAD_WOOKIE;
-		experiencia=0;
-		nivel=1;
-		posicion=new Punto(0,0);
-		radioDeAcccion=new Circulo(posicion,20);
+		velocidad=Constantes.VELOCIDAD_WOOKIE;	
 		hechizos = new HashMap<String, Hechizo>();
-//        agregarHechizo("IraWookeana",new IraWookeana());
+
 	}
 
 	@Override

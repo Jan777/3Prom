@@ -1,7 +1,6 @@
 package promotionSystem.razas.castas.kingdomHearts;
 
 import promotionSystem.Constantes;
-import promotionSystem.hechizo.Cura;
 import promotionSystem.hechizo.Hechizo;
 import promotionSystem.hechizo.Hielo;
 import promotionSystem.razas.PersonajeDeKingdomHearts;
@@ -11,7 +10,7 @@ import java.util.HashMap;
 public class Roxas extends PersonajeDeKingdomHearts {
 
 	public Roxas(){
-
+		casta="Roxas";
 		energia=Constantes.ENERGIA_ROXAS;
 		energiaMaxima=Constantes.ENERGIA_MAXIMA_ROXAS;
 		salud=Constantes.SALUD_ROXAS;
@@ -20,11 +19,9 @@ public class Roxas extends PersonajeDeKingdomHearts {
 		defensa=Constantes.DEFENSA_ROXAS;
 		magia=Constantes.MAGIA_ROXAS;
 		velocidad=Constantes.VELOCIDAD_ROXAS;
-		experiencia=0;
-		nivel=1;
 		hechizos = new HashMap<String, Hechizo>();
         agregarHechizo("Trueno",new Hielo());
-//        agregarHechizo("Cura",new Cura());
+
 	}
 
 	@Override

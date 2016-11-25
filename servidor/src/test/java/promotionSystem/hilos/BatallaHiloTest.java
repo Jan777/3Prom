@@ -5,10 +5,12 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.runners.MockitoJUnitRunner;
 import promotionSystem.Alianza;
+import promotionSystem.Personaje;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static promotionSystem.builder.AlianzaBuilder.crearAlianza;
@@ -57,8 +59,16 @@ public class BatallaHiloTest {
     }
     
     @Test
-    public void losMuertosDebenRevivirConTodaLaVida(){
-
+    public void losMuertosDebenRevivirConTodaLaVida() throws NoSuchMethodException, NoSuchFieldException, IllegalAccessException {
+        Method metodo = batallaReflection.getDeclaredMethod("recuperarVidaABatallantes");
+        metodo.setAccessible(true);
+        List<Personaje> muertos = crearAlianza(2).getPersonajes();
+        for(Personaje muerto : muertos){
+            muerto.setSalud(0);
+        }
+        set("muertos", muertos);
+        assertEquals(0, muertos.get(0).getSalud());
+        assertEquals(0, muertos.get(1).getSalud());
     }
 
     private void set(String campo, Object valor) throws NoSuchFieldException, IllegalAccessException {

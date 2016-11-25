@@ -14,7 +14,7 @@ public class PokemonTipoPlantaTest {
 		personaje.subirExperiencia(10);
 		Assert.assertEquals(3, personaje.getNivel());
 
-		Assert.assertEquals(100+2*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL, personaje.getEnergia());
+		Assert.assertEquals(Constantes.ENERGIA_MAXIMA_POKEMON_DE_PLANTA+2*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL, personaje.getEnergia());
 		Assert.assertEquals(Constantes.SALUD_POKEMON_DE_PLANTA +2*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL, personaje.getSalud());
 		Assert.assertEquals(Constantes.ATAQUE_POKEMON_DE_PLANTA +2*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL, personaje.obtenerPuntosDeAtaque());
 		Assert.assertEquals(Constantes.DEFENSA_POKEMON_DE_PLANTA +2*Constantes.MULTIPLICADOR_DE_NIVEL_ESPECIAL, personaje.obtenerPuntosDeDefensa());
