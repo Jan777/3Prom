@@ -1,10 +1,6 @@
 package promotionSystem.razas.castas.starWars;
 
-import promotionSystem.Circulo;
 import promotionSystem.Constantes;
-import promotionSystem.Punto;
-import promotionSystem.hechizo.CampoDeFuerza;
-import promotionSystem.hechizo.Cura;
 import promotionSystem.hechizo.Hechizo;
 import promotionSystem.razas.PersonajeDeStarWars;
 
@@ -23,8 +19,6 @@ public class Droide extends PersonajeDeStarWars{
 		magia=Constantes.MAGIA_DROIDE;
 		velocidad=Constantes.VELOCIDAD_DROIDE;
 		hechizos = new HashMap<String, Hechizo>();
-//        agregarHechizo("Cura",new Cura());
-//        agregarHechizo("CampoDeFuerza",new CampoDeFuerza());
 	}
 
 	@Override

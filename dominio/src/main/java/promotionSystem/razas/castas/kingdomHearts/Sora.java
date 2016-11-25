@@ -1,9 +1,6 @@
 package promotionSystem.razas.castas.kingdomHearts;
 
-import promotionSystem.Circulo;
 import promotionSystem.Constantes;
-import promotionSystem.Punto;
-import promotionSystem.hechizo.Cura;
 import promotionSystem.hechizo.Hechizo;
 import promotionSystem.hechizo.Piro;
 import promotionSystem.razas.PersonajeDeKingdomHearts;
@@ -24,7 +21,6 @@ public class Sora extends PersonajeDeKingdomHearts {
 		velocidad=Constantes.VELOCIDAD_SORA;
 		hechizos = new HashMap<String, Hechizo>();
 	    agregarHechizo("Piro",new Piro());
-//	    agregarHechizo("Cura",new Cura());
 	}
 
 	@Override

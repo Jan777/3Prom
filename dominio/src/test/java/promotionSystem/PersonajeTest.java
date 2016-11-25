@@ -277,27 +277,6 @@ public class PersonajeTest {
 	}
 
 	@Test
-	public void debeDevolverLaDistanciaEnUnCaminoHorizontal(){
-	    Punto destino = new Punto(0, 3);
-		Camino camino = personajeAtacante.buscarCamino(destino);
-		assertEquals(Double.valueOf(3), camino.getDistancia());
-	}
-
-    @Test
-    public void debeDevolverLaDistanciaEnUnCaminoVertical(){
-        Punto destino = new Punto(3, 0);
-        Camino camino = personajeAtacante.buscarCamino(destino);
-        assertEquals(Double.valueOf(3), camino.getDistancia());
-    }
-
-    @Test
-    public void debeDevolverLaDistanciaEnUnCaminoEnDiagonal(){
-        Punto destino = new Punto(3, 3);
-        Camino camino = personajeAtacante.buscarCamino(destino);
-        assertEquals(3d * sqrt(2),camino.getDistancia(), 12);
-    }
-
-	@Test
 	public void siChocaConObstaculoNoSeMueve(){
 		Mapa mapa = new Mapa(100, 100);
 		Obstaculo obstaculo = new Obstaculo(new Punto(1,1), 2, 3);

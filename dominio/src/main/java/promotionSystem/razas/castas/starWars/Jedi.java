@@ -1,8 +1,6 @@
 package promotionSystem.razas.castas.starWars;
 
-import promotionSystem.Circulo;
 import promotionSystem.Constantes;
-import promotionSystem.Punto;
 import promotionSystem.hechizo.*;
 import promotionSystem.razas.PersonajeDeStarWars;
 

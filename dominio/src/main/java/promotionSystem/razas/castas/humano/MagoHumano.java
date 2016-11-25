@@ -1,7 +1,6 @@
 package promotionSystem.razas.castas.humano;
 
 import promotionSystem.Constantes;
-import promotionSystem.hechizo.Cura;
 import promotionSystem.hechizo.Hechizo;
 import promotionSystem.hechizo.Trueno;
 import promotionSystem.razas.Humano;

@@ -1,8 +1,6 @@
 package promotionSystem.razas.castas.undertale;
 
-import promotionSystem.Circulo;
 import promotionSystem.Constantes;
-import promotionSystem.Punto;
 import promotionSystem.razas.PersonajeDeUndertale;
 
 public class Chara extends PersonajeDeUndertale{
@@ -15,10 +13,8 @@ public class Chara extends PersonajeDeUndertale{
 		defensa=Constantes.DEFENSA_CHARA;
 		magia=Constantes.MAGIA_CHARA;
 		velocidad=Constantes.VELOCIDAD_CHARA;
-		experiencia=0;
-		nivel=1;
-		posicion=new Punto(0,0);
-		radioDeAcccion=new Circulo(posicion,20);
+		
+
 	}
 
 	@Override

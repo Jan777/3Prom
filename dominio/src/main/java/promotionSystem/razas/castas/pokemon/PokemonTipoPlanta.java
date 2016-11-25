@@ -1,9 +1,6 @@
 package promotionSystem.razas.castas.pokemon;
 
-import promotionSystem.Circulo;
 import promotionSystem.Constantes;
-import promotionSystem.Punto;
-import promotionSystem.hechizo.Gigadrenado;
 import promotionSystem.hechizo.Hechizo;
 import promotionSystem.razas.PersonajeDePokemon;
 
@@ -22,7 +19,6 @@ public class PokemonTipoPlanta extends PersonajeDePokemon {
 		magia=Constantes.MAGIA_POKEMON_DE_PLANTA;
 		velocidad=Constantes.VELOCIDAD_POKEMON_DE_PLANTA;
 		hechizos = new HashMap<String, Hechizo>();
-//        agregarHechizo("Gigadrenado",new Gigadrenado());
 	}
 
 	@Override

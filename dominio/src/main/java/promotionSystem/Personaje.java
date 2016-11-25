@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import static java.util.Collections.sort;
 import static promotionSystem.Constantes.*;
 
 public abstract class Personaje implements Comparable<Personaje> {
@@ -332,19 +331,6 @@ public abstract class Personaje implements Comparable<Personaje> {
 		return alianza != null;
 	}
 
-	private void rechazarAlianza(Personaje invitador) {
-		desafiar(invitador);
-	}
-
-	public void desafiar(Personaje desafiado) {
-		alianza.atacar(desafiado.alianza);
-	}
-
-	public void aceptarDesafio(Personaje enemigo) {
-		sort(this.alianza.personajes);
-		sort(enemigo.alianza.personajes);
-		Batalla batalla = new Batalla((this.invocarAliados()), enemigo.invocarAliados());
-	}
 
 	public abstract void subirStats(int nivel);
 
@@ -355,9 +341,6 @@ public abstract class Personaje implements Comparable<Personaje> {
 		}
 	}
 
-	public Camino buscarCamino(Punto destino) {
-		return new Camino(posicion, destino);
-	}
 
 	public Punto getPosicion() {
 		return posicion;

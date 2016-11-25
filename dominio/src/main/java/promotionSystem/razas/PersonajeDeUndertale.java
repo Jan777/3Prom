@@ -5,7 +5,7 @@ import promotionSystem.Personaje;
 public abstract class PersonajeDeUndertale extends Personaje{
 	
 	public PersonajeDeUndertale(){
-		raza="raza";
+		raza="PersonajeDeUndertale";
 	}
 
 	public void despuesDeAtacar(){

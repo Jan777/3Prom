@@ -1,8 +1,6 @@
 package promotionSystem.razas.castas.orco;
 
-import promotionSystem.Circulo;
 import promotionSystem.Constantes;
-import promotionSystem.Punto;
 import promotionSystem.razas.Orco;
 
 public class TanqueOrco extends Orco{

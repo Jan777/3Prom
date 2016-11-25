@@ -1,10 +1,7 @@
 package promotionSystem.razas.castas.starWars;
 
-import promotionSystem.Circulo;
 import promotionSystem.Constantes;
-import promotionSystem.Punto;
 import promotionSystem.hechizo.Hechizo;
-import promotionSystem.hechizo.IraWookeana;
 import promotionSystem.razas.PersonajeDeStarWars;
 
 import java.util.HashMap;
