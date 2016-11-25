@@ -18,9 +18,12 @@ public class SeleccionMapa extends JFrame {
 	private Cliente cliente;
 	private JComboBox comboBox;
 	private String mapa;
+	private JFrame menu,marco;
 
-	public SeleccionMapa(Cliente cliente) throws IOException {
+	public SeleccionMapa(Cliente cliente,JFrame menu) throws IOException {
 		this.cliente = cliente;
+		this.menu=menu;
+		marco=this;
 		cliente.enviarAccion("recibirMapas");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -109,6 +112,8 @@ public class SeleccionMapa extends JFrame {
 		juego.setResizable(false);
 		juego.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		juego.setVisible(true);
+		menu.dispose();
+		marco.dispose();
 
 		juego.addWindowListener(new WindowAdapter() {
 

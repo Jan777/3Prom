@@ -47,7 +47,7 @@ public class JuegoPanel extends Component implements Runnable{
 		mouse 	 = new Mouse();
 		camara = new Camara(ANCHO, ALTO);
 		addMouseListener(mouse);
-		personajeJugableDibujo = new TilePersonaje(cliente,mouse,camara);
+		personajeJugableDibujo = new TilePersonaje(cliente,mouse,camara,padre);
 		mapa 	 = new Mapa(nombreMapa,personajeJugableDibujo,camara, personajes,cliente);
 		thread 	 = new Thread(this);
 		//Sonido.MAPAPOKEMON.loop();

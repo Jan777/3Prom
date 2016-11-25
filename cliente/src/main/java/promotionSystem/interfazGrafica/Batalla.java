@@ -56,7 +56,7 @@ public class Batalla extends JFrame implements Runnable{
 		this.cliente = cliente;
 		setVisible(true);
 		setTitle("Batalla");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -125,19 +125,7 @@ public class Batalla extends JFrame implements Runnable{
 		deshabilitarRadioButtons();
 		
 
-		addWindowListener(new WindowAdapter() {
-
-			@Override
-			public void windowClosing(WindowEvent e) {
-
-				try {
-					enviarAccionDeCerrar();
-				} catch (IOException e1) {
-					JOptionPane.showMessageDialog(null,"Error al cerrar la batalla" ,"ERROR!",JOptionPane.ERROR_MESSAGE);
-				}
-
-			}
-		});
+		
 
 	}
 

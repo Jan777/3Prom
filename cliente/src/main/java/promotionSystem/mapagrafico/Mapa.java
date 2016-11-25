@@ -119,7 +119,7 @@ public class Mapa {
 	private void cargarSprite(String nombre) {
 		load(nombre);
 		iluminacion = Sprite.loadImage("recursos/iluminacion.png").getScaledInstance(camara.getAncho() + 10,camara.getAlto() + 10,Image.SCALE_SMOOTH);
-		barraVida = 	Sprite.loadImage("recursos/vida.png");
+		
 
 	}
 
@@ -233,19 +233,12 @@ public class Mapa {
 		}
 		moverRestoPersonajes(g2d);
 		g2d.drawImage( iluminacion, 0, 0 , null);
-		hud(g2d);
+		
 		termino();
 	}
 
 
-	private void hud(Graphics2D g2d) {
-		g2d.drawImage( barraVida, 50, 62, null);
-		g2d.setFont(new Font("Verdana", Font.BOLD, 18));
-		g2d.setColor(Color.black);
-		g2d.drawString(pj.getNombre(), 52, 62);
-		g2d.setColor(Color.white);
-		g2d.drawString(pj.getNombre(), 50, 60);
-	}
+	
 
 
 	private boolean puedoDibujarObstaculo(int i, int j) {
