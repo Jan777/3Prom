@@ -18,6 +18,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -49,14 +51,15 @@ public class TilePersonaje {
 	private JPopupMenu popup;
 	private Personaje personajeClickeado;
 	private Mapa mapa;
-	
+	private JFrame padre;
 	private Opciones opciones;
 
 
-	public TilePersonaje(Cliente cliente,Mouse mouse,Camara camara) {
+	public TilePersonaje(Cliente cliente,Mouse mouse,Camara camara,JFrame padre ) {
 		this.cliente=cliente;
 		this.xCentro = 320;
 		this.yCentro = 320;
+		this.padre=padre;
 
 		incializarOpciones();
 		this.camara = camara;
@@ -83,8 +86,9 @@ public class TilePersonaje {
 		Font tipoDeLetra = new Font("Arial", Font.BOLD, 16);
 		g.setColor(Color.BLUE);
 		g.setFont(tipoDeLetra);
-		g.drawString(nombre, xCentro, yCentro - 48 /*- 25*/);
-
+		g.drawString(nombre, xCentro, yCentro - 65 /*- 25*/);
+		g.drawString("Nv. " +String.valueOf(personajeJugable.getNivel()), xCentro, yCentro-80);
+		g.drawString(String.valueOf(personajeJugable.getSalud())+ " / " + String.valueOf(personajeJugable.getSaludMaxima()), xCentro, yCentro-50);
 	}
 
 	public void actualizar() throws Exception {
@@ -121,6 +125,50 @@ public class TilePersonaje {
 
 	private void abrirPanelDeBatalla() {
 		Batalla batalla = new Batalla(cliente);
+        batalla.addWindowListener(new WindowListener(){ 
+			
+			@Override
+			public void windowOpened(WindowEvent e) {
+				padre.setEnabled(false);
+				
+			}
+			
+			@Override
+			public void windowIconified(WindowEvent e) {
+				
+				
+			}
+			
+			@Override
+			public void windowDeiconified(WindowEvent e) {
+				
+				
+			}
+			
+			@Override
+			public void windowDeactivated(WindowEvent e) {
+				
+				
+			}
+			
+			@Override
+			public void windowClosing(WindowEvent e) {
+			
+				
+			}
+			
+			@Override
+			public void windowClosed(WindowEvent e) {
+				padre.setEnabled(true);
+				
+			}
+			
+			@Override
+			public void windowActivated(WindowEvent e) {
+				
+				
+			}
+		});
 		new Thread(batalla).start();
 		Sonido.MAPAPOKEMON.stop();
 	}

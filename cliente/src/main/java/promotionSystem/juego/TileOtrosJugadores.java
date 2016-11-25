@@ -54,7 +54,10 @@ public class TileOtrosJugadores {
 		Font tipoDeLetra=new Font("Arial", Font.BOLD, 16);
 		g2d.setColor(Color.BLUE);
 		g2d.setFont(tipoDeLetra);
-		g2d.drawString(personaje.getNombre(), xIsometrica-32,yIsometrica-32-48-2 /*- 25*/);
+		
+		g2d.drawString("Nv. " +String.valueOf(personaje.getNivel()), xIsometrica-32, yIsometrica-32-48-50);
+		g2d.drawString(String.valueOf(personaje.getSalud())+ " / " + String.valueOf(personaje.getSaludMaxima()),xIsometrica-32, yIsometrica-32-48-80);
+		g2d.drawString(personaje.getNombre(), xIsometrica-32,yIsometrica-32-48-2 );
 	}
 	
 	
@@ -95,7 +98,9 @@ public class TileOtrosJugadores {
 			Font tipoDeLetra=new Font("Arial", Font.BOLD, 16);
 			g2d.setColor(Color.BLUE);
 			g2d.setFont(tipoDeLetra);
-			g2d.drawString(personaje.getNombre(), xIsometrica-32,yIsometrica-32-48-2 /*- 25*/);
+			g2d.drawString(personaje.getNombre(), xIsometrica-32,yIsometrica-32-48-20 /*- 25*/);
+			g2d.drawString("Nv. " +String.valueOf(personaje.getNivel()), xIsometrica-32, yIsometrica-32-48-38);
+			g2d.drawString(String.valueOf(personaje.getSalud())+ " / " + String.valueOf(personaje.getSaludMaxima()),xIsometrica-32, yIsometrica-32-48-2);
 		}
 		
 	

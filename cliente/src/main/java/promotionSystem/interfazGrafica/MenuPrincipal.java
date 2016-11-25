@@ -139,7 +139,7 @@ public class MenuPrincipal extends JFrame {
 	 }
 
 	private void abrirSeleccionDeMapa() throws IOException {
-		SeleccionMapa mapa=new SeleccionMapa(cliente);
+		SeleccionMapa mapa=new SeleccionMapa(cliente,marco);
 		mapa.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		mapa.setVisible(true);
 		
