@@ -46,6 +46,8 @@ public class Batalla extends JFrame implements Runnable{
 	private int cantidadMuertesAlianzaEnemiga;
 	private int experienciaSumada;
 	private Semaphore semaforo = new Semaphore (0);
+	private JLabel lblInformeBatalla;
+	private JLabel lblTurno;
 	
 	public Batalla(Cliente cliente) {
 		//Sonido.BATALLAPOKEMON.loop();
@@ -63,7 +65,7 @@ public class Batalla extends JFrame implements Runnable{
 		buttonGroup = new ButtonGroup();
 		
 		seleccionarMagia = new JComboBox<>();
-		seleccionarMagia.setBounds(176, 469, 251, 48);
+		seleccionarMagia.setBounds(176, 455, 251, 48);
 		contentPane.add(seleccionarMagia);
 		
 		btnEjecutar = new JButton("Ejecutar");
@@ -88,7 +90,7 @@ public class Batalla extends JFrame implements Runnable{
 		contentPane.add(lblSeleccionarEnemigo);
 		
 		lblSeleccionarMagia = new JLabel("Seleccionar Magia");
-		lblSeleccionarMagia.setBounds(269, 444, 200, 14);
+		lblSeleccionarMagia.setBounds(230, 438, 200, 14);
 		contentPane.add(lblSeleccionarMagia);
 		
 		rdbtnAtacar = new JRadioButton("Atacar");
@@ -110,6 +112,15 @@ public class Batalla extends JFrame implements Runnable{
 		buttonGroup.add(rdbtnMagia);
 		buttonGroup.add(rdbtnHuir);
 		seleccionarMagia.setEnabled(false);
+		
+		lblInformeBatalla = new JLabel("");
+		lblInformeBatalla.setBounds(216, 538, 200, 14);
+		contentPane.add(lblInformeBatalla);
+		
+		lblTurno = new JLabel("");
+		lblTurno.setBounds(274, 514, 200, 14);
+		contentPane.add(lblTurno);
+		
 		cargarHechizos();
 		deshabilitarRadioButtons();
 		
@@ -126,9 +137,6 @@ public class Batalla extends JFrame implements Runnable{
 				}
 
 			}
-
-
-
 		});
 
 	}
@@ -248,6 +256,7 @@ public class Batalla extends JFrame implements Runnable{
 					repaint();
 					cliente.setTurno(false);
 					elegirAccion=false;
+					lblTurno.setText("");
 					deshabilitarRadioButtons();
 				}
 				Thread.sleep(10);
@@ -283,7 +292,7 @@ public class Batalla extends JFrame implements Runnable{
 	private void realizarAtaqueConMagia() {
 		Personaje atacante = obtenerPersonajeAPartirDelNombreEnAlgunaAlianza(cliente.getAtacante());
 		Personaje atacado = obtenerPersonajeAPartirDelNombreEnAlgunaAlianza(cliente.getAtacado());
-	
+		lblInformeBatalla.setText(cliente.getAtacante() + " hechizo a " + cliente.getAtacado() + " con " + hechizo);
 		atacante.atacarConMagia(atacado,cliente.getHechizo());
 		determinarMuerte(atacado);
 		
@@ -303,6 +312,7 @@ public class Batalla extends JFrame implements Runnable{
 		Personaje atacante = obtenerPersonajeAPartirDelNombreEnAlgunaAlianza(cliente.getAtacante());
 		Personaje atacado = obtenerPersonajeAPartirDelNombreEnAlgunaAlianza(cliente.getAtacado());
 		atacante.atacar(atacado);
+		lblInformeBatalla.setText(cliente.getAtacante() + " ataco a " + cliente.getAtacado());
 		determinarMuerte(atacado);
 	}
 	
@@ -314,12 +324,12 @@ public class Batalla extends JFrame implements Runnable{
 				cantidadMuertesAlianzaAmiga++;
 			}
 			else{
-				 cantidadMuertesAlianzaEnemiga++;
-				 seleccionarEnemigo.removeItem(atacado.getNombre());
-				 experienciaSumada+=atacado.getSaludMaxima();
+				cantidadMuertesAlianzaEnemiga++;
+				seleccionarEnemigo.removeItem(atacado.getNombre());
+				experienciaSumada+=atacado.getSaludMaxima();
 			}
 		}
-		
+
 	}
 
 	private Personaje obtenerPersonajeAPartirDelNombreEnAlgunaAlianza(String atacado) {
@@ -340,7 +350,7 @@ public class Batalla extends JFrame implements Runnable{
 
 	private void otorgarTurno() throws IOException, InterruptedException {	
 		habilitarRadioButtons();
-		
+		lblTurno.setText("es tu turno");
 		semaforo.acquire();
 		
 		enviarMovimiento();				
@@ -369,6 +379,7 @@ public class Batalla extends JFrame implements Runnable{
 		Personaje personajeAtacado = obtenerPersonajeAPartirDelNombre(nombreObjetivo);
 		cliente.getPersonaje().atacarConMagia(personajeAtacado,hechizo);
 		enviarAccionDeBatalla(movimiento.toLowerCase());
+		lblInformeBatalla.setText(cliente.getPersonaje().getNombre() + " hechizo a " + nombreObjetivo + " con " + hechizo);
 		enviarObjetivoHechizo();
 		determinarMuerte(personajeAtacado);
 	}
@@ -383,7 +394,7 @@ public class Batalla extends JFrame implements Runnable{
 		cliente.getPersonaje().atacar(personajeAtacado);
 		enviarAccionDeBatalla(movimiento.toLowerCase());
 		enviarObjetivo();
-		
+		lblInformeBatalla.setText(cliente.getPersonaje().getNombre() + " ataco a " + nombreObjetivo);
 		determinarMuerte(personajeAtacado);
 			
 	}
@@ -480,8 +491,7 @@ public class Batalla extends JFrame implements Runnable{
 		for (Enumeration<AbstractButton> enumeracion=buttonGroup.getElements(); enumeracion.hasMoreElements(); ) 
 		{
 			JRadioButton boton = (JRadioButton)enumeracion.nextElement();
-			if (boton.getModel() == buttonGroup.getSelection()) 
-			{
+			if (boton.getModel() == buttonGroup.getSelection()){
 				return boton.getText();
 			}
 		}
