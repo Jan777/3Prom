@@ -15,7 +15,7 @@ public class WookieTest{
 
 		Assert.assertEquals(3, personaje.getNivel());
 
-		Assert.assertEquals(100+2*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL, personaje.getEnergia());
+		Assert.assertEquals(Constantes.ENERGIA_MAXIMA_WOOKIE+2*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL, personaje.getEnergia());
 		Assert.assertEquals(Constantes.SALUD_WOOKIE +2*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL, personaje.getSalud());
 		Assert.assertEquals(Constantes.ATAQUE_WOOKIE +2*Constantes.MULTIPLICADOR_DE_NIVEL_ESPECIAL, personaje.obtenerPuntosDeAtaque());
 		Assert.assertEquals(Constantes.DEFENSA_WOOKIE +2*Constantes.MULTIPLICADOR_DE_NIVEL_ESPECIAL, personaje.obtenerPuntosDeDefensa());

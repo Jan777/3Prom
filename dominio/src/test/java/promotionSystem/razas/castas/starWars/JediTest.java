@@ -15,7 +15,7 @@ public class JediTest {
 
 		Assert.assertEquals(3, personaje.getNivel());
 
-		Assert.assertEquals(100+2*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL, personaje.getEnergia());
+		Assert.assertEquals(Constantes.ENERGIA_MAXIMA_JEDI+2*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL, personaje.getEnergia());
 		Assert.assertEquals(Constantes.SALUD_JEDI +2*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL, personaje.getSalud());
 		Assert.assertEquals(Constantes.ATAQUE_JEDI +2*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL, personaje.obtenerPuntosDeAtaque());
 		Assert.assertEquals(Constantes.DEFENSA_JEDI +2*Constantes.MULTIPLICADOR_DE_NIVEL_NORMAL, personaje.obtenerPuntosDeDefensa());

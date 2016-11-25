@@ -8,7 +8,7 @@ import promotionSystem.razas.Orco;
 public class GuerreroOrco extends Orco{
 
 	public GuerreroOrco(){
-	
+		casta="GuerreroOrco";
 		energia=Constantes.ENERGIA_GUERRERO_ORCO;
 		energiaMaxima=Constantes.ENERGIA_MAXIMA_GUERRERO_ORCO;
 		salud=Constantes.SALUD_GUERRERO_ORCO;
@@ -17,10 +17,6 @@ public class GuerreroOrco extends Orco{
 		defensa=Constantes.DEFENSA_GUERRERO_ORCO;
 		magia=Constantes.MAGIA_GUERRERO_ORCO;
 		velocidad=Constantes.VELOCIDAD_GUERRERO_ORCO;
-		experiencia=0;
-		nivel=1;
-		posicion=new Punto(0,0);
-		radioDeAcccion=new Circulo(posicion,20);
 	}
 
 	@Override

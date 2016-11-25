@@ -13,7 +13,7 @@ import java.util.HashMap;
 public class Droide extends PersonajeDeStarWars{
 	
 	public Droide(){
-
+		casta="Droide";
 		energia=Constantes.ENERGIA_DROIDE;
 		energiaMaxima=Constantes.ENERGIA_MAXIMA_DROIDE;
 		salud=Constantes.SALUD_DROIDE;
@@ -22,10 +22,6 @@ public class Droide extends PersonajeDeStarWars{
 		defensa=Constantes.DEFENSA_DROIDE;
 		magia=Constantes.MAGIA_DROIDE;
 		velocidad=Constantes.VELOCIDAD_DROIDE;
-		experiencia=0;
-		nivel=1;
-		posicion=new Punto(0,0);
-		radioDeAcccion=new Circulo(posicion,20);
 		hechizos = new HashMap<String, Hechizo>();
 //        agregarHechizo("Cura",new Cura());
 //        agregarHechizo("CampoDeFuerza",new CampoDeFuerza());

@@ -20,15 +20,10 @@ public class Jedi extends PersonajeDeStarWars{
 		defensa=Constantes.DEFENSA_JEDI;
 		magia=Constantes.MAGIA_JEDI;
 		velocidad=Constantes.VELOCIDAD_JEDI;
-		experiencia=0;
-		nivel=1;
-		posicion=new Punto(0,0);
-		radioDeAcccion=new Circulo(posicion,20);
 		hechizos = new HashMap<String, Hechizo>();
         agregarHechizo("EmpujonDeFuerza",new EmpujonDeFuerza());
-//        agregarHechizo("Telekinesis",new Telekinesis());
         agregarHechizo("Electrificar",new Electrificar());
-//        agregarHechizo("ControlMental",new ControlMental());
+
 	}
 
 	@Override

@@ -6,7 +6,7 @@ import promotionSystem.razas.Humano;
 public class TanqueHumano extends Humano{
 	
 	public TanqueHumano(){
-
+		casta="TanqueHumano";
 		energia=Constantes.ENERGIA_TANQUE_HUMANO;
 		energiaMaxima=Constantes.ENERGIA_MAXIMA_TANQUE_HUMANO;
 		salud=Constantes.SALUD_TANQUE_HUMANO;
@@ -15,8 +15,6 @@ public class TanqueHumano extends Humano{
 		defensa=Constantes.DEFENSA_TANQUE_HUMANO;
 		magia=Constantes.MAGIA_TANQUE_HUMANO;
 		velocidad=Constantes.VELOCIDAD_TANQUE_HUMANO;
-		experiencia=0;
-		nivel=1;
 	}
 
 	@Override

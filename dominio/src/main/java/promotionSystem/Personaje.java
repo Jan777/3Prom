@@ -42,6 +42,13 @@ public abstract class Personaje implements Comparable<Personaje> {
 	private Item chaleco;
 	private Item escudo;
 	private Inventario inventario = new Inventario();
+	
+	public Personaje(){
+		experiencia=0;
+		nivel=1;
+		posicion=new Punto(0,0);
+		radioDeAcccion=new Circulo(posicion,RADIO_DE_ACCION);
+	}
    
   
 
@@ -51,6 +58,9 @@ public abstract class Personaje implements Comparable<Personaje> {
 			atacado.serAtacado(puntosARestar < 0 ? 0 : puntosARestar);
 			energia -= calcularPuntosDeAtaque();
 			despuesDeAtacar();
+		}
+		else{
+			atacado.serAtacado(1);
 		}
 	}
 

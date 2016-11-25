@@ -11,6 +11,7 @@ import java.util.HashMap;
 public class MagoHumano extends Humano {
 
 	public MagoHumano(){
+		casta="MagoHumano";
 		energia=Constantes.ENERGIA_MAGO_HUMANO;
 		energiaMaxima=Constantes.ENERGIA_MAXIMA_MAGO_HUMANO;
 		salud=Constantes.SALUD_MAGO_HUMANO;
@@ -19,8 +20,6 @@ public class MagoHumano extends Humano {
 		defensa=Constantes.DEFENSA_MAGO_HUMANO;
 		magia=Constantes.MAGIA_MAGO_HUMANO;
 		velocidad=Constantes.VELOCIDAD_MAGO_HUMANO;
-		experiencia=0;
-		nivel=1;
 		hechizos = new HashMap<String, Hechizo>();
         agregarHechizo("Trueno",new Trueno());
 //        agregarHechizo("Cura",new Cura());

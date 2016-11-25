@@ -13,7 +13,7 @@ import java.util.HashMap;
 public class Sora extends PersonajeDeKingdomHearts {
 	
 	public Sora(){
-
+		casta="Sora";
 		energia=Constantes.ENERGIA_SORA;
 		energiaMaxima=Constantes.ENERGIA_MAXIMA_SORA;
 		salud=Constantes.SALUD_SORA;
@@ -22,10 +22,6 @@ public class Sora extends PersonajeDeKingdomHearts {
 		defensa=Constantes.DEFENSA_SORA;
 		magia=Constantes.MAGIA_SORA;
 		velocidad=Constantes.VELOCIDAD_SORA;
-		experiencia=0;
-		nivel=1;
-		posicion=new Punto(0,0);
-		radioDeAcccion=new Circulo(posicion,20);
 		hechizos = new HashMap<String, Hechizo>();
 	    agregarHechizo("Piro",new Piro());
 //	    agregarHechizo("Cura",new Cura());

@@ -20,8 +20,6 @@ public class Riku extends PersonajeDeKingdomHearts {
 		defensa=Constantes.DEFENSA_RIKU;
 		magia=Constantes.MAGIA_RIKU;
 		velocidad=Constantes.VELOCIDAD_RIKU;
-		experiencia=0;
-		nivel=1;
 		hechizos = new HashMap<String, Hechizo>();
         agregarHechizo("Hielo",new Hielo());
 //        agregarHechizo("Cura",new Cura());
