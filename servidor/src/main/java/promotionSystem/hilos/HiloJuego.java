@@ -44,7 +44,6 @@ public class HiloJuego extends Thread {
 				aceptarClientes();
 			} catch (IOException e) {
 				JOptionPane.showMessageDialog(null,"Error al aceptar clientes","Error",JOptionPane.ERROR_MESSAGE);
-				System.exit(0);
 			}
 		}
 		

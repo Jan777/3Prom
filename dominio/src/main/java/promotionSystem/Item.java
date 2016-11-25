@@ -46,4 +46,8 @@ public abstract class Item {
     public boolean equals(Item item) {
         return this.nombreItem.equals(item.nombreItem);
     }
+
+	public void setNombreItem(String nombreItem) {
+		this.nombreItem = nombreItem;
+	}
 }

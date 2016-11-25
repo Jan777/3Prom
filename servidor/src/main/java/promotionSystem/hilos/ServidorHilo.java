@@ -65,7 +65,6 @@ public class ServidorHilo extends Thread {
 
 	public void run() {
 		try {
-
 			while (continuar) {
 				Method miMetodo = ServidorHilo.class.getMethod(recibirAccion());
 				miMetodo.invoke(this);
@@ -73,7 +72,10 @@ public class ServidorHilo extends Thread {
 
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null,"Error en la comunicacion con el cliente","Error",JOptionPane.ERROR_MESSAGE);
-			System.exit(0);
+			jugadoresPorMapa.get(mapa).remove(cliente);
+			jugadoresBatalla.remove(jugadores.get(cliente));
+			jugadores.remove(cliente);
+			
 		}
 
 	}
@@ -465,7 +467,7 @@ public class ServidorHilo extends Thread {
 		}
 	}
 
-	public void armarBatalla() throws IOException {
+	public void armarBatalla() throws IOException, SQLException {
 		JsonElement elemento = recibirObjetoJson();
 		String nombreAtacante = elemento.getAsJsonObject().get("nombreAtacante").getAsString();
 		String nombreAtacado = elemento.getAsJsonObject().get("nombreAtacado").getAsString();
@@ -475,7 +477,7 @@ public class ServidorHilo extends Thread {
 //
 		enviarNotificacionDeBatallaATodos(aliados, enemigos);
 	
-		new BatallaHilo(jugadoresBatalla, aliados, enemigos, jugadoresPorMapa.get(mapa)).start();
+		new BatallaHilo(jugadoresBatalla, aliados, enemigos, jugadoresPorMapa.get(mapa), conector).start();
 		// subirStats();
 	}
 
