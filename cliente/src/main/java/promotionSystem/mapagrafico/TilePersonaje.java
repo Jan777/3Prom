@@ -214,7 +214,7 @@ public class TilePersonaje {
 
 		for (TileOtrosJugadores otroJugador : cliente.getTiles()) {
 
-			if (otroJugador.getPersonaje().getPosicion().comparar(puntoClickeado)) {
+			if (otroJugador.getPersonaje().estaContenidoEnSuCirculoDeClickeo(puntoClickeado)) {
 				return otroJugador.getPersonaje();
 			}
 		}

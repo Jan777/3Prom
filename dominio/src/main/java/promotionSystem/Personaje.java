@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.Set;
 
 import static java.util.Collections.sort;
-import static promotionSystem.Constantes.RADIO_DE_ACCION;
+import static promotionSystem.Constantes.*;
 
 public abstract class Personaje implements Comparable<Personaje> {
 	protected String nombre;
@@ -42,12 +42,14 @@ public abstract class Personaje implements Comparable<Personaje> {
 	private Item chaleco;
 	private Item escudo;
 	private Inventario inventario = new Inventario();
+	private Circulo rangoDeClick;
 	
 	public Personaje(){
 		experiencia=0;
 		nivel=1;
 		posicion=new Punto(0,0);
 		radioDeAcccion=new Circulo(posicion,RADIO_DE_ACCION);
+		rangoDeClick=new Circulo(posicion,RANGO_DE_CLICK);
 	}
    
   
@@ -521,6 +523,7 @@ public abstract class Personaje implements Comparable<Personaje> {
 	public void setPosicion(Punto punto) {
 		posicion = punto;
 		radioDeAcccion = new Circulo(punto, RADIO_DE_ACCION);
+		rangoDeClick=new Circulo(punto,RANGO_DE_CLICK);
 	}
 
 	@Override
@@ -560,6 +563,10 @@ public abstract class Personaje implements Comparable<Personaje> {
 
 	public int getEnergiaMaxima() {
 		return energiaMaxima;
+	}
+
+	public boolean estaContenidoEnSuCirculoDeClickeo(Punto puntoClickeado) {
+		return rangoDeClick.incluye(puntoClickeado);
 	}
 
 }

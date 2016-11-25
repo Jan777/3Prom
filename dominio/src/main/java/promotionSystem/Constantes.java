@@ -196,6 +196,7 @@ public class Constantes {
 
 	//Movimiento
 	public static final Punto INICIO_MAPA = new Punto(0, 0);
-	public static final int RADIO_DE_ACCION = 10;
+	public static final int RADIO_DE_ACCION = 15;
+	public static final int RANGO_DE_CLICK=5;
 
 }
