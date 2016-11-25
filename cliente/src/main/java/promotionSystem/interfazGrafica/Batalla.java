@@ -18,6 +18,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.concurrent.Semaphore;
 
 public class Batalla extends JFrame implements Runnable{
 
@@ -44,6 +45,7 @@ public class Batalla extends JFrame implements Runnable{
 	private int cantidadMuertesAlianzaAmiga;
 	private int cantidadMuertesAlianzaEnemiga;
 	private int experienciaSumada;
+	private Semaphore semaforo = new Semaphore (0);
 	
 	public Batalla(Cliente cliente) {
 		//Sonido.BATALLAPOKEMON.loop();
@@ -336,13 +338,10 @@ public class Batalla extends JFrame implements Runnable{
 			return null;
 	}
 
-	private void otorgarTurno() throws IOException {	
+	private void otorgarTurno() throws IOException, InterruptedException {	
 		habilitarRadioButtons();
 		
-		while(!elegirAccion)
-		{
-			System.out.println(elegirAccion);
-		}
+		semaforo.acquire();
 		
 		enviarMovimiento();				
 		
@@ -415,6 +414,7 @@ public class Batalla extends JFrame implements Runnable{
 				btnEjecutar.setEnabled(false);	
 				seleccionarEnemigo.setEnabled(false);
 				seleccionarMagia.setEnabled(false);
+				semaforo.release();
 			}
 		});
 
