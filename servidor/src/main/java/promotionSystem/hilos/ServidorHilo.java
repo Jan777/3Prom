@@ -102,7 +102,7 @@ public class ServidorHilo extends Thread {
 		puntoAMover.addProperty("x", jugadores.get(cliente).getPosicion().getX());
 		puntoAMover.addProperty("y", jugadores.get(cliente).getPosicion().getY());
 		enviarMensajeAJugadores(puntoAMover, jugadoresPorMapa.get(mapa), "movimientoDePersonaje");
-
+		
 	}
 
 	private Punto obtenerPuntoEnviado() throws IOException {
@@ -118,6 +118,7 @@ public class ServidorHilo extends Thread {
 		casta = conector.obtenerCastaPersonaje(nombreCliente);
 		nivel = conector.obtenerNivelPersonaje(nombreCliente);
 		Personaje personaje = crearPersonajeAPartirDeRazaYCasta();
+		personaje.setNivel(nivel);
 		personaje.subirStats(nivel - 1);
 		personaje.setNombre(nombreCliente);
 		personaje.setCasta(casta);
@@ -133,7 +134,7 @@ public class ServidorHilo extends Thread {
 		salida.writeUTF(personaje.toString());
 	}
 
-	public void cerrar() throws IOException {
+	public void cerrar() throws IOException, SQLException {
 		if (mapa != null) {
 			enviarAOtrosQueJugadorSalio();
 			
@@ -153,6 +154,7 @@ public class ServidorHilo extends Thread {
 			jugadoresBatalla.remove(jugadores.get(cliente));
 		}
 		if(jugadores.containsKey(cliente)){
+			conector.actualizarPersonaje(jugadores.get(cliente));
 			enviarAccion("cerrar");
 			jugadores.remove(cliente);			
 		}

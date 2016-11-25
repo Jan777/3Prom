@@ -197,6 +197,7 @@ public class Cliente {
 		this.personaje = crearPersonaje();
 		this.personaje.subirStats(nivel - 1);
 		this.personaje.setNombre(this.nombre);
+		this.personaje.setNivel(nivel);
 		personaje.setCasta(casta);
 		personaje.setRaza(raza);
 

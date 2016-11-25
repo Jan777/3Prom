@@ -176,7 +176,8 @@ public class Escuchador extends Thread {
 
 	private Personaje crearPersonaje(JsonObject objeto) throws Exception {
 		Personaje personaje = crearPersonajeAPartirDeRazaCasta(objeto.get("raza").getAsString(),objeto.get("casta").getAsString());
-		personaje.subirStats(objeto.get("nivel").getAsInt() - 1);
+		personaje.setNivel(objeto.get("nivel").getAsInt());
+		personaje.subirStats(objeto.get("nivel").getAsInt()-1);
 		personaje.setNombre(objeto.get("nombre").getAsString());
 		personaje.setPosicion(new Punto(objeto.get("x").getAsInt(), objeto.get("y").getAsInt()));
 		personaje.setRaza(objeto.get("raza").getAsString());
@@ -194,10 +195,12 @@ public class Escuchador extends Thread {
 		JsonObject objeto = parser.parse(entrada.readUTF()).getAsJsonObject();
 		String nombreCliente = objeto.get("nombre").getAsString();
 		Personaje personajeQueSeVa = buscarPersonajePorNombre(nombreCliente);
-		if(personajeQueSeVa.getAlianza().cantidadDePersonajes()==1){
-			alianzas.remove(personajeQueSeVa.getAlianza());
-		}
+		
 		if(personajeQueSeVa.getAlianza()!=null){
+			if(personajeQueSeVa.getAlianza().cantidadDePersonajes()==1){
+				alianzas.remove(personajeQueSeVa.getAlianza());
+			}
+
 			personajeQueSeVa.getAlianza().sacarPersonaje(personajeQueSeVa);
 		}
 		jugadoresEnPartida.remove(buscarPersonajeAQuitarDeLaLista(objeto.get("nombre").getAsString()));

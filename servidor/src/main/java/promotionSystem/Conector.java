@@ -97,7 +97,8 @@ public class Conector {
 		sentencia = conector.prepareStatement("Select * from Personaje where nombre like ?");
 		sentencia.setString(1, nombreCliente);
 		ResultSet resultado = sentencia.executeQuery();
-		int nivel = 1;
+		int nivel=0;
+		
 		while (resultado.next()) {
 			nivel = resultado.getInt(4);
 		}
@@ -189,5 +190,15 @@ public class Conector {
 		personaje.setNivel(resultado.getInt(4));
 		//FALTAN ITEMS
 		return personaje;
+	}
+
+	public void actualizarPersonaje(Personaje personaje) throws SQLException {
+		  conector.setAutoCommit(false);
+		 sentencia = conector.prepareStatement("Update Personaje set nivel=? where nombre like ?");
+	     sentencia.setInt(1,personaje.getNivel());
+	     sentencia.setString(2,personaje.getNombre()); 
+	     sentencia.executeUpdate();
+	     sentencia.close();
+	     conector.commit();
 	}
 }
