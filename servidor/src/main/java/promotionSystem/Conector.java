@@ -6,8 +6,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static promotionSystem.sprites.Sprite.personaje;
-
 public class Conector {
 	private Connection conector;
 	PreparedStatement sentencia;

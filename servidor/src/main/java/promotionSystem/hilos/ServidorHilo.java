@@ -465,7 +465,7 @@ public class ServidorHilo extends Thread {
 		}
 	}
 
-	public void armarBatalla() throws IOException {
+	public void armarBatalla() throws IOException, SQLException {
 		JsonElement elemento = recibirObjetoJson();
 		String nombreAtacante = elemento.getAsJsonObject().get("nombreAtacante").getAsString();
 		String nombreAtacado = elemento.getAsJsonObject().get("nombreAtacado").getAsString();
@@ -475,7 +475,7 @@ public class ServidorHilo extends Thread {
 //
 		enviarNotificacionDeBatallaATodos(aliados, enemigos);
 	
-		new BatallaHilo(jugadoresBatalla, aliados, enemigos, jugadoresPorMapa.get(mapa)).start();
+		new BatallaHilo(jugadoresBatalla, aliados, enemigos, jugadoresPorMapa.get(mapa), conector).start();
 		// subirStats();
 	}
 

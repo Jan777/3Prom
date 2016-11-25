@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 
 import promotionSystem.Alianza;
 import promotionSystem.Cliente;
+import promotionSystem.Item;
 import promotionSystem.Personaje;
 import promotionSystem.Punto;
 import promotionSystem.juego.TileOtrosJugadores;
@@ -78,7 +79,6 @@ public class Escuchador extends Thread {
 		Iterator<JsonObject> iterador = elemento.iterator();
 		while(iterador.hasNext()){
 			JsonObject objeto = iterador.next();
-			//System.out.println("nombre:"+" "+objeto.get("nombre").getAsString()+" "+"experiencia:"+" "+objeto.get("experienciaGanada").getAsInt()+" "+objeto.get("x").getAsInt()+" "+objeto.get("y").getAsInt()+" "+"salud:"+" "+objeto.get("salud").getAsInt());
 			String nombrePersonaje = objeto.get("nombre").getAsString();
 			Personaje personaje = buscarPersonajePorNombre(nombrePersonaje);
 			int experiencia = objeto.get("experienciaGanada").getAsInt();
@@ -90,6 +90,7 @@ public class Escuchador extends Thread {
 				personaje.sacarDeModoBatalla();
 				personaje.setSalud(salud);
 				personaje.setEnergia(personaje.getEnergiaMaxima());
+				setearItemsDePersonaje(objeto, personaje);
 			}
 			else{
 				this.personaje.subirExperiencia(experiencia);
@@ -97,8 +98,43 @@ public class Escuchador extends Thread {
 				this.personaje.setSalud(salud);
 				this.personaje.sacarDeModoBatalla();
 				this.personaje.setEnergia(this.personaje.getEnergiaMaxima());
+				setearItemsDePersonaje(objeto, this.personaje);
 			}
 		}
+	}
+
+	private void setearItemsDePersonaje(JsonObject objeto, Personaje personaje)
+			throws InstantiationException, IllegalAccessException, ClassNotFoundException, Exception {
+		String armaString = objeto.get("arma").getAsString();
+		armaString = armaString.replaceAll(" ", "");
+		recibirYEquiparItem(personaje,hacerReflectionDeItem(armaString));
+		String cascoString = objeto.get("casco").getAsString();
+		cascoString = cascoString.replaceAll(" ", "");
+		recibirYEquiparItem(personaje,hacerReflectionDeItem(cascoString));
+		String botasString = objeto.get("botas").getAsString();
+		botasString = botasString.replaceAll(" ", "");
+		recibirYEquiparItem(personaje,hacerReflectionDeItem(botasString));
+		String escudoString = objeto.get("escudo").getAsString();
+		escudoString = escudoString.replaceAll(" ", "");
+		recibirYEquiparItem(personaje,hacerReflectionDeItem(escudoString));
+		String chalecoString = objeto.get("chaleco").getAsString();
+		chalecoString = chalecoString.replaceAll(" ", "");
+		recibirYEquiparItem(personaje,hacerReflectionDeItem(chalecoString));
+	}
+
+	private void recibirYEquiparItem(Personaje personaje, Item item) throws Exception {
+		personaje.recibirItem(item);
+		if(item!=null){
+			personaje.equiparItem(item);
+		}
+	}
+
+	private Item hacerReflectionDeItem(String itemString)
+			throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+		if(!itemString.equals("null")){
+			return (Item) Class.forName("promotionSystem.items." + itemString).newInstance();
+		}
+		return null;
 	}
 
 	public String recibirAccion() throws IOException {
@@ -137,7 +173,6 @@ public class Escuchador extends Thread {
 			ArrayList<Personaje> listaDePersonajes = new ArrayList<>();
 			for(String personajeActual : elemento2){
 				Personaje personaje = buscarPersonajePorNombre(personajeActual);
-				System.out.println(personaje.getNombre()+"  personaje");
 				listaDePersonajes.add(personaje);
 			}
 			alianzas.add(new Alianza(listaDePersonajes));
@@ -247,19 +282,15 @@ public class Escuchador extends Thread {
 			this.cliente.getPersonaje().aceptarAlianza(personajeInvitado);
 			cliente.mostrarAlianzaAceptada();
 			
-			System.out.println(cliente.getPersonaje().getAlianza().getPersonajes());
-			
 		}
 		else if(cliente.getNombre().equals(nombreInvitado)){
 			Personaje personajeInvitador = buscarPersonajePorNombre(nombreInvitador);
 			this.cliente.getPersonaje().aceptarAlianza(personajeInvitador);
-			System.out.println(cliente.getPersonaje().getAlianza().getPersonajes());
 		}
 		else{
 			Personaje personajeInvitado = buscarPersonajePorNombre(nombreInvitado);
 			Personaje personajeInvitador = buscarPersonajePorNombre(nombreInvitador);
 			personajeInvitador.aceptarAlianza(personajeInvitado);
-			System.out.println(personajeInvitado.getAlianza().getPersonajes());
 		}
 	}
 	
@@ -280,7 +311,6 @@ public class Escuchador extends Thread {
 
 		for (Personaje personaje : listaAliados.getPersonajes()) {
 			if(personaje.getNombre().equals(cliente.getNombre())){
-				System.out.println(cliente.getNombre());
 				cliente.getPersonaje().ponerEnModoBatalla();
 				cliente.setAlianzaAmiga(listaAliados);
 				cliente.setAlianzaEnemiga(listaEnemigos);
@@ -293,7 +323,6 @@ public class Escuchador extends Thread {
 
 		for (Personaje personaje : listaEnemigos.getPersonajes()) {
 			if(personaje.getNombre().equals(cliente.getNombre())){
-				System.out.println(cliente.getNombre());
 				cliente.getPersonaje().ponerEnModoBatalla();
 				cliente.setAlianzaAmiga(listaEnemigos);
 				cliente.setAlianzaEnemiga(listaAliados);

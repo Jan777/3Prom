@@ -7,6 +7,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 import promotionSystem.Alianza;
+import promotionSystem.Conector;
 import promotionSystem.Item;
 import promotionSystem.Personaje;
 import promotionSystem.Punto;
@@ -18,6 +19,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.net.Socket;
+import java.sql.SQLException;
 import java.util.*;
 
 import javax.swing.JOptionPane;
@@ -45,8 +47,10 @@ public class BatallaHilo extends Thread {
 	private int subirExperienciaConMuertesDeAlianza2;
 	private ArrayList<Punto> puntosIniciales;
 	private ArrayList<Socket> jugadoresPorMapa;
+	private List<String> items;
+	private Conector conector;
 	
-	public BatallaHilo(HashMap<Personaje, Socket> jugadoresBatalla, Alianza alianza1, Alianza alianza2, ArrayList<Socket> arrayList) {
+	public BatallaHilo(HashMap<Personaje, Socket> jugadoresBatalla, Alianza alianza1, Alianza alianza2, ArrayList<Socket> arrayList, Conector conector) throws SQLException {
 		this.alianza1 = alianza1;
 		this.alianza2 = alianza2;
 		this.jugadoresBatalla=jugadoresBatalla;
@@ -54,6 +58,7 @@ public class BatallaHilo extends Thread {
 		 cantidadMuertesAlianza2 = 0;
 		 muertos=new ArrayList<>();
 		 this.jugadoresPorMapa = arrayList;
+		 items = conector.obtenerItem();
 	}
 
 
@@ -72,15 +77,16 @@ public class BatallaHilo extends Thread {
 				recibirAccionPersonaje();
 				realizarAccion();
 				despuesDelTurno();
-			} 
-			
+			}
+			entregarItemsAGanadores();
 			recuperarVidaABatallantes();
 			recuperarEnergiaABatallantes();
 			aumentarExperienciaDeLosGanadores();
 			reasignarPersonajesAlMapa();
 			Thread.sleep(1000);
+			
 			informarDatosAlResto();
-			//entregarItemsAGanadores();
+			
 		}
 		catch (Exception e) {
 			JOptionPane.showMessageDialog(null,"Error en la batalla","Error",JOptionPane.ERROR_MESSAGE);
@@ -117,14 +123,17 @@ public class BatallaHilo extends Thread {
 		puntosIniciales.add(new Punto(40, 40));
 	}
 
-	//FIXME arreglar esto que esta feo
-	private void entregarItemsAGanadores() {
-		//ArrayList<String> items = {"BotasFlober", "CascoAdamantium"}
-		if(cantidadMuertesAlianza1 < alianza1.cantidadDePersonajes()){
-			Iterator<Personaje> iterador = alianza1.getPersonajes().iterator();
-			while(iterador.hasNext()){
-				Personaje personaje = iterador.next();
-				//personaje.agregarAInventario();
+	private void entregarItemsAGanadores() throws Exception {
+		Random random = new Random();
+		for(Personaje personaje : listaDePersonajes){
+			if(personaje.estaVivo()){
+				int numeroRandom = random.nextInt(items.size());
+				Item reflectionItem = (Item) Class.forName("promotionSystem.items." + items.get(numeroRandom)).newInstance();
+				reflectionItem.setNombreItem(reflectionItem.getNombreItem().replaceAll(" ", ""));
+				personaje.recibirItem(reflectionItem);
+				if(reflectionItem!=null){
+					personaje.equiparItem(reflectionItem);
+				}
 			}
 		}
 	}
@@ -156,6 +165,11 @@ public class BatallaHilo extends Thread {
 			personaje.addProperty("x", participante.getPosicion().getX());
 			personaje.addProperty("y", participante.getPosicion().getY());
 			personaje.addProperty("salud", participante.getSalud());
+			personaje.addProperty("arma", participante.getArma()!=null ? participante.getArma().getNombreItem() : "null");
+			personaje.addProperty("botas", participante.getBotas()!=null ? participante.getBotas().getNombreItem() : "null");
+			personaje.addProperty("escudo", participante.getEscudo()!=null ? participante.getEscudo().getNombreItem() : "null");
+			personaje.addProperty("casco", participante.getCasco()!=null ? participante.getCasco().getNombreItem() : "null");
+			personaje.addProperty("chaleco", participante.getChaleco()!=null ? participante.getChaleco().getNombreItem() : "null");
 			personajes.add(personaje);
 		}
 		for(Socket cliente : jugadoresPorMapa){
@@ -209,7 +223,6 @@ public class BatallaHilo extends Thread {
 			Personaje personajeActual = iteratorPersonajes.next();
 			if (!personajeActual.estaVivo()) {
 				muertos.add(personajeActual);
-				//pozoDeItems.addAll(personajeActual.getItems());//FIXME se le saca uno solo.
 			}
 		}
 	}
@@ -259,7 +272,6 @@ public class BatallaHilo extends Thread {
 		while (iteratorSocket1.hasNext()) {
 			Personaje jugador = iteratorSocket1.next();
 			if(!jugador.getNombre().equals(personajeActual.getNombre())){
-				System.out.println("jugador avisado " + jugador.getNombre());
 				DataOutputStream salidaJugador = new DataOutputStream(jugadoresBatalla.get(jugador).getOutputStream());				
 				salidaJugador.writeUTF(mensaje.toString());
 				salidaJugador.writeUTF(ataque.toString());
@@ -306,7 +318,6 @@ public class BatallaHilo extends Thread {
 		while (iteratorSocket1.hasNext()) {
 			Personaje jugador = iteratorSocket1.next();
 			if(!jugador.getNombre().equals(personajeActual.getNombre())){
-				System.out.println("jugador avisado " + jugador.getNombre());
 				DataOutputStream salidaJugador = new DataOutputStream(jugadoresBatalla.get(jugador).getOutputStream());				
 				salidaJugador.writeUTF(mensaje.toString());
 				salidaJugador.writeUTF(ataque.toString());

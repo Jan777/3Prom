@@ -23,11 +23,13 @@ public class Inventario {
     }
 
     public Item buscarItem(Item item) throws ClassNotFoundException {
-        for(Item itemEnInventario : listaDeItems){
-            if(item.equals(itemEnInventario)){
-                return itemEnInventario;
-            }
-        }
+    	if(item!=null){
+	        for(Item itemEnInventario : listaDeItems){
+	            if(itemEnInventario!=null && item.equals(itemEnInventario)){
+	                return itemEnInventario;
+	            }
+	        }
+    	}
         return null;
     }
 
