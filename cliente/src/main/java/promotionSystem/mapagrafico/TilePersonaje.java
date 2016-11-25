@@ -132,7 +132,7 @@ public class TilePersonaje {
 	}
 
 	private void abrirPanelDeRespuesta(String nombre) throws Exception {
-		int respuesta = JOptionPane.showConfirmDialog(null, "Aceptar o Rechazar invitacion a Alianza de parte de "+nombre, "Invitacion",
+		int respuesta = JOptionPane.showConfirmDialog(null, "Acepta la invitacion a Alianza de parte de "+nombre + "?", "Invitacion",
 				JOptionPane.YES_NO_OPTION);
 		if (respuesta == JOptionPane.YES_OPTION) {
 			cliente.enviarRespuestaAInvitacionDeAlianza(true, cliente.getInvitador());

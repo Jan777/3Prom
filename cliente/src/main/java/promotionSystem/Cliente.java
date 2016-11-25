@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 public class Cliente {
 	private Socket cliente;
 	private String nombre;
@@ -389,6 +391,11 @@ public class Cliente {
 
 	public void setTile(TilePersonaje tile) {
 		this.tile = tile;
+	}
+
+	public void mostrarAlianzaAceptada() {
+		JOptionPane.showMessageDialog(null, "Se ha aceptado la alianza","Formacion de Alianza",JOptionPane.INFORMATION_MESSAGE);
+		
 	}
 
 }

@@ -242,7 +242,10 @@ public class Escuchador extends Thread {
 		if(cliente.getNombre().equals(nombreInvitador)){
 			Personaje personajeInvitado = buscarPersonajePorNombre(nombreInvitado);
 			this.cliente.getPersonaje().aceptarAlianza(personajeInvitado);
+			cliente.mostrarAlianzaAceptada();
+			
 			System.out.println(cliente.getPersonaje().getAlianza().getPersonajes());
+			
 		}
 		else if(cliente.getNombre().equals(nombreInvitado)){
 			Personaje personajeInvitador = buscarPersonajePorNombre(nombreInvitador);
