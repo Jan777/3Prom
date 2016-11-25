@@ -51,6 +51,7 @@ public class Batalla extends JFrame implements Runnable{
 	
 	public Batalla(Cliente cliente) {
 		//Sonido.BATALLAPOKEMON.loop();
+		setResizable(false);
 		this.alianzaEnemiga=cliente.getAlianzaEnemiga().getPersonajes();
 		this.alianzaAmiga=cliente.getAlianzaAmiga().getPersonajes();
 		this.cliente = cliente;

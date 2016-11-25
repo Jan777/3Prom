@@ -11,11 +11,13 @@ import promotionSystem.mapagrafico.dijkstra.Nodo;
 import promotionSystem.sprites.Sprite;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -37,7 +39,6 @@ public class Mapa {
 	protected boolean enMovimiento;
 	protected String sprites;
 	private static Image iluminacion;
-	private static Image barraVida;
 	private Tile[][] tiles;
 	private TileObstaculo[][]  tilesObstaculo; 
 	private boolean[][] obstaculos; 
@@ -207,7 +208,7 @@ public class Mapa {
 			}
 		}
 		dibujarRestoPersonajes(g2d);
-
+		
 		g2d.drawImage( iluminacion, 0, 0 , null);
 	}
 
@@ -215,7 +216,8 @@ public class Mapa {
 	public void mover(Graphics2D g2d) {
 		g2d.setBackground(Color.BLACK);
 		g2d.clearRect(0, 0, camara.getAncho() + 10, camara.getAlto() + 10);		
-		
+	
+		int pos=0;
 		x = tiles[0][0].getPosicionIsometricaX(); 
 		y = tiles[0][0].getPosicionIsometricaY();
 		for (int i = 0; i <  alto; i++) { 
@@ -226,6 +228,8 @@ public class Mapa {
 					pj.dibujarCentro(g2d);
 
 				}
+				
+				
 				
 				if( puedoDibujarObstaculo(i, j) )
 					tilesObstaculo[i][j].mover(g2d,xDestino + camara.getxOffCamara(),yDestino + camara.getyOffCamara());
