@@ -63,7 +63,8 @@ public class HechizosTest {
 		Assert.assertEquals(Constantes.SALUD_POKEMON_DE_AGUA, pokemon.getSalud());
 		Assert.assertEquals(Constantes.VELOCIDAD_POKEMON_DE_AGUA, pokemon.obtenerPuntosDeVelocidad());
 		roxas.atacarConMagia(pokemon, "Trueno");
-		Assert.assertEquals(Constantes.SALUD_POKEMON_DE_AGUA -Constantes.MAGIA_ROXAS +Constantes.DEFENSA_POKEMON_DE_AGUA, pokemon.getSalud());
+		int puntosARestar=Constantes.MAGIA_ROXAS -Constantes.DEFENSA_POKEMON_DE_AGUA<0?0:Constantes.MAGIA_ROXAS -Constantes.DEFENSA_POKEMON_DE_AGUA;
+		Assert.assertEquals(Constantes.SALUD_POKEMON_DE_AGUA -puntosARestar, pokemon.getSalud());
 		Assert.assertEquals((int)(Constantes.VELOCIDAD_POKEMON_DE_AGUA /1.5), pokemon.obtenerPuntosDeVelocidad());
 		
 	}
