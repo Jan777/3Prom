@@ -13,6 +13,7 @@ import promotionSystem.sprites.Animacion;
 import promotionSystem.sprites.Sprite;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.awt.image.BufferedImage;
@@ -63,7 +64,7 @@ public class TilePersonaje {
 		this.xInicio = this.xDestino = -cliente.getPersonaje().getPosicion().getX();  
 		this.yInicio = this.yDestino =  -cliente.getPersonaje().getPosicion().getY(); 
 		this.mouse = mouse;
-		inicializarAnimaciones("RecursosPersonaje/Razas/" + cliente.getCasta() + "/" + cliente.getCasta() + ".png");
+		inicializarAnimaciones("Recursos/Recursos Personaje/Razas/" + cliente.getCasta() + "/" + cliente.getCasta() + ".png");
 
 		this.nuevoRecorrido = false;
 
@@ -118,8 +119,8 @@ public class TilePersonaje {
 	}
 
 	private void abrirPanelDeBatalla() {
-		Batalla batalla = new Batalla(cliente);
-        batalla.addWindowListener(new WindowListener(){ 
+		Batalla batalla = new Batalla(cliente, mapa.getNombre());
+        batalla.addWindowListener(new WindowAdapter(){ 
 			
 			@Override
 			public void windowOpened(WindowEvent e) {
@@ -128,43 +129,13 @@ public class TilePersonaje {
 			}
 			
 			@Override
-			public void windowIconified(WindowEvent e) {
-				
-				
-			}
-			
-			@Override
-			public void windowDeiconified(WindowEvent e) {
-				
-				
-			}
-			
-			@Override
-			public void windowDeactivated(WindowEvent e) {
-				
-				
-			}
-			
-			@Override
-			public void windowClosing(WindowEvent e) {
-			
-				
-			}
-			
-			@Override
 			public void windowClosed(WindowEvent e) {
 				padre.setEnabled(true);
 				
 			}
-			
-			@Override
-			public void windowActivated(WindowEvent e) {
-				
-				
-			}
 		});
 		new Thread(batalla).start();
-		Sonido.MAPAPOKEMON.stop();
+		//Sonido.MAPAPOKEMON.stop();
 	}
 
 	private boolean alianzaEsValida() {

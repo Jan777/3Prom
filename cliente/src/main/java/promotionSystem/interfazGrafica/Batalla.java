@@ -48,13 +48,15 @@ public class Batalla extends JFrame implements Runnable{
 	private Semaphore semaforo = new Semaphore (0);
 	private JLabel lblInformeBatalla;
 	private JLabel lblTurno;
+	private String mapa;
 	
-	public Batalla(Cliente cliente) {
+	public Batalla(Cliente cliente, String mapa) {
 		//Sonido.BATALLAPOKEMON.loop();
 		setResizable(false);
 		this.alianzaEnemiga=cliente.getAlianzaEnemiga().getPersonajes();
 		this.alianzaAmiga=cliente.getAlianzaAmiga().getPersonajes();
 		this.cliente = cliente;
+		this.mapa = mapa;
 		setVisible(true);
 		setTitle("Batalla");
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -159,10 +161,10 @@ public class Batalla extends JFrame implements Runnable{
 	public void paint(Graphics g) {
 		super.paint(g);
 		Graphics2D g2d = (Graphics2D) g;
-		fondo= CargaImagen.cargarImagen("recursos/Batalla/BatallaFondo.gif");
+		fondo= CargaImagen.cargarImagen("Recursos/Recursos Mapa/"+mapa+"/Batalla Fondo/BatallaFondo.gif");
 		g2d.drawImage(fondo, 0, 0, null);
 		for(Personaje personaje: alianzaAmiga){
-			spriteUnitario= CargaImagen.cargarImagen("recursos/Batalla/"+ personaje.getCasta() +"Batalla.png");
+			spriteUnitario= CargaImagen.cargarImagen("Recursos/Recursos Personaje/Batalla/"+ personaje.getCasta() +"Batalla.png");
 			Punto punto=obtenerPosicionEnFrameBatallaDesafiantes(alianzaAmiga.indexOf(personaje));
 			g2d.drawImage(spriteUnitario, punto.getX(),punto.getY(), null);
 			
@@ -175,7 +177,7 @@ public class Batalla extends JFrame implements Runnable{
 		}
 		
 		for(Personaje personaje: alianzaEnemiga){
-			spriteUnitario= CargaImagen.cargarImagen("recursos/Batalla/"+ personaje.getCasta() +"BatallaInvertida.png");
+			spriteUnitario= CargaImagen.cargarImagen("Recursos/Recursos Personaje/Batalla/"+ personaje.getCasta() +"BatallaInvertida.png");
 			Punto punto=obtenerPosicionEnFrameBatallaDesafiados(alianzaEnemiga.indexOf(personaje));
 			g2d.drawImage(spriteUnitario, punto.getX(),punto.getY(), null);
 			
@@ -268,7 +270,7 @@ public class Batalla extends JFrame implements Runnable{
 			else{
 				JOptionPane.showMessageDialog(null,"Has Ganado!","Fin de batalla",JOptionPane.INFORMATION_MESSAGE);
 			}
-			Sonido.BATALLAPOKEMON.stop();
+			//Sonido.BATALLAPOKEMON.stop();
 			//Sonido.MAPAPOKEMON.loop();
 			dispose();
 		} catch (Exception e) {
@@ -339,7 +341,7 @@ public class Batalla extends JFrame implements Runnable{
 
 	private void otorgarTurno() throws IOException, InterruptedException {	
 		habilitarRadioButtons();
-		lblTurno.setText("es tu turno");
+		lblTurno.setText("Es tu turno");
 		semaforo.acquire();
 		
 		enviarMovimiento();				

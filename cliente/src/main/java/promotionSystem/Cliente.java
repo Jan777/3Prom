@@ -22,7 +22,6 @@ public class Cliente {
 	private String nombre;
 	private String ip;
 	private int puerto;
-	// private String archivoDeConfiguracion="../configuracion.config";
 	private String archivoDeConfiguracion = "configuracion.config";
 	private Personaje personaje;
 	private DataOutputStream salida;

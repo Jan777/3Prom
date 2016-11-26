@@ -109,10 +109,7 @@ public class ServidorHilo extends Thread {
 
 	private Punto obtenerPuntoEnviado() throws IOException {
 		JsonElement elemento = recibirObjetoJson();
-		// Punto punto = new
-		// Punto(elemento.getAsJsonObject().get("x").getAsInt(),elemento.getAsJsonObject().get("y").getAsInt());
 		return new Gson().fromJson(elemento.getAsJsonObject(), Punto.class);
-		//
 	}
 
 	private Personaje obtenerPersonaje() throws Exception {
@@ -401,9 +398,6 @@ public class ServidorHilo extends Thread {
 		JsonElement elemento = recibirObjetoJson();
 		String personajeInvitado = elemento.getAsJsonObject().get("nombre").getAsString();
 		Socket invitado = enviarInvitacionAAlianza(personajeInvitado);
-		// aca seria necesario sincronizar por si el cliente elige no responder
-		// indefinidamente la solicitud
-		// tal vez un timer?
 	}
 
 	private Socket enviarInvitacionAAlianza(String personaje) throws IOException {
@@ -474,11 +468,8 @@ public class ServidorHilo extends Thread {
 		Personaje personajeAtacado = obtenerPersonajePorNombre(nombreAtacado);
 		Alianza aliados = jugadores.get(cliente).invocarAliados();
 		Alianza enemigos = personajeAtacado.invocarAliados();
-//
 		enviarNotificacionDeBatallaATodos(aliados, enemigos);
-	
 		new BatallaHilo(jugadoresBatalla, aliados, enemigos, jugadoresPorMapa.get(mapa), conector).start();
-		// subirStats();
 	}
 
 	private Personaje obtenerPersonajePorNombre(String nombreAtacado) {
@@ -492,7 +483,6 @@ public class ServidorHilo extends Thread {
 		return null;
 	}
 
-	// Este metodo creo que no se usa
 	public String recibirEnemigo() throws IOException {
 		JsonElement elemento = recibirObjetoJson();
 		return elemento.getAsJsonObject().get("personajeEnemigo").getAsString();

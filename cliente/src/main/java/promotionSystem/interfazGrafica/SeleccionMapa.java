@@ -105,7 +105,6 @@ public class SeleccionMapa extends JFrame {
 		JFrame juego = new JFrame("Kings of the Multiverse V1.0");
 		juego.setBounds(100, 100, 800, 600);
 		JuegoPanel panel;
-//		panel = new JuegoPanel(juego, "Mapa Prueba", cliente);
 		panel = new JuegoPanel(juego, mapa, cliente);
 		juego.add(panel);
 

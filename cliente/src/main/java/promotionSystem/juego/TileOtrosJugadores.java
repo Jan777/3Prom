@@ -40,7 +40,13 @@ public class TileOtrosJugadores {
 		xActual= personaje.getPosicion().getX();
 		yActual= personaje.getPosicion().getY();
 		this.personaje=personaje;
-		inicializarAnimaciones("RecursosPersonaje/Razas/"+personaje.getCasta()+"/"+personaje.getCasta()+".png");
+		/*
+		deltaX+=xActual;
+		deltaY+=yActual;		
+		xIsometrica = (deltaX - deltaY) * ( ANCHO / 2) + anchoImagen%64;
+		yIsometrica = (deltaX + deltaY) * ( ALTO / 2) + altoImagen%32;
+		*/
+		inicializarAnimaciones("Recursos/Recursos Personaje/Razas/"+personaje.getCasta()+"/"+personaje.getCasta()+".png");
 	}
 	
 	public void dibujar(Graphics2D g2d, int deltaX, int deltaY) {
@@ -48,7 +54,6 @@ public class TileOtrosJugadores {
 		deltaY+=yActual;		
 		xIsometrica = (deltaX - deltaY) * ( ANCHO / 2) + anchoImagen%64;
 		yIsometrica = (deltaX + deltaY) * ( ALTO / 2) + altoImagen%32;
-//		g2d.drawImage( animacionCaminado[0].getFrame(8), xIsometrica-32,  yIsometrica-48, null);	
 		
 		g2d.drawImage( animacionCaminado[movimiento].getFrame(8) ,xIsometrica-32,yIsometrica-48-5, null);
 		Font tipoDeLetra=new Font("Arial", Font.BOLD, 16);
@@ -159,7 +164,6 @@ public class TileOtrosJugadores {
 		paraDondeVoy(puntoNuevo.getX(), puntoNuevo.getY());
 		xActual= puntoNuevo.getX();
         yActual=puntoNuevo.getY();
-//        actualizar();
         actualizarAnimaciones();
 	}
 

@@ -32,7 +32,6 @@ public class BatallaHilo extends Thread {
 	private HashMap<Personaje, Socket> socketAlianza2;
 	private int numeroDePersonajeAlQueLeCorrespondeElTurno;
 	private String accion;
-	//private ArrayList<Item> pozoDeItems;
 	private ArrayList<Personaje> muertos;
 	private Personaje personajeActual;
 	private HashMap<Personaje, Socket> jugadoresBatalla;

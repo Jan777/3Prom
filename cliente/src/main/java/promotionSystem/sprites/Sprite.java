@@ -13,7 +13,6 @@ public class Sprite {
 	private static final int framesPersonaje = 9;
 	private static final int dirreciones = 8;
 	private static final int cantidadSprite = 6;
-	public static final BufferedImage click = CargaImagen.cargarImagen("recursos/click.png");
 
 	private BufferedImage[][] sprite;
 

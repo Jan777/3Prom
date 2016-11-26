@@ -1,5 +1,6 @@
 package promotionSystem.interfazGrafica;
 
+
 import javax.swing.*;
 
 public class LoginTest {

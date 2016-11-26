@@ -75,7 +75,6 @@ public class Escuchador extends Thread {
 		JsonArray listaDePersonajesActualizados = parser.parse(entrada.readUTF()).getAsJsonArray();
 		Type tipoPersonajeActualizado = new TypeToken<ArrayList<JsonObject>>() {}.getType();
 		ArrayList<JsonObject> elemento = new Gson().fromJson(listaDePersonajesActualizados, tipoPersonajeActualizado);
-		//parsear
 		Iterator<JsonObject> iterador = elemento.iterator();
 		while(iterador.hasNext()){
 			JsonObject objeto = iterador.next();
@@ -86,7 +85,6 @@ public class Escuchador extends Thread {
 			int salud = objeto.get("salud").getAsInt();
 			if(personaje!=null){
 				personaje.subirExperiencia(experiencia);
-				//asignarPuntoAPersonaje(nombrePersonaje, punto);
 				personaje.sacarDeModoBatalla();
 				personaje.setSalud(salud);
 				personaje.setEnergia(personaje.getEnergiaMaxima());
@@ -94,7 +92,6 @@ public class Escuchador extends Thread {
 			}
 			else{
 				this.personaje.subirExperiencia(experiencia);
-				//this.personaje.setPosicion(punto);
 				this.personaje.setSalud(salud);
 				this.personaje.sacarDeModoBatalla();
 				this.personaje.setEnergia(this.personaje.getEnergiaMaxima());
@@ -264,7 +261,6 @@ public class Escuchador extends Thread {
 		JsonParser parser = new JsonParser();
 		JsonElement elemento = parser.parse(entrada.readUTF());
 		String invitador = elemento.getAsJsonObject().get("nombre").getAsString();
-		//cartel en pantalla con timer para dar la respuesta
 		cliente.setInvitador(invitador);
 		mostrarInvitacion();
 	}

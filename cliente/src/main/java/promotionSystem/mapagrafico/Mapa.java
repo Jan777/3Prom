@@ -63,7 +63,7 @@ public class Mapa {
 
 
 	public Mapa(String nombre,TilePersonaje pj,Camara camara ,ArrayList<Personaje> personajes,Cliente cliente) {
-		File path = new File("recursos/"+nombre+".txt");
+		File path = new File("Recursos/Recursos Mapa/"+nombre+".map");
 		this.pj = pj;
 		this.enMovimiento = false;
 		this.xDestino = pj.getXDestino();
@@ -88,7 +88,7 @@ public class Mapa {
 		this.ancho=sc.nextInt();
 		this.alto=sc.nextInt();
 		cantidadDeSprite=sc.nextInt();
-		this.sprites="/recursos/"+nombre;
+		this.sprites="/Recursos/"+nombre;
 		cargarSprite(nombre);
 
 		this.tiles = new Tile[ancho][alto];
@@ -119,7 +119,7 @@ public class Mapa {
 
 	private void cargarSprite(String nombre) {
 		load(nombre);
-		iluminacion = Sprite.loadImage("recursos/iluminacion.png").getScaledInstance(camara.getAncho() + 10,camara.getAlto() + 10,Image.SCALE_SMOOTH);
+		iluminacion = Sprite.loadImage("Recursos/Recursos Mapa/iluminacion.png").getScaledInstance(camara.getAncho() + 10,camara.getAlto() + 10,Image.SCALE_SMOOTH);
 		
 
 	}
@@ -131,7 +131,7 @@ public class Mapa {
 	
 	private void load(String nombre) {
 		
-		Sprite.inicializar("recursos/"+nombre+"/piso.png");
+		Sprite.inicializar("Recursos/Recursos Mapa/"+nombre+"/piso.png");
 		
 	}
 
@@ -170,15 +170,7 @@ public class Mapa {
 			
 			noEnvieQueTermine = false;
 		}
-		//actualizarRestoPersonajes();
 	}
-
-	/*private void actualizarRestoPersonajes() {
-		for (TileOtrosJugadores pj : personajes.values()) {
-			pj.actualizar();
-		}		
-	}*/
-
 
 	private boolean hayCamino() {
 		return camino != null && ! camino.isEmpty();
@@ -295,8 +287,12 @@ public class Mapa {
 			
 			jugador.mover(g2d,xDestino + camara.getxOffCamara(),yDestino + camara.getyOffCamara());
 			jugador.actualizarAnimaciones();
-//			jugador.actualizar();
 		}
+	}
+
+
+	public String getNombre() {
+		return nombre;
 	}
 	
 	
