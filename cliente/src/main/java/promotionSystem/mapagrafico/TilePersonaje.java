@@ -4,18 +4,14 @@ import promotionSystem.Cliente;
 import promotionSystem.Personaje;
 import promotionSystem.Punto;
 import promotionSystem.interfazGrafica.Batalla;
-import promotionSystem.juego.Camara;
-import promotionSystem.juego.Mouse;
-import promotionSystem.juego.Opciones;
-import promotionSystem.juego.Sonido;
-import promotionSystem.juego.TileOtrosJugadores;
+import promotionSystem.juego.*;
 import promotionSystem.sprites.Animacion;
 import promotionSystem.sprites.Sprite;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.awt.image.BufferedImage;
 import java.net.MalformedURLException;
 

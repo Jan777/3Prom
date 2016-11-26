@@ -1,18 +1,17 @@
 package promotionSystem.hilos;
 
+import promotionSystem.Alianza;
+import promotionSystem.Conector;
+import promotionSystem.Personaje;
+import promotionSystem.mapa.Mapa;
+
+import javax.swing.*;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
-
-import javax.swing.JOptionPane;
-
-import promotionSystem.Alianza;
-import promotionSystem.Conector;
-import promotionSystem.Personaje;
-import promotionSystem.mapa.Mapa;
 
 public class HiloJuego extends Thread {
 	private ServerSocket servidor;

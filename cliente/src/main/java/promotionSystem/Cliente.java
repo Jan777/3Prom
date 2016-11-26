@@ -7,6 +7,7 @@ import promotionSystem.hilos.EscuchadorBatalla;
 import promotionSystem.juego.TileOtrosJugadores;
 import promotionSystem.mapagrafico.TilePersonaje;
 
+import javax.swing.*;
 import java.io.*;
 import java.lang.reflect.Type;
 import java.net.Socket;
@@ -14,8 +15,6 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
-import javax.swing.JOptionPane;
 
 public class Cliente {
 	private Socket cliente;

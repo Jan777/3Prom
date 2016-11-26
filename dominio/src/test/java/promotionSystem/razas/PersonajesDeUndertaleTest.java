@@ -2,7 +2,6 @@ package promotionSystem.razas;
 
 import org.junit.Assert;
 import org.junit.Test;
-
 import promotionSystem.Personaje;
 import promotionSystem.razas.castas.undertale.Chara;
 

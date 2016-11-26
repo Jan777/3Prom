@@ -1,27 +1,16 @@
 package promotionSystem.hilos;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import promotionSystem.Cliente;
+import promotionSystem.Personaje;
+
+import javax.swing.*;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.lang.reflect.Method;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Iterator;
-
-import javax.swing.JOptionPane;
-
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.reflect.TypeToken;
-
-import promotionSystem.Cliente;
-import promotionSystem.Personaje;
-import promotionSystem.Punto;
 
 public class EscuchadorBatalla extends Thread {
 	private boolean continuar=true;

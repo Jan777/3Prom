@@ -10,7 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import static promotionSystem.Constantes.*;
+import static promotionSystem.Constantes.RADIO_DE_ACCION;
+import static promotionSystem.Constantes.RANGO_DE_CLICK;
 
 public abstract class Personaje implements Comparable<Personaje> {
 	protected String nombre;

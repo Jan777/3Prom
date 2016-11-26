@@ -2,17 +2,10 @@ package promotionSystem.hilos;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
-
-import promotionSystem.Alianza;
-import promotionSystem.Cliente;
-import promotionSystem.Item;
-import promotionSystem.Personaje;
-import promotionSystem.Punto;
+import promotionSystem.*;
 import promotionSystem.juego.TileOtrosJugadores;
-import promotionSystem.mapagrafico.TilePersonaje;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import javax.swing.*;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -22,8 +15,6 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
-import javax.swing.JOptionPane;
 
 public class Escuchador extends Thread {
 	private Socket socketCliente;

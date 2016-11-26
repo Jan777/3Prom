@@ -1,17 +1,15 @@
 package promotionSystem.hilos;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import promotionSystem.Personaje;
+
+import javax.swing.*;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.Iterator;
-
-import javax.swing.JOptionPane;
-
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
-
-import promotionSystem.Personaje;
 
 public class HiloAsignadorDeSocketBatalla implements Runnable{
 	

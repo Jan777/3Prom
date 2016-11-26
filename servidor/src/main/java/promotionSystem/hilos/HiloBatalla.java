@@ -1,13 +1,12 @@
 package promotionSystem.hilos;
 
+import promotionSystem.Personaje;
+
+import javax.swing.*;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
-
-import javax.swing.JOptionPane;
-
-import promotionSystem.Personaje;
 
 public class HiloBatalla extends Thread {
 	private ServerSocket servidorBatalla;

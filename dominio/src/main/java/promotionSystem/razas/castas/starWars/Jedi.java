@@ -1,7 +1,9 @@
 package promotionSystem.razas.castas.starWars;
 
 import promotionSystem.Constantes;
-import promotionSystem.hechizo.*;
+import promotionSystem.hechizo.Electrificar;
+import promotionSystem.hechizo.EmpujonDeFuerza;
+import promotionSystem.hechizo.Hechizo;
 import promotionSystem.razas.PersonajeDeStarWars;
 
 import java.util.HashMap;

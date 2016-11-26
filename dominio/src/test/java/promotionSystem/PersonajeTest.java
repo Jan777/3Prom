@@ -10,7 +10,6 @@ import promotionSystem.mapa.Obstaculo;
 import promotionSystem.razas.castas.humano.GuerreroHumano;
 import promotionSystem.razas.castas.pokemon.PokemonTipoAgua;
 
-import static java.lang.Math.sqrt;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static promotionSystem.Constantes.*;

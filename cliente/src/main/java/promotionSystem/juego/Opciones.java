@@ -1,20 +1,16 @@
 package promotionSystem.juego;
 
 
+import promotionSystem.Cliente;
+import promotionSystem.Personaje;
+
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import promotionSystem.Cliente;
-import promotionSystem.Personaje;
 
 public class Opciones extends JFrame{
 	private JPanel contentPane;

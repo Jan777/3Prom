@@ -7,6 +7,7 @@ import promotionSystem.Personaje;
 import promotionSystem.Punto;
 import promotionSystem.mapa.Mapa;
 
+import javax.swing.*;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -14,8 +15,6 @@ import java.lang.reflect.Method;
 import java.net.Socket;
 import java.sql.SQLException;
 import java.util.*;
-
-import javax.swing.JOptionPane;
 
 public class ServidorHilo extends Thread {
 	private Socket cliente;
