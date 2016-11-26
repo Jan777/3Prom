@@ -161,7 +161,7 @@ public class Batalla extends JFrame implements Runnable{
 	public void paint(Graphics g) {
 		super.paint(g);
 		Graphics2D g2d = (Graphics2D) g;
-		fondo= CargaImagen.cargarImagen("Recursos/Recursos Mapa/"+mapa+"/Batalla Fondo/BatallaFondo.gif");
+		fondo= CargaImagen.cargarImagen("Recursos/Recursos Mapa/"+mapa+"/Batalla Fondo/BatallaFondo.png");
 		g2d.drawImage(fondo, 0, 0, null);
 		for(Personaje personaje: alianzaAmiga){
 			spriteUnitario= CargaImagen.cargarImagen("Recursos/Recursos Personaje/Batalla/"+ personaje.getCasta() +"Batalla.png");
@@ -169,7 +169,7 @@ public class Batalla extends JFrame implements Runnable{
 			g2d.drawImage(spriteUnitario, punto.getX(),punto.getY(), null);
 			
 			Font tipoDeLetra=new Font("Arial", Font.BOLD, 16);
-			g.setColor(Color.WHITE);
+			g.setColor(Color.YELLOW);
 			g.setFont(tipoDeLetra);
 			g2d.drawString(personaje.getNombre(), punto.getX()+10,punto.getY()-7);
 			g2d.drawString(personaje.getSalud()+ " / " +personaje.getSaludMaxima(),  punto.getX()+10,punto.getY()+5);
@@ -182,7 +182,7 @@ public class Batalla extends JFrame implements Runnable{
 			g2d.drawImage(spriteUnitario, punto.getX(),punto.getY(), null);
 			
 			Font tipoDeLetra=new Font("Arial", Font.BOLD, 16);
-			g.setColor(Color.CYAN);
+			g.setColor(Color.GREEN);
 			g.setFont(tipoDeLetra);
 			g2d.drawString(personaje.getNombre(), punto.getX()+70,punto.getY()-7);
 			g2d.drawString(personaje.getSalud()+ " / " +personaje.getSaludMaxima(),  punto.getX()+70,punto.getY()+5);
