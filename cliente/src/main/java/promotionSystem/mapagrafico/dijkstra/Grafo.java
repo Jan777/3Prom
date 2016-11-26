@@ -14,7 +14,7 @@ public class Grafo {
 	
 
 	public Grafo(MatrizBoolean obstaculos) {
-		this.nodos  = new ArrayList<Nodo>();
+		this.nodos  = new ArrayList<>();
 		nodosVistados = new Nodo[obstaculos.getFilas()][obstaculos.getColumnas()];
 		Nodo actual;
 		for (int i = 0; i < obstaculos.getFilas(); i++) {    	

@@ -15,7 +15,6 @@ public class MatrizBoolean {
 		this.matrizBooleana = matrizBooleana;
 		this.filas = filas;
 		this.columnas = columnas;
-
 	}
 	
 	public void obtenerVecinosNodo(int xNodo, int yNodo,Nodo actual, Grafo g) {

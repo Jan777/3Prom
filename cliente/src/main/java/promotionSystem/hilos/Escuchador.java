@@ -100,8 +100,7 @@ public class Escuchador extends Thread {
 		}
 	}
 
-	private void setearItemsDePersonaje(JsonObject objeto, Personaje personaje)
-			throws InstantiationException, IllegalAccessException, ClassNotFoundException, Exception {
+	private void setearItemsDePersonaje(JsonObject objeto, Personaje personaje) throws Exception {
 		String armaString = objeto.get("arma").getAsString();
 		armaString = armaString.replaceAll(" ", "");
 		recibirYEquiparItem(personaje,hacerReflectionDeItem(armaString));
@@ -217,8 +216,7 @@ public class Escuchador extends Thread {
 		return personaje;
 	}
 
-	public Personaje crearPersonajeAPartirDeRazaCasta(String raza, String casta)
-			throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+	public Personaje crearPersonajeAPartirDeRazaCasta(String raza, String casta) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
 		return (Personaje) Class.forName("promotionSystem.razas.castas." + raza + "." + casta).newInstance();
 	}
 

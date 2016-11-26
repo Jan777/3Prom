@@ -76,6 +76,4 @@ public class BatallaHiloTest {
         cantidadMuertesAlianza1.setAccessible(true);
         cantidadMuertesAlianza1.set(batalla, valor);
     }
-
-
 }
