@@ -52,10 +52,14 @@ public class Batalla extends JFrame implements Runnable{
 	private String mapa;
 	private Sonido sonido;
 	private Sonido sonidoMapa;
+	private Sonido sonidoAtaque;
+	private Sonido sonidoHechizo;
 	
 	public Batalla(Cliente cliente, String mapa, Sonido sonido) throws MalformedURLException {
 		this.sonidoMapa=sonido;
 		this.sonido=new Sonido(mapa+"Batalla");
+		this.sonidoAtaque=new Sonido("Ataque");
+		this.sonidoHechizo=new Sonido("Hechizo");
 		this.sonido.reproducir();
 		setResizable(false);
 		this.alianzaEnemiga=cliente.getAlianzaEnemiga().getPersonajes();
@@ -286,6 +290,7 @@ public class Batalla extends JFrame implements Runnable{
 	}
 
 	private void realizarAtaqueConMagia() {
+		sonidoHechizo.reproducirUnaVez();
 		Personaje atacante = obtenerPersonajeAPartirDelNombreEnAlgunaAlianza(cliente.getAtacante());
 		Personaje atacado = obtenerPersonajeAPartirDelNombreEnAlgunaAlianza(cliente.getAtacado());
 		lblInformeBatalla.setText(cliente.getAtacante() + " hechizo a " + cliente.getAtacado() + " con " + hechizo);
@@ -304,7 +309,7 @@ public class Batalla extends JFrame implements Runnable{
 	}
 
 	private void realizarAtaque() {
-	
+		sonidoAtaque.reproducirUnaVez();
 		Personaje atacante = obtenerPersonajeAPartirDelNombreEnAlgunaAlianza(cliente.getAtacante());
 		Personaje atacado = obtenerPersonajeAPartirDelNombreEnAlgunaAlianza(cliente.getAtacado());
 		atacante.atacar(atacado);
@@ -363,9 +368,11 @@ public class Batalla extends JFrame implements Runnable{
 
 	private void enviarMovimiento() throws IOException {
 		if(movimiento.equals("Atacar")){
+			sonidoAtaque.reproducirUnaVez();
 			enviarAtacar();
 		}
 		else if(movimiento.equals("Hechizar")){
+			sonidoHechizo.reproducirUnaVez();
 			enviarHechizo();
 		}
 
