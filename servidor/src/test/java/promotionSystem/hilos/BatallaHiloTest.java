@@ -3,6 +3,7 @@ package promotionSystem.hilos;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import promotionSystem.Alianza;
 import promotionSystem.Personaje;
@@ -18,7 +19,7 @@ import static promotionSystem.builder.AlianzaBuilder.crearAlianza;
 @RunWith(MockitoJUnitRunner.class)
 public class BatallaHiloTest {
 
-    @InjectMocks
+    @Mock
     private BatallaHilo batalla;
 
     private Class<BatallaHilo> batallaReflection = BatallaHilo.class;
