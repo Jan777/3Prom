@@ -21,7 +21,6 @@ public class MagoHumano extends Humano {
 		velocidad=Constantes.VELOCIDAD_MAGO_HUMANO;
 		hechizos = new HashMap<String, Hechizo>();
         agregarHechizo("Trueno",new Trueno());
-//        agregarHechizo("Cura",new Cura());
 	}
 
 	@Override

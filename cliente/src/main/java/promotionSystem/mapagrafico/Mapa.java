@@ -260,23 +260,11 @@ public class Mapa {
 	}
 
 
-	/*public void moverPlayer(TileOtrosJugadores player) {
-		actual 		= 	grafoDeMapa.getNodo(player.getxAnterior(),player.getyAnterior());
-		destino 	=	grafoDeMapa.getNodo( player.getxDestino(), player.getyDestino());			
-		player.calcularDijkstra(grafoDeMapa,actual,destino);
-	}
-
-	private void dibujarRestoPersonajes(Graphics2D g2d) {
-		for (TileOtrosJugadores pj : personajes.values()) {
-			pj.mover(g2d);
-		}
-	}*/
-
 	private void dibujarRestoPersonajes(Graphics2D g2d) {
 		cliente.setValoresIsometricosParaDibujarPersonajes(xDestino + camara.getxOffCamara(),yDestino + camara.getyOffCamara());
 		if(!personajes.isEmpty()){
 			for (Personaje personaje: personajes) {
-				TileOtrosJugadores otrosPersonajes=new TileOtrosJugadores(personaje,xDestino + camara.getxOffCamara(),yDestino + camara.getyOffCamara()); //FIXME asd
+				TileOtrosJugadores otrosPersonajes=new TileOtrosJugadores(personaje,xDestino + camara.getxOffCamara(),yDestino + camara.getyOffCamara()); 
 				otrosJugadores.add(otrosPersonajes);
 				otrosPersonajes.dibujar(g2d,xDestino + camara.getxOffCamara(),yDestino + camara.getyOffCamara());
      			otrosPersonajes.actualizarAnimaciones();

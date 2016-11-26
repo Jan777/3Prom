@@ -64,9 +64,6 @@ public class Alianza {
         return personajes.size();
     }
 
-    public void entrarEnBatalla(){
-        //Carga de interfaz de batalla.
-    }
 
     public Personaje darVictima(Personaje personajeEnemigo) {
         return personajeEnemigo;

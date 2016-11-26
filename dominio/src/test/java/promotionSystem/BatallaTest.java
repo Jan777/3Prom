@@ -36,8 +36,7 @@ public class BatallaTest {
         alianza1 = crearAlianza(3);
         alianza2 = crearAlianza(2);
         Batalla batalla = crearBatalla();
-        //hacer comprobacion de que si tiene un arma ya equipada la guarde en el lugar del inventario
-        //y si no hay lugar en el inventario que se joda.
+  
         alianza2.getPersonajes().get(0).recibirItem(item);
         alianza2.getPersonajes().get(1).recibirItem(item);
         Assert.assertEquals(batalla.entregarPremio(), alianza1.getItems());

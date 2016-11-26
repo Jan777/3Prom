@@ -44,18 +44,7 @@ public class HechizosTest {
 		Assert.assertEquals(Constantes.SALUD_POKEMON_DE_FUEGO -Constantes.MAGIA_RIKU +Constantes.DEFENSA_POKEMON_DE_FUEGO, pokemon.getSalud());
 		Assert.assertEquals(Constantes.VELOCIDAD_POKEMON_DE_FUEGO /2, pokemon.obtenerPuntosDeVelocidad());
 	}
-	
-	/*@Test
-	public void siLoAtacoLoPuedoCurar(){
-	
-		Assert.assertEquals(Constantes.SALUD_ROXAS, roxas.getSalud());
-		riku.atacar(roxas);
-		Assert.assertEquals(Constantes.SALUD_ROXAS -Constantes.ATAQUE_RIKU +Constantes.DEFENSA_ROXAS, roxas.getSalud());
-		riku.usarMagiaSupport(roxas, "Cura");
-		Assert.assertEquals(Constantes.SALUD_ROXAS, roxas.getSalud());
-
-	}*/
-	
+		
 	@Test
 	public void siUsoHechizoTruenoAfectaASuOponente(){
 		Personaje pokemon=new PokemonTipoAgua();
@@ -80,14 +69,7 @@ public class HechizosTest {
 		Assert.assertEquals(Constantes.SALUD_POKEMON_DE_PLANTA -Constantes.MAGIA_SORA +Constantes.DEFENSA_POKEMON_DE_PLANTA, pokemon.getSalud());
 		
 	}
-	
-/*	@Test
-	public void siUsoHechizoIraWookeanaAfectaASuFuerza(){
-		Assert.assertEquals(Constantes.ATAQUE_WOOKIE, wookie.obtenerPuntosDeAtaque());
-		wookie.usarMagiaDeAlteracion("IraWookeana");
-		Assert.assertEquals(Constantes.ATAQUE_WOOKIE + Constantes.MAGIA_WOOKIE /3 +5, wookie.obtenerPuntosDeAtaque());
-		
-	}*/
+
 	
 	@Test
 	public void siUsoHechizoEmpujonDeFuerzaAfectaASuOponente(){
@@ -110,20 +92,4 @@ public class HechizosTest {
 		
 	}
 	
-	/*@Test
-	public void siUsoHechizoSupportAfectaASuEnergia(){
-		crearPersonajes();
-		Assert.assertEquals(100, riku.getEnergia());
-		riku.usarMagiaSupport(roxas, "Cura");
-		Assert.assertEquals(100-Constantes.MAGIA_RIKU, riku.getEnergia());
-		
-	}*/
-	
-/*	@Test
-	public void siUsoHechizoDeAlteracionAfectaASuEnergia(){
-		crearPersonajes();
-		Assert.assertEquals(100, wookie.getEnergia());
-		wookie.usarMagiaDeAlteracion("IraWookeana");
-		Assert.assertEquals(100-Constantes.MAGIA_WOOKIE, wookie.getEnergia());
-	}*/
 }

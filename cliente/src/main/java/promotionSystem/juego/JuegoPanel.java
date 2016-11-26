@@ -103,18 +103,5 @@ public class JuegoPanel extends Component implements Runnable{
 	
 	}
 
-	/*public void nuevoMovimientoPersonajes(String pj, String sprite, Punto point){
-		TileOtrosJugadores player = personajes.get(pj);
-		if (player == null){
-			player= new TileOtrosJugadores(pj,sprite,point);
-			personajes.put(pj, player );
-		}
-		mapa.moverPlayer(player);
-
-	}*/
-
-	public void nuevaDetencionPersonaje(String pj){
-		
-	}
 
 }

@@ -78,7 +78,7 @@ public class TilePersonaje {
 		Font tipoDeLetra = new Font("Arial", Font.BOLD, 16);
 		g.setColor(Color.BLUE);
 		g.setFont(tipoDeLetra);
-		g.drawString(nombre, xCentro, yCentro - 65 /*- 25*/);
+		g.drawString(nombre, xCentro, yCentro - 65);
 		g.drawString("Nv. " +String.valueOf(personajeJugable.getNivel()), xCentro, yCentro-80);
 		g.drawString(String.valueOf(personajeJugable.getSalud())+ " / " + String.valueOf(personajeJugable.getSaludMaxima()), xCentro, yCentro-50);
 	}
