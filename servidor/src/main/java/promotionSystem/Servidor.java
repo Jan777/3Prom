@@ -49,10 +49,10 @@ public class Servidor {
 		mapasDisponibles.put("Mundo Undertale", new Mapa(100, 100));
 		mapasDisponibles.put("Mundo Kingdom Hearts", new Mapa(100, 100));
 
-		jugadoresPorMapa.put(mapasDisponibles.get("Mundo Star Wars"), new ArrayList<>());
-		jugadoresPorMapa.put(mapasDisponibles.get("Mundo Pokemon"), new ArrayList<>());
-		jugadoresPorMapa.put(mapasDisponibles.get("Mundo Undertale"), new ArrayList<>());
-		jugadoresPorMapa.put(mapasDisponibles.get("Mundo Kingdom Hearts"), new ArrayList<>());
+		jugadoresPorMapa.put(mapasDisponibles.get("Mundo Star Wars"), new ArrayList<Socket>());
+		jugadoresPorMapa.put(mapasDisponibles.get("Mundo Pokemon"), new ArrayList<Socket>());
+		jugadoresPorMapa.put(mapasDisponibles.get("Mundo Undertale"), new ArrayList<Socket>());
+		jugadoresPorMapa.put(mapasDisponibles.get("Mundo Kingdom Hearts"), new ArrayList<Socket>());
 	}
 
 	private void configurar() throws FileNotFoundException {
