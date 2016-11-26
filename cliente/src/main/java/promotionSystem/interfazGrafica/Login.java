@@ -1,6 +1,7 @@
 package promotionSystem.interfazGrafica;
 
 import promotionSystem.Cliente;
+import promotionSystem.juego.Sonido;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,10 +11,11 @@ import java.net.UnknownHostException;
 
 public class Login extends JFrame {
 	Cliente cliente;
-
+	Sonido sonido;
 	public Login() throws Exception {
 
-
+			sonido = new Sonido("Menu Principal");
+			sonido.reproducir();
 			cliente = new Cliente();
 
 			crearInterfaz();
@@ -38,7 +40,7 @@ public class Login extends JFrame {
 	}
 
 	private void crearInterfaz() {
-		LaminaLogin lamina = new LaminaLogin(cliente, this);
+		LaminaLogin lamina = new LaminaLogin(cliente, this,sonido);
 		setTitle("LOGIN");
 		setResizable(false);
 		setBounds(0, 0, 450, 400);
@@ -58,11 +60,11 @@ public class Login extends JFrame {
 
 class LaminaLogin extends JPanel {
 
-	public LaminaLogin(Cliente cliente, JFrame marco) {
+	public LaminaLogin(Cliente cliente, JFrame marco,Sonido sonido) {
 		setLayout(new BorderLayout());
-		LaminaLoginCentral lamina = new LaminaLoginCentral(cliente, marco);
+		LaminaLoginCentral lamina = new LaminaLoginCentral(cliente, marco,sonido);
 		LaminaLoginNorte laminaN = new LaminaLoginNorte();
-		LaminaLoginSur laminaS = new LaminaLoginSur(cliente, marco);
+		LaminaLoginSur laminaS = new LaminaLoginSur(cliente, marco,sonido);
 		add(lamina, BorderLayout.CENTER);
 		add(laminaN, BorderLayout.NORTH);
 		add(laminaS, BorderLayout.SOUTH);
@@ -78,8 +80,10 @@ class LaminaLoginCentral extends JPanel implements KeyListener {
 	private JLabel error;
 	private JFrame frame;
 	private JButton registrarse;
+	private Sonido sonido;
 
-	public LaminaLoginCentral(Cliente cliente, JFrame frame) {
+	public LaminaLoginCentral(Cliente cliente, JFrame frame,Sonido sonido) {
+		this.sonido=sonido;
 		this.cliente = cliente;
 		setLayout(new GridLayout(5, 1));
 		JLabel nicklabel = new JLabel("NickName:");
@@ -187,7 +191,7 @@ class LaminaLoginCentral extends JPanel implements KeyListener {
 	}
 
 	private void abrirRegistrar() {
-		Registrarse marco = new Registrarse(cliente);
+		Registrarse marco = new Registrarse(cliente,sonido);
 		marco.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		marco.setVisible(true);
 
@@ -236,7 +240,7 @@ class LaminaLoginCentral extends JPanel implements KeyListener {
 
 	private void menuPrincipal() throws Exception {
 
-		MenuPrincipal ventana = new MenuPrincipal(cliente);
+		MenuPrincipal ventana = new MenuPrincipal(cliente,sonido);
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventana.setVisible(true);
 		ventana.addWindowListener(new WindowAdapter() {
@@ -289,16 +293,22 @@ class LaminaLoginNorte extends JPanel {
 class LaminaLoginSur extends JPanel {
 	private Cliente cliente;
 	private JFrame marco;
-	public LaminaLoginSur(Cliente cliente, JFrame marco) {
+	private Sonido sonido;
+	
+	public LaminaLoginSur(Cliente cliente, JFrame marco,Sonido sonido) {
 		this.cliente=cliente;
 		this.marco=marco;
+		this.sonido=sonido;
+		
 		JButton salir = new JButton("SALIR");
 
 		salir.addActionListener(new ActionListener() {
 
+
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				try {
+					pararSonido();
 					enviarAccionDeCerrar();
 				} catch (IOException e) {
 					JOptionPane.showMessageDialog(null,"Error al iniciar sesion","Error",JOptionPane.ERROR_MESSAGE);
@@ -307,6 +317,8 @@ class LaminaLoginSur extends JPanel {
 				cerrarFrame();
 			}
 
+		
+
 		});
 
 		salir.setSize(50, 50);
@@ -314,6 +326,10 @@ class LaminaLoginSur extends JPanel {
 		setLayout(new FlowLayout(FlowLayout.RIGHT));
 		add(salir);
 
+	}
+	
+	private void pararSonido() {
+		sonido.cerrar();
 	}
 
 	private void enviarAccionDeCerrar() throws IOException {

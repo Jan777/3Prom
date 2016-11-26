@@ -1,6 +1,7 @@
 package promotionSystem.interfazGrafica;
 
 import promotionSystem.Cliente;
+import promotionSystem.juego.Sonido;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -15,14 +16,13 @@ public class MenuPrincipal extends JFrame {
 	private JPanel contentPane;
 	private Cliente cliente;
 	private JFrame marco;
-	public MenuPrincipal(Cliente cliente) throws Exception {
+	private Sonido sonido;
+	public MenuPrincipal(Cliente cliente, Sonido sonido) throws Exception {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		marco=this;
 		setTitle("Menu Principal");
 		this.cliente=cliente;
-		
-		
-		
+		this.sonido=sonido;		
 		setBounds(100, 100, 450, 300);
 		setResizable(false);
 		contentPane = new JPanel();
@@ -56,15 +56,20 @@ public class MenuPrincipal extends JFrame {
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
+					pararMusica();
 					enviarAccionDeCerrar();
 				} catch (IOException e) {
 					JOptionPane.showMessageDialog(null,"Error al salir","Error",JOptionPane.ERROR_MESSAGE);
 				}
 				dispose();
 			}
+
+					
 		});
 		btnSalir.setBounds(170, 228, 89, 23);
 		contentPane.add(btnSalir);
+		
+		
 		
 		JButton btnVerDetallesDel = new JButton("Ver Detalles del Personaje");
 		
@@ -132,6 +137,10 @@ public class MenuPrincipal extends JFrame {
 		});
 	}
 	
+	private void pararMusica() {
+		sonido.cerrar();
+		
+	}
 	
 
 	private void enviarAccionDeCerrar() throws IOException {
@@ -139,7 +148,7 @@ public class MenuPrincipal extends JFrame {
 	 }
 
 	private void abrirSeleccionDeMapa() throws IOException {
-		SeleccionMapa mapa=new SeleccionMapa(cliente,marco);
+		SeleccionMapa mapa=new SeleccionMapa(cliente,marco,sonido);
 		mapa.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		mapa.setVisible(true);
 		

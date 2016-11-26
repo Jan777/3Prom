@@ -1,22 +1,24 @@
 package promotionSystem.interfazGrafica;
 
 import promotionSystem.Cliente;
+import promotionSystem.juego.Sonido;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 
 public class SeleccionPersonaje extends JFrame {
-
-	public SeleccionPersonaje(Cliente cliente) throws IOException {
+	
+	public SeleccionPersonaje(Cliente cliente, Sonido sonido) throws IOException {
 
 		setBounds(0, 0, 500, 500);
 		setResizable(false);
 		setTitle("Seleccion de Personaje");
-		LaminaPrincipal lamina = new LaminaPrincipal(cliente, this);
+		LaminaPrincipal lamina = new LaminaPrincipal(cliente, this,sonido);
 		add(lamina);
 	}
 }
@@ -24,7 +26,7 @@ public class SeleccionPersonaje extends JFrame {
 class LaminaPrincipal extends JPanel {
 	JComboBox<String> castas, razas;
 
-	public LaminaPrincipal(Cliente cliente, JFrame marco) throws IOException {
+	public LaminaPrincipal(Cliente cliente, JFrame marco, Sonido sonido) throws IOException {
 		castas = new JComboBox<>();
 		razas = new JComboBox<>();
 		setLayout(new BorderLayout());
@@ -32,7 +34,7 @@ class LaminaPrincipal extends JPanel {
 		LaminaOeste laminaE = new LaminaOeste(cliente, castas, razas);
 		LaminaCentral laminaC = new LaminaCentral();
 
-		LaminaSur laminaS = new LaminaSur(cliente, castas, razas, marco);
+		LaminaSur laminaS = new LaminaSur(cliente, castas, razas, marco,sonido);
 		add(laminaN, BorderLayout.NORTH);
 		add(laminaE, BorderLayout.WEST);
 		add(laminaC, BorderLayout.CENTER);
@@ -45,7 +47,9 @@ class LaminaSur extends JPanel {
 	JComboBox<String> castas, razas;
 	private Cliente cliente;
     private JFrame marco;
-	public LaminaSur(Cliente cliente, JComboBox<String> castas, JComboBox<String> razas, JFrame marco) {
+    private Sonido sonido;
+	public LaminaSur(Cliente cliente, JComboBox<String> castas, JComboBox<String> razas, JFrame marco, Sonido sonido) {
+		this.sonido=sonido;
 		this.cliente = cliente;
 		this.castas = castas;
 		this.razas = razas;
@@ -60,12 +64,14 @@ class LaminaSur extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					enviarRazaYCasta();
 					
+					enviarRazaYCasta();
+					cerrarFrame();					
 				} catch (Exception e) {
 					JOptionPane.showMessageDialog(null,"Error al cerrar","Error",JOptionPane.ERROR_MESSAGE);
+					cerrar();
 				}
-				cerrarFrame();
+					
 
 
 			}
@@ -80,6 +86,11 @@ class LaminaSur extends JPanel {
 		add(informe);
 	}
 
+	protected void cerrar() {
+		marco.dispose();
+		
+	}
+
 	private void enviarRazaYCasta() throws Exception {
 		cliente.enviarAccion("seleccionarRazaYCasta");
 		String raza = (String) razas.getSelectedItem();
@@ -87,8 +98,12 @@ class LaminaSur extends JPanel {
 		cliente.enviarRazaYCastaSeleccionada(raza, casta);
 	}
 
-	private void cerrarFrame() {
+	private void cerrarFrame() throws MalformedURLException {
+		this.sonido.cerrar();
+		Sonido sonido = new Sonido("Registrar Personaje");
+		sonido.reproducirUnaVez();
 		marco.dispose();
+		this.sonido.reproducir();
 	}
 }
 

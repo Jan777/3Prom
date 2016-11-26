@@ -1,6 +1,7 @@
 package promotionSystem.interfazGrafica;
 
 import promotionSystem.Cliente;
+import promotionSystem.juego.Sonido;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,9 +10,9 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class Registrarse extends JFrame {
-
-	public Registrarse(Cliente cliente) {
-		LaminaRegistro laminaRegistro = new LaminaRegistro(cliente, this);
+	
+	public Registrarse(Cliente cliente, Sonido sonido) {
+		LaminaRegistro laminaRegistro = new LaminaRegistro(cliente, this,sonido);
 		setTitle("Registrarse");
 		setResizable(false);
 		setBounds(100, 100, 600, 400);
@@ -23,9 +24,9 @@ public class Registrarse extends JFrame {
 
 class LaminaRegistro extends JPanel {
 
-	public LaminaRegistro(Cliente cliente, JFrame marco) {
+	public LaminaRegistro(Cliente cliente, JFrame marco, Sonido sonido) {
 		setLayout(new BorderLayout());
-		LaminaCentralR laminaC = new LaminaCentralR(cliente, marco);
+		LaminaCentralR laminaC = new LaminaCentralR(cliente, marco,sonido);
 		LaminaNorteR laminaN = new LaminaNorteR();
 		LaminaSurR laminaS = new LaminaSurR(marco);
 		add(laminaC, BorderLayout.CENTER);
@@ -43,10 +44,11 @@ class LaminaCentralR extends JPanel {
 	private JLabel error;
 	private JTextField nick;
 	private Cliente cliente;
-
+	private Sonido sonido;
 	private JFrame marco;
 
-	public LaminaCentralR(Cliente cliente, JFrame marco) {
+	public LaminaCentralR(Cliente cliente, JFrame marco, Sonido sonido) {
+		this.sonido=sonido;
 		this.cliente = cliente;
 		this.marco=marco;
 		setLayout(new GridLayout(4, 1));
@@ -147,7 +149,7 @@ class LaminaCentralR extends JPanel {
 	}
 
 	private void elegirPersonaje() throws IOException {
-		SeleccionPersonaje ventana = new SeleccionPersonaje(cliente);
+		SeleccionPersonaje ventana = new SeleccionPersonaje(cliente,sonido);
 		ventana.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		ventana.setVisible(true);
 		marco.dispose();

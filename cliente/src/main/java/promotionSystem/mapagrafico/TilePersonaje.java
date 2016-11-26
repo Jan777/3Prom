@@ -17,6 +17,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.awt.image.BufferedImage;
+import java.net.MalformedURLException;
 
 
 public class TilePersonaje {
@@ -48,14 +49,14 @@ public class TilePersonaje {
 	private Mapa mapa;
 	private JFrame padre;
 	private Opciones opciones;
+	private Sonido sonido;
 
-
-	public TilePersonaje(Cliente cliente,Mouse mouse,Camara camara,JFrame padre ) {
+	public TilePersonaje(Cliente cliente,Mouse mouse,Camara camara,JFrame padre, Sonido sonido ) {
 		this.cliente=cliente;
 		this.xCentro = 320;
 		this.yCentro = 320;
 		this.padre=padre;
-
+		this.sonido=sonido;
 		incializarOpciones();
 		this.camara = camara;
 		this.movimiento = 0;
@@ -118,8 +119,8 @@ public class TilePersonaje {
 
 	}
 
-	private void abrirPanelDeBatalla() {
-		Batalla batalla = new Batalla(cliente, mapa.getNombre());
+	private void abrirPanelDeBatalla() throws MalformedURLException {
+		Batalla batalla = new Batalla(cliente, mapa.getNombre(),sonido);
         batalla.addWindowListener(new WindowAdapter(){ 
 			
 			@Override
@@ -135,7 +136,7 @@ public class TilePersonaje {
 			}
 		});
 		new Thread(batalla).start();
-		//Sonido.MAPAPOKEMON.stop();
+		sonido.cerrar();
 	}
 
 	private boolean alianzaEsValida() {

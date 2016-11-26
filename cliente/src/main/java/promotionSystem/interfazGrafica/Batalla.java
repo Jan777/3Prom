@@ -16,6 +16,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.concurrent.Semaphore;
@@ -49,9 +50,13 @@ public class Batalla extends JFrame implements Runnable{
 	private JLabel lblInformeBatalla;
 	private JLabel lblTurno;
 	private String mapa;
+	private Sonido sonido;
+	private Sonido sonidoMapa;
 	
-	public Batalla(Cliente cliente, String mapa) {
-		//Sonido.BATALLAPOKEMON.loop();
+	public Batalla(Cliente cliente, String mapa, Sonido sonido) throws MalformedURLException {
+		this.sonidoMapa=sonido;
+		this.sonido=new Sonido(mapa+"Batalla");
+		this.sonido.reproducir();
 		setResizable(false);
 		this.alianzaEnemiga=cliente.getAlianzaEnemiga().getPersonajes();
 		this.alianzaAmiga=cliente.getAlianzaAmiga().getPersonajes();
@@ -270,8 +275,8 @@ public class Batalla extends JFrame implements Runnable{
 			else{
 				JOptionPane.showMessageDialog(null,"Has Ganado!","Fin de batalla",JOptionPane.INFORMATION_MESSAGE);
 			}
-			//Sonido.BATALLAPOKEMON.stop();
-			//Sonido.MAPAPOKEMON.loop();
+			sonido.cerrar();
+			this.sonidoMapa.reproducir();
 			dispose();
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null,"Error en la batalla" ,"ERROR!",JOptionPane.ERROR_MESSAGE);

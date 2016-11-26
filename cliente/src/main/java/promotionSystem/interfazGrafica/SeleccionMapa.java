@@ -2,6 +2,7 @@ package promotionSystem.interfazGrafica;
 
 import promotionSystem.Cliente;
 import promotionSystem.juego.JuegoPanel;
+import promotionSystem.juego.Sonido;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -19,11 +20,12 @@ public class SeleccionMapa extends JFrame {
 	private JComboBox comboBox;
 	private String mapa;
 	private JFrame menu,marco;
-
-	public SeleccionMapa(Cliente cliente,JFrame menu) throws IOException {
+	private Sonido sonido;
+	public SeleccionMapa(Cliente cliente,JFrame menu, Sonido sonido) throws IOException {
 		this.cliente = cliente;
 		this.menu=menu;
 		marco=this;
+		this.sonido=sonido;
 		cliente.enviarAccion("recibirMapas");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -102,6 +104,7 @@ public class SeleccionMapa extends JFrame {
 	}
 
 	private void abrirMapa() throws IOException {
+		sonido.cerrar();
 		JFrame juego = new JFrame("Kings of the Multiverse V1.0");
 		juego.setBounds(100, 100, 800, 600);
 		JuegoPanel panel;

@@ -2,12 +2,35 @@ package promotionSystem.juego;
 
 import java.applet.Applet;
 import java.applet.AudioClip;
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
 
-public class Sonido {
 
-	 public static final AudioClip BATALLAKH = Applet.newAudioClip(Sonido.class.getResource("Recursos/Musica/PokemonBatalla.wav"));
-	 public static final AudioClip BATALLAPOKEMON = Applet.newAudioClip(Sonido.class.getResource("Recursos/Musica/Axel.wav"));
-	 public static final AudioClip MAPAKH = Applet.newAudioClip(Sonido.class.getResource("Recursos/Musica/TraverseTown.wav"));
-	 public static final AudioClip MAPAPOKEMON = Applet.newAudioClip(Sonido.class.getResource("Recursos/Musica/PokemonMapa.wav"));
+public class Sonido extends Applet{
+
+
+	
+	public AudioClip audioClip;
+	
+	public Sonido(String nombre) throws MalformedURLException{
+		File archivo=new File("Recursos/Musica/"+nombre+".wav");
+		audioClip=Applet.newAudioClip(new URL("file:"+archivo.getAbsolutePath()));
+		 
+	}
+	
+	public void reproducir(){
+		audioClip.loop();
+	}
+	
+	public void cerrar(){
+		audioClip.stop();
+	}
+
+
+	public void reproducirUnaVez() {
+		audioClip.play();
+		
+	}
 
 }
