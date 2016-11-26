@@ -70,6 +70,7 @@ public class Mapa {
 		this.yDestino = pj.getYDestino();
 		this.xAnterior = -xDestino;
 		this.yAnterior = -yDestino;
+		
 		this.dijkstra = new MetodoDijkstra();
 		this.nombre = nombre;
 		this.camara = camara;
@@ -189,6 +190,7 @@ public class Mapa {
 
 	public void dibujar(Graphics2D g2d) {
 		g2d.setBackground(Color.BLACK);
+		cliente.setValoresIsometricosParaDibujarPersonajes(xDestino + camara.getxOffCamara(),yDestino + camara.getyOffCamara());
 		for (int i = 0; i <  alto; i++) { 
 			for (int j = 0; j < ancho ; j++) { 
 				tiles[i][j].dibujar(g2d,xDestino + camara.getxOffCamara(),yDestino + camara.getyOffCamara());
@@ -203,6 +205,7 @@ public class Mapa {
 		
 		g2d.drawImage( iluminacion, 0, 0 , null);
 	}
+
 
 
 	public void mover(Graphics2D g2d) {
@@ -272,9 +275,10 @@ public class Mapa {
 	}*/
 
 	private void dibujarRestoPersonajes(Graphics2D g2d) {
+		cliente.setValoresIsometricosParaDibujarPersonajes(xDestino + camara.getxOffCamara(),yDestino + camara.getyOffCamara());
 		if(!personajes.isEmpty()){
 			for (Personaje personaje: personajes) {
-				TileOtrosJugadores otrosPersonajes=new TileOtrosJugadores(personaje);
+				TileOtrosJugadores otrosPersonajes=new TileOtrosJugadores(personaje,xDestino + camara.getxOffCamara(),yDestino + camara.getyOffCamara()); //FIXME asd
 				otrosJugadores.add(otrosPersonajes);
 				otrosPersonajes.dibujar(g2d,xDestino + camara.getxOffCamara(),yDestino + camara.getyOffCamara());
      			otrosPersonajes.actualizarAnimaciones();
@@ -283,8 +287,8 @@ public class Mapa {
 	}
 	
 	private void moverRestoPersonajes(Graphics2D g2d) {
-		for (TileOtrosJugadores jugador: otrosJugadores){
-			
+		cliente.setValoresIsometricosParaDibujarPersonajes(xDestino + camara.getxOffCamara(),yDestino + camara.getyOffCamara());
+			for (TileOtrosJugadores jugador: otrosJugadores){
 			jugador.mover(g2d,xDestino + camara.getxOffCamara(),yDestino + camara.getyOffCamara());
 			jugador.actualizarAnimaciones();
 		}

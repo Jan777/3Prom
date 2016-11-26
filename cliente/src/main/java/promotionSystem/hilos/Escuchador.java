@@ -203,7 +203,7 @@ public class Escuchador extends Thread {
 		JsonObject objeto = parser.parse(entrada.readUTF()).getAsJsonObject();
 		Personaje personaje = crearPersonaje(objeto);
 		jugadoresEnPartida.add(personaje);
-		tilesOtrosJugadores.add(new TileOtrosJugadores(personaje));
+		tilesOtrosJugadores.add(new TileOtrosJugadores(personaje,cliente.getValorParaDibujarX(),cliente.getValorParaDibujarY()));
 	}
 
 	private Personaje crearPersonaje(JsonObject objeto) throws Exception {

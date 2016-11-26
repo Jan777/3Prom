@@ -46,6 +46,8 @@ public class Cliente {
 	private String hechizo;
 	private boolean ataqueConMagia;
 	private TilePersonaje tile;
+	private int valorParaDibujarX;
+	private int valorParaDibujarY;
 
 	public Cliente() throws Exception {
 	
@@ -396,6 +398,19 @@ public class Cliente {
 	public void mostrarAlianzaAceptada() {
 		JOptionPane.showMessageDialog(null, "Se ha aceptado la alianza","Formacion de Alianza",JOptionPane.INFORMATION_MESSAGE);
 		
+	}
+
+	public void setValoresIsometricosParaDibujarPersonajes(int valorParaDibujarX, int valorParaDibujarY) {
+		this.valorParaDibujarX=valorParaDibujarX;
+		this.valorParaDibujarY=valorParaDibujarY;
+		
+	}
+	public int getValorParaDibujarY(){
+		return valorParaDibujarY;
+	}
+	
+	public int getValorParaDibujarX(){
+		return valorParaDibujarX;
 	}
 
 }
