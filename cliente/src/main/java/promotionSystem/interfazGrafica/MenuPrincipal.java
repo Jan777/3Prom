@@ -7,6 +7,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.IOException;
@@ -86,19 +87,8 @@ public class MenuPrincipal extends JFrame {
 		contentPane.add(btnVerDetallesDel);
 		
 		
-		addWindowListener(new WindowListener(){
-
-			@Override
-			public void windowActivated(WindowEvent e) {
+		addWindowListener(new WindowAdapter(){
 			
-				
-			}
-
-			@Override
-			public void windowClosed(WindowEvent e) {
-				
-			}
-
 			@Override
 			public void windowClosing(WindowEvent e) {
 				
@@ -109,31 +99,6 @@ public class MenuPrincipal extends JFrame {
 				}
 				dispose();
 			}
-
-			@Override
-			public void windowDeactivated(WindowEvent e) {
-				
-				
-			}
-
-			@Override
-			public void windowDeiconified(WindowEvent e) {
-			
-				
-			}
-
-			@Override
-			public void windowIconified(WindowEvent e) {
-			
-				
-			}
-
-			@Override
-			public void windowOpened(WindowEvent e) {
-			
-				
-			}
-			
 		});
 	}
 	
@@ -152,13 +117,7 @@ public class MenuPrincipal extends JFrame {
 		mapa.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		mapa.setVisible(true);
 		
-		mapa.addWindowListener(new WindowListener(){
-
-			@Override
-			public void windowActivated(WindowEvent arg0) {
-			
-				
-			}
+		mapa.addWindowListener(new WindowAdapter(){
 
 			@Override
 			public void windowClosed(WindowEvent arg0) {
@@ -173,24 +132,7 @@ public class MenuPrincipal extends JFrame {
 				marco.setEnabled(true);
 			}
 
-			@Override
-			public void windowDeactivated(WindowEvent arg0) {
 			
-				
-			}
-
-			@Override
-			public void windowDeiconified(WindowEvent arg0) {
-				
-				
-			}
-
-			@Override
-			public void windowIconified(WindowEvent arg0) {
-	
-				
-			}
-
 			@Override
 			public void windowOpened(WindowEvent arg0) {
 			
@@ -206,13 +148,7 @@ public class MenuPrincipal extends JFrame {
 		VerPersonaje ver=new VerPersonaje(cliente);
 		ver.setBounds(100, 100, 500, 400);
 		ver.setVisible(true);
-		ver.addWindowListener(new WindowListener(){
-
-			@Override
-			public void windowActivated(WindowEvent arg0) {
-			
-				
-			}
+		ver.addWindowListener(new WindowAdapter(){
 
 			@Override
 			public void windowClosed(WindowEvent arg0) {
@@ -225,24 +161,6 @@ public class MenuPrincipal extends JFrame {
 			public void windowClosing(WindowEvent arg0) {
 			
 				marco.setEnabled(true);
-			}
-
-			@Override
-			public void windowDeactivated(WindowEvent arg0) {
-			
-				
-			}
-
-			@Override
-			public void windowDeiconified(WindowEvent arg0) {
-				
-				
-			}
-
-			@Override
-			public void windowIconified(WindowEvent arg0) {
-
-				
 			}
 
 			@Override

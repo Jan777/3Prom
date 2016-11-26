@@ -18,13 +18,11 @@ public class Batalla {
     }
 
     public Alianza definirGanador() {
-        //FIXME Se define con el JForm, borrar lo de abajo.
         ganador = alianza1.cantidadDePersonajes() > alianza2.cantidadDePersonajes() ? alianza1 : alianza2;
         return ganador;
     }
 
     public Alianza definirPerdedor() {
-        //FIXME Se define con el JForm, borrar lo de abajo.
         perdedor = alianza1.cantidadDePersonajes() < alianza2.cantidadDePersonajes() ? alianza1 : alianza2;
         return perdedor;
     }

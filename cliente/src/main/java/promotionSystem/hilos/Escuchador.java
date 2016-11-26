@@ -81,12 +81,14 @@ public class Escuchador extends Thread {
 				personaje.setEnergia(personaje.getEnergiaMaxima());
 				setearItemsDePersonaje(objeto, personaje);
 			}
-			else{
-				this.personaje.subirExperiencia(experiencia);
-				this.personaje.setSalud(salud);
-				this.personaje.sacarDeModoBatalla();
-				this.personaje.setEnergia(this.personaje.getEnergiaMaxima());
-				setearItemsDePersonaje(objeto, this.personaje);
+			else{ 
+		        this.personaje.subirExperiencia(experiencia); 
+		        if(this.personaje.getSalud()>0){ 
+		          JOptionPane.showMessageDialog(null,"Has recibido un item!", "Felicitaciones!",JOptionPane.INFORMATION_MESSAGE); 
+		        } 
+		        this.personaje.setSalud(salud); 
+		        this.personaje.sacarDeModoBatalla(); 
+		        this.personaje.setEnergia(this.personaje.getEnergiaMaxima()); 
 			}
 		}
 	}

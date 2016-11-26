@@ -95,7 +95,7 @@ public class Batalla extends JFrame implements Runnable{
 		cargarAliados();
 		seleccionarAliado.setVisible(false);
 		lblSeleccionarEnemigo = new JLabel("Seleccionar Enemigo");
-		lblSeleccionarEnemigo.setBounds(615, 420, 200, 14);
+		lblSeleccionarEnemigo.setBounds(615, 420, 200, 30);
 		contentPane.add(lblSeleccionarEnemigo);
 		
 		lblSeleccionarMagia = new JLabel("Seleccionar Magia");
